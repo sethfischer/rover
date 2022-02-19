@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "sethfischer/osr"
+version = "0.1.0-pre-alpha"
+description = "Alternative body construstion for the NASA JPL Open Source Rover."
+authors = ["Seth Fischer <seth@fischer.nz>"]
+license = "MIT"
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
