@@ -1,6 +1,6 @@
-import sphinx_rtd_theme
 from datetime import date
 
+import sphinx_rtd_theme  # noqa: F401
 
 project = "sethfischer/osr"
 release = "0.1.0-pre-alpha"

@@ -2,7 +2,7 @@
 sethfischer/osr
 ===============
 
-|build-status|
+|build-status| |lint-status|
 
 
 Alternative body construction for the `NASA JPL Open Source Rover`_.
@@ -14,3 +14,6 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
 .. |build-status| image:: https://github.com/sethfischer/osr/actions/workflows/build.yml/badge.svg
     :target: https://github.com/sethfischer/osr/actions/workflows/build.yml
     :alt: Build status
+.. |lint-status| image:: https://github.com/sethfischer/osr/actions/workflows/lint.yml/badge.svg
+    :target: https://github.com/sethfischer/osr/actions/workflows/lint.yml
+    :alt: Lint status
