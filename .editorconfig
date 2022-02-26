@@ -8,6 +8,9 @@ indent_style = space
 insert_final_newline = true
 max_line_length = 79
 
+[*.{cff,yml}]
+indent_size = 2
+
 [*.py]
 max_line_length = 88
 
