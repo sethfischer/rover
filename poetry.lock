@@ -437,6 +437,17 @@ lint = ["flake8 (>=3.5.0)", "isort", "mypy (>=0.931)", "docutils-stubs", "types-
 test = ["pytest", "pytest-cov", "html5lib", "cython", "typed-ast"]
 
 [[package]]
+name = "sphinx-lfs-content"
+version = "1.0.0"
+description = "Ensure existence of LFS content in your LFS builds"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
 name = "sphinx-rtd-theme"
 version = "1.0.0"
 description = "Read the Docs theme for Sphinx"
@@ -566,7 +577,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "26b9c7d90b437e7679cb39c590193fcbcbed9f8173878fb954ca71259ab249d1"
+content-hash = "398d1fd5be3d63e8bb86c9d7ba475a43669ee2809bcb63672d173f12629fb448"
 
 [metadata.files]
 alabaster = [
@@ -820,6 +831,9 @@ snowballstemmer = [
 sphinx = [
     {file = "Sphinx-4.4.0-py3-none-any.whl", hash = "sha256:5da895959511473857b6d0200f56865ed62c31e8f82dd338063b84ec022701fe"},
     {file = "Sphinx-4.4.0.tar.gz", hash = "sha256:6caad9786055cb1fa22b4a365c1775816b876f91966481765d7d50e9f0dd35cc"},
+]
+sphinx-lfs-content = [
+    {file = "sphinx_lfs_content-1.0.0.tar.gz", hash = "sha256:27d104bfc4d1ea3856a986f31d18a278b0421d8a1f7527db44fa825c4f7517ab"},
 ]
 sphinx-rtd-theme = [
     {file = "sphinx_rtd_theme-1.0.0-py2.py3-none-any.whl", hash = "sha256:4d35a56f4508cfee4c4fb604373ede6feae2a306731d533f409ef5c3496fdbd8"},
