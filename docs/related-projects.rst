@@ -17,3 +17,19 @@ Website
 
     JPL Open Source Rover. (2018).
     `JPL Open Source Rover Project <https://github.com/nasa-jpl/open-source-rover/commit/b9a78833caa09b227cbc608189bf05ceba8462e6>`_.
+
+
+Sawppy the Rover
+----------------
+
+Build instructions
+    https://github.com/Roger-random/Sawppy_Rover
+
+Website
+    https://hackaday.io/project/158208-sawppy-the-rover
+
+.. figure:: _static/images/related-projects/roger-random-sawppy-v1.0.*
+    :alt: Sawppy the Rover
+
+    Sawppy the Rover v1.0.
+    `Sawppy the Rover on hackaday.io <https://hackaday.io/project/158208-sawppy-the-rover>`_
