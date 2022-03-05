@@ -8,6 +8,19 @@ sethfischer/osr
 Alternative body construction for the `NASA JPL Open Source Rover`_.
 
 
+Get started
+-----------
+
+.. code:: console
+
+    make install-git-hooks
+    virtualenv .venv
+    . .venv/bin/activate
+    pip install -U pip
+    poetry install
+    cd docs && make html
+
+
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
 
 
