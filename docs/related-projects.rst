@@ -33,3 +33,11 @@ Website
 
     Sawppy the Rover v1.0.
     `Sawppy the Rover on hackaday.io <https://hackaday.io/project/158208-sawppy-the-rover>`_
+
+
+DIY Mars Rover
+--------------
+
+Build instructions
+    * https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/
+    * https://www.youtube.com/watch?v=NOZZMsMAGh0
