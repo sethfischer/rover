@@ -17,6 +17,8 @@ flake8 = "^4.0.1"
 black = "^22.1.0"
 isort = "^5.10.1"
 cffconvert = "^2.0.0"
+doc8 = "^0.10.1"
+rstcheck = "^3.3.1"
 
 [tool.isort]
 profile = "black"
