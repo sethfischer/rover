@@ -25,7 +25,7 @@ Sawppy the Rover
 Build instructions
     https://github.com/Roger-random/Sawppy_Rover
 
-Website
+Project page
     https://hackaday.io/project/158208-sawppy-the-rover
 
 .. figure:: _static/images/related-projects/roger-random-sawppy-v1.0.*
@@ -35,9 +35,70 @@ Website
     `Sawppy the Rover on hackaday.io <https://hackaday.io/project/158208-sawppy-the-rover>`_
 
 
-DIY Mars Rover
---------------
+ESA ExoMy
+---------
 
 Build instructions
-    * https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/
-    * https://www.youtube.com/watch?v=NOZZMsMAGh0
+    https://github.com/esa-prl/ExoMy/wiki
+
+Website
+    https://esa-prl.github.io/ExoMy/
+
+
+How To Mechatronics/Mars Rover
+------------------------------
+
+Build instructions
+    https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/
+
+
+Jakob Krantz/Mars Rover
+-----------------------
+
+Build instructions
+    https://github.com/jakkra/Mars-Rover
+
+
+Frédéric Jelmoni/Mars Rover
+---------------------------
+
+Build instructions
+    Fred Robotic `Mars 2020 - Perseverance Rover Project <https://www.youtube.com/playlist?list=PLPA2ZF9G4l--smeL5xHTISZBblAAfhV12>`_ on YouTube.
+
+Website
+    https://mars2020.fred-j.org/
+
+
+BricoLabs/Curiosity
+-------------------
+
+Build instructions
+    https://bricolabs.cc/wiki/en/proyectos/curiosity_btl
+
+Code and parts
+    https://github.com/felixstdp/curiosity_btl
+
+
+Ryan Kinnett/Micro Rover
+------------------------
+
+Project page
+    https://hackaday.io/project/174405-micro-rover
+
+
+planktonrobo/RB-0
+-----------------
+
+Project page
+    https://www.hackster.io/planktonrobo/rb-0-jetson-nano-powered-rover-ca242a
+
+Code and parts
+    https://github.com/planktonrobo/RB-0
+
+
+Commercial products
+-------------------
+
+* 4tronix `M.A.R.S. Rover Robot for Microbit or Pi Zero <https://shop.4tronix.co.uk/products/marsrover>`_
+* Servocity `Bogie Runt Rover <https://www.servocity.com/bogie-runt-rover/>`_
+* Sphero `littleBits Space Rover Inventor Kit <https://sphero.com/products/littlebits-space-rover-inventor-kit>`_
