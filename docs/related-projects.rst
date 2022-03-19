@@ -5,7 +5,7 @@ Related projects
 JPL Open Source Rover
 ---------------------
 
-Build instructions
+Documentation
     * https://github.com/nasa-jpl/open-source-rover
     * https://github.com/nasa-jpl/osr-rover-code
 
@@ -22,7 +22,7 @@ Website
 Sawppy the Rover
 ----------------
 
-Build instructions
+Documentation
     https://github.com/Roger-random/Sawppy_Rover
 
 Project page
@@ -38,7 +38,7 @@ Project page
 ESA ExoMy
 ---------
 
-Build instructions
+Documentation
     https://github.com/esa-prl/ExoMy/wiki
 
 Website
@@ -48,21 +48,21 @@ Website
 How To Mechatronics/Mars Rover
 ------------------------------
 
-Build instructions
+Documentation
     https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/
 
 
 Jakob Krantz/Mars Rover
 -----------------------
 
-Build instructions
+Documentation
     https://github.com/jakkra/Mars-Rover
 
 
 Frédéric Jelmoni/Mars Rover
 ---------------------------
 
-Build instructions
+Documentation
     Fred Robotic `Mars 2020 - Perseverance Rover Project <https://www.youtube.com/playlist?list=PLPA2ZF9G4l--smeL5xHTISZBblAAfhV12>`_ on YouTube.
 
 Website
@@ -72,7 +72,7 @@ Website
 BricoLabs/Curiosity
 -------------------
 
-Build instructions
+Documentation
     https://bricolabs.cc/wiki/en/proyectos/curiosity_btl
 
 Code and parts
@@ -82,14 +82,14 @@ Code and parts
 Ryan Kinnett/Micro Rover
 ------------------------
 
-Project page
+Documentation
     https://hackaday.io/project/174405-micro-rover
 
 
 planktonrobo/RB-0
 -----------------
 
-Project page
+Documentation
     https://www.hackster.io/planktonrobo/rb-0-jetson-nano-powered-rover-ca242a
 
 Code and parts
