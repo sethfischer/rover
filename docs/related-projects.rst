@@ -45,6 +45,13 @@ Website
     https://esa-prl.github.io/ExoMy/
 
 
+.. figure:: _static/images/related-projects/esa-exomy-2020.*
+    :alt: ESA ExoMy
+
+    ESA ExoMy.
+    `Copyright European Space Agency (ESA) <https://www.esa.int/ESA_Multimedia/Images/2020/11/ExoMy>`_
+
+
 How To Mechatronics/Mars Rover
 ------------------------------
 
