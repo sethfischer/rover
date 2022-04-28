@@ -1,3 +1,5 @@
+"""sethfischer/osr Sphinx configuration."""
+
 from datetime import date
 
 import sphinx_rtd_theme  # noqa: F401
