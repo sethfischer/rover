@@ -11,7 +11,7 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
 Get started
 -----------
 
-.. code:: console
+.. code::
 
     make install-git-hooks
     virtualenv .venv
