@@ -1,10 +1,10 @@
-"""sethfischer/osr Sphinx configuration."""
+"""Sphinx configuration."""
 
 from datetime import date
 
 import sphinx_rtd_theme  # noqa: F401
 
-project = "sethfischer/osr"
+project = "sethfischer-osr"
 release = "0.1.0-pre-alpha"
 author = "Seth Fischer"
 copyright = f"{date.today().year}, {author}"

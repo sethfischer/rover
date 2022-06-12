@@ -4,7 +4,7 @@ authors:
   - given-names: Seth
     family-names: Fischer
     email: "seth@fischer.nz"
-title: "sethfischer/osr"
+title: "sethfischer-osr"
 type: software
 repository-code: "https://github.com/sethfischer/osr"
 license: MIT

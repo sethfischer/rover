@@ -1,5 +1,5 @@
 ===============
-sethfischer/osr
+sethfischer-osr
 ===============
 
 Alternative body construction for the `NASA JPL Open Source Rover`_.
