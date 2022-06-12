@@ -2,9 +2,32 @@
 name = "sethfischer-osr"
 version = "0.1.0-pre-alpha"
 description = "Alternative body construstion for the NASA JPL Open Source Rover."
-authors = ["Seth Fischer <seth@fischer.nz>"]
+authors = [
+    "Seth Fischer <seth@fischer.nz>",
+]
+readme = "README.rst"
 license = "MIT"
+homepage = "https://github.com/sethfischer/osr"
+repository = "https://github.com/sethfischer/osr.git"
+documentation = "https://sethfischer-osr.readthedocs.io/"
+keywords = [
+    "jpl",
+    "mars",
+    "robot",
+    "robotics",
+    "rover",
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Private :: Do not Upload",  # Prevent uploading to PyPi
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Astronomy",
+    "Topic :: Scientific/Engineering",
+]
 
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/sethfischer/osr/issues"
 
 [tool.poetry.dependencies]
 python = "^3.8"
