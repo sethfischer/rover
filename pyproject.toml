@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sethfischer-osr"
-version = "0.1.0-pre-alpha"
+version = "0.1.0"
 description = "Alternative body construstion for the NASA JPL Open Source Rover."
 authors = [
     "Seth Fischer <seth@fischer.nz>",
