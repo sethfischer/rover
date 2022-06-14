@@ -2,6 +2,9 @@
 name = "sethfischer-osr"
 version = "0.1.0"
 description = "Alternative body construstion for the NASA JPL Open Source Rover."
+packages = [
+    { include = "osr_mechanical", from = "src" },
+]
 authors = [
     "Seth Fischer <seth@fischer.nz>",
 ]
@@ -29,6 +32,9 @@ classifiers = [
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/sethfischer/osr/issues"
 
+[tool.poetry.scripts]
+console = "osr_mechanical.console.application:main"
+
 [tool.poetry.dependencies]
 python = "^3.8"
 Sphinx = "^4.4.0"
@@ -43,6 +49,7 @@ cffconvert = "^2.0.0"
 doc8 = "^0.10.1"
 rstcheck = "^3.3.1"
 flake8-docstrings = "^1.6.0"
+pytest = "^7.1.2"
 
 [tool.isort]
 profile = "black"

@@ -1,0 +1,1 @@
+"""OSR console application."""
