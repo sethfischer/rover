@@ -9,6 +9,8 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
     :maxdepth: 1
     :caption: Contents:
 
+    jigs/index
+    assets
     related-projects
 
 

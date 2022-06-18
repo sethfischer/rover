@@ -1,5 +1,6 @@
-docs/_build
-__pycache__
-dist
-.venv
 *.FCBak
+.venv
+/_build
+/dist
+/docs/_build
+__pycache__

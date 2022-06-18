@@ -36,20 +36,22 @@ classifiers = [
 console = "osr_mechanical.console.application:main"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.11"
+cadquery = "2.2.0b0"
+casadi = "3.5.5"
 Sphinx = "^4.4.0"
-sphinx-rtd-theme = "^1.0.0"
 sphinx-lfs-content = "^1.0.0"
+sphinx-rtd-theme = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
-flake8 = "^4.0.1"
 black = "^22.1.0"
-isort = "^5.10.1"
 cffconvert = "^2.0.0"
 doc8 = "^0.10.1"
-rstcheck = "^3.3.1"
+flake8 = "^4.0.1"
 flake8-docstrings = "^1.6.0"
+isort = "^5.10.1"
 pytest = "^7.1.2"
+rstcheck = "^3.3.1"
 
 [tool.isort]
 profile = "black"
