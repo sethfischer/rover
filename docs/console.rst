@@ -26,4 +26,13 @@ The ``build`` sub-command places output into a ``_build/`` directory and include
 * STL files for 3D printing
 
 
+Usage
+-----
+
+.. sphinx_argparse_cli::
+    :module: osr_mechanical.console.application
+    :func: build_parser
+    :prog: console
+
+
 .. _`releases page on GitHub`: https://github.com/sethfischer/osr/releases

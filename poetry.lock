@@ -678,6 +678,20 @@ lint = ["flake8 (>=3.5.0)", "isort", "mypy (>=0.931)", "docutils-stubs", "types-
 test = ["pytest", "pytest-cov", "html5lib", "cython", "typed-ast"]
 
 [[package]]
+name = "sphinx-argparse-cli"
+version = "1.9.0"
+description = "render CLI arguments (sub-commands friendly) defined by argparse module"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+sphinx = ">=3"
+
+[package.extras]
+test = ["pytest (>=6)", "pytest-cov (>=3)"]
+
+[[package]]
 name = "sphinx-lfs-content"
 version = "1.1.1"
 description = "Ensure existence of LFS content in your LFS builds"
@@ -840,7 +854,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "009f9849fb2688a379eb2d0fbf3e112244a4c25e95664856f1540ee692180265"
+content-hash = "6c2449e4a3327f0ffd7998a965ad58b9c2be51ab3e027a798e76a5050f546f80"
 
 [metadata.files]
 alabaster = [
@@ -1274,6 +1288,10 @@ snowballstemmer = [
 sphinx = [
     {file = "Sphinx-4.5.0-py3-none-any.whl", hash = "sha256:ebf612653238bcc8f4359627a9b7ce44ede6fdd75d9d30f68255c7383d3a6226"},
     {file = "Sphinx-4.5.0.tar.gz", hash = "sha256:7bf8ca9637a4ee15af412d1a1d9689fec70523a68ca9bb9127c2f3eeb344e2e6"},
+]
+sphinx-argparse-cli = [
+    {file = "sphinx_argparse_cli-1.9.0-py3-none-any.whl", hash = "sha256:10d0ff0a104d425f2f8372996d624105d98417a80b0f15762b93c6080d86cc63"},
+    {file = "sphinx_argparse_cli-1.9.0.tar.gz", hash = "sha256:96b0158784b7336d7a8a06c7f25061579d23e3899882eb72a4e655cd168419f0"},
 ]
 sphinx-lfs-content = [
     {file = "sphinx_lfs_content-1.1.1.tar.gz", hash = "sha256:6a25866bf63a1256a129c919d56e21602eb24e71c08afdc2e0a4f7c65665acf0"},
