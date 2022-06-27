@@ -1,4 +1,4 @@
-"""OSR console application."""
+"""OSR console command."""
 
 import argparse
 import logging
@@ -27,11 +27,11 @@ def export_jigs(release_dir: Path):
 
 def get_release_dir() -> Path:
     """Release directory name."""
-    return Path(f"sethfischer-osr-{__version__}")
+    return Path(f"sethfischer-osr-cam-{__version__}")
 
 
 def build(args):
-    """Build release assets."""
+    """Build CAM file archive."""
     if not args.build_dir.is_dir():
         logging.critical(f"Build directory does not exist {args.build_dir}.")
         exit(1)
@@ -48,9 +48,9 @@ def build(args):
     exit(EX_OK)
 
 
-def main() -> int:
-    """OSR console application."""
-    parser = argparse.ArgumentParser(description="OSR console.")
+def build_parser() -> argparse.ArgumentParser:
+    """Parse arguments."""
+    parser = argparse.ArgumentParser(prog="console", description="OSR console command.")
     parser.add_argument(
         "--version",
         action="version",
@@ -59,7 +59,9 @@ def main() -> int:
 
     subparsers = parser.add_subparsers()
 
-    parser_build = subparsers.add_parser("build", help="build release assets")
+    parser_build = subparsers.add_parser(
+        "build", help="create files for computer-aided manufacturing (e.g. STL)"
+    )
     parser_build.add_argument(
         "--build-dir",
         type=Path,
@@ -68,6 +70,12 @@ def main() -> int:
     )
     parser_build.set_defaults(func=build)
 
+    return parser
+
+
+def main() -> int:
+    """OSR console command."""
+    parser = build_parser()
     args = parser.parse_args()
 
     try:

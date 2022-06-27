@@ -1,1 +1,1 @@
-"""OSR console application."""
+"""OSR console command."""
