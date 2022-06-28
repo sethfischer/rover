@@ -11,14 +11,32 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
 Get started
 -----------
 
+Install Git hooks:
+
 .. code::
 
     make install-git-hooks
+
+Create virtual environment and install dependencies:
+
+.. code::
+
     virtualenv .venv
     . .venv/bin/activate
     pip install -U pip
     poetry install
-    cd docs && make html
+
+Build documentation:
+
+.. code::
+
+    make -C docs/ clean html
+
+Build CAM file archive:
+
+.. code::
+
+    console build
 
 
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
