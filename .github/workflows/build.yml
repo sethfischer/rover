@@ -30,3 +30,6 @@ jobs:
       - name: Build HTML
         working-directory: ./docs
         run: poetry run make html
+
+      - name: Build Python package
+        run: poetry build
