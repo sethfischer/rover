@@ -2,7 +2,7 @@
 sethfischer/osr
 ===============
 
-|build-status| |lint-status| |docs-status|
+|build-status| |lint-status| |test-status| |docs-status|
 
 
 Alternative body construction for the `NASA JPL Open Source Rover`_.
@@ -48,6 +48,9 @@ Build CAM file archive:
 .. |lint-status| image:: https://github.com/sethfischer/osr/actions/workflows/lint.yml/badge.svg
     :target: https://github.com/sethfischer/osr/actions/workflows/lint.yml
     :alt: Lint status
+.. |test-status| image:: https://github.com/sethfischer/osr/actions/workflows/test.yml/badge.svg
+    :target: https://github.com/sethfischer/osr/actions/workflows/test.yml
+    :alt: Test status
 .. |docs-status| image:: https://readthedocs.org/projects/sethfischer-osr/badge/?version=latest
     :target: https://sethfischer-osr.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
