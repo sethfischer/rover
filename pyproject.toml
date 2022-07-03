@@ -53,6 +53,11 @@ flake8-docstrings = "^1.6.0"
 isort = "^5.10.1"
 pytest = "^7.1.2"
 rstcheck = "^3.3.1"
+cq-editor = {git = "https://github.com/CadQuery/CQ-editor.git", rev = "4b461fe195d0a4e99b9a6c43b7e1fe0cb4c5e77d"}
+PyQt5 = "^5.15.7"
+spyder = "^5.3.1"
+pyqtgraph = "^0.12.4"
+Logbook = "^1.5.3"
 
 [tool.isort]
 profile = "black"
