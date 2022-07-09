@@ -36,8 +36,8 @@ def export_jigs(release_dir: Path):
     jig_dir.mkdir()
 
     end_tap_jig_pathname = jig_dir / "vslot-end-tap-jig-2020.stl"
-    result = EndTapJig().make()
-    exporters.export(result, str(end_tap_jig_pathname))
+    end_tap_jig = EndTapJig(simple=True)
+    exporters.export(end_tap_jig.body, str(end_tap_jig_pathname))
 
 
 def get_release_dir() -> Path:
