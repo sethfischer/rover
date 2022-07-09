@@ -36,9 +36,10 @@ classifiers = [
 console = "osr_mechanical.console.application:main"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
+python = ">=3.9,<3.11"
 cadquery = "2.2.0b0"
 casadi = "3.5.5"
+cq_warehouse = { git = "https://github.com/gumyr/cq_warehouse.git", tag = "v0.7.1" }
 Sphinx = "^4.4.0"
 sphinx-lfs-content = "^1.0.0"
 sphinx-rtd-theme = "^1.0.0"

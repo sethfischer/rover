@@ -21,7 +21,7 @@ Create virtual environment and install dependencies:
 
 .. code::
 
-    virtualenv .venv
+    python -m venv .venv
     . .venv/bin/activate
     pip install -U pip
     poetry install
