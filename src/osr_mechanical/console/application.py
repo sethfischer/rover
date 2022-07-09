@@ -94,11 +94,11 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        args.func(args)
+        func = args.func
     except AttributeError:
-        logger.error("Invalid arguments.")
+        parser.error("Too few arguments.")
 
-    parser.print_help()
+    func(args)  # noqa
 
     return 1
 
