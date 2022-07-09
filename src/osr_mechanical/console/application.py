@@ -11,12 +11,27 @@ from cadquery import exporters
 from osr_mechanical import __version__
 from osr_mechanical.jigs.vslot import EndTapJig
 
-logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+
+def get_logger(name: str):
+    """Configure logger."""
+    logger = logging.getLogger(name)
+    logger.handlers.clear()
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(
+        logging.Formatter("%(levelname)s:%(name)s:%(message)s")
+    )
+    logger.addHandler(console_handler)
+    logger.setLevel(logging.DEBUG)
+
+    return logger
+
+
+logger = get_logger(__name__)
 
 
 def export_jigs(release_dir: Path):
     """Export jigs as STL for 3D printing."""
-    logging.debug("Exporting jigs.")
+    logger.debug("Exporting jigs.")
     jig_dir = release_dir / "jigs"
     jig_dir.mkdir()
 
@@ -33,13 +48,13 @@ def get_release_dir() -> Path:
 def build(args):
     """Build CAM file archive."""
     if not args.build_dir.is_dir():
-        logging.critical(f"Build directory does not exist {args.build_dir}.")
+        logger.critical(f"Build directory does not exist {args.build_dir}.")
         exit(1)
 
     release_dir = args.build_dir / get_release_dir()
 
     if release_dir.is_dir():
-        logging.info(f"Removing release directory {release_dir}.")
+        logger.info(f"Removing release directory {release_dir}.")
         rmtree(release_dir)
 
     release_dir.mkdir()
@@ -81,7 +96,7 @@ def main() -> int:
     try:
         args.func(args)
     except AttributeError:
-        logging.error("Invalid arguments.")
+        logger.error("Invalid arguments.")
 
     parser.print_help()
 

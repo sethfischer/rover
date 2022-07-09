@@ -1,4 +1,5 @@
 *.FCBak
+*.log
 .venv
 /_build
 /dist
