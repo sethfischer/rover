@@ -5,10 +5,12 @@ import logging
 from os import EX_OK, getcwd
 from pathlib import Path
 from shutil import rmtree
+from sys import stdout
 
 from cadquery import exporters
 
 from osr_mechanical import __version__
+from osr_mechanical.console.dxf import dxf_import_export
 from osr_mechanical.jigs.vslot import EndTapJig
 
 
@@ -63,6 +65,13 @@ def build(args):
     exit(EX_OK)
 
 
+def dxf_reduce(args) -> None:
+    """Import a DXF followed by export."""
+    output = dxf_import_export(args.filename)
+    stdout.write(output)
+    exit(1)
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Parse arguments."""
     parser = argparse.ArgumentParser(prog="console", description="OSR console command.")
@@ -84,6 +93,21 @@ def build_parser() -> argparse.ArgumentParser:
         help="build directory",
     )
     parser_build.set_defaults(func=build)
+
+    parser_dxf_reduce = subparsers.add_parser(
+        "dxf-reduce",
+        help="reduce the size of a DXF file",
+        epilog=(
+            "Warning: This can result in a reduced file size. "
+            "But in no way is it a lossless conversion."
+        ),
+    )
+    parser_dxf_reduce.add_argument(
+        "filename",
+        type=Path,
+        help="input DXF file",
+    )
+    parser_dxf_reduce.set_defaults(func=dxf_reduce)
 
     return parser
 
