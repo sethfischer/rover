@@ -1,5 +1,7 @@
 """V-slot jigs and guides."""
 
+from typing import Union
+
 import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
@@ -41,52 +43,91 @@ class EndTapJig:
 
         bolt_spec = MetricBoltSpecification(5, 0.8, 12)
 
-        self.width = None
-        self.swarf_cavity_elevation = None
-        self.stop_elevation = None
-        self.fixing_hole_elevation = None
-        self.nut_retainer_elevation = None
+        self.width = self._calculate_width(self.vslot_width, self.thickness)
+        self.swarf_cavity_elevation = self._calculate_swarf_cavity_elevation(
+            self.height, self.thickness
+        )
+        self.stop_elevation = self._calculate_stop_elevation(
+            self.swarf_cavity_elevation, self.swarf_cavity_depth
+        )
+        self.fixing_hole_elevation = self._calculate_fixing_hole_elevation(
+            self.stop_elevation, self.height
+        )
+        self.nut_retainer_elevation = self._calculate_nut_retainer_elevation(
+            self.fixing_hole_elevation,
+            self.height,
+            self.stop_elevation,
+            self.tslot_nut_length,
+        )
 
-        self.tslot_nut = None
-        self.screw = None
-        self.washer = None
-
-        self._calculate_dimensions()
-        self._make_fasteners(bolt_spec)
+        self.tslot_nut = self._make_tslot_nut(bolt_spec, self.simple)
+        self.screw = self._make_screw(bolt_spec, self.simple)
+        self.washer = self._make_washer(bolt_spec)
 
         self._assembly = self.make()
 
-    def _calculate_dimensions(self):
-        """Calculate derived dimensions."""
-        self.width = self.vslot_width + (self.thickness * 2)
-        self.swarf_cavity_elevation = self.height - self.thickness
-        self.stop_elevation = self.swarf_cavity_elevation - self.swarf_cavity_depth
+    @staticmethod
+    def _calculate_width(vslot_width: float, thickness: float) -> float:
+        """Calculate width."""
+        return vslot_width + (thickness * 2)
 
-        self.fixing_hole_elevation = (self.stop_elevation / 2) + (
-            (self.height / 2) - self.stop_elevation
+    @staticmethod
+    def _calculate_swarf_cavity_elevation(height: float, thickness: float) -> float:
+        """Calculate swarf cavity elevation."""
+        return height - thickness
+
+    @staticmethod
+    def _calculate_stop_elevation(
+        swarf_cavity_elevation: float, swarf_cavity_depth: float
+    ) -> float:
+        """Calculate stop elevation."""
+        return swarf_cavity_elevation - swarf_cavity_depth
+
+    @staticmethod
+    def _calculate_fixing_hole_elevation(stop_elevation: float, height: float) -> float:
+        """Calculate fixing hole elevation."""
+        return (stop_elevation / 2) + ((height / 2) - stop_elevation)
+
+    @staticmethod
+    def _calculate_nut_retainer_elevation(
+        fixing_hole_elevation: float,
+        height: float,
+        stop_elevation: float,
+        tslot_nut_length: float,
+    ) -> float:
+        """Calculate nut retainer elevation."""
+        return (fixing_hole_elevation - ((height / 2) - stop_elevation)) + (
+            tslot_nut_length / 2
         )
 
-        self.nut_retainer_elevation = (
-            self.fixing_hole_elevation - ((self.height / 2) - self.stop_elevation)
-        ) + (self.tslot_nut_length / 2)
-
-    def _make_fasteners(self, bolt_spec: MetricBoltSpecification) -> None:
-        """Make fasteners."""
-        self.tslot_nut = (
-            SlidingTNut20(bolt_spec.specification(), simple=self.simple)
+    @staticmethod
+    def _make_tslot_nut(
+        bolt_spec: MetricBoltSpecification, simple: bool = True
+    ) -> cq.Workplane:
+        """Make T-slot nut."""
+        return (
+            SlidingTNut20(bolt_spec.specification(), simple=simple)
             .cq_object.rotateAboutCenter((0, 1, 0), -90)
             .rotateAboutCenter((0, 0, 1), 90)
             .translate((0, -7.5, 15.2))
         )
 
-        self.screw = SocketHeadCapScrew(
+    @staticmethod
+    def _make_screw(
+        bolt_spec: MetricBoltSpecification, simple: bool = True
+    ) -> SocketHeadCapScrew:
+        """Make retaining screw."""
+        return SocketHeadCapScrew(
             size=bolt_spec.specification(),
             fastener_type="iso4762",
             length=bolt_spec.length,
-            simple=self.simple,
+            simple=simple,
         )
 
-        self.washer = PlainWasher(size=bolt_spec.shaft_m, fastener_type="iso7093")
+    @staticmethod
+    def _make_washer(bolt_spec: MetricBoltSpecification) -> PlainWasher:
+        """Make retaining screw washer."""
+        return PlainWasher(size=bolt_spec.shaft_m, fastener_type="iso7093")
 
     def slot_sketch(self, depth) -> cq.Sketch:
         """Sketch to approximate V-slot profile."""
@@ -103,9 +144,13 @@ class EndTapJig:
         return sketch
 
     @property
-    def body(self) -> cq.Workplane:
+    def body(self) -> Union[cq.Shape, cq.Workplane]:
         """Jig body."""
-        return self._assembly.objects["body"].obj
+        result = self._assembly.objects["body"].obj
+        if result is None:
+            raise Exception("Part is not a valid Shape or Workplane.")
+
+        return result
 
     @property
     def assembly(self) -> cq.Assembly:
@@ -141,7 +186,7 @@ class EndTapJig:
             .faces("<Y")
             .workplane(centerOption="CenterOfBoundBox")
             .center(0, self.fixing_hole_elevation)
-            .clearanceHole(
+            .clearanceHole(  # type: ignore[attr-defined]
                 self.screw,
                 washers=[self.washer],
                 counterSunk=False,
@@ -150,7 +195,7 @@ class EndTapJig:
             .faces(">Y")
             .workplane(centerOption="CenterOfBoundBox")
             .center(0, self.fixing_hole_elevation)
-            .clearanceHole(
+            .clearanceHole(  # type: ignore[attr-defined]
                 self.screw,
                 washers=[self.washer],
                 counterSunk=False,
