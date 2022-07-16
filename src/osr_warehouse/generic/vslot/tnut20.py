@@ -69,6 +69,7 @@ class SlidingTNut20:
             .extrude(self.length)
             .faces(">Z")
             .workplane(centerOption="CenterOfMass")
+            # type: ignore[attr-defined]
             .threadedHole(screw, thickness, counterSunk=False, simple=self.simple)
         )
 

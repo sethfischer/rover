@@ -16,7 +16,7 @@ def dxf_import_export(filepath: Path) -> str:
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp_file = Path(tmp_dir) / filepath.name
-        exporters.export(result, tmp_file, exporters.ExportTypes.DXF)
+        exporters.export(result, str(tmp_file), "DXF")
         output = tmp_file.read_text()
 
     return output

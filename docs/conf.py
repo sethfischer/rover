@@ -2,7 +2,7 @@
 
 from datetime import date
 
-import sphinx_rtd_theme  # noqa: F401
+import sphinx_rtd_theme  # type: ignore[import] # noqa: F401
 
 project = "sethfischer-osr"
 release = "0.1.0"
