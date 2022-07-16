@@ -1,5 +1,7 @@
 *.FCBak
 *.log
+.mypy_cache
+.pytest_cache
 .venv
 /_build
 /dist

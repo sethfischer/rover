@@ -59,10 +59,27 @@ PyQt5 = "^5.15.7"
 spyder = "^5.3.1"
 pyqtgraph = "^0.12.4"
 Logbook = "^1.5.3"
+mypy = "^0.961"
 
 [tool.isort]
 profile = "black"
 multi_line_output = 3
+
+[tool.mypi]
+python_version = "3.9"
+check_untyped_defs = true
+disallow_any_unimported = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+show_error_codes = true
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "cq_warehouse.*"
+ignore_errors = true
+ignore_missing_imports = true
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
