@@ -39,6 +39,14 @@ Build CAM file archive:
     console build
 
 
+License
+-------
+
+:Software: SPDX-License-Identifier: MIT
+:Hardware: SPDX-License-Identifier: CERN-OHL-W-2.0
+:Documentation: SPDX-License-Identifier: CC-BY-NC-SA-4.0
+
+
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
 
 

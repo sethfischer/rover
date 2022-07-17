@@ -7,7 +7,10 @@ authors:
 title: "sethfischer-osr"
 type: software
 repository-code: "https://github.com/sethfischer/osr"
-license: MIT
+license:
+  - MIT
+  - CERN-OHL-W-2.0
+  - CC-BY-NC-SA-4.0
 references:
   - authors:
       - name: "Contributors to the JPL Open Source Rover Project"
