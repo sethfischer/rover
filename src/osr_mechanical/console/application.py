@@ -14,7 +14,7 @@ from osr_mechanical.console.dxf import dxf_import_export
 from osr_mechanical.jigs.vslot import EndTapJig
 
 
-def get_logger(name: str):
+def get_logger(name: str) -> logging.Logger:
     """Configure logger."""
     logger = logging.getLogger(name)
     logger.handlers.clear()
@@ -31,7 +31,7 @@ def get_logger(name: str):
 logger = get_logger(__name__)
 
 
-def export_jigs(release_dir: Path):
+def export_jigs(release_dir: Path) -> None:
     """Export jigs as STL for 3D printing."""
     logger.debug("Exporting jigs.")
     jig_dir = release_dir / "jigs"
@@ -47,7 +47,7 @@ def get_release_dir() -> Path:
     return Path(f"sethfischer-osr-cam-{__version__}")
 
 
-def build(args):
+def build(args: argparse.Namespace) -> None:
     """Build CAM file archive."""
     if not args.build_dir.is_dir():
         logger.critical(f"Build directory does not exist {args.build_dir}.")
@@ -65,7 +65,7 @@ def build(args):
     exit(EX_OK)
 
 
-def dxf_reduce(args) -> None:
+def dxf_reduce(args: argparse.Namespace) -> None:
     """Import a DXF followed by export."""
     output = dxf_import_export(args.filename)
     stdout.write(output)

@@ -129,7 +129,7 @@ class EndTapJig:
         """Make retaining screw washer."""
         return PlainWasher(size=bolt_spec.shaft_m, fastener_type="iso7093")
 
-    def slot_sketch(self, depth) -> cq.Sketch:
+    def slot_sketch(self, depth: float) -> cq.Sketch:
         """Sketch to approximate V-slot profile."""
         sketch = (
             cq.Sketch()

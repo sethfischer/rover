@@ -10,7 +10,7 @@ class MetricBoltSpecification:
         self.pitch = pitch
         self.length = length
 
-    def specification(self, length=False) -> str:
+    def specification(self, length: bool = False) -> str:
         """Bolt specification."""
         specification = f"{self.shaft_m}-{self.pitch}"
         if length:
