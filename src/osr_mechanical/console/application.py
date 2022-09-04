@@ -11,6 +11,7 @@ from cadquery import exporters
 
 from osr_mechanical import __version__
 from osr_mechanical.console.dxf import dxf_import_export
+from osr_mechanical.final import final as final_assembly
 from osr_mechanical.jigs.vslot import EndTapJig
 
 
@@ -42,6 +43,19 @@ def export_jigs(release_dir: Path) -> None:
     exporters.export(end_tap_jig.body, str(end_tap_jig_pathname))
 
 
+def export_final_assembly(release_dir: Path) -> None:
+    """Export final assembly as STEP."""
+    logger.debug("Exporting main assembly.")
+
+    final_assembly_pathname = release_dir / "sethfischer-osr.step"
+    exporters.export(
+        final_assembly.toCompound(),
+        str(final_assembly_pathname),
+        tolerance=0.01,
+        angularTolerance=0.1,
+    )
+
+
 def get_release_dir() -> Path:
     """Release directory name."""
     return Path(f"sethfischer-osr-cam-{__version__}")
@@ -61,6 +75,7 @@ def build(args: argparse.Namespace) -> None:
 
     release_dir.mkdir()
     export_jigs(release_dir)
+    export_final_assembly(release_dir)
 
     exit(EX_OK)
 

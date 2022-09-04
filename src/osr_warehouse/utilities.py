@@ -1,28 +1,44 @@
 """Utilities."""
 
+from osr_warehouse.typing import Point
 
-class MetricBoltSpecification:
-    """Metric bolt specification."""
+X = 0
+Y = 1
 
-    def __init__(self, shaft: float, pitch: float, length: float):
-        """Initialise metric bolt specification."""
-        self.shaft = shaft
-        self.pitch = pitch
-        self.length = length
 
-    def specification(self, length: bool = False) -> str:
-        """Bolt specification."""
-        specification = f"{self.shaft_m}-{self.pitch}"
-        if length:
-            specification = f"{specification} x {self.length}"
+def reflect_xy(point: Point, x_offset: float = 0) -> Point:
+    """Reflect point in axis x=y.
 
-        return specification
+    Reflect by reversing tuple.
+    """
+    _point = point[::-1]
+    if x_offset != 0:
+        _point = (_point[X] + x_offset, _point[Y] - x_offset)
 
-    @property
-    def shaft_m(self) -> str:
-        """Shaft size prefixed with 'M'."""
-        return f"M{self.shaft}"
+    return _point
 
-    def __str__(self) -> str:
-        """Bolt specification including length."""
-        return self.specification(length=True)
+
+def reflect_xy_neg(point: Point) -> Point:
+    """Reflect point in axis negative x=y.
+
+    Reflect by reversing tuple.
+    """
+    return -point[X], -point[Y]
+
+
+def reflect_x(point: Point) -> Point:
+    """Reflect point in the x-axis."""
+    return point[X], point[Y] * -1
+
+
+def reflect_y(point: Point, x_offset: float = 0) -> Point:
+    """Reflect point in the y-axis."""
+    if x_offset == 0:
+        return -point[X], point[Y]
+    else:
+        return -point[X] + (x_offset * 2), point[Y]
+
+
+def translate_x(point: Point, x_offset: float) -> Point:
+    """Translate a point in the x-direction."""
+    return point[X] + x_offset, point[Y]

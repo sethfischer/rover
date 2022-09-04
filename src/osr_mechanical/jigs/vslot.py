@@ -6,8 +6,8 @@ import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
+from osr_warehouse.fasteners import MetricBoltSpecification
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
-from osr_warehouse.utilities import MetricBoltSpecification
 
 
 class EndTapJig:
