@@ -108,12 +108,12 @@ class Vslot2020Profile:
             self.half_slot_width,
         )
         self.v_lower_vertex = Point2D(
-            self.slot_retainer_vertex[0],
+            self.slot_retainer_vertex.x,
             self.half_slot_width - self.HALF_BETWEEN_V_LOWER_VERTICES,
         )
         self.v_upper_vertex = Point2D(
             self.half_width,
-            (self.half_width - self.v_lower_vertex[0]) + self.v_lower_vertex[1],
+            (self.half_width - self.v_lower_vertex.x) + self.v_lower_vertex.y,
         )
 
     def make(self):
