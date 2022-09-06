@@ -8,14 +8,7 @@ from typing import Union
 
 import cadquery as cq
 
-from osr_warehouse.typing import Point
-from osr_warehouse.utilities import (
-    reflect_x,
-    reflect_xy,
-    reflect_xy_neg,
-    reflect_y,
-    translate_x,
-)
+from osr_warehouse.point2d import Point2D
 
 
 class Vslot20BoreSlot:
@@ -34,27 +27,27 @@ class Vslot20BoreSlot:
 
         self.aec_2020 = Vslot2020Profile()
 
-        self.core_x_axis_vertex: Point = (self.x_offset, 0)
-        self.core_channel_vertex_q2 = (
+        self.core_x_axis_vertex = Point2D(self.x_offset, 0)
+        self.core_channel_vertex_q2 = Point2D(
             x_offset,
             self.aec_2020.half_bore_channel_width,
         )
-        self.channel_groove_vertex = (
+        self.channel_groove_vertex = Point2D(
             self.aec_2020.BORE_CHANNEL_DEPTH + self.x_offset,
             self.aec_2020.half_bore_channel_width,
         )
         self.bore_groove_depth = self.aec_2020.half_bore_channel_width * tan(
             radians(self.aec_2020.BORE_GROOVE_ANGLE_OBTUSE)
         )
-        self.bore_groove_vertex: Point = (
+        self.bore_groove_vertex = Point2D(
             self.aec_2020.BORE_CHANNEL_DEPTH + self.bore_groove_depth + self.x_offset,
             0,
         )
 
         if mirror:
-            self.core_x_axis_vertex = reflect_y(self.core_x_axis_vertex)
-            self.channel_groove_vertex = reflect_y(self.channel_groove_vertex)
-            self.bore_groove_vertex = reflect_y(self.bore_groove_vertex)
+            self.core_x_axis_vertex = self.core_x_axis_vertex.reflect_y()
+            self.channel_groove_vertex = self.channel_groove_vertex.reflect_y()
+            self.bore_groove_vertex = self.bore_groove_vertex.reflect_y()
 
     def make(self):
         """Create bore slot sketch."""
@@ -63,8 +56,8 @@ class Vslot20BoreSlot:
             .segment(self.core_x_axis_vertex, self.core_channel_vertex_q2)
             .segment(self.channel_groove_vertex)
             .segment(self.bore_groove_vertex)
-            .segment(reflect_x(self.channel_groove_vertex))
-            .segment(reflect_x(self.core_channel_vertex_q2))
+            .segment(self.channel_groove_vertex.reflect_x())
+            .segment(self.core_channel_vertex_q2.reflect_x())
             .close()
             .assemble()
         )
@@ -103,22 +96,22 @@ class Vslot2020Profile:
 
         self.half_bore_channel_width = self.BORE_CHANNEL_WIDTH / 2
 
-        self.core_positive_x_axis_vertex = (self.half_core_width, 0)
+        self.core_positive_x_axis_vertex = Point2D(self.half_core_width, 0)
         self.core_rib_vertex_y = self.half_core_width - sqrt(
             self.half_rib_thickness**2 + self.half_rib_thickness**2
         )
-        self.core_rib_vertex = (self.half_core_width, self.core_rib_vertex_y)
+        self.core_rib_vertex = Point2D(self.half_core_width, self.core_rib_vertex_y)
         self.rib_wall_vertex_x = self.half_core_width + self.SLOT_CHAMFER
-        self.rib_slot_vertex = (self.rib_wall_vertex_x, self.half_slot_width)
-        self.slot_retainer_vertex = (
+        self.rib_slot_vertex = Point2D(self.rib_wall_vertex_x, self.half_slot_width)
+        self.slot_retainer_vertex = Point2D(
             self.half_core_width + self.SLOT_DEPTH,
             self.half_slot_width,
         )
-        self.v_lower_vertex = (
+        self.v_lower_vertex = Point2D(
             self.slot_retainer_vertex[0],
             self.half_slot_width - self.HALF_BETWEEN_V_LOWER_VERTICES,
         )
-        self.v_upper_vertex = (
+        self.v_upper_vertex = Point2D(
             self.half_width,
             (self.half_width - self.v_lower_vertex[0]) + self.v_lower_vertex[1],
         )
@@ -148,11 +141,11 @@ class Vslot2020Profile:
             .segment(self.v_lower_vertex)
             .segment(self.v_upper_vertex)
             .segment((self.half_width, self.half_width))
-            .segment(reflect_xy(self.v_upper_vertex))
-            .segment(reflect_xy(self.v_lower_vertex))
-            .segment(reflect_xy(self.slot_retainer_vertex))
-            .segment(reflect_xy(self.rib_slot_vertex))
-            .segment(reflect_xy(self.core_rib_vertex))
+            .segment(self.v_upper_vertex.reflect_xy())
+            .segment(self.v_lower_vertex.reflect_xy())
+            .segment(self.slot_retainer_vertex.reflect_xy())
+            .segment(self.rib_slot_vertex.reflect_xy())
+            .segment(self.core_rib_vertex.reflect_xy())
             .segment((0, self.half_core_width))
             .segment((0, 0))
             .close()
@@ -349,56 +342,55 @@ class Vslot2040Profile:
         self.aec_2020 = Vslot2020Profile()
 
         # Quadrant 1 is a partial copy of Vslot2020Profile.
-        self.q1_core_rib_vertex = translate_x(
-            self.aec_2020.core_rib_vertex, self.aec_2020.half_width
+        self.q1_core_rib_vertex = self.aec_2020.core_rib_vertex.translate_x(
+            self.aec_2020.half_width
         )
-        self.q1a_rib_slot_vertex = translate_x(
-            self.aec_2020.rib_slot_vertex, self.aec_2020.half_width
+        self.q1a_rib_slot_vertex = self.aec_2020.rib_slot_vertex.translate_x(
+            self.aec_2020.half_width
         )
-        self.q1a_slot_retainer_vertex = translate_x(
-            self.aec_2020.slot_retainer_vertex, self.aec_2020.half_width
+        self.q1a_slot_retainer_vertex = self.aec_2020.slot_retainer_vertex.translate_x(
+            self.aec_2020.half_width
         )
-        self.q1a_v_lower_vertex = translate_x(
-            self.aec_2020.v_lower_vertex, self.aec_2020.half_width
+        self.q1a_v_lower_vertex = self.aec_2020.v_lower_vertex.translate_x(
+            self.aec_2020.half_width
         )
-        self.q1a_v_upper_vertex = translate_x(
-            self.aec_2020.v_upper_vertex, self.aec_2020.half_width
+        self.q1a_v_upper_vertex = self.aec_2020.v_upper_vertex.translate_x(
+            self.aec_2020.half_width
         )
-        self.q1a_bounding_box_vertex = translate_x(
-            (self.aec_2020.half_width, self.aec_2020.half_width),
-            self.aec_2020.half_width,
+        self.q1a_bounding_box_vertex = Point2D(
+            self.aec_2020.half_width, self.aec_2020.half_width
+        ).translate_x(self.aec_2020.half_width)
+
+        self.q1aprime_v_upper_vertex = self.q1a_v_upper_vertex.reflect_xy(
+            x_offset=self.aec_2020.half_width
+        )
+        self.q1aprime_v_lower_vertex = self.q1a_v_lower_vertex.reflect_xy(
+            x_offset=self.aec_2020.half_width
+        )
+        self.q1aprime_slot_retainer_vertex = self.q1a_slot_retainer_vertex.reflect_xy(
+            x_offset=self.aec_2020.half_width
+        )
+        self.q1aprime_rib_slot_vertex = self.q1a_rib_slot_vertex.reflect_xy(
+            x_offset=self.aec_2020.half_width
+        )
+        self.q1aprime_core_rib_vertex = self.q1_core_rib_vertex.reflect_xy(
+            x_offset=self.aec_2020.half_width
         )
 
-        self.q1aprime_v_upper_vertex = reflect_xy(
-            self.q1a_v_upper_vertex, x_offset=self.aec_2020.half_width
+        self.q1b_core_rib_vertex = self.q1aprime_core_rib_vertex.reflect_y(
+            x_offset=self.aec_2020.half_width
         )
-        self.q1aprime_v_lower_vertex = reflect_xy(
-            self.q1a_v_lower_vertex, x_offset=self.aec_2020.half_width
+        self.q1b_rib_slot_vertex = self.q1aprime_rib_slot_vertex.reflect_y(
+            x_offset=self.aec_2020.half_width
         )
-        self.q1aprime_slot_retainer_vertex = reflect_xy(
-            self.q1a_slot_retainer_vertex, x_offset=self.aec_2020.half_width
+        self.q1b_slot_retainer_vertex = self.q1aprime_slot_retainer_vertex.reflect_y(
+            x_offset=self.aec_2020.half_width
         )
-        self.q1aprime_rib_slot_vertex = reflect_xy(
-            self.q1a_rib_slot_vertex, x_offset=self.aec_2020.half_width
+        self.q1b_v_lower_vertex = self.q1aprime_v_lower_vertex.reflect_y(
+            x_offset=self.aec_2020.half_width
         )
-        self.q1aprime_core_rib_vertex = reflect_xy(
-            self.q1_core_rib_vertex, x_offset=self.aec_2020.half_width
-        )
-
-        self.q1b_core_rib_vertex = reflect_y(
-            self.q1aprime_core_rib_vertex, x_offset=self.aec_2020.half_width
-        )
-        self.q1b_rib_slot_vertex = reflect_y(
-            self.q1aprime_rib_slot_vertex, x_offset=self.aec_2020.half_width
-        )
-        self.q1b_slot_retainer_vertex = reflect_y(
-            self.q1aprime_slot_retainer_vertex, x_offset=self.aec_2020.half_width
-        )
-        self.q1b_v_lower_vertex = reflect_y(
-            self.q1aprime_v_lower_vertex, x_offset=self.aec_2020.half_width
-        )
-        self.q1b_v_upper_vertex = reflect_y(
-            self.q1aprime_v_upper_vertex, x_offset=self.aec_2020.half_width
+        self.q1b_v_upper_vertex = self.q1aprime_v_upper_vertex.reflect_y(
+            x_offset=self.aec_2020.half_width
         )
 
     def make(self):
@@ -447,56 +439,56 @@ class Vslot2040Profile:
             .segment(self.q1b_v_lower_vertex)
             .segment(self.q1b_v_upper_vertex)
             # quadrant 2
-            .segment(reflect_y(self.q1b_v_upper_vertex))
-            .segment(reflect_y(self.q1b_v_lower_vertex))
-            .segment(reflect_y(self.q1b_slot_retainer_vertex))
-            .segment(reflect_y(self.q1b_rib_slot_vertex))
-            .segment(reflect_y(self.q1b_core_rib_vertex))
-            .segment(reflect_y(self.q1aprime_core_rib_vertex))
-            .segment(reflect_y(self.q1aprime_rib_slot_vertex))
-            .segment(reflect_y(self.q1aprime_slot_retainer_vertex))
-            .segment(reflect_y(self.q1aprime_v_lower_vertex))
-            .segment(reflect_y(self.q1aprime_v_upper_vertex))
-            .segment(reflect_y(self.q1a_bounding_box_vertex))
-            .segment(reflect_y(self.q1a_v_upper_vertex))
-            .segment(reflect_y(self.q1a_v_lower_vertex))
-            .segment(reflect_y(self.q1a_slot_retainer_vertex))
-            .segment(reflect_y(self.q1a_rib_slot_vertex))
-            .segment(reflect_y(self.q1_core_rib_vertex))
+            .segment(self.q1b_v_upper_vertex.reflect_y())
+            .segment(self.q1b_v_lower_vertex.reflect_y())
+            .segment(self.q1b_slot_retainer_vertex.reflect_y())
+            .segment(self.q1b_rib_slot_vertex.reflect_y())
+            .segment(self.q1b_core_rib_vertex.reflect_y())
+            .segment(self.q1aprime_core_rib_vertex.reflect_y())
+            .segment(self.q1aprime_rib_slot_vertex.reflect_y())
+            .segment(self.q1aprime_slot_retainer_vertex.reflect_y())
+            .segment(self.q1aprime_v_lower_vertex.reflect_y())
+            .segment(self.q1aprime_v_upper_vertex.reflect_y())
+            .segment(self.q1a_bounding_box_vertex.reflect_y())
+            .segment(self.q1a_v_upper_vertex.reflect_y())
+            .segment(self.q1a_v_lower_vertex.reflect_y())
+            .segment(self.q1a_slot_retainer_vertex.reflect_y())
+            .segment(self.q1a_rib_slot_vertex.reflect_y())
+            .segment(self.q1_core_rib_vertex.reflect_y())
             # quadrant 3
-            .segment(reflect_xy_neg(self.q1_core_rib_vertex))
-            .segment(reflect_xy_neg(self.q1a_rib_slot_vertex))
-            .segment(reflect_xy_neg(self.q1a_slot_retainer_vertex))
-            .segment(reflect_xy_neg(self.q1a_v_lower_vertex))
-            .segment(reflect_xy_neg(self.q1a_v_upper_vertex))
-            .segment(reflect_xy_neg(self.q1a_bounding_box_vertex))
-            .segment(reflect_xy_neg(self.q1aprime_v_upper_vertex))
-            .segment(reflect_xy_neg(self.q1aprime_v_lower_vertex))
-            .segment(reflect_xy_neg(self.q1aprime_slot_retainer_vertex))
-            .segment(reflect_xy_neg(self.q1aprime_rib_slot_vertex))
-            .segment(reflect_xy_neg(self.q1aprime_core_rib_vertex))
-            .segment(reflect_xy_neg(self.q1b_core_rib_vertex))
-            .segment(reflect_xy_neg(self.q1b_rib_slot_vertex))
-            .segment(reflect_xy_neg(self.q1b_slot_retainer_vertex))
-            .segment(reflect_xy_neg(self.q1b_v_lower_vertex))
-            .segment(reflect_xy_neg(self.q1b_v_upper_vertex))
+            .segment(self.q1_core_rib_vertex.reflect_xy_neg())
+            .segment(self.q1a_rib_slot_vertex.reflect_xy_neg())
+            .segment(self.q1a_slot_retainer_vertex.reflect_xy_neg())
+            .segment(self.q1a_v_lower_vertex.reflect_xy_neg())
+            .segment(self.q1a_v_upper_vertex.reflect_xy_neg())
+            .segment(self.q1a_bounding_box_vertex.reflect_xy_neg())
+            .segment(self.q1aprime_v_upper_vertex.reflect_xy_neg())
+            .segment(self.q1aprime_v_lower_vertex.reflect_xy_neg())
+            .segment(self.q1aprime_slot_retainer_vertex.reflect_xy_neg())
+            .segment(self.q1aprime_rib_slot_vertex.reflect_xy_neg())
+            .segment(self.q1aprime_core_rib_vertex.reflect_xy_neg())
+            .segment(self.q1b_core_rib_vertex.reflect_xy_neg())
+            .segment(self.q1b_rib_slot_vertex.reflect_xy_neg())
+            .segment(self.q1b_slot_retainer_vertex.reflect_xy_neg())
+            .segment(self.q1b_v_lower_vertex.reflect_xy_neg())
+            .segment(self.q1b_v_upper_vertex.reflect_xy_neg())
             # quadrant 4
-            .segment(reflect_x(self.q1b_v_upper_vertex))
-            .segment(reflect_x(self.q1b_v_lower_vertex))
-            .segment(reflect_x(self.q1b_slot_retainer_vertex))
-            .segment(reflect_x(self.q1b_rib_slot_vertex))
-            .segment(reflect_x(self.q1b_core_rib_vertex))
-            .segment(reflect_x(self.q1aprime_core_rib_vertex))
-            .segment(reflect_x(self.q1aprime_rib_slot_vertex))
-            .segment(reflect_x(self.q1aprime_slot_retainer_vertex))
-            .segment(reflect_x(self.q1aprime_v_lower_vertex))
-            .segment(reflect_x(self.q1aprime_v_upper_vertex))
-            .segment(reflect_x(self.q1a_bounding_box_vertex))
-            .segment(reflect_x(self.q1a_v_upper_vertex))
-            .segment(reflect_x(self.q1a_v_lower_vertex))
-            .segment(reflect_x(self.q1a_slot_retainer_vertex))
-            .segment(reflect_x(self.q1a_rib_slot_vertex))
-            .segment(reflect_x(self.q1_core_rib_vertex))
+            .segment(self.q1b_v_upper_vertex.reflect_x())
+            .segment(self.q1b_v_lower_vertex.reflect_x())
+            .segment(self.q1b_slot_retainer_vertex.reflect_x())
+            .segment(self.q1b_rib_slot_vertex.reflect_x())
+            .segment(self.q1b_core_rib_vertex.reflect_x())
+            .segment(self.q1aprime_core_rib_vertex.reflect_x())
+            .segment(self.q1aprime_rib_slot_vertex.reflect_x())
+            .segment(self.q1aprime_slot_retainer_vertex.reflect_x())
+            .segment(self.q1aprime_v_lower_vertex.reflect_x())
+            .segment(self.q1aprime_v_upper_vertex.reflect_x())
+            .segment(self.q1a_bounding_box_vertex.reflect_x())
+            .segment(self.q1a_v_upper_vertex.reflect_x())
+            .segment(self.q1a_v_lower_vertex.reflect_x())
+            .segment(self.q1a_slot_retainer_vertex.reflect_x())
+            .segment(self.q1a_rib_slot_vertex.reflect_x())
+            .segment(self.q1_core_rib_vertex.reflect_x())
             .close()
             .assemble()
             .clean()
