@@ -33,14 +33,16 @@ class Vslot20BoreSlot:
             self.aec_2020.half_bore_channel_width,
         )
         self.channel_groove_vertex = Point2D(
-            self.aec_2020.BORE_CHANNEL_DEPTH + self.x_offset,
+            Vslot2020Profile.BORE_CHANNEL_DEPTH + self.x_offset,
             self.aec_2020.half_bore_channel_width,
         )
         self.bore_groove_depth = self.aec_2020.half_bore_channel_width * tan(
-            radians(self.aec_2020.BORE_GROOVE_ANGLE_OBTUSE)
+            radians(Vslot2020Profile.BORE_GROOVE_ANGLE_OBTUSE)
         )
         self.bore_groove_vertex = Point2D(
-            self.aec_2020.BORE_CHANNEL_DEPTH + self.bore_groove_depth + self.x_offset,
+            Vslot2020Profile.BORE_CHANNEL_DEPTH
+            + self.bore_groove_depth
+            + self.x_offset,
             0,
         )
 
@@ -403,12 +405,12 @@ class Vslot2040Profile:
         profile = self._make_center_bore(profile)
 
         sketch_bore_slot_q1and4 = Vslot20BoreSlot(
-            x_offset=-(self.aec_2020.WIDTH / 2 + self.aec_2020.CORE_WIDTH / 2)
+            x_offset=-(Vslot2020Profile.WIDTH / 2 + Vslot2020Profile.CORE_WIDTH / 2)
         ).make()
         profile = profile.reset().face(sketch_bore_slot_q1and4, mode="s")
 
         sketch_bore_slot_q2and3 = Vslot20BoreSlot(
-            x_offset=self.aec_2020.WIDTH / 2 + self.aec_2020.CORE_WIDTH / 2,
+            x_offset=Vslot2020Profile.WIDTH / 2 + Vslot2020Profile.CORE_WIDTH / 2,
             mirror=True,
         ).make()
         profile = profile.reset().face(sketch_bore_slot_q2and3, mode="s")
