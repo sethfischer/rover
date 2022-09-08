@@ -11,7 +11,7 @@ from cadquery import exporters
 
 from osr_mechanical import __version__
 from osr_mechanical.console.dxf import dxf_import_export
-from osr_mechanical.final import final as final_assembly
+from osr_mechanical.final import FinalAssembly
 from osr_mechanical.jigs.vslot import EndTapJig
 
 
@@ -40,7 +40,7 @@ def export_jigs(release_dir: Path) -> None:
 
     end_tap_jig_pathname = jig_dir / "vslot-end-tap-jig-2020.stl"
     end_tap_jig = EndTapJig(simple=True)
-    exporters.export(end_tap_jig.body, str(end_tap_jig_pathname))
+    exporters.export(end_tap_jig.cq_part("body"), str(end_tap_jig_pathname))
 
 
 def export_final_assembly(release_dir: Path) -> None:
@@ -49,7 +49,7 @@ def export_final_assembly(release_dir: Path) -> None:
 
     final_assembly_pathname = release_dir / "sethfischer-osr.step"
     exporters.export(
-        final_assembly.toCompound(),
+        FinalAssembly().cq_object.toCompound(),
         str(final_assembly_pathname),
         tolerance=0.01,
         angularTolerance=0.1,

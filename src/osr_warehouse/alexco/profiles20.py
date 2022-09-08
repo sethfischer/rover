@@ -8,10 +8,11 @@ from typing import Union
 
 import cadquery as cq
 
+from osr_warehouse.cqobject import CqObjectContainer
 from osr_warehouse.point2d import Point2D
 
 
-class Vslot20BoreSlot:
+class Vslot20BoreSlot(CqObjectContainer):
     """Bore slot for AEC 20-series V-slot Aluminium Extrusion.
 
     Consists of a channel and a groove.
@@ -25,18 +26,16 @@ class Vslot20BoreSlot:
         if mirror:
             self.x_offset = -x_offset
 
-        self.aec_2020 = Vslot2020Profile()
-
         self.core_x_axis_vertex = Point2D(self.x_offset, 0)
         self.core_channel_vertex_q2 = Point2D(
             x_offset,
-            self.aec_2020.half_bore_channel_width,
+            Vslot2020Profile.HALF_BORE_CHANNEL_WIDTH,
         )
         self.channel_groove_vertex = Point2D(
             Vslot2020Profile.BORE_CHANNEL_DEPTH + self.x_offset,
-            self.aec_2020.half_bore_channel_width,
+            Vslot2020Profile.HALF_BORE_CHANNEL_WIDTH,
         )
-        self.bore_groove_depth = self.aec_2020.half_bore_channel_width * tan(
+        self.bore_groove_depth = Vslot2020Profile.HALF_BORE_CHANNEL_WIDTH * tan(
             radians(Vslot2020Profile.BORE_GROOVE_ANGLE_OBTUSE)
         )
         self.bore_groove_vertex = Point2D(
@@ -50,6 +49,13 @@ class Vslot20BoreSlot:
             self.core_x_axis_vertex = self.core_x_axis_vertex.reflect_y()
             self.channel_groove_vertex = self.channel_groove_vertex.reflect_y()
             self.bore_groove_vertex = self.bore_groove_vertex.reflect_y()
+
+        self._cq_object = self.make()
+
+    @property
+    def cq_object(self):
+        """Get CadQuery object."""
+        return self._cq_object
 
     def make(self):
         """Create bore slot sketch."""
@@ -67,7 +73,7 @@ class Vslot20BoreSlot:
         return sketch
 
 
-class Vslot2020Profile:
+class Vslot2020Profile(CqObjectContainer):
     """2020 V-slot Aluminium Extrusion profile.
 
     :Manufacturer: Aluminium Extrusion Company
@@ -88,6 +94,8 @@ class Vslot2020Profile:
     BORE_CHANNEL_DEPTH = 1.325
     BORE_GROOVE_ANGLE_OBTUSE = 45
 
+    HALF_BORE_CHANNEL_WIDTH = BORE_CHANNEL_WIDTH / 2
+
     def __init__(self) -> None:
         """Initialise dimensions."""
         self.half_width = self.WIDTH / 2
@@ -95,8 +103,6 @@ class Vslot2020Profile:
         self.half_rib_thickness = self.RIB_THICKNESS / 2
         self.half_slot_width = self.SLOT_WIDTH / 2
         self.center_bore_radius = self.CENTER_BORE_DIAMETER / 2
-
-        self.half_bore_channel_width = self.BORE_CHANNEL_WIDTH / 2
 
         self.core_positive_x_axis_vertex = Point2D(self.half_core_width, 0)
         self.core_rib_vertex_y = self.half_core_width - sqrt(
@@ -117,6 +123,13 @@ class Vslot2020Profile:
             self.half_width,
             (self.half_width - self.v_lower_vertex.x) + self.v_lower_vertex.y,
         )
+
+        self._cq_object = self.make()
+
+    @property
+    def cq_object(self):
+        """Get CadQuery object."""
+        return self._cq_object
 
     def make(self):
         """Create profile."""
@@ -331,7 +344,7 @@ class Vslot2020Profile:
         return profile
 
 
-class Vslot2040Profile:
+class Vslot2040Profile(CqObjectContainer):
     """2040 V-slot Aluminium Extrusion profile.
 
     :Manufacturer: Aluminium Extrusion Company
@@ -394,6 +407,13 @@ class Vslot2040Profile:
         self.q1b_v_upper_vertex = self.q1aprime_v_upper_vertex.reflect_y(
             x_offset=self.aec_2020.half_width
         )
+
+        self._cq_object = self.make()
+
+    @property
+    def cq_object(self):
+        """Get CadQuery object."""
+        return self._cq_object
 
     def make(self):
         """Make profile."""

@@ -6,11 +6,13 @@ import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
+from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import MetricBoltSpecification
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
+from osr_warehouse.utilities import TINY_LENGTH
 
 
-class EndTapJig:
+class EndTapJig(CqAssemblyContainer):
     """V-slot end tap jig.
 
     :param height: Length of jig.
@@ -18,8 +20,6 @@ class EndTapJig:
     :param clearance: V-slot fit. A higher value results in a tighter fit.
     :type clearance: float, optional, defaults to 0.15
     """
-
-    TINY_LENGTH = 0.001  # 1μm
 
     def __init__(
         self, height: float = 70, clearance: float = 0.15, simple: bool = True
@@ -64,7 +64,20 @@ class EndTapJig:
         self.screw = self._make_screw(bolt_spec, self.simple)
         self.washer = self._make_washer(bolt_spec)
 
-        self._assembly = self.make()
+        self._cq_object = self.make()
+
+    @property
+    def cq_object(self):
+        """Get CadQuery object."""
+        return self._cq_object
+
+    def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
+        """Get part from CadQuery assembly."""
+        result = self._cq_object.objects[name].obj
+        if result is None:
+            raise Exception("Part is not a valid Shape or Workplane.")
+
+        return result
 
     @staticmethod
     def _calculate_width(vslot_width: float, thickness: float) -> float:
@@ -143,20 +156,6 @@ class EndTapJig:
 
         return sketch
 
-    @property
-    def body(self) -> Union[cq.Shape, cq.Workplane]:
-        """Jig body."""
-        result = self._assembly.objects["body"].obj
-        if result is None:
-            raise Exception("Part is not a valid Shape or Workplane.")
-
-        return result
-
-    @property
-    def assembly(self) -> cq.Assembly:
-        """Jig assembly."""
-        return self._assembly
-
     def make(self) -> cq.Assembly:
         """Make jig body and assembly."""
         assembly = cq.Assembly(None, name="2020-end-tap-jig")
@@ -204,7 +203,7 @@ class EndTapJig:
             .edges("|X")
             .edges("<<Y[-3] or >>Y[-3]")
             .edges("<<Z[1]")
-            .chamfer(1.75 * self.key_depth, self.key_depth - self.TINY_LENGTH)
+            .chamfer(1.75 * self.key_depth, self.key_depth - TINY_LENGTH)
             .edges("|Y")
             .edges(">>Z[3]")
             .chamfer(self.key_width / 5)

@@ -7,6 +7,7 @@ from typing import Union
 import cadquery as cq
 
 from osr_warehouse.alexco import Vslot2020, Vslot2040
+from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import M5_CLEARANCE_CLOSE_DIAMETER, M5_COUNTERBORE_DIAMETER
 from osr_warehouse.generic.vslot.brackets2020 import (
     StandardLightDuty90 as BracketStandardLightDuty90,
@@ -17,7 +18,7 @@ from osr_warehouse.generic.vslot.brackets2020 import (
 from osr_warehouse.materials import COLORS
 
 
-class Frame:
+class Frame(CqAssemblyContainer):
     """Frame assembly."""
 
     LENGTH = 439
@@ -39,7 +40,7 @@ class Frame:
     BEAM_END_LENGTH = WIDTH - (2 * Vslot2020.WIDTH)
 
     def __init__(self, simple: bool = False, color: bool = False) -> None:
-        """Initialise."""
+        """Initialise frame assembly."""
         self.simple = simple
         self.color = color
 
@@ -48,15 +49,23 @@ class Frame:
             *COLORS["aluminium_anodised_natural"]
         )
 
-        self._cq_object = self._make()
+        self._cq_object = self.make()
 
         if color:
             self._cq_object = self.color_assembly(self._cq_object)
 
     @property
     def cq_object(self):
-        """Frame assembly."""
+        """Frame CadQuery assembly."""
         return self._cq_object
+
+    def cq_part(self, name: str):
+        """Get part from CadQuery assembly."""
+        result = self._cq_object.objects[name].obj
+        if result is None:
+            raise Exception("Part is not a valid Shape or Workplane.")
+
+        return result
 
     @staticmethod
     def _make_beam_differential_pivot(length: float):
@@ -188,10 +197,10 @@ class Frame:
             .tag("hole_deck")
         )
 
-    def _make(self):
+    def make(self):
         """Create assembly."""
-        bracket_light_duty = BracketStandardLightDuty90().make()
-        bracket_standard_duty = BracketStandardStandardDuty90().make()
+        bracket_light_duty = BracketStandardLightDuty90().cq_object
+        bracket_standard_duty = BracketStandardStandardDuty90().cq_object
 
         post = self._make_post(self.POST_HEIGHT)
         post_rocker_axle = self._make_post_rocker_axle(self.POST_HEIGHT)

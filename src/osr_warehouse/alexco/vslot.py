@@ -32,7 +32,7 @@ class Vslot2020:
         if cls._instance is None:
             cls._instance = super(Vslot2020, cls).__new__(cls)
 
-            profile = Vslot2020Profile().make()
+            profile = Vslot2020Profile().cq_object
             setattr(cls, "PROFILE", profile)
 
         return cls._instance
@@ -69,7 +69,7 @@ class Vslot2040:
         if cls._instance is None:
             cls._instance = super(Vslot2040, cls).__new__(cls)
 
-            profile = Vslot2040Profile().make()
+            profile = Vslot2040Profile().cq_object
             setattr(cls, "PROFILE", profile)
 
         return cls._instance

@@ -39,6 +39,6 @@ class Point2D(Point2DBase):
         """Translate a point in the x-direction."""
         return Point2D._make([self.x + x_offset, self.y])
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Return a string with the format 'Point2D(x, y)'."""
         return "Point2D({}, {})".format(self.x, self.y)
