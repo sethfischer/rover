@@ -57,7 +57,7 @@ class Vslot20BoreSlot(CqObjectContainer):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self):
+    def make(self, assemble=True):
         """Create bore slot sketch."""
         sketch = (
             cq.Sketch()
@@ -67,8 +67,10 @@ class Vslot20BoreSlot(CqObjectContainer):
             .segment(self.channel_groove_vertex.reflect_x())
             .segment(self.core_channel_vertex_q2.reflect_x())
             .close()
-            .assemble()
         )
+
+        if assemble:
+            sketch = sketch.assemble()
 
         return sketch
 
