@@ -1,4 +1,4 @@
-"""Tests for OSR mechanical design."""
+"""Version string tests."""
 
 from osr_mechanical import __version__
 
