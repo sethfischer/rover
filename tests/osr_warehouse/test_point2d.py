@@ -1,4 +1,4 @@
-"""Tests for OSR mechanical design."""
+"""Point2D tests."""
 
 from osr_warehouse.point2d import Point2D
 
