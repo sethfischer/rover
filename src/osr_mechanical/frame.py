@@ -9,6 +9,7 @@ import cadquery as cq
 from osr_warehouse.alexco import Vslot2020, Vslot2040
 from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import M5_CLEARANCE_CLOSE_DIAMETER, M5_COUNTERBORE_DIAMETER
+from osr_warehouse.generic.linear_motion.shf import SHFSeriesDimensions
 from osr_warehouse.generic.vslot.brackets2020 import (
     StandardLightDuty90 as BracketStandardLightDuty90,
 )
@@ -47,6 +48,10 @@ class Frame(CqAssemblyContainer):
         self.aluminium_cast = cq.Color(*COLORS["aluminium_cast"])
         self.aluminium_anodised_natural = cq.Color(
             *COLORS["aluminium_anodised_natural"]
+        )
+
+        self.between_shf_mounting_holes = (
+            SHFSeriesDimensions.shf8.between_mounting_holes
         )
 
         self._cq_object = self.make()
@@ -161,6 +166,11 @@ class Frame(CqAssemblyContainer):
 
     def _make_post_rocker_axle(self, height: float):
         """Create rocker axle post."""
+        half_between_shf_mounting_holes = self.between_shf_mounting_holes / 2
+        shf_mounting_hole_points = [
+            (0, half_between_shf_mounting_holes),
+            (0, -half_between_shf_mounting_holes),
+        ]
         return (
             Vslot2040()
             .make(height)
@@ -170,6 +180,8 @@ class Frame(CqAssemblyContainer):
             .circle((self.ROCKER_AXLE_DIAMETER / 2) + self.ROCKER_AXLE_CLEARANCE)
             .tag("rocker_axle_clearance_hole")
             .extrude(-Vslot2040.WIDTH, combine="s")
+            .pushPoints(shf_mounting_hole_points)
+            .hole(M5_CLEARANCE_CLOSE_DIAMETER)
         )
 
     def _make_post_transom(self, height: float):
