@@ -45,8 +45,9 @@ Sphinx = "^4.4.0"
 sphinx-lfs-content = "^1.0.0"
 sphinx-rtd-theme = "^1.0.0"
 sphinx-argparse-cli = "^1.9.0"
+invoke = "^1.7.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "^22.1.0"
 cffconvert = "^2.0.0"
 doc8 = "^0.10.1"
@@ -61,6 +62,7 @@ spyder = "^5.3.1"
 pyqtgraph = "^0.12.4"
 Logbook = "^1.5.3"
 mypy = "^0.961"
+Pillow = "^9.2.0"
 
 [tool.isort]
 profile = "black"
@@ -79,6 +81,16 @@ warn_unused_ignores = true
 
 [[tool.mypy.overrides]]
 module = "cq_warehouse.*"
+ignore_errors = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "invoke.*"
+ignore_errors = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "PIL.*"
 ignore_errors = true
 ignore_missing_imports = true
 

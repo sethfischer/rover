@@ -11,6 +11,7 @@ from cadquery import exporters
 
 from osr_mechanical import __version__
 from osr_mechanical.console.dxf import dxf_import_export
+from osr_mechanical.console.exporters import ExportPNG
 from osr_mechanical.final import FinalAssembly
 from osr_mechanical.jigs.vslot import EndTapJig
 
@@ -43,9 +44,9 @@ def export_jigs(release_dir: Path) -> None:
     exporters.export(end_tap_jig.cq_part("body"), str(end_tap_jig_pathname))
 
 
-def export_final_assembly(release_dir: Path) -> None:
+def export_final_assembly_step(release_dir: Path) -> None:
     """Export final assembly as STEP."""
-    logger.debug("Exporting main assembly.")
+    logger.debug("Exporting final assembly STEP.")
 
     final_assembly_pathname = release_dir / "sethfischer-osr.step"
     exporters.export(
@@ -54,6 +55,28 @@ def export_final_assembly(release_dir: Path) -> None:
         tolerance=0.01,
         angularTolerance=0.1,
     )
+
+
+def export_png_cmd(args: argparse.Namespace) -> None:
+    """Export PNG image of final assembly."""
+    logger.debug("Exporting final assembly PNG.")
+
+    out_file = args.out_file[0]
+    exporter = ExportPNG(out_file)
+    exporter.export()
+
+    exit(EX_OK)
+
+
+def export_final_assembly_png(release_dir: Path) -> None:
+    """Export PNG image of final assembly."""
+    logger.debug("Exporting final assembly PNG.")
+
+    out_file = release_dir / "sethfischer-osr.png"
+    exporter = ExportPNG(out_file)
+    exporter.export()
+
+    exit(EX_OK)
 
 
 def get_release_dir() -> Path:
@@ -75,7 +98,8 @@ def build(args: argparse.Namespace) -> None:
 
     release_dir.mkdir()
     export_jigs(release_dir)
-    export_final_assembly(release_dir)
+    export_final_assembly_step(release_dir)
+    export_final_assembly_png(release_dir)
 
     exit(EX_OK)
 
@@ -123,6 +147,18 @@ def build_parser() -> argparse.ArgumentParser:
         help="input DXF file",
     )
     parser_dxf_reduce.set_defaults(func=dxf_reduce)
+
+    parser_export_png = subparsers.add_parser(
+        "export-png",
+        help="export PNG image of final assembly",
+    )
+    parser_export_png.add_argument(
+        "out_file",
+        type=Path,
+        nargs=1,
+        help="output file",
+    )
+    parser_export_png.set_defaults(func=export_png_cmd)
 
     return parser
 
