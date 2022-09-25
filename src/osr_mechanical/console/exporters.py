@@ -29,15 +29,15 @@ class ExportPNG:
     def __init__(
         self,
         out_file: Path,
-        height: int = 750,
         width: int = 1000,
+        height: int = 750,
         mayo_config: Union[Dict[str, Any], None] = None,
         label: bool = True,
     ) -> None:
         """Initialise exporter."""
         self.out_file = out_file
-        self.height = height
         self.width = width
+        self.height = height
         self.mayo_config = mayo_config
         self.label = label
 

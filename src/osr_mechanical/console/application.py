@@ -1,6 +1,7 @@
 """OSR console command."""
 
 import argparse
+import base64
 import logging
 from os import EX_OK, getcwd
 from pathlib import Path
@@ -8,6 +9,7 @@ from shutil import rmtree
 from sys import stdout
 
 from cadquery import exporters
+from jinja2 import Environment, PackageLoader, select_autoescape
 
 from osr_mechanical import __version__
 from osr_mechanical.console.dxf import dxf_import_export
@@ -62,19 +64,52 @@ def export_png_cmd(args: argparse.Namespace) -> None:
     logger.debug("Exporting final assembly PNG.")
 
     out_file = args.out_file[0]
-    exporter = ExportPNG(out_file)
+    label = args.no_label
+
+    exporter = ExportPNG(out_file, height=args.height, width=args.width, label=label)
     exporter.export()
 
     exit(EX_OK)
 
 
 def export_final_assembly_png(release_dir: Path) -> None:
-    """Export PNG image of final assembly."""
-    logger.debug("Exporting final assembly PNG.")
+    """Export PNG image of final assembly for release archive."""
+    logger.debug("Exporting final assembly PNG of release archive.")
 
     out_file = release_dir / "sethfischer-osr.png"
     exporter = ExportPNG(out_file)
     exporter.export()
+
+    exit(EX_OK)
+
+
+def create_open_graph_card_svg(args: argparse.Namespace) -> None:
+    """Create Open Graph Card in SVG format."""
+    env = Environment(
+        loader=PackageLoader("osr_mechanical"), autoescape=select_autoescape()
+    )
+
+    logo_cq = env.get_template("open-graph-card/logo-cadquery.svg").render()
+    logo_cq_64 = base64.b64encode(logo_cq.encode("ascii")).decode("ascii")
+
+    logo_ros = env.get_template("open-graph-card/logo-ros.svg").render()
+    logo_ros_64 = base64.b64encode(logo_ros.encode("ascii")).decode("ascii")
+
+    logo_python = env.get_template("open-graph-card/logo-python.svg").render()
+    logo_python_64 = base64.b64encode(logo_python.encode("ascii")).decode("ascii")
+
+    logo_github = env.get_template("open-graph-card/logo-github.svg").render()
+    logo_github_64 = base64.b64encode(logo_github.encode("ascii")).decode("ascii")
+
+    template = env.get_template("open-graph-card/open-graph-card.svg")
+    result = template.render(
+        cq_logo=logo_cq_64,
+        ros_logo=logo_ros_64,
+        python_logo=logo_python_64,
+        github_logo=logo_github_64,
+    )
+
+    stdout.write(result)
 
     exit(EX_OK)
 
@@ -153,12 +188,35 @@ def build_parser() -> argparse.ArgumentParser:
         help="export PNG image of final assembly",
     )
     parser_export_png.add_argument(
+        "--width",
+        type=int,
+        default=1000,
+        help="width of image in pixels",
+    )
+    parser_export_png.add_argument(
+        "--height",
+        type=int,
+        default=750,
+        help="height of image in pixels",
+    )
+    parser_export_png.add_argument(
+        "--no-label",
+        action="store_false",
+        help="do not label image",
+    )
+    parser_export_png.add_argument(
         "out_file",
         type=Path,
         nargs=1,
         help="output file",
     )
     parser_export_png.set_defaults(func=export_png_cmd)
+
+    parser_open_graph_card = subparsers.add_parser(
+        "open-graph-card",
+        help="create open graph card SVG",
+    )
+    parser_open_graph_card.set_defaults(func=create_open_graph_card_svg)
 
     return parser
 
