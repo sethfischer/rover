@@ -108,7 +108,7 @@ class StandardStandardDuty90(CqObjectContainer):
             .assemble()
         )
 
-        bracket = (
+        result = (
             cq.Workplane()
             .box(self.LENGTH, self.WIDTH, self.LENGTH)
             .faces("+Z or +X")
@@ -128,4 +128,4 @@ class StandardStandardDuty90(CqObjectContainer):
             .fillet(1)
         )
 
-        return bracket
+        return result

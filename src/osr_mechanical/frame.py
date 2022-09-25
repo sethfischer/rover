@@ -92,10 +92,10 @@ class Frame(CqAssemblyContainer):
             beam_fore_y + self.ROCKER_AXLE_DISTANCE_FROM_FORE - Vslot2040.WIDTH / 2
         )
 
-        beam = Vslot2020().make(length)
+        result = Vslot2020().make(length)
 
-        beam = (
-            beam.faces(">X")
+        result = (
+            result.faces(">X")
             .workplane(centerOption="CenterOfMass")
             .tag("workplane_lateral_holes")
             .center(0, hole_fore_y)
@@ -116,8 +116,8 @@ class Frame(CqAssemblyContainer):
             .tag("hole_aft")
         )
 
-        beam = (
-            beam.faces(">Y")
+        result = (
+            result.faces(">Y")
             .workplane(centerOption="CenterOfMass")
             .tag("workplane_rocker_axle_post_holes")
             .center(0, hole_fore_rocker_axle_post_y)
@@ -145,8 +145,8 @@ class Frame(CqAssemblyContainer):
                 + differential_pivot_beam_offset
             )
 
-            beam = (
-                beam.workplaneFromTagged("workplane_lateral_holes")
+            result = (
+                result.workplaneFromTagged("workplane_lateral_holes")
                 .center(0, hole_beam_differential_pivot_y)
                 .cboreHole(
                     M5_CLEARANCE_CLOSE_DIAMETER,
@@ -157,7 +157,7 @@ class Frame(CqAssemblyContainer):
                 .tag("hole_beam_differential_pivot")
             )
 
-        return beam
+        return result
 
     @staticmethod
     def _make_post(height: float):

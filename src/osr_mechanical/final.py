@@ -35,7 +35,7 @@ class FinalAssembly(CqAssemblyContainer):
 
     def make(self) -> cq.Assembly:
         """Make assembly."""
-        assembly = (
+        result = (
             cq.Assembly()
             .add(
                 self.frame.cq_object,
@@ -52,4 +52,4 @@ class FinalAssembly(CqAssemblyContainer):
             )
         )
 
-        return assembly
+        return result

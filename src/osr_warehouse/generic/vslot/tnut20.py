@@ -39,7 +39,7 @@ class SlidingTNut20(CqObjectContainer):
 
     def profile(self) -> cq.Sketch:
         """T-nut profile sketch."""
-        profile = (
+        result = (
             cq.Sketch()
             .trapezoid(self.trapezoid_width, self.trapezoid_height, 115)
             .edges(">Y")
@@ -51,7 +51,8 @@ class SlidingTNut20(CqObjectContainer):
                 )
             )
         )
-        return profile
+
+        return result
 
     def make(self) -> cq.Workplane:
         """Make 20 mm series V-slot sliding T-nut.
