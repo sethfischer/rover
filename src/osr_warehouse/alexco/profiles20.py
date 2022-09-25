@@ -26,7 +26,7 @@ class Vslot20BoreSlot(CqObjectContainer):
         if mirror:
             self.x_offset = -x_offset
 
-        self.core_x_axis_vertex = Point2D(self.x_offset, 0)
+        self.core_x_pos_intersect = Point2D(self.x_offset, 0)
         self.core_channel_vertex_q2 = Point2D(
             x_offset,
             Vslot2020Profile.HALF_BORE_CHANNEL_WIDTH,
@@ -46,7 +46,7 @@ class Vslot20BoreSlot(CqObjectContainer):
         )
 
         if mirror:
-            self.core_x_axis_vertex = self.core_x_axis_vertex.reflect_y()
+            self.core_x_pos_intersect = self.core_x_pos_intersect.reflect_y()
             self.channel_groove_vertex = self.channel_groove_vertex.reflect_y()
             self.bore_groove_vertex = self.bore_groove_vertex.reflect_y()
 
@@ -61,7 +61,7 @@ class Vslot20BoreSlot(CqObjectContainer):
         """Create bore slot sketch."""
         sketch = (
             cq.Sketch()
-            .segment(self.core_x_axis_vertex, self.core_channel_vertex_q2)
+            .segment(self.core_x_pos_intersect, self.core_channel_vertex_q2)
             .segment(self.channel_groove_vertex)
             .segment(self.bore_groove_vertex)
             .segment(self.channel_groove_vertex.reflect_x())
@@ -106,7 +106,7 @@ class Vslot2020Profile(CqObjectContainer):
         self.half_slot_width = self.SLOT_WIDTH / 2
         self.center_bore_radius = self.CENTER_BORE_DIAMETER / 2
 
-        self.core_positive_x_axis_vertex = Point2D(self.half_core_width, 0)
+        self.core_x_pos_intersect = Point2D(self.half_core_width, 0)
         self.core_rib_vertex_y = self.half_core_width - sqrt(
             self.half_rib_thickness**2 + self.half_rib_thickness**2
         )
@@ -152,7 +152,7 @@ class Vslot2020Profile(CqObjectContainer):
             cq.Sketch()
             .parray(0, 0, 360, 4)
             # quadrant 1
-            .segment(self.core_positive_x_axis_vertex, self.core_rib_vertex)
+            .segment(self.core_x_pos_intersect, self.core_rib_vertex)
             .segment(self.rib_slot_vertex)
             .segment(self.slot_retainer_vertex)
             .segment(self.v_lower_vertex)

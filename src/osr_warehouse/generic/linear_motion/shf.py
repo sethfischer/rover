@@ -170,16 +170,18 @@ class SHF(CqObjectContainer):
 
     def _make_flange_sketch(self) -> Any:
         """Flange sketch."""
-        y_intersect = self._calculate_y_vertex(self.collar_diameter, self.FLANGE_ANGLE)
+        y_pos_intersect = self._calculate_y_pos_intersect(
+            self.collar_diameter, self.FLANGE_ANGLE
+        )
         q1_vertex = self._calculate_flange_q1_vertex(
-            y_intersect, self.length, self.FLANGE_ANGLE
+            y_pos_intersect, self.length, self.FLANGE_ANGLE
         )
 
         result = (
             cq.Sketch()
-            .segment(y_intersect, q1_vertex)
+            .segment(y_pos_intersect, q1_vertex)
             .segment(q1_vertex.reflect_x())
-            .segment(y_intersect.reflect_x())
+            .segment(y_pos_intersect.reflect_x())
             .segment(q1_vertex.reflect_xy_neg())
             .segment(q1_vertex.reflect_y())
             .close()
@@ -195,8 +197,10 @@ class SHF(CqObjectContainer):
         return result
 
     @staticmethod
-    def _calculate_y_vertex(collar_diameter: float, flange_angle: float) -> Point2D:
-        """Calculate flange Y-axis intersection."""
+    def _calculate_y_pos_intersect(
+        collar_diameter: float, flange_angle: float
+    ) -> Point2D:
+        """Calculate flange positive Y-axis intersection."""
         y = (collar_diameter / 2) / sin(radians(90 - flange_angle))
 
         return Point2D(x=0, y=y)
