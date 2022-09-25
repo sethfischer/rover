@@ -23,9 +23,10 @@ references:
     type: software
     repository-code: "https://github.com/nasa-jpl/osr-rover-code"
 keywords:
+  - jpl
   - mars
-  - rover
-  - NASA
-  - JPL
+  - nasa
+  - perseverance
   - robot
   - robotics
+  - rover

@@ -61,11 +61,13 @@
         </dc:rights>
         <dc:subject>
           <rdf:Bag>
-            <rdf:li>nasa</rdf:li>
             <rdf:li>jpl</rdf:li>
             <rdf:li>mars</rdf:li>
-            <rdf:li>rover</rdf:li>
+            <rdf:li>nasa</rdf:li>
             <rdf:li>perseverance</rdf:li>
+            <rdf:li>robot</rdf:li>
+            <rdf:li>robotics</rdf:li>
+            <rdf:li>rover</rdf:li>
           </rdf:Bag>
         </dc:subject>
         <dc:contributor>
