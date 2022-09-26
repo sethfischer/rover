@@ -36,30 +36,6 @@ def get_logger(name: str) -> logging.Logger:
 logger = get_logger(__name__)
 
 
-def export_jigs(release_dir: Path) -> None:
-    """Export jigs as STL for 3D printing."""
-    logger.debug("Exporting jigs.")
-    jig_dir = release_dir / "jigs"
-    jig_dir.mkdir()
-
-    end_tap_jig_pathname = jig_dir / "vslot-end-tap-jig-2020.stl"
-    end_tap_jig = EndTapJig(simple=True)
-    exporters.export(end_tap_jig.cq_part("body"), str(end_tap_jig_pathname))
-
-
-def export_final_assembly_step(release_dir: Path) -> None:
-    """Export final assembly as STEP."""
-    logger.debug("Exporting final assembly STEP.")
-
-    final_assembly_pathname = release_dir / "sethfischer-osr.step"
-    exporters.export(
-        FinalAssembly().cq_object.toCompound(),
-        str(final_assembly_pathname),
-        tolerance=0.01,
-        angularTolerance=0.1,
-    )
-
-
 def export_png_cmd(args: argparse.Namespace) -> None:
     """Export PNG image of final assembly."""
     logger.debug("Exporting final assembly PNG.")
@@ -71,25 +47,6 @@ def export_png_cmd(args: argparse.Namespace) -> None:
     exporter.export()
 
     exit(EX_OK)
-
-
-def export_final_assembly_png(release_dir: Path) -> None:
-    """Export PNG image of final assembly for release archive."""
-    logger.debug("Exporting final assembly PNG of release archive.")
-
-    out_file = release_dir / "sethfischer-osr.png"
-    exporter = ExportPNG(out_file)
-    exporter.export()
-
-
-def export_changelog(release_dir: Path) -> int:
-    """Export changelog."""
-    logger.debug("Exporting changelog.")
-
-    file_out = release_dir / "CHANGELOG.md"
-    result = run(f"cz changelog --file-name {file_out}")
-
-    return result.return_code
 
 
 def create_open_graph_card_svg(args: argparse.Namespace) -> None:
@@ -128,8 +85,48 @@ def get_release_dir() -> Path:
     return Path(f"sethfischer-osr-cam-{__version__}")
 
 
-def build(args: argparse.Namespace) -> None:
-    """Build CAM file archive."""
+def export_jigs(out_dir: Path) -> None:
+    """Export jigs as STL for 3D printing."""
+    logger.debug("Exporting jigs.")
+
+    out_dir.mkdir()
+
+    end_tap_jig_pathname = out_dir / "vslot-end-tap-jig-2020.stl"
+    end_tap_jig = EndTapJig(simple=True)
+    exporters.export(end_tap_jig.cq_part("body"), str(end_tap_jig_pathname))
+
+
+def export_final_assembly_step(out_file: Path) -> None:
+    """Export final assembly as STEP."""
+    logger.debug("Exporting final assembly STEP.")
+
+    exporters.export(
+        FinalAssembly().cq_object.toCompound(),
+        str(out_file),
+        tolerance=0.01,
+        angularTolerance=0.1,
+    )
+
+
+def export_final_assembly_png(out_file: Path) -> None:
+    """Export PNG image of final assembly for release archive."""
+    logger.debug("Exporting final assembly PNG of release archive.")
+
+    exporter = ExportPNG(out_file)
+    exporter.export()
+
+
+def export_changelog(out_file: Path) -> int:
+    """Export changelog."""
+    logger.debug("Exporting changelog.")
+
+    result = run(f"cz changelog --file-name {out_file}")
+
+    return result.return_code
+
+
+def build_cam_archive(args: argparse.Namespace) -> None:
+    """Build Computer Aided Manufacturing file archive."""
     if not args.build_dir.is_dir():
         logger.critical(f"Build directory does not exist {args.build_dir}.")
         exit(1)
@@ -141,10 +138,11 @@ def build(args: argparse.Namespace) -> None:
         rmtree(release_dir)
 
     release_dir.mkdir()
-    export_changelog(release_dir)
-    export_jigs(release_dir)
-    export_final_assembly_step(release_dir)
-    export_final_assembly_png(release_dir)
+
+    export_changelog(release_dir / "CHANGELOG.md")
+    export_final_assembly_step(release_dir / "sethfischer-osr.step")
+    export_final_assembly_png(release_dir / "sethfischer-osr.png")
+    export_jigs(release_dir / "jigs")
 
     exit(EX_OK)
 
@@ -176,7 +174,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=Path(getcwd()).absolute() / "_build",
         help="build directory",
     )
-    parser_build.set_defaults(func=build)
+    parser_build.set_defaults(func=build_cam_archive)
 
     parser_dxf_reduce = subparsers.add_parser(
         "dxf-reduce",
