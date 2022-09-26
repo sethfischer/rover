@@ -9,6 +9,7 @@ Build release
 The :ref:`build sub-command <console-build>` builds a :abbr:`CAM (Computer-Aided Manufacturing)` release
 and places manufacturing files into a ``_build/`` directory which includes:
 
+* a changelog
 * a STEP file of the final assembly
 * a PNG image of the final assembly
 * STL files for 3D printing

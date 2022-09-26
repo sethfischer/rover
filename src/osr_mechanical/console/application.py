@@ -9,6 +9,7 @@ from shutil import rmtree
 from sys import stdout
 
 from cadquery import exporters
+from invoke import run
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from osr_mechanical import __version__
@@ -80,7 +81,15 @@ def export_final_assembly_png(release_dir: Path) -> None:
     exporter = ExportPNG(out_file)
     exporter.export()
 
-    exit(EX_OK)
+
+def export_changelog(release_dir: Path) -> int:
+    """Export changelog."""
+    logger.debug("Exporting changelog.")
+
+    file_out = release_dir / "CHANGELOG.md"
+    result = run(f"cz changelog --file-name {file_out}")
+
+    return result.return_code
 
 
 def create_open_graph_card_svg(args: argparse.Namespace) -> None:
@@ -132,6 +141,7 @@ def build(args: argparse.Namespace) -> None:
         rmtree(release_dir)
 
     release_dir.mkdir()
+    export_changelog(release_dir)
     export_jigs(release_dir)
     export_final_assembly_step(release_dir)
     export_final_assembly_png(release_dir)
