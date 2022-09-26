@@ -11,32 +11,7 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
 Get started
 -----------
 
-Install Git hooks:
-
-.. code::
-
-    make install-git-hooks
-
-Create virtual environment and install dependencies:
-
-.. code::
-
-    python -m venv .venv
-    . .venv/bin/activate
-    pip install -U pip
-    poetry install
-
-Build documentation:
-
-.. code::
-
-    make -C docs/ clean html
-
-Build CAM file archive:
-
-.. code::
-
-    console build
+Refer to `how to build a release`_ and follow the `additional steps for developers`_.
 
 
 License
@@ -47,6 +22,8 @@ License
 :Documentation: SPDX-License-Identifier: CC-BY-NC-SA-4.0
 
 
+.. _`how to build a release`: https://osr.fischer.nz/build-release.html
+.. _`additional steps for developers`: https://osr.fischer.nz/build-release.html#additional-steps-for-developers
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
 
 
