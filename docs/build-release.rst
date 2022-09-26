@@ -53,7 +53,7 @@ Clone the project and create a virtual environment
 
     git clone https://github.com/sethfischer/osr.git
     cd osr
-    python -m venv .venv
+    python3.9 -m venv .venv
     . .venv/bin/activate
     pip install -U pip
     poetry install
