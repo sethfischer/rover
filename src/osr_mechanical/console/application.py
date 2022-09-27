@@ -2,6 +2,7 @@
 
 import argparse
 import base64
+import datetime
 import logging
 from os import EX_OK, getcwd
 from pathlib import Path
@@ -13,6 +14,12 @@ from invoke import run
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from osr_mechanical import __version__
+from osr_mechanical.config import (
+    COPYRIGHT_OWNER,
+    DOCUMENTATION_URL,
+    PROJECT_URL,
+    REPO_URL,
+)
 from osr_mechanical.console.dxf import dxf_import_export
 from osr_mechanical.console.exporters import ExportPNG
 from osr_mechanical.final import FinalAssembly
@@ -116,6 +123,29 @@ def export_final_assembly_png(out_file: Path) -> None:
     exporter.export()
 
 
+def create_readme(out_file: Path) -> int:
+    """Create readme file."""
+    logger.debug("Creating readme file.")
+
+    env = Environment(
+        loader=PackageLoader("osr_mechanical"), autoescape=select_autoescape()
+    )
+
+    build_time = datetime.date.today()
+
+    template = env.get_template("README.md")
+    result = template.render(
+        build_time=build_time,
+        copyright_owner=COPYRIGHT_OWNER,
+        documentation_url=DOCUMENTATION_URL,
+        project_repo_url=REPO_URL,
+        project_url=PROJECT_URL,
+        version=__version__,
+    )
+
+    return out_file.write_text(result)
+
+
 def export_changelog(out_file: Path) -> int:
     """Export changelog."""
     logger.debug("Exporting changelog.")
@@ -139,6 +169,7 @@ def build_cam_archive(args: argparse.Namespace) -> None:
 
     release_dir.mkdir()
 
+    create_readme(release_dir / "README.md")
     export_changelog(release_dir / "CHANGELOG.md")
     export_final_assembly_step(release_dir / "sethfischer-osr.step")
     export_final_assembly_png(release_dir / "sethfischer-osr.png")

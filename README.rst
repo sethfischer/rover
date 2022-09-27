@@ -5,7 +5,7 @@ sethfischer/osr
 |build-status| |lint-status| |test-status| |docs-status|
 
 
-Alternative body construction for the `NASA JPL Open Source Rover`_.
+Alternative body for the `NASA JPL Open Source Rover`_.
 
 
 Get started
