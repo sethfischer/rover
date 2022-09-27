@@ -17,8 +17,11 @@ from osr_mechanical import __version__
 from osr_mechanical.config import (
     COPYRIGHT_OWNER,
     DOCUMENTATION_URL,
+    PROJECT_HOST,
+    PROJECT_NAME,
     PROJECT_URL,
     REPO_URL,
+    SHORT_DESCRIPTION,
 )
 from osr_mechanical.console.dxf import dxf_import_export
 from osr_mechanical.console.exporters import ExportPNG
@@ -74,12 +77,19 @@ def create_open_graph_card_svg(args: argparse.Namespace) -> None:
     logo_github = env.get_template("open-graph-card/logo-github.svg").render()
     logo_github_64 = base64.b64encode(logo_github.encode("ascii")).decode("ascii")
 
+    build_time = datetime.date.today()
+
     template = env.get_template("open-graph-card/open-graph-card.svg")
     result = template.render(
+        build_time=build_time,
+        copyright_owner=COPYRIGHT_OWNER,
         cq_logo=logo_cq_64,
-        ros_logo=logo_ros_64,
-        python_logo=logo_python_64,
         github_logo=logo_github_64,
+        project_host=PROJECT_HOST,
+        project_name=PROJECT_NAME,
+        python_logo=logo_python_64,
+        ros_logo=logo_ros_64,
+        short_description=SHORT_DESCRIPTION,
     )
 
     stdout.write(result)
@@ -140,6 +150,7 @@ def create_readme(out_file: Path) -> int:
         documentation_url=DOCUMENTATION_URL,
         project_repo_url=REPO_URL,
         project_url=PROJECT_URL,
+        short_description=SHORT_DESCRIPTION,
         version=__version__,
     )
 

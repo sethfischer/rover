@@ -19,7 +19,7 @@
     sodipodi:docname="open-graph-card.svg"
     inkscape:export-xdpi="96"
     inkscape:export-ydpi="96">
-  <title id="title">sethfischer/osr</title>
+  <title id="title">{{ project_name }} Open Graph Card</title>
   <sodipodi:namedview
       id="base"
       pagecolor="#000000"
@@ -47,16 +47,16 @@
       <cc:Work rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>sethfischer/osr</dc:title>
+        <dc:title>{{ project_name }} Open Graph Card</dc:title>
         <dc:creator>
           <cc:Agent>
-            <dc:title>Seth Fischer</dc:title>
+            <dc:title>{{ copyright_owner }}</dc:title>
           </cc:Agent>
         </dc:creator>
         <cc:license rdf:resource="https://spdx.org/licenses/MIT.html" />
         <dc:rights>
           <cc:Agent>
-            <dc:title>(c) 2022 Seth Fischer</dc:title>
+            <dc:title>(c) {{ build_time.strftime("%Y") }} {{ copyright_owner }}</dc:title>
           </cc:Agent>
         </dc:rights>
         <dc:subject>
@@ -72,10 +72,10 @@
         </dc:subject>
         <dc:contributor>
           <cc:Agent>
-            <dc:title>Seth Fischer</dc:title>
+            <dc:title>{{ copyright_owner }}</dc:title>
           </cc:Agent>
         </dc:contributor>
-        <dc:description>Alternative body for the NASA JPL Open Source Rover.</dc:description>
+        <dc:description>{{ short_description }}</dc:description>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -158,7 +158,7 @@
               x="73.846153"
               y="264.61539"
               style="font-size:24px;fill:#ffffff" />
-        </flowRegion><flowPara id="flowPara38">osr.fischer.nz</flowPara>
+        </flowRegion><flowPara id="flowPara38">{{ project_host }}</flowPara>
     </flowRoot>
     <flowRoot
         id="flowRoot48"
@@ -211,7 +211,7 @@
     <image
         id="github_logo"
         inkscape:label="#github_logo"
-        xlink:href="data:image/svg+xml;base64,{{github_logo}}"
+        xlink:href="data:image/svg+xml;base64,{{ github_logo }}"
         preserveAspectRatio="none"
         style="image-rendering:optimizeQuality"
         width="25"
@@ -227,7 +227,7 @@
     <image
         id="python_logo"
         inkscape:label="#python_logo"
-        xlink:href="data:image/svg+xml;base64,{{python_logo}}"
+        xlink:href="data:image/svg+xml;base64,{{ python_logo }}"
         preserveAspectRatio="none"
         style="image-rendering:optimizeQuality"
         x="19.843756"
@@ -243,7 +243,7 @@
     <image
         id="cadquery_logo"
         inkscape:label="#cadquery_logo"
-        xlink:href="data:image/svg+xml;base64,{{cq_logo}}"
+        xlink:href="data:image/svg+xml;base64,{{ cq_logo }}"
         preserveAspectRatio="none"
         style="image-rendering:optimizeQuality"
         x="51.858337"
@@ -259,7 +259,7 @@
     <image
         id="ros_logo"
         inkscape:label="#ros_logo"
-        xlink:href="data:image/svg+xml;base64,{{ros_logo}}"
+        xlink:href="data:image/svg+xml;base64,{{ ros_logo }}"
         preserveAspectRatio="none"
         style="image-rendering:optimizeQuality"
         x="19.843756"

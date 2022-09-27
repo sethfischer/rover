@@ -1,6 +1,6 @@
 # sethfischer-osr v{{ version }}
 
-Alternative body for the NASA JPL Open Source Rover.
+{{ short_description }}
 
 Homepage: {{ project_url }}  
 Repository: {{ project_repo_url }}  
