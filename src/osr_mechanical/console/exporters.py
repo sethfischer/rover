@@ -13,7 +13,12 @@ from PIL import Image, ImageDraw, ImageFont
 from PIL.ExifTags import TAGS
 from PIL.Image import Exif
 
-from osr_mechanical.config import COPYRIGHT_OWNER, PROJECT_HOST, PROJECT_URL
+from osr_mechanical.config import (
+    COPYRIGHT_OWNER,
+    LONG_DESCRIPTION,
+    PROJECT_HOST,
+    PROJECT_URL,
+)
 from osr_mechanical.final import FinalAssembly
 
 
@@ -170,18 +175,13 @@ class ExportPNG:
         copyright_notice = (
             f"(c) {now.strftime('%Y')} {COPYRIGHT_OWNER}; Licence: MIT License"
         )
-        description = (
-            "Final assembly of sethfischer-osr, a quarter-scale Mars rover. "
-            f"See <{PROJECT_URL}>. "
-            "Based on NASA-JPL's Perseverance Mars Rover."
-        )
 
         tags[_TAGS_r["Artist"]] = COPYRIGHT_OWNER
         tags[_TAGS_r["Copyright"]] = copyright_notice
         tags[_TAGS_r["DateTime"]] = now.strftime(self.EXIF_DATE_FORMAT)
         tags[_TAGS_r["DateTimeDigitized"]] = now.strftime(self.EXIF_DATE_FORMAT)
         tags[_TAGS_r["DateTimeOriginal"]] = now.strftime(self.EXIF_DATE_FORMAT)
-        tags[_TAGS_r["ImageDescription"]] = description
+        tags[_TAGS_r["ImageDescription"]] = LONG_DESCRIPTION
         tags[_TAGS_r["Software"]] = PROJECT_URL
 
         return tags
