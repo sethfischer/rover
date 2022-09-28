@@ -102,13 +102,13 @@ def get_release_dir() -> Path:
     return Path(f"sethfischer-osr-cam-{__version__}")
 
 
-def export_jigs(out_dir: Path) -> None:
+def export_jigs(out_directory: Path) -> None:
     """Export jigs as STL for 3D printing."""
     logger.debug("Exporting jigs.")
 
-    out_dir.mkdir()
+    out_directory.mkdir()
 
-    end_tap_jig_pathname = out_dir / "vslot-end-tap-jig-2020.stl"
+    end_tap_jig_pathname = out_directory / "vslot-end-tap-jig-2020.stl"
     end_tap_jig = EndTapJig(simple=True)
     exporters.export(end_tap_jig.cq_part("body"), str(end_tap_jig_pathname))
 
