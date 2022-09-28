@@ -24,7 +24,7 @@ Prerequisites
 -------------
 
 * `Git`_ version control system.
-* `Python`_ >=3.9.
+* `Python`_ >=3.9, and python-venv.
 * `Poetry`_ for Python dependency management.
 * `Mayo 3D CAD viewer and converter`_ for exporting PNG images.
 * `ImageMagick`_ *optional* utility for manipulating EXIF headers.
@@ -40,7 +40,7 @@ Install prerequisites
 
 .. code:: none
 
-    sudo apt-get install git python3.9 imagemagick inkscape
+    sudo apt-get install git python3.9 python3.9-venv imagemagick inkscape
 
 Poetry, Mayo, and git-lfs should be installed according to their respective documentation,
 and be available in your path.
@@ -76,6 +76,12 @@ Enable Git hooks:
 
     make install-git-hooks
 
+Install `CQ-Editor`_:
+
+.. code:: none
+
+    poetry install --with cq-editor
+
 Build documentation:
 
 .. code:: none
@@ -98,3 +104,4 @@ Run linters and tests:
 .. _`ImageMagick`: https://imagemagick.org/
 .. _`Inkscape`: https://inkscape.org/
 .. _`git-lfs`: https://git-lfs.github.com/
+.. _`CQ-Editor`: https://github.com/CadQuery/CQ-editor
