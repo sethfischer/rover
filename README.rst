@@ -22,8 +22,8 @@ License
 :Documentation: SPDX-License-Identifier: CC-BY-NC-SA-4.0
 
 
-.. _`how to build a release`: https://osr.fischer.nz/build-release.html
-.. _`additional steps for developers`: https://osr.fischer.nz/build-release.html#additional-steps-for-developers
+.. _`how to build a release`: https://osr.fischer.nz/en/latest/build-release.html
+.. _`additional steps for developers`: https://osr.fischer.nz/en/latest/build-release.html#additional-steps-for-developers
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
 
 
