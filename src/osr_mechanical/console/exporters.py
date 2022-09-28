@@ -14,6 +14,7 @@ from PIL.ExifTags import TAGS
 from PIL.Image import Exif
 
 from osr_mechanical.config import (
+    COPYRIGHT_NOTICE,
     COPYRIGHT_OWNER,
     LONG_DESCRIPTION,
     PROJECT_HOST,
@@ -172,12 +173,8 @@ class ExportPNG:
         now = datetime.today()
         tags = Exif()
 
-        copyright_notice = (
-            f"(c) {now.strftime('%Y')} {COPYRIGHT_OWNER}; Licence: MIT License"
-        )
-
         tags[_TAGS_r["Artist"]] = COPYRIGHT_OWNER
-        tags[_TAGS_r["Copyright"]] = copyright_notice
+        tags[_TAGS_r["Copyright"]] = COPYRIGHT_NOTICE
         tags[_TAGS_r["DateTime"]] = now.strftime(self.EXIF_DATE_FORMAT)
         tags[_TAGS_r["DateTimeDigitized"]] = now.strftime(self.EXIF_DATE_FORMAT)
         tags[_TAGS_r["DateTimeOriginal"]] = now.strftime(self.EXIF_DATE_FORMAT)
