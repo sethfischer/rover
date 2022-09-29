@@ -367,7 +367,7 @@ resolved_reference = "4b461fe195d0a4e99b9a6c43b7e1fe0cb4c5e77d"
 
 [[package]]
 name = "cq-warehouse"
-version = "0.7.1"
+version = "0.8.0"
 description = "A cadquery parametric part collection"
 category = "main"
 optional = false
@@ -377,8 +377,8 @@ develop = false
 [package.source]
 type = "git"
 url = "https://github.com/gumyr/cq_warehouse.git"
-reference = "v0.7.1"
-resolved_reference = "ba9084b1d54bf19e8cf9327f4610e8137c7f8c61"
+reference = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"
+resolved_reference = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"
 
 [[package]]
 name = "cryptography"
@@ -2374,7 +2374,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "d4c58b95880cb431e9b0bdec23f06f75dfa888b642a8e3151dab79b48435630b"
+content-hash = "1d824ffc2498ec6fa289582693612f37a02e2c06f394f919565f3da75deac5bc"
 
 [metadata.files]
 alabaster = [

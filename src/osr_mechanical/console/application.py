@@ -28,22 +28,8 @@ from osr_mechanical.console.exporters import ExportPNG
 from osr_mechanical.final import FinalAssembly
 from osr_mechanical.jigs.vslot import EndTapJig
 
-
-def get_logger(name: str) -> logging.Logger:
-    """Configure logger."""
-    logger = logging.getLogger(name)
-    logger.handlers.clear()
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(
-        logging.Formatter("%(levelname)s:%(name)s:%(message)s")
-    )
-    logger.addHandler(console_handler)
-    logger.setLevel(logging.DEBUG)
-
-    return logger
-
-
-logger = get_logger(__name__)
+logging.basicConfig(encoding="utf-8", level=logging.INFO)
+logger = logging.getLogger("osr_mechanical.console")
 
 
 def export_png_cmd(args: argparse.Namespace) -> None:
@@ -204,6 +190,21 @@ def build_parser() -> argparse.ArgumentParser:
         action="version",
         version=f"%(prog)s {__version__}",
     )
+    parser.add_argument(
+        "--debug",
+        help="Set log level to DEBUG",
+        action="store_const",
+        dest="log_level",
+        const=logging.DEBUG,
+        default=logging.WARNING,
+    )
+    parser.add_argument(
+        "--verbose",
+        help="Set log level to INFO",
+        action="store_const",
+        dest="log_level",
+        const=logging.INFO,
+    )
 
     subparsers = parser.add_subparsers()
 
@@ -275,6 +276,8 @@ def main() -> int:
     """OSR console command."""
     parser = build_parser()
     args = parser.parse_args()
+
+    logging.getLogger().setLevel(args.log_level)
 
     try:
         func = args.func

@@ -42,7 +42,7 @@ console = "osr_mechanical.console.application:main"
 python = ">=3.9,<3.11"
 cadquery = "2.2.0b0"
 casadi = "3.5.5"
-cq_warehouse = { git = "https://github.com/gumyr/cq_warehouse.git", tag = "v0.7.1" }
+cq_warehouse = { git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565" }
 invoke = "^1.7.1"
 Jinja2 = "^3.1.2"
 Sphinx = "^4.4.0"
