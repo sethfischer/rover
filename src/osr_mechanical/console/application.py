@@ -4,6 +4,8 @@ import argparse
 import base64
 import datetime
 import logging
+import tarfile
+import zipfile
 from os import EX_OK, getcwd
 from pathlib import Path
 from shutil import rmtree
@@ -83,9 +85,9 @@ def create_open_graph_card_svg(args: argparse.Namespace) -> None:
     exit(EX_OK)
 
 
-def get_release_dir() -> Path:
-    """Release directory name."""
-    return Path(f"sethfischer-osr-cam-{__version__}")
+def get_release_name(project_name: str, version: str) -> str:
+    """Release name."""
+    return f"{project_name}-cam-{version}"
 
 
 def export_jigs(out_directory: Path) -> None:
@@ -152,25 +154,53 @@ def export_changelog(out_file: Path) -> int:
     return result.return_code
 
 
+def tar_directory(directory: Path, out_file: Path, arcname: str):
+    """Create tar archive of a directory."""
+    logger.debug(f"Creating tar archive {out_file}.")
+    with tarfile.open(out_file, "w:gz") as tar:
+        tar.add(directory, arcname=arcname)
+
+
+def zip_directory(directory: Path, out_file: Path, arcname: str):
+    """Create zip archive of directory."""
+    logger.debug(f"Creating zip archive {out_file}.")
+    with zipfile.ZipFile(out_file, "w", zipfile.ZIP_DEFLATED) as zip_file:
+        for entry in directory.rglob("*"):
+            zip_file.write(entry, Path(arcname / entry.relative_to(directory)))
+
+
 def build_cam_archive(args: argparse.Namespace) -> None:
     """Build Computer Aided Manufacturing file archive."""
     if not args.build_dir.is_dir():
         logger.critical(f"Build directory does not exist {args.build_dir}.")
         exit(1)
 
-    release_dir = args.build_dir / get_release_dir()
+    release_name = get_release_name(PROJECT_NAME, __version__)
+    release_directory = args.build_dir / release_name
 
-    if release_dir.is_dir():
-        logger.info(f"Removing release directory {release_dir}.")
-        rmtree(release_dir)
+    if release_directory.is_dir():
+        logger.info(f"Removing release directory {release_directory}.")
+        rmtree(release_directory)
 
-    release_dir.mkdir()
+    release_directory.mkdir()
 
-    create_readme(release_dir / "README.md")
-    export_changelog(release_dir / "CHANGELOG.md")
-    export_final_assembly_step(release_dir / "sethfischer-osr.step")
-    export_final_assembly_png(release_dir / "sethfischer-osr.png")
-    export_jigs(release_dir / "jigs")
+    create_readme(release_directory / "README.md")
+    export_changelog(release_directory / "CHANGELOG.md")
+    export_final_assembly_step(release_directory / f"{PROJECT_NAME}.step")
+    export_final_assembly_png(release_directory / f"{PROJECT_NAME}.png")
+    export_jigs(release_directory / "jigs")
+
+    tar_directory(
+        release_directory,
+        args.build_dir / f"{release_name}.tar.gz",
+        release_name,
+    )
+
+    zip_directory(
+        release_directory,
+        args.build_dir / f"{release_name}.zip",
+        release_name,
+    )
 
     exit(EX_OK)
 
