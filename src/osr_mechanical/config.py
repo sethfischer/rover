@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-now = datetime.today()
+now = datetime.utcnow()
 
 
 COPYRIGHT_OWNER = "Seth Fischer"

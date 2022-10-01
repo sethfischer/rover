@@ -1,16 +1,16 @@
 """OSR console command."""
 
-import argparse
-import base64
-import datetime
 import logging
 import tarfile
-import zipfile
+from argparse import ArgumentParser, Namespace
+from base64 import b64encode
+from datetime import datetime
 from os import EX_OK, getcwd
 from pathlib import Path
 from shutil import rmtree
 from subprocess import run
 from sys import stdout
+from zipfile import ZIP_DEFLATED, ZipFile
 
 from cadquery import exporters
 from jinja2 import Environment, PackageLoader, select_autoescape
@@ -34,7 +34,7 @@ logging.basicConfig(encoding="utf-8", level=logging.INFO)
 logger = logging.getLogger("osr_mechanical.console")
 
 
-def export_png_cmd(args: argparse.Namespace) -> None:
+def export_png_cmd(args: Namespace) -> None:
     """Export PNG image of final assembly."""
     logger.debug("Exporting final assembly PNG.")
 
@@ -47,29 +47,29 @@ def export_png_cmd(args: argparse.Namespace) -> None:
     exit(EX_OK)
 
 
-def create_open_graph_card_svg(args: argparse.Namespace) -> None:
+def create_open_graph_card_svg(args: Namespace) -> None:
     """Create Open Graph Card in SVG format."""
     env = Environment(
         loader=PackageLoader("osr_mechanical"), autoescape=select_autoescape()
     )
 
     logo_cq = env.get_template("open-graph-card/logo-cadquery.svg").render()
-    logo_cq_64 = base64.b64encode(logo_cq.encode("ascii")).decode("ascii")
+    logo_cq_64 = b64encode(logo_cq.encode("ascii")).decode("ascii")
 
     logo_ros = env.get_template("open-graph-card/logo-ros.svg").render()
-    logo_ros_64 = base64.b64encode(logo_ros.encode("ascii")).decode("ascii")
+    logo_ros_64 = b64encode(logo_ros.encode("ascii")).decode("ascii")
 
     logo_python = env.get_template("open-graph-card/logo-python.svg").render()
-    logo_python_64 = base64.b64encode(logo_python.encode("ascii")).decode("ascii")
+    logo_python_64 = b64encode(logo_python.encode("ascii")).decode("ascii")
 
     logo_github = env.get_template("open-graph-card/logo-github.svg").render()
-    logo_github_64 = base64.b64encode(logo_github.encode("ascii")).decode("ascii")
+    logo_github_64 = b64encode(logo_github.encode("ascii")).decode("ascii")
 
-    build_time = datetime.date.today()
+    now = datetime.utcnow()
 
     template = env.get_template("open-graph-card/open-graph-card.svg")
     result = template.render(
-        build_time=build_time,
+        build_time=now,
         copyright_owner=COPYRIGHT_OWNER,
         cq_logo=logo_cq_64,
         github_logo=logo_github_64,
@@ -129,11 +129,11 @@ def create_readme(out_file: Path) -> int:
         loader=PackageLoader("osr_mechanical"), autoescape=select_autoescape()
     )
 
-    build_time = datetime.date.today()
+    now = datetime.utcnow()
 
     template = env.get_template("README.md")
     result = template.render(
-        build_time=build_time,
+        build_time=now,
         copyright_owner=COPYRIGHT_OWNER,
         documentation_url=DOCUMENTATION_URL,
         project_repo_url=REPO_URL,
@@ -169,12 +169,12 @@ def tar_directory(directory: Path, out_file: Path, arcname: str):
 def zip_directory(directory: Path, out_file: Path, arcname: str):
     """Create zip archive of directory."""
     logger.debug(f"Creating zip archive {out_file}.")
-    with zipfile.ZipFile(out_file, "w", zipfile.ZIP_DEFLATED) as zip_file:
+    with ZipFile(out_file, "w", ZIP_DEFLATED) as zip_file:
         for entry in directory.rglob("*"):
             zip_file.write(entry, Path(arcname / entry.relative_to(directory)))
 
 
-def build_cam_archive(args: argparse.Namespace) -> None:
+def build_cam_archive(args: Namespace) -> None:
     """Build Computer Aided Manufacturing file archive."""
     if not args.build_dir.is_dir():
         logger.critical(f"Build directory does not exist {args.build_dir}.")
@@ -210,16 +210,16 @@ def build_cam_archive(args: argparse.Namespace) -> None:
     exit(EX_OK)
 
 
-def dxf_reduce(args: argparse.Namespace) -> None:
+def dxf_reduce(args: Namespace) -> None:
     """Import a DXF followed by export."""
     output = dxf_import_export(args.filename)
     stdout.write(output)
     exit(1)
 
 
-def build_parser() -> argparse.ArgumentParser:
+def build_parser() -> ArgumentParser:
     """Parse arguments."""
-    parser = argparse.ArgumentParser(prog="console", description="OSR console command.")
+    parser = ArgumentParser(prog="console", description="OSR console command.")
     parser.add_argument(
         "--version",
         action="version",

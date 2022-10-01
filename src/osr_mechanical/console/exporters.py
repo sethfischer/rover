@@ -47,6 +47,7 @@ class ExportPNG:
         self.mayo_config = mayo_config
         self.label = label
 
+        self.now = datetime.utcnow()
         self.font_path = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
 
     def export(self) -> Path:
@@ -69,7 +70,7 @@ class ExportPNG:
             image = Image.open(exported_png)
 
             if self.label:
-                label = f"{PROJECT_HOST}    {datetime.today().strftime('%Y-%m-%d')}"
+                label = f"{PROJECT_HOST}    {self.now.strftime('%Y-%m-%d')}"
                 image = self.label_image(image, label)
 
             exif = self.exif_tags()
@@ -175,14 +176,13 @@ class ExportPNG:
         """Create EXIF tags."""
         # build reverse dict
         _TAGS_r = dict(((v, k) for k, v in TAGS.items()))
-        now = datetime.today()
         tags = Exif()
 
         tags[_TAGS_r["Artist"]] = COPYRIGHT_OWNER
         tags[_TAGS_r["Copyright"]] = COPYRIGHT_NOTICE
-        tags[_TAGS_r["DateTime"]] = now.strftime(self.EXIF_DATE_FORMAT)
-        tags[_TAGS_r["DateTimeDigitized"]] = now.strftime(self.EXIF_DATE_FORMAT)
-        tags[_TAGS_r["DateTimeOriginal"]] = now.strftime(self.EXIF_DATE_FORMAT)
+        tags[_TAGS_r["DateTime"]] = self.now.strftime(self.EXIF_DATE_FORMAT)
+        tags[_TAGS_r["DateTimeDigitized"]] = self.now.strftime(self.EXIF_DATE_FORMAT)
+        tags[_TAGS_r["DateTimeOriginal"]] = self.now.strftime(self.EXIF_DATE_FORMAT)
         tags[_TAGS_r["ImageDescription"]] = LONG_DESCRIPTION
         tags[_TAGS_r["Software"]] = PROJECT_URL
 
