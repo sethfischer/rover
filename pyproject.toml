@@ -93,11 +93,6 @@ ignore_errors = true
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = "invoke.*"
-ignore_errors = true
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
 module = "PIL.*"
 ignore_errors = true
 ignore_missing_imports = true
