@@ -9,10 +9,10 @@ import zipfile
 from os import EX_OK, getcwd
 from pathlib import Path
 from shutil import rmtree
+from subprocess import run
 from sys import stdout
 
 from cadquery import exporters
-from invoke import run
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from osr_mechanical import __version__
@@ -149,9 +149,14 @@ def export_changelog(out_file: Path) -> int:
     """Export changelog."""
     logger.debug("Exporting changelog.")
 
-    result = run(f"cz changelog --file-name {out_file}")
+    result = run(
+        ["cz", "changelog", "--file-name", out_file],
+        capture_output=True,
+        text=True,
+    )
+    result.check_returncode()
 
-    return result.return_code
+    return result.returncode
 
 
 def tar_directory(directory: Path, out_file: Path, arcname: str):

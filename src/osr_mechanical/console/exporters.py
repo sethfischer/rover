@@ -1,14 +1,14 @@
 """Custom exporters."""
 
-import configparser
-import tempfile
+from configparser import ConfigParser
 from datetime import datetime
 from math import ceil
 from pathlib import Path
+from subprocess import run
+from tempfile import TemporaryDirectory
 from typing import Any, Dict, Union
 
 from cadquery import exporters
-from invoke import Context
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ExifTags import TAGS
 from PIL.Image import Exif
@@ -51,35 +51,31 @@ class ExportPNG:
 
     def export(self) -> Path:
         """Export PNG image."""
-        context = Context()
-
-        with tempfile.TemporaryDirectory() as tmp_directory_name:
+        with TemporaryDirectory() as tmp_directory_name:
             tmp_directory = Path(tmp_directory_name)
-            with context.cd(str(tmp_directory)):
-                step_pathname = self.export_step(tmp_directory)
 
-                mayo_config = self.create_mayo_config(
-                    self.height, self.width, self.mayo_config
-                )
-                mayo_config_pathname = Path(tmp_directory / "mayo.ini")
-                with open(str(mayo_config_pathname), "w") as file:
-                    mayo_config.write(file)
+            step_pathname = self.export_step(tmp_directory)
 
-                exported_png = self.export_png(
-                    context, mayo_config_pathname, step_pathname
-                )
+            mayo_config = self.create_mayo_config(
+                self.height, self.width, self.mayo_config
+            )
+            mayo_config_pathname = Path(tmp_directory / "mayo.ini")
+            with mayo_config_pathname.open("w") as file:
+                mayo_config.write(file)
 
-                result_path = Path(tmp_directory / "result.png")
-                image = Image.open(exported_png)
+            exported_png = self.export_png(mayo_config_pathname, step_pathname)
 
-                if self.label:
-                    label = f"{PROJECT_HOST}    {datetime.today().strftime('%Y-%m-%d')}"
-                    image = self.label_image(image, label)
+            result_path = Path(tmp_directory / "result.png")
+            image = Image.open(exported_png)
 
-                exif = self.exif_tags()
-                image.save(result_path, exif=exif)
+            if self.label:
+                label = f"{PROJECT_HOST}    {datetime.today().strftime('%Y-%m-%d')}"
+                image = self.label_image(image, label)
 
-                result_path.rename(self.out_file)
+            exif = self.exif_tags()
+            image.save(result_path, exif=exif)
+
+            result_path.rename(self.out_file)
 
         return self.out_file
 
@@ -100,14 +96,14 @@ class ExportPNG:
     @staticmethod
     def create_mayo_config(
         height: int, width: int, mayo_config: Union[Dict[str, Any], None] = None
-    ) -> configparser.ConfigParser:
+    ) -> ConfigParser:
         """Create mayo config.
 
         Mayo config file keys are case-sensitive. To prevent ``configparser`` from
         forcing keys to lower-case ``configparser.RawConfigParser.optionxform`` is
         monkey patched.
         """
-        config = configparser.ConfigParser()
+        config = ConfigParser()
 
         # allow mixed case keys
         config.optionxform = lambda optionstr: optionstr  # type: ignore[assignment]
@@ -130,14 +126,23 @@ class ExportPNG:
         return config
 
     @staticmethod
-    def export_png(context: Context, mayo_config_pathname: Path, in_file: Path) -> Path:
+    def export_png(mayo_config_pathname: Path, in_file: Path) -> Path:
         """Export PNG image from STEP file."""
         out_file = Path(in_file.parent / "exported-from-step.png")
 
-        command = (
-            f"mayo --settings {mayo_config_pathname} {in_file} --export {out_file}"
+        result = run(
+            [
+                "mayo",
+                "--settings",
+                mayo_config_pathname,
+                in_file,
+                "--export",
+                out_file,
+            ],
+            capture_output=True,
+            text=True,
         )
-        context.run(command, hide=True, warn=True)
+        result.check_returncode()
 
         return out_file
 
