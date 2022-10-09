@@ -13,7 +13,7 @@ class CqObjectContainer(ABC):
         pass
 
     @abstractmethod
-    def make(self):
+    def _make(self):
         """Create CadQuery object."""
         pass
 

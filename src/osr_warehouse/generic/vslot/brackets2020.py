@@ -19,14 +19,14 @@ class StandardLightDuty90(CqObjectContainer):
 
     def __init__(self) -> None:
         """Initialise bracket."""
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self) -> cq.Workplane:
+    def _make(self) -> cq.Workplane:
         """Make standard light duty 90° angle bracket."""
         profile_inverse = (
             cq.Sketch()
@@ -77,14 +77,14 @@ class StandardStandardDuty90(CqObjectContainer):
         self.brace_step_length = 0.1 * self.LENGTH
         self.brace_step_height = 0.1 * self.LENGTH
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self) -> cq.Workplane:
+    def _make(self) -> cq.Workplane:
         """Make standard standard-duty 90° angle bracket."""
         profile_inverse = (
             cq.Sketch()

@@ -97,14 +97,14 @@ class SHF(CqObjectContainer):
         self.cutout_depth = dimensions.cutout_depth
         self.fillet_radius = dimensions.fillet_radius
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self) -> Any:
         """Get CadQuery object."""
         return self._cq_object.val()
 
-    def make(self) -> cq.Workplane:
+    def _make(self) -> cq.Workplane:
         """Make SHF shaft support."""
         flange_sketch = self._make_flange_sketch()
 

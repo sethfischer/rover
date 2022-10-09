@@ -54,7 +54,7 @@ class Frame(CqAssemblyContainer):
             SHFSeriesDimensions.shf8.between_mounting_holes
         )
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
         if color:
             self._cq_object = self.color_assembly(self._cq_object)
@@ -209,7 +209,7 @@ class Frame(CqAssemblyContainer):
             .tag("hole_deck")
         )
 
-    def make(self):
+    def _make(self):
         """Create assembly."""
         bracket_light_duty = BracketStandardLightDuty90().cq_object
         bracket_standard_duty = BracketStandardStandardDuty90().cq_object

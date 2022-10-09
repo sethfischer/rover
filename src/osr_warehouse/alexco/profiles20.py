@@ -50,14 +50,14 @@ class Vslot20BoreSlot(CqObjectContainer):
             self.channel_groove_vertex = self.channel_groove_vertex.reflect_y()
             self.bore_groove_vertex = self.bore_groove_vertex.reflect_y()
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self, assemble=True):
+    def _make(self, assemble=True):
         """Create bore slot sketch."""
         sketch = (
             cq.Sketch()
@@ -126,18 +126,18 @@ class Vslot2020Profile(CqObjectContainer):
             (self.half_width - self.v_lower_vertex.x) + self.v_lower_vertex.y,
         )
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self):
+    def _make(self):
         """Create profile."""
         result = self._make_main_sketch()
 
-        sketch_bore_slot = Vslot20BoreSlot(x_offset=-self.half_core_width).make()
+        sketch_bore_slot = Vslot20BoreSlot(x_offset=-self.half_core_width).cq_object
         result = result.face(sketch_bore_slot, mode="s")
 
         result = self._make_center_lines(result)
@@ -408,14 +408,14 @@ class Vslot2040Profile(CqObjectContainer):
             x_offset=self.aec_2020.half_width
         )
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self):
+    def _make(self):
         """Make profile."""
         profile = self._make_main_sketch()
 
@@ -426,13 +426,13 @@ class Vslot2040Profile(CqObjectContainer):
 
         sketch_bore_slot_q1and4 = Vslot20BoreSlot(
             x_offset=-(Vslot2020Profile.WIDTH / 2 + Vslot2020Profile.CORE_WIDTH / 2)
-        ).make()
+        ).cq_object
         profile = profile.reset().face(sketch_bore_slot_q1and4, mode="s")
 
         sketch_bore_slot_q2and3 = Vslot20BoreSlot(
             x_offset=Vslot2020Profile.WIDTH / 2 + Vslot2020Profile.CORE_WIDTH / 2,
             mirror=True,
-        ).make()
+        ).cq_object
         profile = profile.reset().face(sketch_bore_slot_q2and3, mode="s")
 
         profile = self._make_center_lines(profile)

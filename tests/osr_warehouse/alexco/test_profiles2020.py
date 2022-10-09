@@ -14,7 +14,7 @@ class TestVslot20BoreSlot:
         """Initialise fixtures."""
         bore_slot = Vslot20BoreSlot()
         self.sketch = bore_slot.cq_object
-        self.wires = bore_slot.make(assemble=False)
+        self.wires = bore_slot._make(assemble=False)
 
     def test_faces_count(self):
         """Test number of faces."""

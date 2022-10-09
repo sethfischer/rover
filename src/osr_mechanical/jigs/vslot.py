@@ -64,7 +64,7 @@ class EndTapJig(CqAssemblyContainer):
         self.screw = self._make_screw(bolt_spec, self.simple)
         self.washer = self._make_washer(bolt_spec)
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self):
@@ -156,7 +156,7 @@ class EndTapJig(CqAssemblyContainer):
 
         return sketch
 
-    def make(self) -> cq.Assembly:
+    def _make(self) -> cq.Assembly:
         """Make jig body and assembly."""
         assembly = cq.Assembly(None, name="2020-end-tap-jig")
 

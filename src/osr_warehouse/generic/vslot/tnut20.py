@@ -30,7 +30,7 @@ class SlidingTNut20(CqObjectContainer):
         self.key_width = 6
         self.key_height = 1.5
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self) -> cq.Workplane:
@@ -54,7 +54,7 @@ class SlidingTNut20(CqObjectContainer):
 
         return result
 
-    def make(self) -> cq.Workplane:
+    def _make(self) -> cq.Workplane:
         """Make 20 mm series V-slot sliding T-nut.
 
         :return: 20 mm series V-slot sliding T-nut.

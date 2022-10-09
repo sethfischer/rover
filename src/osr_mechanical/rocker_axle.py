@@ -22,7 +22,7 @@ class RockerAxle(CqAssemblyContainer):
         self.chrome_plate = cq.Color(*COLORS["chrome_plate"])
         self.aluminium_cast = cq.Color(*COLORS["aluminium_cast"])
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     def cq_part(self, name: str) -> Any:
         """Get part from CadQuery assembly."""
@@ -37,7 +37,7 @@ class RockerAxle(CqAssemblyContainer):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self) -> cq.Assembly:
+    def _make(self) -> cq.Assembly:
         """Make assembly."""
         axle = cq.Workplane("YZ").cylinder(self.axle_length, self.AXLE_DIAMETER / 2)
         axle_support = SHF(self.AXLE_DIAMETER).cq_object

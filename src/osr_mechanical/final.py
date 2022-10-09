@@ -21,7 +21,7 @@ class FinalAssembly(CqAssemblyContainer):
         self.rocker_axle = RockerAxle()
         self.control_electronics = ControlElectronics()
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     def cq_part(self, name: str) -> Any:
         """Get part from CadQuery assembly."""
@@ -36,7 +36,7 @@ class FinalAssembly(CqAssemblyContainer):
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self) -> cq.Assembly:
+    def _make(self) -> cq.Assembly:
         """Make assembly."""
         control_electronics_loc = cq.Location(
             cq.Vector(
