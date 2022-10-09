@@ -366,6 +366,25 @@ reference = "4b461fe195d0a4e99b9a6c43b7e1fe0cb4c5e77d"
 resolved_reference = "4b461fe195d0a4e99b9a6c43b7e1fe0cb4c5e77d"
 
 [[package]]
+name = "cq-electronics"
+version = "0.1.0"
+description = "Pure CadQuery models of various electronic boards and components."
+category = "main"
+optional = false
+python-versions = ">=3.9,<3.11"
+develop = false
+
+[package.dependencies]
+cadquery = "2.2.0b0"
+casadi = "3.5.5"
+
+[package.source]
+type = "git"
+url = "https://github.com/sethfischer/cq-electronics.git"
+reference = "0c9759519e60eaa25015e80b820d74d4f338aa59"
+resolved_reference = "0c9759519e60eaa25015e80b820d74d4f338aa59"
+
+[[package]]
 name = "cq-warehouse"
 version = "0.8.0"
 description = "A cadquery parametric part collection"
@@ -2366,7 +2385,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "6e041ef6497f6a2e768a6e7981e0ecc6fc7e5b6af5f56ab2247ab4c987ce4b31"
+content-hash = "01f5c8c4c6c9cced950f95ae8f45b1ef29519e7a68f12aa6d4b7e081da47d0d2"
 
 [metadata.files]
 alabaster = [
@@ -2621,6 +2640,7 @@ cookiecutter = [
     {file = "cookiecutter-2.1.1.tar.gz", hash = "sha256:f3982be8d9c53dac1261864013fdec7f83afd2e42ede6f6dd069c5e149c540d5"},
 ]
 CQ-editor = []
+cq-electronics = []
 cq-warehouse = []
 cryptography = [
     {file = "cryptography-38.0.1-cp36-abi3-macosx_10_10_universal2.whl", hash = "sha256:10d1f29d6292fc95acb597bacefd5b9e812099d75a6469004fd38ba5471a977f"},

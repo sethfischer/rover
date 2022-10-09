@@ -3,8 +3,10 @@ from typing import Any
 
 import cadquery as cq
 
+from osr_mechanical.electronics import ControlElectronics
 from osr_mechanical.frame import Frame
 from osr_mechanical.rocker_axle import RockerAxle
+from osr_warehouse.alexco.vslot import Vslot2020
 from osr_warehouse.cqobject import CqAssemblyContainer
 
 
@@ -17,6 +19,7 @@ class FinalAssembly(CqAssemblyContainer):
 
         self.frame = Frame(simple=self.simple)
         self.rocker_axle = RockerAxle()
+        self.control_electronics = ControlElectronics()
 
         self._cq_object = self.make()
 
@@ -35,6 +38,14 @@ class FinalAssembly(CqAssemblyContainer):
 
     def make(self) -> cq.Assembly:
         """Make assembly."""
+        control_electronics_loc = cq.Location(
+            cq.Vector(
+                self.control_electronics.din_rail.length / 2,
+                70,
+                Vslot2020.WIDTH + self.control_electronics.din_rail.depth / 2,
+            ),
+        )
+
         result = (
             cq.Assembly()
             .add(
@@ -49,6 +60,11 @@ class FinalAssembly(CqAssemblyContainer):
                         0, Frame.ROCKER_AXLE_DISTANCE_FROM_FORE - 10, Frame.HEIGHT / 2
                     ),
                 ),
+            )
+            .add(
+                self.control_electronics.cq_object,
+                name="control_electronics",
+                loc=control_electronics_loc,
             )
         )
 
