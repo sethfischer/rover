@@ -20,6 +20,7 @@ test:
 	pytest
 
 
+.PHONY: _build/open-graph-card/final-assembly.png
 _build/open-graph-card/final-assembly.png:
 	@mkdir -p $(@D)
 	console export-png --width=640 --height=490 --no-label _build/open-graph-card/final-assembly.png
