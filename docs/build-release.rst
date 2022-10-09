@@ -42,7 +42,7 @@ Install prerequisites
 
 .. code:: none
 
-    sudo apt-get install git python3.9 python3.9-venv imagemagick inkscape
+    sudo apt-get install git python3.9 python3.9-venv imagemagick inkscape optipng
 
 Poetry, Mayo, and git-lfs should be installed according to their respective documentation,
 and be available in your path.
