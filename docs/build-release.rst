@@ -27,9 +27,11 @@ Prerequisites
 * `Python`_ >=3.9, and python-venv.
 * `Poetry`_ for Python dependency management.
 * `Mayo 3D CAD viewer and converter`_ for exporting PNG images.
-* `ImageMagick`_ *optional* utility for manipulating EXIF headers.
-* `Inkscape`_ *optional* for generating open graph image.
-* `git-lfs`_ *optional* for building documentation.
+* Optional:
+   - `ImageMagick`_ for manipulating EXIF headers.
+   - `Inkscape`_ for generating open graph image.
+   - `git-lfs`_ for building documentation.
+   - `optipng`_ for optimising PNG images.
 
 
 Ubuntu 20.04
@@ -104,4 +106,5 @@ Run linters and tests:
 .. _`ImageMagick`: https://imagemagick.org/
 .. _`Inkscape`: https://inkscape.org/
 .. _`git-lfs`: https://git-lfs.github.com/
+.. _`optipng`: https://optipng.sourceforge.net/
 .. _`CQ-Editor`: https://github.com/CadQuery/CQ-editor

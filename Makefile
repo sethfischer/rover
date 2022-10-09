@@ -30,4 +30,5 @@ _build/open-graph-card/open-graph-card.svg: _build/open-graph-card/final-assembl
 
 _build/open-graph-card/open-graph-card.png: _build/open-graph-card/open-graph-card.svg
 	inkscape --without-gui --export-area-page --export-png=$@ $<
+	optipng $@
 	./exif-tags.sh $@
