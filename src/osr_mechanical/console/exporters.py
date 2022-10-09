@@ -76,6 +76,8 @@ class ExportPNG:
             exif = self.exif_tags()
             image.save(result_path, exif=exif)
 
+            self.optimise_png(result_path)
+
             result_path.rename(self.out_file)
 
         return self.out_file
@@ -146,6 +148,19 @@ class ExportPNG:
         result.check_returncode()
 
         return out_file
+
+    @staticmethod
+    def optimise_png(in_file: Path) -> None:
+        """Optimise PNG with optipng."""
+        result = run(
+            [
+                "optipng",
+                in_file,
+            ],
+            capture_output=True,
+            text=True,
+        )
+        result.check_returncode()
 
     def label_image(self, image: Image, text: str, font_size: int = 20) -> Image:
         """Label image."""
