@@ -11,7 +11,7 @@ class TestFrameAssembly:
     """Frame assembly tests."""
 
     def setup(self):
-        """Initialise fixtures."""
+        """Initialise."""
         self.frame_compound = Frame().cq_object.toCompound()
 
     def test_bounding_box(self):

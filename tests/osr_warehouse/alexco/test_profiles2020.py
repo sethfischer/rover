@@ -11,7 +11,7 @@ class TestVslot20BoreSlot:
     """AEC 20 series bore slot tests."""
 
     def setup(self):
-        """Initialise fixtures."""
+        """Initialise."""
         bore_slot = Vslot20BoreSlot()
         self.sketch = bore_slot.cq_object
         self.wires = bore_slot._make(assemble=False)

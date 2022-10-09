@@ -242,11 +242,11 @@ class Frame(CqAssemblyContainer):
             cq.Assembly(color=self.aluminium_anodised_natural)
             .add(
                 post_fore_starboard,
-                name="post_fore_starboard",
+                name="frame__post_fore_starboard",
             )
             .add(
                 post,
-                name="post_fore_port",
+                name="frame__post_fore_port",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -259,7 +259,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 post_transom,
-                name="post_aft_starboard_transom",
+                name="frame__post_aft_starboard_transom",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2 - Vslot2020.WIDTH / 2,
@@ -272,7 +272,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 post_transom,
-                name="post_aft_port_transom",
+                name="frame__post_aft_port_transom",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -285,7 +285,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 post_rocker_axle,
-                name="post_port_rocker_axle",
+                name="frame__post_port_rocker_axle",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -298,7 +298,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 post_rocker_axle,
-                name="post_starboard_rocker_axle",
+                name="frame__post_starboard_rocker_axle",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2 - Vslot2020.WIDTH / 2,
@@ -311,7 +311,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_side_belly,
-                name="beam_starboard_belly",
+                name="frame__beam_starboard_belly",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2 - Vslot2020.WIDTH / 2,
@@ -324,7 +324,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_side_deck,
-                name="beam_starboard_deck",
+                name="frame__beam_starboard_deck",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2 - Vslot2020.WIDTH / 2,
@@ -337,7 +337,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_side_belly.mirror("ZY"),
-                name="beam_port_belly",
+                name="frame__beam_port_belly",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -350,7 +350,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_side_deck.mirror("ZY"),
-                name="beam_port_deck",
+                name="frame__beam_port_deck",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -363,7 +363,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_end,
-                name="beam_fore_belly",
+                name="frame__beam_fore_belly",
                 loc=cq.Location(
                     cq.Vector(-self.BEAM_END_LENGTH / 2, 0, Vslot2020.WIDTH / 2),
                     cq.Vector(0, 1, 0),
@@ -372,7 +372,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_end,
-                name="beam_fore_deck",
+                name="frame__beam_fore_deck",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2,
@@ -385,7 +385,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_end,
-                name="beam_aft_deck",
+                name="frame__beam_aft_deck",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2,
@@ -398,7 +398,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_end,
-                name="beam_aft_belly",
+                name="frame__beam_aft_belly",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2,
@@ -411,7 +411,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 beam_differential_pivot,
-                name="beam_differential_pivot",
+                name="frame__beam_differential_pivot",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2,
@@ -426,7 +426,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 bracket_standard_duty,
-                name="bracket_starboard_beam_differential",
+                name="frame__bracket_starboard_beam_differential",
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -443,7 +443,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 bracket_standard_duty.mirror("YZ"),
-                name="bracket_port_beam_differential",
+                name="frame__bracket_port_beam_differential",
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -460,7 +460,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 bracket_light_duty,
-                name="bracket_starboard_belly",
+                name="frame__bracket_starboard_belly",
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -473,7 +473,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 bracket_light_duty.mirror("XY"),
-                name="bracket_starboard_deck",
+                name="frame__bracket_starboard_deck",
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -488,7 +488,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 bracket_light_duty.mirror("ZY"),
-                name="bracket_port_belly",
+                name="frame__bracket_port_belly",
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -501,7 +501,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 bracket_light_duty,
-                name="bracket_port_deck",
+                name="frame__bracket_port_deck",
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -527,22 +527,22 @@ class Frame(CqAssemblyContainer):
         color_side_beam = cq.Color("green")
         color_lateral_beam = cq.Color("red")
 
-        frame.objects["post_fore_starboard"].color = color_post
-        frame.objects["post_fore_port"].color = color_post
-        frame.objects["post_aft_starboard_transom"].color = color_post
-        frame.objects["post_aft_port_transom"].color = color_post
-        frame.objects["post_port_rocker_axle"].color = color_post
-        frame.objects["post_starboard_rocker_axle"].color = color_post
+        frame.objects["frame__post_fore_starboard"].color = color_post
+        frame.objects["frame__post_fore_port"].color = color_post
+        frame.objects["frame__post_aft_starboard_transom"].color = color_post
+        frame.objects["frame__post_aft_port_transom"].color = color_post
+        frame.objects["frame__post_port_rocker_axle"].color = color_post
+        frame.objects["frame__post_starboard_rocker_axle"].color = color_post
 
-        frame.objects["beam_starboard_belly"].color = color_side_beam
-        frame.objects["beam_starboard_deck"].color = color_side_beam
-        frame.objects["beam_port_belly"].color = color_side_beam
-        frame.objects["beam_port_deck"].color = color_side_beam
+        frame.objects["frame__beam_starboard_belly"].color = color_side_beam
+        frame.objects["frame__beam_starboard_deck"].color = color_side_beam
+        frame.objects["frame__beam_port_belly"].color = color_side_beam
+        frame.objects["frame__beam_port_deck"].color = color_side_beam
 
-        frame.objects["beam_fore_belly"].color = color_lateral_beam
-        frame.objects["beam_fore_deck"].color = color_lateral_beam
-        frame.objects["beam_aft_deck"].color = color_lateral_beam
-        frame.objects["beam_aft_belly"].color = color_lateral_beam
-        frame.objects["beam_differential_pivot"].color = color_lateral_beam
+        frame.objects["frame__beam_fore_belly"].color = color_lateral_beam
+        frame.objects["frame__beam_fore_deck"].color = color_lateral_beam
+        frame.objects["frame__beam_aft_deck"].color = color_lateral_beam
+        frame.objects["frame__beam_aft_belly"].color = color_lateral_beam
+        frame.objects["frame__beam_differential_pivot"].color = color_lateral_beam
 
         return frame

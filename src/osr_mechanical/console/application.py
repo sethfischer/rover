@@ -98,7 +98,10 @@ def export_jigs(out_directory: Path) -> None:
 
     end_tap_jig_pathname = out_directory / "vslot-end-tap-jig-2020.stl"
     end_tap_jig = EndTapJig(simple=True)
-    exporters.export(end_tap_jig.cq_part("body"), str(end_tap_jig_pathname))
+    exporters.export(
+        end_tap_jig.cq_part("2020_end_tap_jig__body"),
+        str(end_tap_jig_pathname),
+    )
 
 
 def export_final_assembly_step(out_file: Path) -> None:

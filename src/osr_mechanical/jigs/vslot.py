@@ -158,7 +158,7 @@ class EndTapJig(CqAssemblyContainer):
 
     def _make(self) -> cq.Assembly:
         """Make jig body and assembly."""
-        assembly = cq.Assembly(None, name="2020-end-tap-jig")
+        assembly = cq.Assembly(None, name="2020_end_tap_jig")
 
         sketch_nut_retainer = self.slot_sketch(self.key_depth)
 
@@ -214,8 +214,18 @@ class EndTapJig(CqAssemblyContainer):
             .chamfer(2.5)
         )
 
-        assembly.add(body, name="body", color=cq.Color("goldenrod2"))
-        assembly.add(self.tslot_nut, name="tslot_nut_left")
-        assembly.add(self.tslot_nut.mirror("ZX"), name="tslot_nut_right")
+        assembly.add(
+            body,
+            name="2020_end_tap_jig__body",
+            color=cq.Color("goldenrod2"),
+        )
+        assembly.add(
+            self.tslot_nut,
+            name="2020_end_tap_jig__tslot_nut_left",
+        )
+        assembly.add(
+            self.tslot_nut.mirror("ZX"),
+            name="2020_end_tap_jig__tslot_nut_right",
+        )
 
         return assembly

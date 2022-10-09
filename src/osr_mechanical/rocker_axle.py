@@ -48,7 +48,7 @@ class RockerAxle(CqAssemblyContainer):
             cq.Assembly()
             .add(
                 axle_support,
-                name="rocker_axle_support_port",
+                name="rocker_axle__support_port",
                 loc=cq.Location(
                     cq.Vector(flange_face_to_origin, 0, 0),
                     cq.Vector(0, 1, 0),
@@ -57,7 +57,7 @@ class RockerAxle(CqAssemblyContainer):
             )
             .add(
                 axle_support,
-                name="rocker_axle_support_starboard",
+                name="rocker_axle__support_starboard",
                 loc=cq.Location(
                     cq.Vector(-flange_face_to_origin, 0, 0),
                     cq.Vector(0, 1, 0),
@@ -66,7 +66,7 @@ class RockerAxle(CqAssemblyContainer):
             )
             .add(
                 axle,
-                name="rocker_axle",
+                name="rocker_axle__axle",
                 color=self.aluminium_cast,
             )
         )

@@ -11,7 +11,7 @@ class TestVslot2020:
     """AEC 2020 V-slot extrusion tests."""
 
     def setup(self):
-        """Initialise fixtures."""
+        """Initialise."""
         factory = Vslot2020()
         self.length = 50
         self.extrusion = factory.make(length=self.length)
@@ -27,7 +27,7 @@ class TestVslot2040:
     """AEC 2040 V-slot extrusion tests."""
 
     def setup(self):
-        """Initialise fixtures."""
+        """Initialise."""
         factory = Vslot2040()
         self.length = 50
         self.extrusion = factory.make(length=self.length)

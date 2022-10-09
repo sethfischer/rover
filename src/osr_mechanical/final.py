@@ -50,11 +50,11 @@ class FinalAssembly(CqAssemblyContainer):
             cq.Assembly()
             .add(
                 self.frame.cq_object,
-                name="frame_assembly",
+                name="final__frame",
             )
             .add(
                 self.rocker_axle.cq_object,
-                name="rocker_axle_assembly",
+                name="final__rocker_axle",
                 loc=cq.Location(
                     cq.Vector(
                         0, Frame.ROCKER_AXLE_DISTANCE_FROM_FORE - 10, Frame.HEIGHT / 2
@@ -63,7 +63,7 @@ class FinalAssembly(CqAssemblyContainer):
             )
             .add(
                 self.control_electronics.cq_object,
-                name="control_electronics",
+                name="final__control_electronics",
                 loc=control_electronics_loc,
             )
         )
