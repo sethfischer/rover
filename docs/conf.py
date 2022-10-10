@@ -7,7 +7,7 @@ import sphinx_rtd_theme  # type: ignore[import] # noqa: F401
 project = "sethfischer-osr"
 release = "0.1.0"
 author = "Seth Fischer"
-copyright = f"{date.today().year}, {author}"
+project_copyright = f"{date.today().year}, {author}"
 
 
 exclude_patterns = ["_build"]
