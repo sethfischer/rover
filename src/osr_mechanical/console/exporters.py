@@ -6,7 +6,7 @@ from math import ceil
 from pathlib import Path
 from subprocess import run
 from tempfile import TemporaryDirectory
-from typing import Any, Dict, Union
+from typing import Any, Union
 
 from cadquery import exporters
 from PIL import Image, ImageDraw, ImageFont
@@ -37,7 +37,7 @@ class ExportPNG:
         out_file: Path,
         width: int = 1000,
         height: int = 750,
-        mayo_config: Union[Dict[str, Any], None] = None,
+        mayo_config: Union[dict[str, Any], None] = None,
         label: bool = True,
     ) -> None:
         """Initialise exporter."""
@@ -98,7 +98,7 @@ class ExportPNG:
 
     @staticmethod
     def create_mayo_config(
-        height: int, width: int, mayo_config: Union[Dict[str, Any], None] = None
+        height: int, width: int, mayo_config: Union[dict[str, Any], None] = None
     ) -> ConfigParser:
         """Create mayo config.
 
