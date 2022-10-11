@@ -7,7 +7,7 @@ import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
 from osr_warehouse.cqobject import CqAssemblyContainer
-from osr_warehouse.fasteners import MetricBoltSpecification
+from osr_warehouse.fasteners import MetricBoltSpecification as BoltSpec
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
 from osr_warehouse.utilities import TINY_LENGTH
 
@@ -19,6 +19,8 @@ class EndTapJig(CqAssemblyContainer):
     :type height: float, optional, defaults to 60
     :param clearance: V-slot fit. A higher value results in a tighter fit.
     :type clearance: float, optional, defaults to 0.15
+    :param simple: Create shapes with reduced detail.
+    :type simple: bool, optional, defaults to True
     """
 
     def __init__(
@@ -41,25 +43,19 @@ class EndTapJig(CqAssemblyContainer):
         self.tslot_nut_length = 10
         self.swarf_cavity_depth = 20
 
-        bolt_spec = MetricBoltSpecification(5, 0.8, 12)
-
-        self.width = self._calculate_width(self.vslot_width, self.thickness)
-        self.swarf_cavity_elevation = self._calculate_swarf_cavity_elevation(
-            self.height, self.thickness
+        self.width = self.vslot_width + (self.thickness * 2)
+        self.swarf_cavity_elevation = self.height - self.thickness
+        self.stop_elevation = self.swarf_cavity_elevation - self.swarf_cavity_depth
+        self.fixing_hole_elevation = (
+            self.stop_elevation / 2 + self.height / 2 - self.stop_elevation
         )
-        self.stop_elevation = self._calculate_stop_elevation(
-            self.swarf_cavity_elevation, self.swarf_cavity_depth
-        )
-        self.fixing_hole_elevation = self._calculate_fixing_hole_elevation(
-            self.stop_elevation, self.height
-        )
-        self.nut_retainer_elevation = self._calculate_nut_retainer_elevation(
-            self.fixing_hole_elevation,
-            self.height,
-            self.stop_elevation,
-            self.tslot_nut_length,
+        self.nut_retainer_elevation = (
+            self.fixing_hole_elevation
+            - ((height / 2) - self.stop_elevation)
+            + self.tslot_nut_length / 2
         )
 
+        bolt_spec = BoltSpec(5, 0.8, 12)
         self.tslot_nut = self._make_tslot_nut(bolt_spec, self.simple)
         self.screw = self._make_screw(bolt_spec, self.simple)
         self.washer = self._make_washer(bolt_spec)
@@ -79,56 +75,17 @@ class EndTapJig(CqAssemblyContainer):
 
         return result
 
-    @staticmethod
-    def _calculate_width(vslot_width: float, thickness: float) -> float:
-        """Calculate width."""
-        return vslot_width + (thickness * 2)
-
-    @staticmethod
-    def _calculate_swarf_cavity_elevation(height: float, thickness: float) -> float:
-        """Calculate swarf cavity elevation."""
-        return height - thickness
-
-    @staticmethod
-    def _calculate_stop_elevation(
-        swarf_cavity_elevation: float, swarf_cavity_depth: float
-    ) -> float:
-        """Calculate stop elevation."""
-        return swarf_cavity_elevation - swarf_cavity_depth
-
-    @staticmethod
-    def _calculate_fixing_hole_elevation(stop_elevation: float, height: float) -> float:
-        """Calculate fixing hole elevation."""
-        return (stop_elevation / 2) + ((height / 2) - stop_elevation)
-
-    @staticmethod
-    def _calculate_nut_retainer_elevation(
-        fixing_hole_elevation: float,
-        height: float,
-        stop_elevation: float,
-        tslot_nut_length: float,
-    ) -> float:
-        """Calculate nut retainer elevation."""
-        return (fixing_hole_elevation - ((height / 2) - stop_elevation)) + (
-            tslot_nut_length / 2
-        )
-
-    @staticmethod
-    def _make_tslot_nut(
-        bolt_spec: MetricBoltSpecification, simple: bool = True
-    ) -> cq.Workplane:
-        """Make T-slot nut."""
+    def _make_tslot_nut(self, bolt_spec: BoltSpec, simple: bool = True) -> cq.Workplane:
+        """Make and locate T-slot nut."""
         return (
             SlidingTNut20(bolt_spec.specification(), simple=simple)
-            .cq_object.rotateAboutCenter((0, 1, 0), -90)
-            .rotateAboutCenter((0, 0, 1), 90)
-            .translate((0, -7.5, 15.2))
+            .cq_object.rotate((0, -1, 0), (0, 1, 0), -90)
+            .rotate((0, 0, -1), (0, 0, 1), -90)
+            .translate((0, self.vslot_width / 2, self.fixing_hole_elevation))
         )
 
     @staticmethod
-    def _make_screw(
-        bolt_spec: MetricBoltSpecification, simple: bool = True
-    ) -> SocketHeadCapScrew:
+    def _make_screw(bolt_spec: BoltSpec, simple: bool = True) -> SocketHeadCapScrew:
         """Make retaining screw."""
         return SocketHeadCapScrew(
             size=bolt_spec.specification(),
@@ -138,13 +95,13 @@ class EndTapJig(CqAssemblyContainer):
         )
 
     @staticmethod
-    def _make_washer(bolt_spec: MetricBoltSpecification) -> PlainWasher:
+    def _make_washer(bolt_spec: BoltSpec) -> PlainWasher:
         """Make retaining screw washer."""
         return PlainWasher(size=bolt_spec.shaft_m, fastener_type="iso7093")
 
     def slot_sketch(self, depth: float) -> cq.Sketch:
         """Sketch to approximate V-slot profile."""
-        sketch = (
+        return (
             cq.Sketch()
             .rect(self.vslot_width, self.vslot_width + self.clearance, tag="base")
             .edges(">Y", tag="base")
@@ -154,15 +111,33 @@ class EndTapJig(CqAssemblyContainer):
             .clean()
         )
 
-        return sketch
-
     def _make(self) -> cq.Assembly:
-        """Make jig body and assembly."""
+        """Make jig assembly."""
         assembly = cq.Assembly(None, name="2020_end_tap_jig")
 
+        body = self._make_body(assembly)
+
+        assembly.add(
+            body,
+            name="2020_end_tap_jig__body",
+            color=cq.Color("goldenrod2"),
+        )
+        assembly.add(
+            self.tslot_nut,
+            name="2020_end_tap_jig__tslot_nut_left",
+        )
+        assembly.add(
+            self.tslot_nut.mirror("ZX"),
+            name="2020_end_tap_jig__tslot_nut_right",
+        )
+
+        return assembly
+
+    def _make_body(self, assembly: cq.Assembly) -> cq.Workplane:
+        """Make jig body."""
         sketch_nut_retainer = self.slot_sketch(self.key_depth)
 
-        body = (
+        result = (
             cq.Workplane("XY")
             .box(self.vslot_width, self.width, self.height)
             .faces(">Z")
@@ -214,18 +189,4 @@ class EndTapJig(CqAssemblyContainer):
             .chamfer(2.5)
         )
 
-        assembly.add(
-            body,
-            name="2020_end_tap_jig__body",
-            color=cq.Color("goldenrod2"),
-        )
-        assembly.add(
-            self.tslot_nut,
-            name="2020_end_tap_jig__tslot_nut_left",
-        )
-        assembly.add(
-            self.tslot_nut.mirror("ZX"),
-            name="2020_end_tap_jig__tslot_nut_right",
-        )
-
-        return assembly
+        return result
