@@ -1,59 +1,69 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
-    xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns:cc="http://creativecommons.org/ns#"
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:svg="http://www.w3.org/2000/svg"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-    width="1280"
-    height="640"
-    viewBox="0 0 338.66666 169.33334"
-    version="1.1"
-    id="svg8"
-    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-    sodipodi:docname="open-graph-card.svg"
-    inkscape:export-xdpi="96"
-    inkscape:export-ydpi="96">
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:cc="http://creativecommons.org/ns#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+  xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+  id="nz.fischer.osr.open-graph-card"
+  width="1280"
+  height="640"
+  viewBox="0 0 1280 640"
+  version="1.1"
+  inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+  sodipodi:docname="open-graph-card.svg"
+  inkscape:export-xdpi="96"
+  inkscape:export-ydpi="96">
+  <style id="style_1">
+    text {
+      fill-opacity: 1;
+      fill: #ffffff;
+      font-family: sans-serif;
+      letter-spacing: 0px;
+      line-height: 1.25;
+      stroke-width: 0.25;
+      stroke: none;
+      word-spacing: 0px;
+    }
+  </style>
   <title id="title">{{ project_name }} Open Graph Card</title>
   <sodipodi:namedview
-      id="base"
-      pagecolor="#000000"
-      bordercolor="#666666"
-      borderopacity="1.0"
-      inkscape:pageopacity="1"
-      inkscape:pageshadow="2"
-      inkscape:zoom="0.3"
-      inkscape:cx="830"
-      inkscape:cy="300"
-      inkscape:document-units="mm"
-      inkscape:current-layer="layer3"
-      showgrid="false"
-      inkscape:window-width="1848"
-      inkscape:window-height="1016"
-      inkscape:window-x="72"
-      inkscape:window-y="27"
-      inkscape:window-maximized="1"
-      units="px"
-      inkscape:pagecheckerboard="false"
-      showguides="true"
-      inkscape:guide-bbox="true" />
+    id="base"
+    bordercolor="#666666"
+    borderopacity="1.0"
+    pagecolor="#000000"
+    showgrid="false"
+    showguides="true"
+    units="px"
+    inkscape:current-layer="layer_text"
+    inkscape:cx="830"
+    inkscape:cy="300"
+    inkscape:document-units="mm"
+    inkscape:guide-bbox="true"
+    inkscape:pagecheckerboard="false"
+    inkscape:pageopacity="1"
+    inkscape:pageshadow="2"
+    inkscape:window-height="1016"
+    inkscape:window-maximized="1"
+    inkscape:window-width="1848"
+    inkscape:window-x="72"
+    inkscape:window-y="27"
+    inkscape:zoom="0.3"/>
   <metadata id="metadata">
     <rdf:RDF>
       <cc:Work rdf:about="">
         <dc:format>image/svg+xml</dc:format>
-        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
         <dc:title>{{ project_name }} Open Graph Card</dc:title>
         <dc:creator>
           <cc:Agent>
             <dc:title>{{ copyright_owner }}</dc:title>
           </cc:Agent>
         </dc:creator>
-        <cc:license rdf:resource="https://spdx.org/licenses/MIT.html" />
+        <cc:license rdf:resource="https://spdx.org/licenses/MIT.html"/>
         <dc:rights>
           <cc:Agent>
             <dc:title>(c) {{ build_time.strftime("%Y") }} {{ copyright_owner }}</dc:title>
@@ -80,191 +90,121 @@
     </rdf:RDF>
   </metadata>
   <g
-      id="layer1"
-      inkscape:label="final_assembly"
-      inkscape:groupmode="layer"
-      transform="translate(0,-127.66665)">
-    <image
-        id="image_final_assembly"
-        xlink:href="final-assembly.png"
-        y="147.51041"
-        x="146.57494"
-        style="image-rendering:optimizeQuality"
-        preserveAspectRatio="none"
-        height="129.64583"
-        width="169.33333" />
-  </g>
-  <g
-      id="layer3"
-      inkscape:groupmode="layer"
-      inkscape:label="text">
-    <flowRoot
-        id="github_user_repo"
-        xml:space="preserve"
-        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-        transform="translate(17.4625,-11.112492)"><flowRegion
-        id="flowRegion3722"
-        style="fill:#ffffff;stroke-width:0.26458332">
-      <rect
-          id="rect3724"
-          width="88.596107"
-          height="13.183769"
-          x="30.691666"
-          y="31.75"
-          style="fill:#ffffff;stroke-width:0.07000434" />
-      </flowRegion><flowPara id="flowPara3726" style="stroke-width:0.26458332">sethfischer/<flowSpan style="font-weight:bold" id="flowSpan46">osr</flowSpan></flowPara>
-    </flowRoot>
-    <flowRoot
-        id="flowRoot4535"
-        xml:space="preserve"
-        style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px">
-      <flowRegion id="flowRegion4537">
-        <rect
-            id="rect4539"
-            width="258"
-            height="84"
-            x="153"
-            y="215" />
-      </flowRegion>
-    </flowRoot>
+    id="layer_text"
+    inkscape:groupmode="layer"
+    inkscape:label="text">
     <text
-        id="short_description"
+      id="text_github_user_project"
+      x="200"
+      y="120"
+      style="font-size:40px">
+      <tspan
+        id="tspan_github_user"
         xml:space="preserve"
-        style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-        x="18.906454"
-        y="61.383339"><tspan
-            sodipodi:role="line"
-            x="18.906454"
-            y="61.383339"
-            style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332"
-            id="tspan4547">Alternative body for the</tspan><tspan
-            sodipodi:role="line"
-            x="18.906454"
-            y="69.320839"
-            style="font-size:6.3499999px;fill:#ffffff;stroke-width:0.26458332"
-            id="tspan4551">NASA JPL Open Source Rover</tspan>
+        x="200"
+        y="120">sethfischer/</tspan>
+      <tspan
+        id="tspan_github_project"
+        xml:space="preserve"
+        x="435"
+        y="120"
+        style="font-weight:bold">osr</tspan>
     </text>
-    <flowRoot
-        id="project_url"
+    <text
+      id="text_project_host"
+      xml:space="preserve"
+      x="245"
+      y="180"
+      style="font-size:40px">{{ project_host }}</text>
+    <text
+      id="text_short_desc"
+      x="80"
+      y="230"
+      style="font-size:25px">
+      <tspan
+        id="tspan_short_desc_line1"
         xml:space="preserve"
-        style="font-style:normal;font-weight:normal;font-size:24px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none"
-        transform="matrix(0.26458333,0,0,0.26458333,62.775753,-30.065921)"><flowRegion
-            id="flowRegion34"
-            style="font-size:24px;fill:#ffffff">
-          <rect
-              id="rect36"
-              width="244.30251"
-              height="118.45047"
-              x="73.846153"
-              y="264.61539"
-              style="font-size:24px;fill:#ffffff" />
-        </flowRegion><flowPara id="flowPara38">{{ project_host }}</flowPara>
-    </flowRoot>
-    <flowRoot
-        id="flowRoot48"
+        x="80"
+        y="230">Alternative body for the</tspan>
+      <tspan
+        id="tspan_short_desc_line2"
         xml:space="preserve"
-        style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
-        id="flowRegion50">
-      <rect
-          id="rect52"
-          width="169.70563"
-          height="66.46804"
-          x="227.68839"
-          y="129.4689" />
-        </flowRegion>
-      <flowPara id="flowPara54" />
-    </flowRoot>
-    <flowRoot
-        id="flowRoot56"
-        xml:space="preserve"
-        style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
-        id="flowRegion58">
-      <rect
-          id="rect60"
-          width="18.384777"
-          height="50.91169"
-          x="468.10468"
-          y="112.49834" />
-        </flowRegion>
-        <flowPara id="flowPara62" />
-    </flowRoot>
-    <flowRoot
-        id="flowRoot64"
-        xml:space="preserve"
-        style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
-        id="flowRegion66">
-      <rect
-          id="rect68"
-          width="18.384777"
-          height="45.254833"
-          x="465.27628"
-          y="111.08413" />
-        </flowRegion>
-        <flowPara id="flowPara70" />
-    </flowRoot>
+        x="80"
+        y="270">NASA JPL Open Source Rover</tspan>
+    </text>
   </g>
   <g
-      id="group_github_logo"
-      inkscape:label="logo_github"
-      inkscape:groupmode="layer"
-      transform="translate(0,-127.66665)">
+    id="layer_final_assembly"
+    inkscape:label="final_assembly"
+    inkscape:groupmode="layer">
     <image
-        id="github_logo"
-        inkscape:label="#github_logo"
-        xlink:href="data:image/svg+xml;base64,{{ github_logo }}"
-        preserveAspectRatio="none"
-        style="image-rendering:optimizeQuality"
-        width="25"
-        height="25"
-        x="18.956064"
-        y="149.62704" />
+      id="image_final_assembly"
+      xlink:href="final-assembly.png"
+      x="560"
+      y="70"
+      height="490"
+      width="640"
+      style="image-rendering:optimizeQuality"
+      preserveAspectRatio="none"/>
   </g>
   <g
-      id="group_python_logo"
-      inkscape:label="logo_python"
-      inkscape:groupmode="layer"
-      transform="translate(0,-127.66665)">
+    id="group_github_logo"
+    inkscape:label="logo_github"
+    inkscape:groupmode="layer">
     <image
-        id="python_logo"
-        inkscape:label="#python_logo"
-        xlink:href="data:image/svg+xml;base64,{{ python_logo }}"
-        preserveAspectRatio="none"
-        style="image-rendering:optimizeQuality"
-        x="19.843756"
-        y="217.76041"
-        width="25"
-        height="25" />
+      id="github_logo"
+      inkscape:label="#github_logo"
+      xlink:href="data:image/svg+xml;base64,{{ github_logo }}"
+      x="80"
+      y="80"
+      width="100"
+      height="100"
+      preserveAspectRatio="none"
+      style="image-rendering:optimizeQuality"/>
   </g>
   <g
-      id="group_cadquery_logo"
-      inkscape:label="logo_cadquery"
-      inkscape:groupmode="layer"
-      transform="translate(0,-127.66665)">
+    id="group_python_logo"
+    inkscape:label="logo_python"
+    inkscape:groupmode="layer">
     <image
-        id="cadquery_logo"
-        inkscape:label="#cadquery_logo"
-        xlink:href="data:image/svg+xml;base64,{{ cq_logo }}"
-        preserveAspectRatio="none"
-        style="image-rendering:optimizeQuality"
-        x="51.858337"
-        y="217.76041"
-        width="25"
-        height="25" />
+      id="python_logo"
+      inkscape:label="#python_logo"
+      xlink:href="data:image/svg+xml;base64,{{ python_logo }}"
+      x="205"
+      y="340"
+      width="100"
+      height="100"
+      preserveAspectRatio="none"
+      style="image-rendering:optimizeQuality"/>
   </g>
   <g
-      id="group_ros_logo"
-      inkscape:label="logo_ros"
-      inkscape:groupmode="layer"
-      transform="translate(0,-127.66665)">
+    id="group_cadquery_logo"
+    inkscape:label="logo_cadquery"
+    inkscape:groupmode="layer">
     <image
-        id="ros_logo"
-        inkscape:label="#ros_logo"
-        xlink:href="data:image/svg+xml;base64,{{ ros_logo }}"
-        preserveAspectRatio="none"
-        style="image-rendering:optimizeQuality"
-        x="19.843756"
-        y="248.58124"
-        width="96.864487"
-        height="26.458355" />
+      id="cadquery_logo"
+      inkscape:label="#cadquery_logo"
+      xlink:href="data:image/svg+xml;base64,{{ cq_logo }}"
+      x="80"
+      y="340"
+      width="100"
+      height="100"
+      preserveAspectRatio="none"
+      style="image-rendering:optimizeQuality"/>
+  </g>
+  <g
+    id="group_ros_logo"
+    inkscape:label="logo_ros"
+    inkscape:groupmode="layer">
+    <image
+      id="ros_logo"
+      inkscape:label="#ros_logo"
+      xlink:href="data:image/svg+xml;base64,{{ ros_logo }}"
+      x="80"
+      y="460"
+      width="407"
+      height="100"
+      preserveAspectRatio="none"
+      style="image-rendering:optimizeQuality"/>
   </g>
 </svg>
