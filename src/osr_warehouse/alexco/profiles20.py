@@ -133,7 +133,7 @@ class Vslot2020Profile(CqObjectContainer):
         """Get CadQuery object."""
         return self._cq_object
 
-    def _make(self):
+    def _make(self, fillet: bool = True):
         """Create profile."""
         result = self._make_main_sketch()
 
@@ -142,7 +142,9 @@ class Vslot2020Profile(CqObjectContainer):
 
         result = self._make_center_lines(result)
         result = self._tag_vertices(result)
-        result = self._fillet(result)
+
+        if fillet:
+            result = self._fillet(result)
 
         return result
 
