@@ -62,6 +62,7 @@ mypy = "^0.961"
 Pillow = "^9.2.0"
 pytest = "^7.1.2"
 rstcheck = "^3.3.1"
+CairoSVG = "^2.5.2"
 
 [tool.poetry.group.cq-editor]
 optional = true
