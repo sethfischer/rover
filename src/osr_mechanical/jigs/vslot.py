@@ -17,7 +17,8 @@ class EndTapJig(CqAssemblyContainer):
 
     :param height: Length of jig.
     :type height: float, optional, defaults to 60
-    :param clearance: V-slot fit. A higher value results in a tighter fit.
+    :param clearance: Manufacturing compensation. A higher value results in a tighter
+        fit.
     :type clearance: float, optional, defaults to 0.15
     :param simple: Create shapes with reduced detail.
     :type simple: bool, optional, defaults to True
