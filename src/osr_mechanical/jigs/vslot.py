@@ -57,7 +57,7 @@ class EndTapJig(CqAssemblyContainer):
         )
 
         bolt_spec = BoltSpec(5, 0.8, 12)
-        self.tslot_nut = self._make_tslot_nut(bolt_spec, self.simple)
+        self.tslot_nut = SlidingTNut20(bolt_spec.specification(), simple=self.simple)
         self.screw = self._make_screw(bolt_spec, self.simple)
         self.washer = self._make_washer(bolt_spec)
 
@@ -75,15 +75,6 @@ class EndTapJig(CqAssemblyContainer):
             raise Exception("Part is not a valid Shape or Workplane.")
 
         return result
-
-    def _make_tslot_nut(self, bolt_spec: BoltSpec, simple: bool = True) -> cq.Workplane:
-        """Make and locate T-slot nut."""
-        return (
-            SlidingTNut20(bolt_spec.specification(), simple=simple)
-            .cq_object.rotate((0, -1, 0), (0, 1, 0), -90)
-            .rotate((0, 0, -1), (0, 0, 1), -90)
-            .translate((0, self.vslot_width / 2, self.fixing_hole_elevation))
-        )
 
     @staticmethod
     def _make_screw(bolt_spec: BoltSpec, simple: bool = True) -> SocketHeadCapScrew:
@@ -114,6 +105,12 @@ class EndTapJig(CqAssemblyContainer):
 
     def _make(self) -> cq.Assembly:
         """Make jig assembly."""
+        tslot_nut = (
+            self.tslot_nut.cq_object.rotate((0, -1, 0), (0, 1, 0), -90)
+            .rotate((0, 0, -1), (0, 0, 1), -90)
+            .translate((0, self.vslot_width / 2, self.fixing_hole_elevation))
+        )
+
         assembly = cq.Assembly(None, name="2020_end_tap_jig")
 
         body = self._make_body(assembly)
@@ -124,11 +121,11 @@ class EndTapJig(CqAssemblyContainer):
             color=cq.Color("goldenrod2"),
         )
         assembly.add(
-            self.tslot_nut,
+            tslot_nut,
             name="2020_end_tap_jig__tslot_nut_left",
         )
         assembly.add(
-            self.tslot_nut.mirror("ZX"),
+            tslot_nut.mirror("ZX"),
             name="2020_end_tap_jig__tslot_nut_right",
         )
 
