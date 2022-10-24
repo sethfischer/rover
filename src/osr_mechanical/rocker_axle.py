@@ -19,6 +19,8 @@ class RockerAxle(CqAssemblyContainer):
         """Initialise rocker axle assembly."""
         self.axle_length = Frame.WIDTH + (2 * self.AXLE_PROTRUSION)
 
+        self.axle_support = SHF(self.AXLE_DIAMETER)
+
         self.chrome_plate = cq.Color(*COLORS["chrome_plate"])
         self.aluminium_cast = cq.Color(*COLORS["aluminium_cast"])
 
@@ -40,7 +42,7 @@ class RockerAxle(CqAssemblyContainer):
     def _make(self) -> cq.Assembly:
         """Make assembly."""
         axle = cq.Workplane("YZ").cylinder(self.axle_length, self.AXLE_DIAMETER / 2)
-        axle_support = SHF(self.AXLE_DIAMETER).cq_object
+        axle_support = self.axle_support.cq_object
 
         flange_face_to_origin = Frame.WIDTH / 2 - 20
 
