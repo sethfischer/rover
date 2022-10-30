@@ -7,10 +7,11 @@ from cq_electronics.rpi.rpi3b import RPi3b
 from cq_electronics.sourcekit.pitray_clip import PiTrayClip
 
 from osr_mechanical.frame import Frame
+from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.materials import COLORS
 
 
-class ControlElectronics:
+class ControlElectronics(CqAssemblyContainer):
     """Control electronics mounted on DIN rail."""
 
     END_CLEARANCE = 2
@@ -23,14 +24,22 @@ class ControlElectronics:
         self.raspberry_pi = RPi3b()
         self.pitray_clip = PiTrayClip()
 
-        self._cq_object = self.make()
+        self._cq_object = self._make()
 
     @property
     def cq_object(self) -> cq.Assembly:
         """Get CadQuery object."""
         return self._cq_object
 
-    def make(self) -> cq.Assembly:
+    def cq_part(self, name: str):
+        """Get part from CadQuery assembly."""
+        result = self._cq_object.objects[name].obj
+        if result is None:
+            raise Exception("Part is not a valid Shape or Workplane.")
+
+        return result
+
+    def _make(self) -> cq.Assembly:
         """Make control electronics assembly."""
         rpi_x_offset = -50
 
