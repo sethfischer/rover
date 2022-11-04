@@ -6,6 +6,8 @@ import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
+from osr_mechanical.bom.bom import Bom
+from osr_mechanical.bom.parts import Commodity, Part, PartTypes
 from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import MetricBoltSpecification as BoltSpec
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
@@ -111,7 +113,10 @@ class EndTapJig(CqAssemblyContainer):
             .translate((0, self.vslot_width / 2, self.fixing_hole_elevation))
         )
 
-        assembly = cq.Assembly(None, name="2020_end_tap_jig")
+        assembly = cq.Assembly(
+            name="2020_end_tap_jig",
+            metadata={Bom.PARTS_KEY: self.bom_parts()},
+        )
 
         body = self._make_body(assembly)
 
@@ -188,3 +193,24 @@ class EndTapJig(CqAssemblyContainer):
         )
 
         return result
+
+    def bom_parts(self) -> dict[str, Part]:
+        """Parts for use in bill of materials."""
+        body = Part(
+            PartTypes.additive,
+            "JIG-ENDTAP",
+            Commodity.FABRICATED,
+            "3D printed body for end-tap jig. To fit 20 series T-slot extrusion.",
+        )
+        tslot_nut = Part(
+            PartTypes.tslot,
+            "NUT-M5",
+            Commodity.PURCHASED,
+            self.tslot_nut.description,
+        )
+
+        return {
+            "2020_end_tap_jig__body": body,
+            "2020_end_tap_jig__tslot_nut_left": tslot_nut,
+            "2020_end_tap_jig__tslot_nut_right": tslot_nut,
+        }

@@ -1,10 +1,13 @@
 """OSR console command."""
 
+import csv
+import importlib
 import logging
 import tarfile
 from argparse import ArgumentParser, Namespace
 from base64 import b64encode
 from datetime import datetime
+from json import JSONDecodeError
 from os import EX_OK, getcwd
 from pathlib import Path
 from shutil import rmtree
@@ -16,6 +19,7 @@ from cadquery import exporters
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from osr_mechanical import __version__
+from osr_mechanical.bom.bom import Bom
 from osr_mechanical.config import (
     COPYRIGHT_OWNER,
     DOCUMENTATION_URL,
@@ -197,6 +201,7 @@ def build_cam_archive(args: Namespace) -> None:
     export_final_assembly_step(release_directory / f"{PROJECT_NAME}.step")
     export_final_assembly_png(release_directory / f"{PROJECT_NAME}.png")
     export_jigs(release_directory / "jigs")
+    export_bom(release_directory / "bom")
 
     tar_directory(
         release_directory,
@@ -217,6 +222,51 @@ def dxf_reduce(args: Namespace) -> None:
     """Import a DXF followed by export."""
     output = dxf_import_export(args.filename)
     stdout.write(output)
+    exit(1)
+
+
+def export_bom(out_directory: Path) -> None:
+    """Export bill of materials."""
+    logger.debug("Exporting bill of materials.")
+
+    out_directory.mkdir()
+    csv_pathname = out_directory / "bom.csv"
+
+    final = FinalAssembly()
+    jig_end_tap = EndTapJig()
+
+    bom = Bom()
+    bom.insert_assembly(final.cq_object)
+    bom.insert_assembly(jig_end_tap.cq_object)
+
+    data = bom.encode(encoder=Bom.ENCODE_CSV)
+
+    with open(csv_pathname, mode="w") as f:
+        f.write(data)
+
+
+def generate_bom(args: Namespace) -> None:
+    """Generate bill of materials."""
+    module_name, class_name = f"osr_mechanical.{args.assembly}".rsplit(".", 1)
+
+    try:
+        module = importlib.import_module(module_name)
+        assembly_container = getattr(module, class_name)
+
+        assembly = assembly_container().cq_object
+        bom = Bom(assembly)
+
+        stdout.write(bom.encode(encoder=args.encode) + "\n")
+        exit(EX_OK)
+    except AttributeError:
+        logger.error(f"Class {class_name} does not exist.")
+    except ImportError:
+        logger.error(f"Module {module_name} does not exist.")
+    except csv.Error as error:
+        logger.error(f"CSV encoding error: {error}.")
+    except JSONDecodeError as error:
+        logger.error(f"JSON encoding error: {error}.")
+
     exit(1)
 
 
@@ -306,6 +356,21 @@ def build_parser() -> ArgumentParser:
         help="create open graph card SVG",
     )
     parser_open_graph_card.set_defaults(func=create_open_graph_card_svg)
+
+    parser_bom = subparsers.add_parser("bom", help="generate bill of materials")
+    parser_bom.add_argument(
+        "--encode",
+        type=str,
+        default=Bom.ENCODE_JSON,
+        help="output format",
+    )
+    parser_bom.add_argument(
+        "--assembly",
+        type=str,
+        default="final.FinalAssembly",
+        help="assembly for which to generate bill of materials",
+    )
+    parser_bom.set_defaults(func=generate_bom)
 
     return parser
 

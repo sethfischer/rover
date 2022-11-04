@@ -6,6 +6,8 @@ from typing import Union
 
 import cadquery as cq
 
+from osr_mechanical.bom.bom import Bom
+from osr_mechanical.bom.parts import Commodity, Part, PartTypes
 from osr_warehouse.alexco import Vslot2020, Vslot2040
 from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import M5_CLEARANCE_CLOSE_DIAMETER, M5_COUNTERBORE_DIAMETER
@@ -53,6 +55,11 @@ class Frame(CqAssemblyContainer):
         self.between_shf_mounting_holes = (
             SHFSeriesDimensions.shf8.between_mounting_holes
         )
+
+        self.post_transom_height = self.HEIGHT + self.TRANSOM_HEIGHT
+
+        self.bracket_light_duty = BracketStandardLightDuty90()
+        self.bracket_standard_duty = BracketStandardStandardDuty90()
 
         self._cq_object = self._make()
 
@@ -211,12 +218,9 @@ class Frame(CqAssemblyContainer):
 
     def _make(self):
         """Create assembly."""
-        bracket_light_duty = BracketStandardLightDuty90().cq_object
-        bracket_standard_duty = BracketStandardStandardDuty90().cq_object
-
         post = self._make_post(self.POST_HEIGHT)
         post_rocker_axle = self._make_post_rocker_axle(self.POST_HEIGHT)
-        post_transom = self._make_post_transom(self.HEIGHT + self.TRANSOM_HEIGHT)
+        post_transom = self._make_post_transom(self.post_transom_height)
 
         beam_side_deck = self._make_beam_side(
             self.BEAM_SIDE_LENGTH,
@@ -225,7 +229,7 @@ class Frame(CqAssemblyContainer):
         beam_side_belly = self._make_beam_side(self.BEAM_SIDE_LENGTH)
         beam_end = self._make_beam_end(self.BEAM_END_LENGTH)
         beam_differential_pivot = self._make_beam_differential_pivot(
-            self.WIDTH - (2 * Vslot2020.WIDTH)
+            self.BEAM_END_LENGTH
         )
 
         # position fore-starboard post
@@ -239,7 +243,11 @@ class Frame(CqAssemblyContainer):
         beam_side_belly = beam_side_belly.rotateAboutCenter((0, 0, 1), 180)
 
         assembly = (
-            cq.Assembly(color=self.aluminium_anodised_natural)
+            cq.Assembly(
+                name="frame__assembly",
+                metadata={Bom.PARTS_KEY: self.bom_parts()},
+                color=self.aluminium_anodised_natural,
+            )
             .add(
                 post_fore_starboard,
                 name="frame__post_fore_starboard",
@@ -425,7 +433,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                bracket_standard_duty,
+                self.bracket_standard_duty.cq_object,
                 name="frame__bracket_starboard_beam_differential",
                 color=self.aluminium_cast,
                 loc=cq.Location(
@@ -442,7 +450,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                bracket_standard_duty.mirror("YZ"),
+                self.bracket_standard_duty.cq_object.mirror("YZ"),
                 name="frame__bracket_port_beam_differential",
                 color=self.aluminium_cast,
                 loc=cq.Location(
@@ -459,7 +467,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                bracket_light_duty,
+                self.bracket_light_duty.cq_object,
                 name="frame__bracket_starboard_belly",
                 color=self.aluminium_cast,
                 loc=cq.Location(
@@ -472,7 +480,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                bracket_light_duty.mirror("XY"),
+                self.bracket_light_duty.cq_object.mirror("XY"),
                 name="frame__bracket_starboard_deck",
                 color=self.aluminium_cast,
                 loc=cq.Location(
@@ -487,7 +495,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                bracket_light_duty.mirror("ZY"),
+                self.bracket_light_duty.cq_object.mirror("ZY"),
                 name="frame__bracket_port_belly",
                 color=self.aluminium_cast,
                 loc=cq.Location(
@@ -500,7 +508,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                bracket_light_duty,
+                self.bracket_light_duty.cq_object,
                 name="frame__bracket_port_deck",
                 color=self.aluminium_cast,
                 loc=cq.Location(
@@ -519,6 +527,135 @@ class Frame(CqAssemblyContainer):
         )
 
         return assembly
+
+    def bom_parts(self) -> dict[str, Part]:
+        """Parts for use in bill of materials."""
+        post_fore = Part(
+            PartTypes.tslot,
+            "POST-FORE",
+            Commodity.FABRICATED,
+            (
+                f"Frame fore post: "
+                f"T-slot "
+                f"{Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, length={self.POST_HEIGHT}mm."
+            ),
+        )
+        post_transom = Part(
+            PartTypes.tslot,
+            "POST-TRANS",
+            Commodity.FABRICATED,
+            (
+                f"Frame transom post: "
+                f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
+                f"length={self.post_transom_height}mm."
+            ),
+        )
+        post_rocker_axle = Part(
+            PartTypes.tslot,
+            "POST-ROCK",
+            Commodity.FABRICATED,
+            (
+                f"Frame rocker axle post: "
+                f"T-slot {Vslot2040.WIDTH}×{Vslot2040.HEIGHT}mm, "
+                f"length={self.POST_HEIGHT}mm."
+            ),
+        )
+        beam_belly_port = Part(
+            PartTypes.tslot,
+            "BEAM-BELLY-P",
+            Commodity.FABRICATED,
+            (
+                f"Frame belly beam port: "
+                f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
+                f"length={self.BEAM_SIDE_LENGTH}mm."
+            ),
+        )
+        beam_belly_starboard = Part(
+            PartTypes.tslot,
+            "BEAM-BELLY-S",
+            Commodity.FABRICATED,
+            (
+                f"Frame belly beam starboard: "
+                f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
+                f"length={self.BEAM_SIDE_LENGTH}mm."
+            ),
+        )
+        beam_port_deck_port = Part(
+            PartTypes.tslot,
+            "BEAM-DECK-P",
+            Commodity.FABRICATED,
+            (
+                f"Frame deck beam port: "
+                f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
+                f"length={self.BEAM_SIDE_LENGTH}mm."
+            ),
+        )
+        beam_port_deck_starboard = Part(
+            PartTypes.tslot,
+            "BEAM-DECK-S",
+            Commodity.FABRICATED,
+            (
+                f"Frame deck beam starboard: "
+                f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
+                f"length={self.BEAM_SIDE_LENGTH}mm."
+            ),
+        )
+        beam_end = Part(
+            PartTypes.tslot,
+            "BEAM-END",
+            Commodity.FABRICATED,
+            (
+                f"Frame deck beam lateral: "
+                f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
+                f"length={self.BEAM_END_LENGTH}mm."
+            ),
+        )
+        beam_differential_pivot = Part(
+            PartTypes.tslot,
+            "BEAM-DIFF",
+            Commodity.FABRICATED,
+            (
+                f"Frame beam differential pivot: "
+                f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
+                f"length={self.BEAM_END_LENGTH}mm."
+            ),
+        )
+        bracket_light_duty = Part(
+            PartTypes.tslot,
+            "BRACKET-LD",
+            Commodity.PURCHASED,
+            self.bracket_light_duty.description,
+        )
+        bracket_standard_duty = Part(
+            PartTypes.tslot,
+            "BRACKET-SD",
+            Commodity.PURCHASED,
+            self.bracket_standard_duty.description,
+        )
+
+        return {
+            "frame__beam_aft_belly": beam_end,
+            "frame__beam_aft_deck": beam_end,
+            "frame__beam_differential_pivot": beam_differential_pivot,
+            "frame__beam_fore_belly": beam_end,
+            "frame__beam_fore_deck": beam_end,
+            "frame__beam_port_belly": beam_belly_port,
+            "frame__beam_port_deck": beam_port_deck_port,
+            "frame__beam_starboard_belly": beam_belly_starboard,
+            "frame__beam_starboard_deck": beam_port_deck_starboard,
+            "frame__post_aft_port_transom": post_transom,
+            "frame__post_aft_starboard_transom": post_transom,
+            "frame__post_fore_port": post_fore,
+            "frame__post_fore_starboard": post_fore,
+            "frame__post_port_rocker_axle": post_rocker_axle,
+            "frame__post_starboard_rocker_axle": post_rocker_axle,
+            "frame__bracket_starboard_beam_differential": bracket_light_duty,
+            "frame__bracket_port_beam_differential": bracket_light_duty,
+            "frame__bracket_starboard_belly": bracket_light_duty,
+            "frame__bracket_starboard_deck": bracket_light_duty,
+            "frame__bracket_port_belly": bracket_standard_duty,
+            "frame__bracket_port_deck": bracket_standard_duty,
+        }
 
     @staticmethod
     def color_assembly(frame):

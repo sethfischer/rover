@@ -17,9 +17,16 @@ class StandardLightDuty90(CqObjectContainer):
     THICKNESS = 3
     HOLE_DIAMETER = 5.5
 
+    _description = "T-slot standard light-duty 90° angle bracket: {}×{}mm."
+
     def __init__(self) -> None:
         """Initialise bracket."""
         self._cq_object = self._make()
+
+    @property
+    def description(self) -> str:
+        """Object description."""
+        return self._description.format(self.LENGTH, self.WIDTH)
 
     @property
     def cq_object(self):
@@ -72,12 +79,19 @@ class StandardStandardDuty90(CqObjectContainer):
     THICKNESS = 3
     HOLE_DIAMETER = 5.5
 
+    _description = "T-slot standard standard-duty 90° angle bracket: {}×{}mm."
+
     def __init__(self) -> None:
         """Initialise dimensions."""
         self.brace_step_length = 0.1 * self.LENGTH
         self.brace_step_height = 0.1 * self.LENGTH
 
         self._cq_object = self._make()
+
+    @property
+    def description(self) -> str:
+        """Object description."""
+        return self._description.format(self.LENGTH, self.WIDTH)
 
     @property
     def cq_object(self):

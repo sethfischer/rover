@@ -19,6 +19,8 @@ class SlidingTNut20(CqObjectContainer):
     :type simple: bool, optional, defaults to True
     """
 
+    _description = "{} sliding T-nut for 20 series T-slot extrusion."
+
     def __init__(self, size: str = "M5-0.8", length: float = 9.5, simple: bool = True):
         """20 mm series V-slot sliding T-nut."""
         self.size = size
@@ -31,6 +33,11 @@ class SlidingTNut20(CqObjectContainer):
         self.key_height = 1.5
 
         self._cq_object = self._make()
+
+    @property
+    def description(self) -> str:
+        """Object description."""
+        return self._description.format(self.size)
 
     @property
     def cq_object(self) -> cq.Workplane:

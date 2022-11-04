@@ -26,6 +26,11 @@ class MetricBoltSpecification:
         """Shaft size prefixed with 'M'."""
         return f"M{self.shaft}"
 
+    @staticmethod
+    def split_shaft_pitch(shaft_pitch: str) -> list:
+        """Split shaft diameter and pitch components."""
+        return shaft_pitch.split("-")
+
     def __str__(self) -> str:
         """Bolt specification including length."""
         return self.specification(length=True)

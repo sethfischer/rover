@@ -1,8 +1,11 @@
 """Rocker axle assembly."""
+
 from typing import Any
 
 import cadquery as cq
 
+from osr_mechanical.bom.bom import Bom
+from osr_mechanical.bom.parts import Commodity, Part, PartTypes
 from osr_mechanical.frame import Frame
 from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.generic.linear_motion.shf import SHF
@@ -47,7 +50,10 @@ class RockerAxle(CqAssemblyContainer):
         flange_face_to_origin = Frame.WIDTH / 2 - 20
 
         result = (
-            cq.Assembly()
+            cq.Assembly(
+                name="rocker_axle__assembly",
+                metadata={Bom.PARTS_KEY: self.bom_parts()},
+            )
             .add(
                 axle_support,
                 name="rocker_axle__support_port",
@@ -74,3 +80,27 @@ class RockerAxle(CqAssemblyContainer):
         )
 
         return result
+
+    def bom_parts(self) -> dict[str, Part]:
+        """Parts for use in bill of materials."""
+        rocker_axle_support = Part(
+            PartTypes.linear_motion,
+            "SHF8-SUPP",
+            Commodity.PURCHASED,
+            self.axle_support.description,
+        )
+        rocker_axle = Part(
+            PartTypes.linear_motion,
+            "SHF-AXLE",
+            Commodity.FABRICATED,
+            (
+                f"Chromed linear shaft: "
+                f"⌀{self.AXLE_DIAMETER}mm, length={self.axle_length}mm."
+            ),
+        )
+
+        return {
+            "rocker_axle__support_port": rocker_axle_support,
+            "rocker_axle__support_starboard": rocker_axle_support,
+            "rocker_axle__axle": rocker_axle,
+        }

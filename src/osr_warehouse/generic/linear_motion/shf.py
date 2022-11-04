@@ -66,6 +66,7 @@ class SHF(CqObjectContainer):
     """
 
     FLANGE_ANGLE = 22.5
+    _description = "SHF{} shaft support: flanged slit (cast type), standard type."
 
     def __init__(self, shaft_diameter: int) -> None:
         """
@@ -98,6 +99,11 @@ class SHF(CqObjectContainer):
         self.fillet_radius = dimensions.fillet_radius
 
         self._cq_object = self._make()
+
+    @property
+    def description(self) -> str:
+        """Object description."""
+        return self._description.format(self.shaft_diameter)
 
     @property
     def cq_object(self) -> Any:

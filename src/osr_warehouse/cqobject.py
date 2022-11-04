@@ -25,3 +25,8 @@ class CqAssemblyContainer(CqObjectContainer):
     def cq_part(self, name: str):
         """Get part from CadQuery assembly."""
         pass
+
+    @abstractmethod
+    def bom_parts(self):
+        """Parts for use in bill of materials."""
+        pass

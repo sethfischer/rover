@@ -3,6 +3,7 @@ from typing import Any
 
 import cadquery as cq
 
+from osr_mechanical.bom.parts import Part
 from osr_mechanical.electronics import ControlElectronics
 from osr_mechanical.frame import Frame
 from osr_mechanical.rocker_axle import RockerAxle
@@ -47,7 +48,7 @@ class FinalAssembly(CqAssemblyContainer):
         )
 
         result = (
-            cq.Assembly()
+            cq.Assembly(name="final__assembly")
             .add(
                 self.frame.cq_object,
                 name="final__frame",
@@ -69,3 +70,7 @@ class FinalAssembly(CqAssemblyContainer):
         )
 
         return result
+
+    def bom_parts(self) -> dict[str, Part]:
+        """Parts for use in bill of materials."""
+        return {}
