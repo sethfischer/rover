@@ -2030,17 +2030,6 @@ sphinx = ">=3"
 test = ["pytest (>=6)", "pytest-cov (>=3)"]
 
 [[package]]
-name = "sphinx-lfs-content"
-version = "1.1.1"
-description = "Ensure existence of LFS content in your LFS builds"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-requests = "*"
-
-[[package]]
 name = "sphinx-rtd-theme"
 version = "1.0.0"
 description = "Read the Docs theme for Sphinx"
@@ -2436,7 +2425,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "1e06d89fdbccc7bf6cbd9570177f3ce64800be2db3102fdeffee237499b252aa"
+content-hash = "f920c6fc5431763ef2ed9d2939d93b4ae748c4c8868df61a2b37b87dc47672a1"
 
 [metadata.files]
 alabaster = [
@@ -3818,9 +3807,6 @@ Sphinx = [
 sphinx-argparse-cli = [
     {file = "sphinx_argparse_cli-1.9.0-py3-none-any.whl", hash = "sha256:10d0ff0a104d425f2f8372996d624105d98417a80b0f15762b93c6080d86cc63"},
     {file = "sphinx_argparse_cli-1.9.0.tar.gz", hash = "sha256:96b0158784b7336d7a8a06c7f25061579d23e3899882eb72a4e655cd168419f0"},
-]
-sphinx-lfs-content = [
-    {file = "sphinx_lfs_content-1.1.1.tar.gz", hash = "sha256:6a25866bf63a1256a129c919d56e21602eb24e71c08afdc2e0a4f7c65665acf0"},
 ]
 sphinx-rtd-theme = [
     {file = "sphinx_rtd_theme-1.0.0-py2.py3-none-any.whl", hash = "sha256:4d35a56f4508cfee4c4fb604373ede6feae2a306731d533f409ef5c3496fdbd8"},

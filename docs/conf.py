@@ -13,7 +13,6 @@ project_copyright = f"{date.today().year}, {author}"
 exclude_patterns = ["_build"]
 extensions = [
     "sphinx_argparse_cli",
-    "sphinx_lfs_content",
     "sphinx_rtd_theme",
 ]
 templates_path = ["_templates"]

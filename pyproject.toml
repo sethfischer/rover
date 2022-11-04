@@ -47,7 +47,6 @@ cq_warehouse = { git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b
 Jinja2 = "^3.1.2"
 Sphinx = "^4.4.0"
 sphinx-argparse-cli = "^1.9.0"
-sphinx-lfs-content = "^1.0.0"
 sphinx-rtd-theme = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
