@@ -85,8 +85,8 @@ class Frame(CqAssemblyContainer):
         return Vslot2020().make(length)
 
     @staticmethod
-    def _make_beam_end(length: float):
-        """Create end beam."""
+    def _make_beam_lateral(length: float):
+        """Create lateral beam."""
         return Vslot2020().make(length)
 
     def _make_beam_side(
@@ -95,7 +95,7 @@ class Frame(CqAssemblyContainer):
         """Create side beam."""
         beam_fore_y = (-(self.TRANSOM_LENGTH - Vslot2020.WIDTH) - self.LENGTH) / 2
         hole_fore_y = beam_fore_y + (Vslot2020.WIDTH / 2)
-        hole_fore_rocker_axle_post_y = (
+        hole_fore_rocker_post_y = (
             beam_fore_y + self.ROCKER_AXLE_DISTANCE_FROM_FORE - Vslot2040.WIDTH / 2
         )
 
@@ -126,15 +126,15 @@ class Frame(CqAssemblyContainer):
         result = (
             result.faces(">Y")
             .workplane(centerOption="CenterOfMass")
-            .tag("workplane_rocker_axle_post_holes")
-            .center(0, hole_fore_rocker_axle_post_y)
+            .tag("workplane_rocker_post_holes")
+            .center(0, hole_fore_rocker_post_y)
             .cboreHole(
                 M5_CLEARANCE_CLOSE_DIAMETER,
                 M5_COUNTERBORE_DIAMETER,
                 Vslot2020.COUNTERBORE_DEPTH,
                 depth=None,
             )
-            .tag("hole_fore_rocker_axle_post")
+            .tag("hole_fore_rocker_post")
             .center(0, Vslot2040.DISTANCE_BETWEEN_CENTERS)
             .cboreHole(
                 M5_CLEARANCE_CLOSE_DIAMETER,
@@ -142,7 +142,7 @@ class Frame(CqAssemblyContainer):
                 Vslot2020.COUNTERBORE_DEPTH,
                 depth=None,
             )
-            .tag("hole_aft_rocker_axle_post")
+            .tag("hole_aft_rocker_post")
         )
 
         if differential_pivot_beam_offset is not None:
@@ -171,7 +171,7 @@ class Frame(CqAssemblyContainer):
         """Create post."""
         return Vslot2020().make(height)
 
-    def _make_post_rocker_axle(self, height: float):
+    def _make_post_rocker(self, height: float):
         """Create rocker axle post."""
         half_between_shf_mounting_holes = self.between_shf_mounting_holes / 2
         shf_mounting_hole_points = [
@@ -218,8 +218,8 @@ class Frame(CqAssemblyContainer):
 
     def _make(self):
         """Create assembly."""
-        post = self._make_post(self.POST_HEIGHT)
-        post_rocker_axle = self._make_post_rocker_axle(self.POST_HEIGHT)
+        post_fore = self._make_post(self.POST_HEIGHT)
+        post_rocker = self._make_post_rocker(self.POST_HEIGHT)
         post_transom = self._make_post_transom(self.post_transom_height)
 
         beam_side_deck = self._make_beam_side(
@@ -227,7 +227,7 @@ class Frame(CqAssemblyContainer):
             differential_pivot_beam_offset=self.DIFFERENTIAL_PIVOT_BEAM_OFFSET,
         )
         beam_side_belly = self._make_beam_side(self.BEAM_SIDE_LENGTH)
-        beam_end = self._make_beam_end(self.BEAM_END_LENGTH)
+        beam_lateral = self._make_beam_lateral(self.BEAM_END_LENGTH)
         beam_differential_pivot = self._make_beam_differential_pivot(
             self.BEAM_END_LENGTH
         )
@@ -235,7 +235,7 @@ class Frame(CqAssemblyContainer):
         # position fore-starboard post
         # rotate to place center bore slot on inside of frame
         # translate in X direction so base is on the XY plane
-        post_fore_starboard = post.rotateAboutCenter((0, 0, 1), 180).translate(
+        post_starboard_fore = post_fore.rotateAboutCenter((0, 0, 1), 180).translate(
             (-self.BEAM_END_LENGTH / 2 - Vslot2020.WIDTH / 2, 0, Vslot2020.WIDTH)
         )
         # rotate beam so counterbore is on opposite side to center bore slot
@@ -249,12 +249,12 @@ class Frame(CqAssemblyContainer):
                 color=self.aluminium_anodised_natural,
             )
             .add(
-                post_fore_starboard,
-                name="frame__post_fore_starboard",
+                post_starboard_fore,
+                name="frame__post_starboard_fore",
             )
             .add(
-                post,
-                name="frame__post_fore_port",
+                post_fore,
+                name="frame__post_port_fore",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -267,7 +267,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 post_transom,
-                name="frame__post_aft_starboard_transom",
+                name="frame__post_starboard_transom",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2 - Vslot2020.WIDTH / 2,
@@ -280,7 +280,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 post_transom,
-                name="frame__post_aft_port_transom",
+                name="frame__post_port_transom",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -292,8 +292,8 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                post_rocker_axle,
-                name="frame__post_port_rocker_axle",
+                post_rocker,
+                name="frame__post_port_rocker",
                 loc=cq.Location(
                     cq.Vector(
                         self.BEAM_END_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -305,8 +305,8 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                post_rocker_axle,
-                name="frame__post_starboard_rocker_axle",
+                post_rocker,
+                name="frame__post_starboard_rocker",
                 loc=cq.Location(
                     cq.Vector(
                         -self.BEAM_END_LENGTH / 2 - Vslot2020.WIDTH / 2,
@@ -370,7 +370,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                beam_end,
+                beam_lateral,
                 name="frame__beam_fore_belly",
                 loc=cq.Location(
                     cq.Vector(-self.BEAM_END_LENGTH / 2, 0, Vslot2020.WIDTH / 2),
@@ -379,7 +379,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                beam_end,
+                beam_lateral,
                 name="frame__beam_fore_deck",
                 loc=cq.Location(
                     cq.Vector(
@@ -392,7 +392,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                beam_end,
+                beam_lateral,
                 name="frame__beam_aft_deck",
                 loc=cq.Location(
                     cq.Vector(
@@ -405,7 +405,7 @@ class Frame(CqAssemblyContainer):
                 ),
             )
             .add(
-                beam_end,
+                beam_lateral,
                 name="frame__beam_aft_belly",
                 loc=cq.Location(
                     cq.Vector(
@@ -550,7 +550,7 @@ class Frame(CqAssemblyContainer):
                 f"length={self.post_transom_height}mm."
             ),
         )
-        post_rocker_axle = Part(
+        post_rocker = Part(
             PartTypes.tslot,
             "POST-ROCK",
             Commodity.FABRICATED,
@@ -600,7 +600,7 @@ class Frame(CqAssemblyContainer):
                 f"length={self.BEAM_SIDE_LENGTH}mm."
             ),
         )
-        beam_end = Part(
+        beam_lateral = Part(
             PartTypes.tslot,
             "BEAM-END",
             Commodity.FABRICATED,
@@ -634,21 +634,21 @@ class Frame(CqAssemblyContainer):
         )
 
         return {
-            "frame__beam_aft_belly": beam_end,
-            "frame__beam_aft_deck": beam_end,
+            "frame__beam_aft_belly": beam_lateral,
+            "frame__beam_aft_deck": beam_lateral,
             "frame__beam_differential_pivot": beam_differential_pivot,
-            "frame__beam_fore_belly": beam_end,
-            "frame__beam_fore_deck": beam_end,
+            "frame__beam_fore_belly": beam_lateral,
+            "frame__beam_fore_deck": beam_lateral,
             "frame__beam_port_belly": beam_belly_port,
             "frame__beam_port_deck": beam_port_deck_port,
             "frame__beam_starboard_belly": beam_belly_starboard,
             "frame__beam_starboard_deck": beam_port_deck_starboard,
-            "frame__post_aft_port_transom": post_transom,
-            "frame__post_aft_starboard_transom": post_transom,
-            "frame__post_fore_port": post_fore,
-            "frame__post_fore_starboard": post_fore,
-            "frame__post_port_rocker_axle": post_rocker_axle,
-            "frame__post_starboard_rocker_axle": post_rocker_axle,
+            "frame__post_port_transom": post_transom,
+            "frame__post_starboard_transom": post_transom,
+            "frame__post_port_fore": post_fore,
+            "frame__post_starboard_fore": post_fore,
+            "frame__post_port_rocker": post_rocker,
+            "frame__post_starboard_rocker": post_rocker,
             "frame__bracket_starboard_beam_differential": bracket_light_duty,
             "frame__bracket_port_beam_differential": bracket_light_duty,
             "frame__bracket_starboard_belly": bracket_light_duty,
@@ -664,12 +664,12 @@ class Frame(CqAssemblyContainer):
         color_side_beam = cq.Color("green")
         color_lateral_beam = cq.Color("red")
 
-        frame.objects["frame__post_fore_starboard"].color = color_post
-        frame.objects["frame__post_fore_port"].color = color_post
-        frame.objects["frame__post_aft_starboard_transom"].color = color_post
-        frame.objects["frame__post_aft_port_transom"].color = color_post
-        frame.objects["frame__post_port_rocker_axle"].color = color_post
-        frame.objects["frame__post_starboard_rocker_axle"].color = color_post
+        frame.objects["frame__post_starboard_fore"].color = color_post
+        frame.objects["frame__post_port_fore"].color = color_post
+        frame.objects["frame__post_starboard_transom"].color = color_post
+        frame.objects["frame__post_port_transom"].color = color_post
+        frame.objects["frame__post_port_rocker"].color = color_post
+        frame.objects["frame__post_starboard_rocker"].color = color_post
 
         frame.objects["frame__beam_starboard_belly"].color = color_side_beam
         frame.objects["frame__beam_starboard_deck"].color = color_side_beam
