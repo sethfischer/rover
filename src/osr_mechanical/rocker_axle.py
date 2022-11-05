@@ -83,13 +83,13 @@ class RockerAxle(CqAssemblyContainer):
 
     def bom_parts(self) -> dict[str, Part]:
         """Parts for use in bill of materials."""
-        rocker_axle_support = Part(
+        support = Part(
             PartTypes.linear_motion,
             "SHF8-SUPP",
             Commodity.PURCHASED,
             self.axle_support.description,
         )
-        rocker_axle = Part(
+        axle = Part(
             PartTypes.linear_motion,
             "SHF-AXLE",
             Commodity.FABRICATED,
@@ -100,7 +100,7 @@ class RockerAxle(CqAssemblyContainer):
         )
 
         return {
-            "rocker_axle__support_port": rocker_axle_support,
-            "rocker_axle__support_starboard": rocker_axle_support,
-            "rocker_axle__axle": rocker_axle,
+            "rocker_axle__support_port": support,
+            "rocker_axle__support_starboard": support,
+            "rocker_axle__axle": axle,
         }

@@ -560,7 +560,7 @@ class Frame(CqAssemblyContainer):
                 f"length={self.POST_HEIGHT}mm."
             ),
         )
-        beam_belly_port = Part(
+        beam_port_belly = Part(
             PartTypes.tslot,
             "BEAM-BELLY-P",
             Commodity.FABRICATED,
@@ -570,7 +570,7 @@ class Frame(CqAssemblyContainer):
                 f"length={self.BEAM_SIDE_LENGTH}mm."
             ),
         )
-        beam_belly_starboard = Part(
+        beam_starboard_belly = Part(
             PartTypes.tslot,
             "BEAM-BELLY-S",
             Commodity.FABRICATED,
@@ -580,7 +580,7 @@ class Frame(CqAssemblyContainer):
                 f"length={self.BEAM_SIDE_LENGTH}mm."
             ),
         )
-        beam_port_deck_port = Part(
+        beam_port_deck = Part(
             PartTypes.tslot,
             "BEAM-DECK-P",
             Commodity.FABRICATED,
@@ -590,7 +590,7 @@ class Frame(CqAssemblyContainer):
                 f"length={self.BEAM_SIDE_LENGTH}mm."
             ),
         )
-        beam_port_deck_starboard = Part(
+        beam_starboard_deck = Part(
             PartTypes.tslot,
             "BEAM-DECK-S",
             Commodity.FABRICATED,
@@ -602,7 +602,7 @@ class Frame(CqAssemblyContainer):
         )
         beam_lateral = Part(
             PartTypes.tslot,
-            "BEAM-END",
+            "BEAM-LAT",
             Commodity.FABRICATED,
             (
                 f"Frame deck beam lateral: "
@@ -639,10 +639,10 @@ class Frame(CqAssemblyContainer):
             "frame__beam_differential_pivot": beam_differential_pivot,
             "frame__beam_fore_belly": beam_lateral,
             "frame__beam_fore_deck": beam_lateral,
-            "frame__beam_port_belly": beam_belly_port,
-            "frame__beam_port_deck": beam_port_deck_port,
-            "frame__beam_starboard_belly": beam_belly_starboard,
-            "frame__beam_starboard_deck": beam_port_deck_starboard,
+            "frame__beam_port_belly": beam_port_belly,
+            "frame__beam_port_deck": beam_port_deck,
+            "frame__beam_starboard_belly": beam_starboard_belly,
+            "frame__beam_starboard_deck": beam_starboard_deck,
             "frame__post_port_transom": post_transom,
             "frame__post_starboard_transom": post_transom,
             "frame__post_port_fore": post_fore,
