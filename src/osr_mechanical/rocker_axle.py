@@ -1,12 +1,12 @@
 """Rocker axle assembly."""
 
-from typing import Any
+from typing import Union
 
 import cadquery as cq
 
 from osr_mechanical.bom.bom import Bom
-from osr_mechanical.bom.parts import Commodity, Part, PartTypes
-from osr_mechanical.frame import Frame
+from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
+from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
 from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.generic.linear_motion.shf import SHF
 from osr_warehouse.materials import COLORS
@@ -20,7 +20,7 @@ class RockerAxle(CqAssemblyContainer):
 
     def __init__(self) -> None:
         """Initialise rocker axle assembly."""
-        self.axle_length = Frame.WIDTH + (2 * self.AXLE_PROTRUSION)
+        self.axle_length = FRAME_DIMENSIONS.WIDTH + (2 * self.AXLE_PROTRUSION)
 
         self.axle_support = SHF(self.AXLE_DIAMETER)
 
@@ -29,7 +29,7 @@ class RockerAxle(CqAssemblyContainer):
 
         self._cq_object = self._make()
 
-    def cq_part(self, name: str) -> Any:
+    def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
         if result is None:
@@ -47,11 +47,11 @@ class RockerAxle(CqAssemblyContainer):
         axle = cq.Workplane("YZ").cylinder(self.axle_length, self.AXLE_DIAMETER / 2)
         axle_support = self.axle_support.cq_object
 
-        flange_face_to_origin = Frame.WIDTH / 2 - 20
+        flange_face_to_origin = FRAME_DIMENSIONS.WIDTH / 2 - 20
 
         result = (
             cq.Assembly(
-                name="rocker_axle__assembly",
+                name="rocker_axle",
                 metadata={Bom.PARTS_KEY: self.bom_parts()},
             )
             .add(
@@ -81,15 +81,15 @@ class RockerAxle(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, Part]:
-        """Parts for use in bill of materials."""
-        support = Part(
+    def bom_parts(self) -> dict[str, PartIdentifier]:
+        """Part identifiers for use in bill of materials."""
+        support = PartIdentifier(
             PartTypes.linear_motion,
             "SHF8-SUPP",
             Commodity.PURCHASED,
             self.axle_support.description,
         )
-        axle = Part(
+        axle = PartIdentifier(
             PartTypes.linear_motion,
             "SHF-AXLE",
             Commodity.FABRICATED,

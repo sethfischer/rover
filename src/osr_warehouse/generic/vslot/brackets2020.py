@@ -20,7 +20,7 @@ class StandardLightDuty90(CqObjectContainer):
     _description = "T-slot standard light-duty 90° angle bracket: {}×{}mm."
 
     def __init__(self) -> None:
-        """Initialise bracket."""
+        """Initialise."""
         self._cq_object = self._make()
 
     @property
@@ -45,11 +45,11 @@ class StandardLightDuty90(CqObjectContainer):
 
         bracket = (
             cq.Workplane()
-            .box(self.LENGTH, self.WIDTH, self.LENGTH)
+            .box(self.LENGTH, self.WIDTH, self.LENGTH, centered=(False, True, False))
             .faces("+Z or +X")
             .shell(-self.THICKNESS)
             .faces("<X")
-            .workplane()
+            .workplane(centerOption="CenterOfMass")
             .hole(self.HOLE_DIAMETER)
             .faces("<Z")
             .workplane(centerOption="CenterOfMass")
@@ -82,7 +82,7 @@ class StandardStandardDuty90(CqObjectContainer):
     _description = "T-slot standard standard-duty 90° angle bracket: {}×{}mm."
 
     def __init__(self) -> None:
-        """Initialise dimensions."""
+        """Initialise."""
         self.brace_step_length = 0.1 * self.LENGTH
         self.brace_step_height = 0.1 * self.LENGTH
 
@@ -124,11 +124,11 @@ class StandardStandardDuty90(CqObjectContainer):
 
         result = (
             cq.Workplane()
-            .box(self.LENGTH, self.WIDTH, self.LENGTH)
+            .box(self.LENGTH, self.WIDTH, self.LENGTH, centered=(False, True, False))
             .faces("+Z or +X")
             .shell(-self.THICKNESS)
             .faces("<X")
-            .workplane()
+            .workplane(centerOption="CenterOfMass")
             .hole(self.HOLE_DIAMETER)
             .faces("<Z")
             .workplane(centerOption="CenterOfMass")

@@ -2,7 +2,7 @@
 
 import pytest
 
-from osr_mechanical.frame import Frame
+from osr_mechanical.frame.final import Frame
 
 from ..constants import TOLERANCE
 

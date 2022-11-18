@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 from enum import Enum
+from typing import Literal, Optional
 
 
 @dataclass
@@ -65,7 +66,7 @@ class Commodity(Enum):
 
 
 @dataclass
-class Part:
+class PartIdentifier:
     """Internal part identifier.
 
     Parts are identified using a significant part numbering system.
@@ -75,7 +76,26 @@ class Part:
     number: str
     commodity_type: Commodity
     description: str
+    suffix: Optional[str] = None
 
     def __str__(self) -> str:
         """Part number as a string."""
-        return f"{self.type.abbreviation}-{self.number}"
+        part_number = f"{self.type.abbreviation}-{self.number}"
+
+        if self.suffix is None:
+            return part_number
+
+        return f"{part_number}-{self.suffix}"
+
+
+@dataclass
+class NauticalSide:
+    """Side, either port or starboard."""
+
+    name: str
+    abbreviation: str
+    identifier: Literal["P", "S"]
+
+
+port = NauticalSide("port", "port", "P")
+starboard = NauticalSide("starboard", "stbd", "S")

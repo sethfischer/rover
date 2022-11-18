@@ -7,7 +7,7 @@ import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
 from osr_mechanical.bom.bom import Bom
-from osr_mechanical.bom.parts import Commodity, Part, PartTypes
+from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
 from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import MetricBoltSpecification as BoltSpec
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
@@ -194,15 +194,15 @@ class EndTapJig(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, Part]:
-        """Parts for use in bill of materials."""
-        body = Part(
+    def bom_parts(self) -> dict[str, PartIdentifier]:
+        """Part identifiers for use in bill of materials."""
+        body = PartIdentifier(
             PartTypes.additive,
             "JIG-ENDTAP",
             Commodity.FABRICATED,
             "3D printed body for end-tap jig. To fit 20 series T-slot extrusion.",
         )
-        tslot_nut = Part(
+        tslot_nut = PartIdentifier(
             PartTypes.tslot,
             "NUT-M5",
             Commodity.PURCHASED,

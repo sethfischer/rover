@@ -4,7 +4,7 @@ from typing import Union
 
 from cq_warehouse.fastener import Nut, Screw, Washer
 
-from osr_mechanical.bom.parts import Commodity, Part, PartTypes
+from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
 from osr_warehouse.fasteners import MetricBoltSpecification as MetricBoltSpec
 
 
@@ -24,7 +24,7 @@ class FastenerToPart:
         """Initialise."""
         self.part_type = PartTypes.fastner
 
-    def convert(self, fastener: Union[Screw, Nut, Washer]) -> Part:
+    def convert(self, fastener: Union[Screw, Nut, Washer]) -> PartIdentifier:
         """Generate internal part from cq_warehouse fastener."""
         if isinstance(fastener, Screw):
             return self.screw(fastener)
@@ -33,7 +33,7 @@ class FastenerToPart:
 
         raise NotImplementedError("Unsupported fastener type.")
 
-    def screw(self, screw: Screw) -> Part:
+    def screw(self, screw: Screw) -> PartIdentifier:
         """Generate internal part for a screw."""
         shaft = MetricBoltSpec.split_shaft_pitch(screw.size).pop(0)
         description = (
@@ -41,14 +41,14 @@ class FastenerToPart:
             f"{self.DESCRIPTION[screw.fastener_type]}."
         )
 
-        return Part(
+        return PartIdentifier(
             self.part_type,
             f"S{self.ABBREVIATION[screw.fastener_type]}{shaft}X{screw.length}",
             Commodity.PURCHASED,
             description,
         )
 
-    def washer(self, washer: Washer) -> Part:
+    def washer(self, washer: Washer) -> PartIdentifier:
         """Generate internal part for a washer."""
         description = (
             f"{washer.size} "
@@ -57,7 +57,7 @@ class FastenerToPart:
             + f"{self.DESCRIPTION[washer.fastener_type]}."
         )
 
-        return Part(
+        return PartIdentifier(
             self.part_type,
             f"W{self.ABBREVIATION[washer.fastener_type]}{washer.size}",
             Commodity.PURCHASED,

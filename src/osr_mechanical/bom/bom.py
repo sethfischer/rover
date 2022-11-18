@@ -10,13 +10,13 @@ import cadquery as cq
 from cq_warehouse.fastener import Nut, Screw, Washer
 
 from osr_mechanical.bom.converters import FastenerToPart
-from osr_mechanical.bom.parts import Commodity, Part, PartType
+from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartType
 
 
 class BomEntry:
     """Bill of materials entry."""
 
-    def __init__(self, part: Part) -> None:
+    def __init__(self, part: PartIdentifier) -> None:
         """Initialise."""
         self.part = part
         self.quantity = 1
@@ -39,7 +39,7 @@ class Bom(UserDict[str, BomEntry]):
         if assembly is not None:
             self.insert_assembly(assembly, deep=deep)
 
-    def insert_part(self, part: Part) -> None:
+    def insert_part(self, part: PartIdentifier) -> None:
         """Insert part into bill of materials."""
         if str(part) in self:
             self[str(part)].quantity += 1
@@ -104,7 +104,7 @@ class Bom(UserDict[str, BomEntry]):
 class BomEncoder(JSONEncoder):
     """Bill of materials encoder."""
 
-    def default(self, obj: Union[Commodity, Bom, BomEntry, Part]) -> Any:
+    def default(self, obj: Union[Commodity, Bom, BomEntry, PartIdentifier]) -> Any:
         """Bill of materials encoding."""
         if isinstance(obj, Commodity):
             return str(obj.value)
@@ -112,7 +112,7 @@ class BomEncoder(JSONEncoder):
             return vars(obj)
         if isinstance(obj, BomEntry):
             return vars(obj)
-        if isinstance(obj, Part):
+        if isinstance(obj, PartIdentifier):
             return {
                 "commodity_type": obj.commodity_type,
                 "description": obj.description,

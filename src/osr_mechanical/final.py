@@ -1,11 +1,12 @@
 """Final assembly."""
-from typing import Any
+from typing import Union
 
 import cadquery as cq
 
-from osr_mechanical.bom.parts import Part
+from osr_mechanical.bom.parts import PartIdentifier
 from osr_mechanical.electronics import ControlElectronics
-from osr_mechanical.frame import Frame
+from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
+from osr_mechanical.frame.final import Frame
 from osr_mechanical.rocker_axle import RockerAxle
 from osr_warehouse.alexco.vslot import Vslot2020
 from osr_warehouse.cqobject import CqAssemblyContainer
@@ -24,7 +25,7 @@ class FinalAssembly(CqAssemblyContainer):
 
         self._cq_object = self._make()
 
-    def cq_part(self, name: str) -> Any:
+    def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
         if result is None:
@@ -58,7 +59,9 @@ class FinalAssembly(CqAssemblyContainer):
                 name="final__rocker_axle",
                 loc=cq.Location(
                     cq.Vector(
-                        0, Frame.ROCKER_AXLE_DISTANCE_FROM_FORE - 10, Frame.HEIGHT / 2
+                        0,
+                        FRAME_DIMENSIONS.ROCKER_AXLE_DISTANCE_FROM_FORE - 10,
+                        FRAME_DIMENSIONS.HEIGHT / 2,
                     ),
                 ),
             )
@@ -71,6 +74,6 @@ class FinalAssembly(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, Part]:
-        """Parts for use in bill of materials."""
+    def bom_parts(self) -> dict[str, PartIdentifier]:
+        """Part identifiers for use in bill of materials."""
         return {}

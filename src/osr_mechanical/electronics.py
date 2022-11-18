@@ -1,4 +1,5 @@
 """Electronics mounted on DIN rail."""
+from typing import Union
 
 import cadquery as cq
 from cq_electronics.mechanical.din_clip import DinClip
@@ -7,8 +8,8 @@ from cq_electronics.rpi.rpi3b import RPi3b
 from cq_electronics.sourcekit.pitray_clip import PiTrayClip
 
 from osr_mechanical.bom.bom import Bom
-from osr_mechanical.bom.parts import Commodity, Part, PartTypes
-from osr_mechanical.frame import Frame
+from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
+from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
 from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.materials import COLORS
 
@@ -20,7 +21,7 @@ class ControlElectronics(CqAssemblyContainer):
 
     def __init__(self) -> None:
         """Initialise electronics assembly."""
-        self.din_rail_length = Frame.WIDTH - (2 * self.END_CLEARANCE)
+        self.din_rail_length = FRAME_DIMENSIONS.WIDTH - (2 * self.END_CLEARANCE)
 
         self.din_rail = TopHat(self.din_rail_length)
         self.raspberry_pi = RPi3b()
@@ -33,7 +34,7 @@ class ControlElectronics(CqAssemblyContainer):
         """Get CadQuery object."""
         return self._cq_object
 
-    def cq_part(self, name: str):
+    def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
         if result is None:
@@ -101,21 +102,21 @@ class ControlElectronics(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, Part]:
-        """Parts for use in bill of materials."""
-        din_rail = Part(
+    def bom_parts(self) -> dict[str, PartIdentifier]:
+        """Part identifiers for use in bill of materials."""
+        din_rail = PartIdentifier(
             PartTypes.din,
             "RAIL-75",
             Commodity.PURCHASED,
             f"DIN rail: 35×7.5mm, length={self.din_rail.length}mm.",
         )
-        pitray_clip = Part(
+        pitray_clip = PartIdentifier(
             PartTypes.din,
             "CLIP-RPI",
             Commodity.PURCHASED,
             "DIN rail clip: to suit Raspberry Pi 3B.",
         )
-        rpi = Part(
+        rpi = PartIdentifier(
             PartTypes.electronic,
             "RPI3B",
             Commodity.PURCHASED,

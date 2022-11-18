@@ -2,7 +2,7 @@
 
 import cadquery as cq
 
-from osr_mechanical.bom.bom import Bom, BomEntry, Commodity, Part, PartType
+from osr_mechanical.bom.bom import Bom, BomEntry, Commodity, PartIdentifier, PartType
 
 
 class TestBom:
@@ -13,9 +13,24 @@ class TestBom:
         self.commodity = Commodity.PURCHASED
         self.part_type = PartType("TT", "Test name", "Test description.")
 
-        self.part_1 = Part(self.part_type, "1", self.commodity, "Part 1 description.")
-        self.part_2 = Part(self.part_type, "2", self.commodity, "Part 2 description.")
-        self.part_3 = Part(self.part_type, "2", self.commodity, "Part 2 description.")
+        self.part_1 = PartIdentifier(
+            self.part_type,
+            "1",
+            self.commodity,
+            "Part 1 description.",
+        )
+        self.part_2 = PartIdentifier(
+            self.part_type,
+            "2",
+            self.commodity,
+            "Part 2 description.",
+        )
+        self.part_3 = PartIdentifier(
+            self.part_type,
+            "2",
+            self.commodity,
+            "Part 2 description.",
+        )
 
         self.cq_object = cq.Workplane().box(1, 1, 1)
         self.bom_parts = {
