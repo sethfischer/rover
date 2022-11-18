@@ -168,7 +168,8 @@ class ExportPNG:
 
         label_bg_color = (255, 255, 255)
         label_fg_color = (0, 0, 0)
-        text_width, text_height = font.getsize(text)
+        left, top, right, bottom = font.getbbox(text)
+        text_height = bottom - top
         label_height = ceil(text_height * 1.2)
 
         label = Image.new(image.mode, (image.width, label_height), label_bg_color)
