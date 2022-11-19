@@ -73,7 +73,7 @@ class ControlElectronics(CqAssemblyContainer):
         result = (
             cq.Assembly(
                 name="electronics_control__assembly",
-                metadata={Bom.PARTS_KEY: self.bom_parts()},
+                metadata={Bom.PARTS_KEY: self.part_identifiers()},
             )
             .add(
                 self.din_rail.cq_object,
@@ -102,7 +102,7 @@ class ControlElectronics(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, PartIdentifier]:
+    def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
         din_rail = PartIdentifier(
             PartTypes.din,

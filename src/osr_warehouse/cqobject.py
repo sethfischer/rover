@@ -27,6 +27,6 @@ class CqAssemblyContainer(CqObjectContainer):
         pass
 
     @abstractmethod
-    def bom_parts(self):
+    def part_identifiers(self):
         """Part identifiers for use in bill of materials."""
         pass

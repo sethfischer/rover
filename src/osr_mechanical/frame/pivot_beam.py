@@ -53,7 +53,7 @@ class FramePivotBeam(CqAssemblyContainer):
         assembly = (
             cq.Assembly(
                 name="frame_beam_pivot",
-                metadata={Bom.PARTS_KEY: self.bom_parts()},
+                metadata={Bom.PARTS_KEY: self.part_identifiers()},
                 color=self.aluminium_anodised_natural,
             )
             .add(
@@ -93,7 +93,7 @@ class FramePivotBeam(CqAssemblyContainer):
 
         return assembly
 
-    def bom_parts(self) -> dict[str, PartIdentifier]:
+    def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
         beam_differential_pivot = PartIdentifier(
             PartTypes.tslot,

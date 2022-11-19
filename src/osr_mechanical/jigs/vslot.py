@@ -115,7 +115,7 @@ class EndTapJig(CqAssemblyContainer):
 
         assembly = cq.Assembly(
             name="2020_end_tap_jig",
-            metadata={Bom.PARTS_KEY: self.bom_parts()},
+            metadata={Bom.PARTS_KEY: self.part_identifiers()},
         )
 
         body = self._make_body(assembly)
@@ -194,7 +194,7 @@ class EndTapJig(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, PartIdentifier]:
+    def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
         body = PartIdentifier(
             PartTypes.additive,

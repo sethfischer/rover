@@ -52,7 +52,7 @@ class RockerAxle(CqAssemblyContainer):
         result = (
             cq.Assembly(
                 name="rocker_axle",
-                metadata={Bom.PARTS_KEY: self.bom_parts()},
+                metadata={Bom.PARTS_KEY: self.part_identifiers()},
             )
             .add(
                 axle_support,
@@ -81,7 +81,7 @@ class RockerAxle(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, PartIdentifier]:
+    def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
         support = PartIdentifier(
             PartTypes.linear_motion,

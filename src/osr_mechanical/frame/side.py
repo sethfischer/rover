@@ -203,7 +203,7 @@ class FrameSide(CqAssemblyContainer):
         assembly = (
             cq.Assembly(
                 name=f"frame_side_{self.nautical_side.name}",
-                metadata={Bom.PARTS_KEY: self.bom_parts()},
+                metadata={Bom.PARTS_KEY: self.part_identifiers()},
                 color=self.aluminium_anodised_natural,
             )
             .add(
@@ -262,7 +262,7 @@ class FrameSide(CqAssemblyContainer):
 
         return assembly
 
-    def bom_parts(self) -> dict[str, PartIdentifier]:
+    def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
         post_transom = PartIdentifier(
             PartTypes.tslot,

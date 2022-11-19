@@ -74,6 +74,6 @@ class FinalAssembly(CqAssemblyContainer):
 
         return result
 
-    def bom_parts(self) -> dict[str, PartIdentifier]:
+    def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
         return {}
