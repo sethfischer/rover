@@ -40,7 +40,7 @@ class ReleaseBuilder:
                 f"Build directory '{self.build_directory}' does not exist."
             )
 
-    def build(self):
+    def build(self) -> None:
         """Build release."""
         self.remove_directory(self.release_directory)
         self.release_directory.mkdir()
@@ -138,7 +138,7 @@ class ReleaseBuilder:
         with open(csv_pathname, mode="w") as f:
             f.write(data)
 
-    def archive(self):
+    def archive(self) -> None:
         """Create release archives."""
         self.tar(
             self.release_directory,
@@ -153,13 +153,13 @@ class ReleaseBuilder:
         )
 
     @staticmethod
-    def tar(directory: Path, out_file: Path, arcname: str):
+    def tar(directory: Path, out_file: Path, arcname: str) -> None:
         """Create tar archive of release."""
         with tarfile.open(out_file, "w:gz") as tar:
             tar.add(directory, arcname=arcname)
 
     @staticmethod
-    def zip(directory: Path, out_file: Path, arcname: str):
+    def zip(directory: Path, out_file: Path, arcname: str) -> None:
         """Create zip archive of release."""
         with ZipFile(out_file, "w", ZIP_DEFLATED) as zip_file:
             for entry in directory.rglob("*"):

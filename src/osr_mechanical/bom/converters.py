@@ -1,6 +1,6 @@
 """Bill of materials converters."""
 
-from typing import Union
+from __future__ import annotations
 
 from cq_warehouse.fastener import Nut, Screw, Washer
 
@@ -24,7 +24,7 @@ class FastenerToPart:
         """Initialise."""
         self.part_type = PartTypes.fastner
 
-    def convert(self, fastener: Union[Screw, Nut, Washer]) -> PartIdentifier:
+    def convert(self, fastener: Screw | Nut | Washer) -> PartIdentifier:
         """Generate internal part from cq_warehouse fastener."""
         if isinstance(fastener, Screw):
             return self.screw(fastener)

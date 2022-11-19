@@ -1,32 +1,34 @@
 """Abstract base classes for CadQuery object containers."""
 
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
 
+import cadquery as cq
 
-class CqObjectContainer(ABC):
-    """Abstract base class for CadQuery object containers."""
+from osr_mechanical.bom.parts import PartIdentifier
+
+
+class CqAssemblyContainer(ABC):
+    """Abstract base class for CadQuery assembly containers."""
 
     @property
     @abstractmethod
-    def cq_object(self):
+    def cq_object(self) -> cq.Assembly:
         """Get CadQuery object."""
         pass
 
     @abstractmethod
-    def _make(self):
+    def _make(self) -> cq.Assembly:
         """Create CadQuery object."""
         pass
 
-
-class CqAssemblyContainer(CqObjectContainer):
-    """Abstract base class for CadQuery assembly object containers."""
-
     @abstractmethod
-    def cq_part(self, name: str):
+    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
         """Get part from CadQuery assembly."""
         pass
 
     @abstractmethod
-    def part_identifiers(self):
+    def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
         pass

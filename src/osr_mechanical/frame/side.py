@@ -1,6 +1,6 @@
 """Frame side assembly."""
 
-from typing import Union
+from __future__ import annotations
 
 import cadquery as cq
 
@@ -43,7 +43,7 @@ class FrameSide(CqAssemblyContainer):
         """Get CadQuery object."""
         return self._cq_object
 
-    def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
+    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
         if result is None:
@@ -51,11 +51,11 @@ class FrameSide(CqAssemblyContainer):
 
         return result
 
+    @staticmethod
     def _make_beam_side(
-        self,
         length: float,
         deck: bool = True,
-        differential_pivot_beam_offset: Union[float, None] = None,
+        differential_pivot_beam_offset: float | None = None,
     ):
         """Create side beam."""
         beam_fore_y = (-(DIM.TRANSOM_LENGTH - Vslot2020.WIDTH) - DIM.LENGTH) / 2
@@ -156,7 +156,8 @@ class FrameSide(CqAssemblyContainer):
             .hole(M5_CLEARANCE_CLOSE_DIAMETER)
         )
 
-    def _make_post_transom(self, height: float):
+    @staticmethod
+    def _make_post_transom(height: float):
         """Create transom post."""
         return (
             Vslot2020()

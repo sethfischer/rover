@@ -27,7 +27,7 @@ class Vslot2020:
     WIDTH = HEIGHT = 20
     COUNTERBORE_DEPTH = 6
 
-    def __new__(cls):
+    def __new__(cls) -> "Vslot2020":
         """Initialise profile."""
         if cls._instance is None:
             cls._instance = super(Vslot2020, cls).__new__(cls)
@@ -64,7 +64,7 @@ class Vslot2040:
     DISTANCE_BETWEEN_CENTERS = 20
     COUNTERBORE_DEPTH = 6
 
-    def __new__(cls):
+    def __new__(cls) -> "Vslot2040":
         """Initialise profile."""
         if cls._instance is None:
             cls._instance = super(Vslot2040, cls).__new__(cls)

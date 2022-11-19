@@ -1,10 +1,12 @@
 """Bill of materials utilities."""
 
+from __future__ import annotations
+
 import csv
 import io
 from collections import UserDict
 from json import JSONEncoder, dumps
-from typing import Any, Optional, Union
+from typing import Any, Optional
 
 import cadquery as cq
 from cq_warehouse.fastener import Nut, Screw, Washer
@@ -104,7 +106,7 @@ class Bom(UserDict[str, BomEntry]):
 class BomEncoder(JSONEncoder):
     """Bill of materials encoder."""
 
-    def default(self, obj: Union[Commodity, Bom, BomEntry, PartIdentifier]) -> Any:
+    def default(self, obj: Commodity | Bom | BomEntry | PartIdentifier) -> Any:
         """Bill of materials encoding."""
         if isinstance(obj, Commodity):
             return str(obj.value)

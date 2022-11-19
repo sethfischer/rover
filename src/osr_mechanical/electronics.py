@@ -1,5 +1,6 @@
 """Electronics mounted on DIN rail."""
-from typing import Union
+
+from __future__ import annotations
 
 import cadquery as cq
 from cq_electronics.mechanical.din_clip import DinClip
@@ -34,7 +35,7 @@ class ControlElectronics(CqAssemblyContainer):
         """Get CadQuery object."""
         return self._cq_object
 
-    def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
+    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
         if result is None:

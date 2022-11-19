@@ -3,8 +3,9 @@
 `Aluminium Extrusion Company <https://www.alexco.co.nz/>`_.
 """
 
+from __future__ import annotations
+
 from math import radians, sqrt, tan
-from typing import Union
 
 import cadquery as cq
 
@@ -18,7 +19,7 @@ class Vslot20BoreSlot(CqObjectContainer):
     Consists of a channel and a groove.
     """
 
-    def __init__(self, mirror: bool = False, x_offset: Union[float, int] = 0) -> None:
+    def __init__(self, mirror: bool = False, x_offset: float | int = 0) -> None:
         """Initialise dimensions."""
         self.mirror = mirror
         self.x_offset = x_offset
