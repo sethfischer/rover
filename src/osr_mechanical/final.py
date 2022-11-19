@@ -4,12 +4,12 @@ from typing import Union
 import cadquery as cq
 
 from osr_mechanical.bom.parts import PartIdentifier
+from osr_mechanical.cqobject import CqAssemblyContainer
 from osr_mechanical.electronics import ControlElectronics
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
 from osr_mechanical.frame.final import Frame
 from osr_mechanical.rocker_axle import RockerAxle
 from osr_warehouse.alexco.vslot import Vslot2020
-from osr_warehouse.cqobject import CqAssemblyContainer
 
 
 class FinalAssembly(CqAssemblyContainer):
@@ -25,6 +25,11 @@ class FinalAssembly(CqAssemblyContainer):
 
         self._cq_object = self._make()
 
+    @property
+    def cq_object(self) -> cq.Assembly:
+        """Get CadQuery object."""
+        return self._cq_object
+
     def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
@@ -32,11 +37,6 @@ class FinalAssembly(CqAssemblyContainer):
             raise Exception("Part is not a valid Shape or Workplane.")
 
         return result
-
-    @property
-    def cq_object(self) -> cq.Assembly:
-        """Get CadQuery object."""
-        return self._cq_object
 
     def _make(self) -> cq.Assembly:
         """Make assembly."""

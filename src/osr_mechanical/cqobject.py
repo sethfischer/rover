@@ -16,3 +16,17 @@ class CqObjectContainer(ABC):
     def _make(self):
         """Create CadQuery object."""
         pass
+
+
+class CqAssemblyContainer(CqObjectContainer):
+    """Abstract base class for CadQuery assembly object containers."""
+
+    @abstractmethod
+    def cq_part(self, name: str):
+        """Get part from CadQuery assembly."""
+        pass
+
+    @abstractmethod
+    def part_identifiers(self):
+        """Part identifiers for use in bill of materials."""
+        pass

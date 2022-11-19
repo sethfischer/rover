@@ -9,8 +9,8 @@ from cq_electronics.sourcekit.pitray_clip import PiTrayClip
 
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
+from osr_mechanical.cqobject import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
-from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.materials import COLORS
 
 

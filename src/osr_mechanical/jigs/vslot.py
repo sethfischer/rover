@@ -8,7 +8,7 @@ from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
-from osr_warehouse.cqobject import CqAssemblyContainer
+from osr_mechanical.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import MetricBoltSpecification as BoltSpec
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
 from osr_warehouse.utilities import TINY_LENGTH

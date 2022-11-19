@@ -5,12 +5,12 @@ from typing import Union
 import cadquery as cq
 
 from osr_mechanical.bom.parts import PartIdentifier, port, starboard
+from osr_mechanical.cqobject import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS as DIM
 from osr_mechanical.frame.fore import FrameFore
 from osr_mechanical.frame.pivot_beam import FramePivotBeam
 from osr_mechanical.frame.side import FrameSide
 from osr_warehouse.alexco.vslot import Vslot2020
-from osr_warehouse.cqobject import CqAssemblyContainer
 
 
 class Frame(CqAssemblyContainer):

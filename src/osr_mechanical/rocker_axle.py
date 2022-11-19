@@ -6,8 +6,8 @@ import cadquery as cq
 
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
+from osr_mechanical.cqobject import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
-from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.generic.linear_motion.shf import SHF
 from osr_warehouse.materials import COLORS
 
@@ -29,6 +29,11 @@ class RockerAxle(CqAssemblyContainer):
 
         self._cq_object = self._make()
 
+    @property
+    def cq_object(self) -> cq.Assembly:
+        """Get CadQuery object."""
+        return self._cq_object
+
     def cq_part(self, name: str) -> Union[cq.Shape, cq.Workplane]:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
@@ -36,11 +41,6 @@ class RockerAxle(CqAssemblyContainer):
             raise Exception("Part is not a valid Shape or Workplane.")
 
         return result
-
-    @property
-    def cq_object(self) -> cq.Assembly:
-        """Get CadQuery object."""
-        return self._cq_object
 
     def _make(self) -> cq.Assembly:
         """Make assembly."""

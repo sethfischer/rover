@@ -6,9 +6,9 @@ import cadquery as cq
 
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, NauticalSide, PartIdentifier, PartTypes
+from osr_mechanical.cqobject import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS as DIM
 from osr_warehouse.alexco import Vslot2020, Vslot2040
-from osr_warehouse.cqobject import CqAssemblyContainer
 from osr_warehouse.fasteners import M5_CLEARANCE_CLOSE_DIAMETER, M5_COUNTERBORE_DIAMETER
 from osr_warehouse.generic.linear_motion.shf import SHFSeriesDimensions
 from osr_warehouse.materials import COLORS
