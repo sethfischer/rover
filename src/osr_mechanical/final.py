@@ -44,7 +44,7 @@ class FinalAssembly(CqAssemblyContainer):
         control_electronics_loc = cq.Location(
             cq.Vector(
                 self.control_electronics.din_rail.length / 2,
-                70,
+                80,
                 Vslot2020.WIDTH + self.control_electronics.din_rail.depth / 2,
             ),
         )
@@ -61,7 +61,7 @@ class FinalAssembly(CqAssemblyContainer):
                 loc=cq.Location(
                     cq.Vector(
                         0,
-                        FRAME_DIMENSIONS.ROCKER_AXLE_DISTANCE_FROM_FORE - 10,
+                        FRAME_DIMENSIONS.ROCKER_AXLE_DISTANCE_FROM_FORE,
                         FRAME_DIMENSIONS.HEIGHT / 2,
                     ),
                 ),
