@@ -27,7 +27,7 @@ class FrameDimensions:
 
     BEAM_SIDE_LENGTH: float = field(init=False)
     LATERAL_BEAM_LENGTH: float = field(init=False)
-    POST_HEIGHT: float = field(init=False)
+    PILLAR_HEIGHT: float = field(init=False)
 
     def __post_init__(self) -> None:
         """Set calculated values."""
@@ -43,7 +43,7 @@ class FrameDimensions:
         )
         object.__setattr__(
             self,
-            "POST_HEIGHT",
+            "PILLAR_HEIGHT",
             self.HEIGHT - self.tslot_width * 2,
         )
 

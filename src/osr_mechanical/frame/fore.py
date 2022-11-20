@@ -50,19 +50,19 @@ class FrameFore(CqAssemblyContainer):
         return Vslot2020().make(length)
 
     @staticmethod
-    def _make_post(height: float):
-        """Create post."""
+    def _make_pillar(height: float):
+        """Create pillar."""
         return Vslot2020().make(height)
 
     def _make(self) -> cq.Assembly:
         """Create assembly."""
-        post_fore = self._make_post(DIM.POST_HEIGHT)
+        pillar_fore = self._make_pillar(DIM.PILLAR_HEIGHT)
         beam_lateral = self._make_beam_lateral(DIM.LATERAL_BEAM_LENGTH)
 
-        # position starboard post
+        # position starboard pillar
         # rotate to place center bore slot on inside of frame
         # translate in X direction so base is on the XY plane
-        post_starboard = post_fore.rotateAboutCenter((0, 0, 1), 180).translate(
+        pillar_starboard = pillar_fore.rotateAboutCenter((0, 0, 1), 180).translate(
             (
                 -DIM.LATERAL_BEAM_LENGTH / 2 - Vslot2020.WIDTH / 2,
                 Vslot2020.WIDTH / 2,
@@ -77,12 +77,12 @@ class FrameFore(CqAssemblyContainer):
                 color=self.aluminium_anodised_natural,
             )
             .add(
-                post_starboard,
-                name="frame_fore__post_starboard",
+                pillar_starboard,
+                name="frame_fore__pillar_starboard",
             )
             .add(
-                post_fore,
-                name="frame_fore__post_port",
+                pillar_fore,
+                name="frame_fore__pillar_port",
                 loc=cq.Location(
                     cq.Vector(
                         DIM.LATERAL_BEAM_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -175,14 +175,14 @@ class FrameFore(CqAssemblyContainer):
 
     def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
-        post_fore = PartIdentifier(
+        pillar_fore = PartIdentifier(
             PartTypes.tslot,
-            "POST-FORE",
+            "PILLAR-FORE",
             Commodity.FABRICATED,
             (
-                f"Frame fore post: "
+                f"Frame fore pillar: "
                 f"T-slot "
-                f"{Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, length={DIM.POST_HEIGHT}mm."
+                f"{Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, length={DIM.PILLAR_HEIGHT}mm."
             ),
         )
         beam_lateral = PartIdentifier(
@@ -203,8 +203,8 @@ class FrameFore(CqAssemblyContainer):
         )
 
         return {
-            "frame_fore__post_starboard": post_fore,
-            "frame_fore__post_port": post_fore,
+            "frame_fore__pillar_starboard": pillar_fore,
+            "frame_fore__pillar_port": pillar_fore,
             "frame_fore__beam_belly": beam_lateral,
             "frame_fore__beam_deck": beam_lateral,
             "frame_fore__bracket_starboard_belly": bracket_light_duty,

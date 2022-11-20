@@ -29,7 +29,7 @@ class FrameSide(CqAssemblyContainer):
             SHFSeriesDimensions.shf8.between_mounting_holes
         )
 
-        self.post_transom_height = DIM.HEIGHT + DIM.TRANSOM_HEIGHT
+        self.pillar_transom_height = DIM.HEIGHT + DIM.TRANSOM_HEIGHT
 
         self.aluminium_cast = cq.Color(*COLORS["aluminium_cast"])
         self.aluminium_anodised_natural = cq.Color(
@@ -60,7 +60,7 @@ class FrameSide(CqAssemblyContainer):
         """Create side beam."""
         beam_fore_y = (-(DIM.TRANSOM_LENGTH - Vslot2020.WIDTH) - DIM.LENGTH) / 2
         hole_fore_y = beam_fore_y + (Vslot2020.WIDTH / 2)
-        hole_fore_rocker_post_y = (
+        hole_fore_rocker_pillar_y = (
             beam_fore_y + DIM.ROCKER_AXLE_DISTANCE_FROM_FORE - Vslot2040.WIDTH / 2
         )
 
@@ -89,22 +89,22 @@ class FrameSide(CqAssemblyContainer):
         )
 
         if deck:
-            rocker_post_hole_face_selector = ">Y"
+            rocker_pillar_hole_face_selector = ">Y"
         else:
-            rocker_post_hole_face_selector = "<Y"
+            rocker_pillar_hole_face_selector = "<Y"
 
         result = (
-            result.faces(rocker_post_hole_face_selector)
+            result.faces(rocker_pillar_hole_face_selector)
             .workplane(centerOption="CenterOfMass")
-            .tag("workplane_rocker_post_holes")
-            .center(0, hole_fore_rocker_post_y)
+            .tag("workplane_rocker_pillar_holes")
+            .center(0, hole_fore_rocker_pillar_y)
             .cboreHole(
                 M5_CLEARANCE_CLOSE_DIAMETER,
                 M5_COUNTERBORE_DIAMETER,
                 Vslot2020.COUNTERBORE_DEPTH,
                 depth=None,
             )
-            .tag("hole_fore_rocker_post")
+            .tag("hole_fore_rocker_pillar")
             .center(0, Vslot2040.DISTANCE_BETWEEN_CENTERS)
             .cboreHole(
                 M5_CLEARANCE_CLOSE_DIAMETER,
@@ -112,7 +112,7 @@ class FrameSide(CqAssemblyContainer):
                 Vslot2020.COUNTERBORE_DEPTH,
                 depth=None,
             )
-            .tag("hole_aft_rocker_post")
+            .tag("hole_aft_rocker_pillar")
         )
 
         if differential_pivot_beam_offset is not None:
@@ -136,8 +136,8 @@ class FrameSide(CqAssemblyContainer):
 
         return result
 
-    def _make_post_rocker(self, height: float):
-        """Create rocker axle post."""
+    def _make_pillar_rocker(self, height: float):
+        """Create rocker axle pillar."""
         half_between_shf_mounting_holes = self.between_shf_mounting_holes / 2
         shf_mounting_hole_points = [
             (0, half_between_shf_mounting_holes),
@@ -157,8 +157,8 @@ class FrameSide(CqAssemblyContainer):
         )
 
     @staticmethod
-    def _make_post_transom(height: float):
-        """Create transom post."""
+    def _make_pillar_transom(height: float):
+        """Create transom pillar."""
         return (
             Vslot2020()
             .make(height)
@@ -184,8 +184,8 @@ class FrameSide(CqAssemblyContainer):
 
     def _make(self) -> cq.Assembly:
         """Create assembly."""
-        post_rocker = self._make_post_rocker(DIM.POST_HEIGHT)
-        post_transom = self._make_post_transom(self.post_transom_height)
+        pillar_rocker = self._make_pillar_rocker(DIM.PILLAR_HEIGHT)
+        pillar_transom = self._make_pillar_transom(self.pillar_transom_height)
 
         beam_deck = self._make_beam_side(
             DIM.BEAM_SIDE_LENGTH,
@@ -208,8 +208,8 @@ class FrameSide(CqAssemblyContainer):
                 color=self.aluminium_anodised_natural,
             )
             .add(
-                post_transom,
-                name=f"frame_side_{self.nautical_side.name}__post_transom",
+                pillar_transom,
+                name=f"frame_side_{self.nautical_side.name}__pillar_transom",
                 loc=cq.Location(
                     cq.Vector(
                         0,
@@ -221,8 +221,8 @@ class FrameSide(CqAssemblyContainer):
                 ),
             )
             .add(
-                post_rocker,
-                name=f"frame_side_{self.nautical_side.name}__post_rocker",
+                pillar_rocker,
+                name=f"frame_side_{self.nautical_side.name}__pillar_rocker",
                 loc=cq.Location(
                     cq.Vector(
                         0,
@@ -265,24 +265,24 @@ class FrameSide(CqAssemblyContainer):
 
     def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
-        post_transom = PartIdentifier(
+        pillar_transom = PartIdentifier(
             PartTypes.tslot,
-            "POST-TRANS",
+            "PILLAR-TRANS",
             Commodity.FABRICATED,
             (
-                f"Frame transom post: "
+                f"Frame transom pillar: "
                 f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
-                f"length={self.post_transom_height}mm."
+                f"length={self.pillar_transom_height}mm."
             ),
         )
-        post_rocker = PartIdentifier(
+        pillar_rocker = PartIdentifier(
             PartTypes.tslot,
-            "POST-ROCK",
+            "PILLAR-ROCK",
             Commodity.FABRICATED,
             (
-                f"Frame rocker axle post: "
+                f"Frame rocker axle pillar: "
                 f"T-slot {Vslot2040.WIDTH}×{Vslot2040.HEIGHT}mm, "
-                f"length={DIM.POST_HEIGHT}mm."
+                f"length={DIM.PILLAR_HEIGHT}mm."
             ),
         )
         beam_belly = PartIdentifier(
@@ -309,8 +309,8 @@ class FrameSide(CqAssemblyContainer):
         )
 
         return {
-            f"frame_side_{self.nautical_side.name}__post_transom": post_transom,
-            f"frame_side_{self.nautical_side.name}__post_rocker": post_rocker,
+            f"frame_side_{self.nautical_side.name}__pillar_transom": pillar_transom,
+            f"frame_side_{self.nautical_side.name}__pillar_rocker": pillar_rocker,
             f"frame_side_{self.nautical_side.name}__beam_belly": beam_belly,
             f"frame_side_{self.nautical_side.name}__beam_deck": beam_deck,
         }
