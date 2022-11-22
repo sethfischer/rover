@@ -6,7 +6,7 @@ import cadquery as cq
 
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, NauticalSide, PartIdentifier, PartTypes
-from osr_mechanical.cqobject import CqAssemblyContainer
+from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS as DIM
 from osr_warehouse.alexco import Vslot2020, Vslot2040
 from osr_warehouse.fasteners import M5_CLEARANCE_CLOSE_DIAMETER, M5_COUNTERBORE_DIAMETER
@@ -37,19 +37,6 @@ class FrameSide(CqAssemblyContainer):
         )
 
         self._cq_object = self._make()
-
-    @property
-    def cq_object(self) -> cq.Assembly:
-        """Get CadQuery object."""
-        return self._cq_object
-
-    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
-        """Get part from CadQuery assembly."""
-        result = self._cq_object.objects[name].obj
-        if result is None:
-            raise Exception("Part is not a valid Shape or Workplane.")
-
-        return result
 
     @staticmethod
     def _make_beam_side(

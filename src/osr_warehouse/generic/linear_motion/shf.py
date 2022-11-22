@@ -6,7 +6,7 @@ from typing import Any
 
 import cadquery as cq
 
-from osr_warehouse.cqobject import CqObjectContainer
+from osr_warehouse.cq_containers import CqObjectContainer
 from osr_warehouse.point2d import Point2D
 from osr_warehouse.utilities import TINY_LENGTH
 
@@ -104,11 +104,6 @@ class SHF(CqObjectContainer):
     def description(self) -> str:
         """Object description."""
         return self._description.format(self.shaft_diameter)
-
-    @property
-    def cq_object(self) -> Any:
-        """Get CadQuery object."""
-        return self._cq_object.val()
 
     def _make(self) -> cq.Workplane:
         """Make SHF shaft support."""

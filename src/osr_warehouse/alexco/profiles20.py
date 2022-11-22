@@ -9,7 +9,7 @@ from math import radians, sqrt, tan
 
 import cadquery as cq
 
-from osr_warehouse.cqobject import CqObjectContainer
+from osr_warehouse.cq_containers import CqObjectContainer
 from osr_warehouse.point2d import Point2D
 
 
@@ -52,11 +52,6 @@ class Vslot20BoreSlot(CqObjectContainer):
             self.bore_groove_vertex = self.bore_groove_vertex.reflect_y()
 
         self._cq_object = self._make()
-
-    @property
-    def cq_object(self):
-        """Get CadQuery object."""
-        return self._cq_object
 
     def _make(self, assemble=True):
         """Create bore slot sketch."""
@@ -128,11 +123,6 @@ class Vslot2020Profile(CqObjectContainer):
         )
 
         self._cq_object = self._make()
-
-    @property
-    def cq_object(self):
-        """Get CadQuery object."""
-        return self._cq_object
 
     def _make(self, fillet: bool = True):
         """Create profile."""
@@ -412,11 +402,6 @@ class Vslot2040Profile(CqObjectContainer):
         )
 
         self._cq_object = self._make()
-
-    @property
-    def cq_object(self):
-        """Get CadQuery object."""
-        return self._cq_object
 
     def _make(self):
         """Make profile."""

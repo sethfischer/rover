@@ -8,7 +8,7 @@ from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
-from osr_mechanical.cqobject import CqAssemblyContainer
+from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_warehouse.fasteners import MetricBoltSpecification as BoltSpec
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
 from osr_warehouse.utilities import TINY_LENGTH
@@ -64,19 +64,6 @@ class EndTapJig(CqAssemblyContainer):
         self.washer = self._make_washer(bolt_spec)
 
         self._cq_object = self._make()
-
-    @property
-    def cq_object(self) -> cq.Assembly:
-        """Get CadQuery object."""
-        return self._cq_object
-
-    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
-        """Get part from CadQuery assembly."""
-        result = self._cq_object.objects[name].obj
-        if result is None:
-            raise Exception("Part is not a valid Shape or Workplane.")
-
-        return result
 
     @staticmethod
     def _make_screw(bolt_spec: BoltSpec, simple: bool = True) -> SocketHeadCapScrew:

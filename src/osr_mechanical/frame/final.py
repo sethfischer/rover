@@ -5,7 +5,7 @@ from __future__ import annotations
 import cadquery as cq
 
 from osr_mechanical.bom.parts import PartIdentifier, port, starboard
-from osr_mechanical.cqobject import CqAssemblyContainer
+from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS as DIM
 from osr_mechanical.frame.fore import FrameFore
 from osr_mechanical.frame.pivot_beam import FramePivotBeam
@@ -27,19 +27,6 @@ class Frame(CqAssemblyContainer):
         self.side_starboard = FrameSide(starboard)
 
         self._cq_object = self._make()
-
-    @property
-    def cq_object(self) -> cq.Assembly:
-        """Get CadQuery object."""
-        return self._cq_object
-
-    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
-        """Get part from CadQuery assembly."""
-        result = self._cq_object.objects[name].obj
-        if result is None:
-            raise Exception("Part is not a valid Shape or Workplane.")
-
-        return result
 
     def _make(self) -> cq.Assembly:
         """Make assembly."""

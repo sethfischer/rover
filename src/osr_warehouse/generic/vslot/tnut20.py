@@ -5,7 +5,7 @@ import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import SocketHeadCapScrew
 
-from osr_warehouse.cqobject import CqObjectContainer
+from osr_warehouse.cq_containers import CqObjectContainer
 
 
 class SlidingTNut20(CqObjectContainer):
@@ -38,11 +38,6 @@ class SlidingTNut20(CqObjectContainer):
     def description(self) -> str:
         """Object description."""
         return self._description.format(self.size)
-
-    @property
-    def cq_object(self) -> cq.Workplane:
-        """20 mm series V-slot sliding T-nut."""
-        return self._cq_object
 
     def profile(self) -> cq.Sketch:
         """T-nut profile sketch."""

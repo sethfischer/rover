@@ -12,4 +12,4 @@ class TestSHF8:
 
     def test_is_valid(self):
         """Test object is valid."""
-        assert self.shf8.isValid()
+        assert self.shf8.val().isValid()

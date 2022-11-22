@@ -12,23 +12,27 @@ from osr_mechanical.bom.parts import PartIdentifier
 class CqAssemblyContainer(ABC):
     """Abstract base class for CadQuery assembly containers."""
 
+    _cq_object: cq.Assembly
+
     @property
-    @abstractmethod
     def cq_object(self) -> cq.Assembly:
         """Get CadQuery object."""
-        pass
+        return self._cq_object
+
+    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
+        """Get part from CadQuery assembly."""
+        result = self._cq_object.objects[name].obj
+        if result is None:
+            raise Exception("Part is not a valid Shape or Workplane.")
+
+        return result
 
     @abstractmethod
     def _make(self) -> cq.Assembly:
         """Create CadQuery object."""
-        pass
-
-    @abstractmethod
-    def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
-        """Get part from CadQuery assembly."""
-        pass
+        ...
 
     @abstractmethod
     def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
-        pass
+        ...

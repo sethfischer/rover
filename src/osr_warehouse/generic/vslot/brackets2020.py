@@ -2,7 +2,7 @@
 
 import cadquery as cq
 
-from osr_warehouse.cqobject import CqObjectContainer
+from osr_warehouse.cq_containers import CqObjectContainer
 
 
 class StandardLightDuty90(CqObjectContainer):
@@ -27,11 +27,6 @@ class StandardLightDuty90(CqObjectContainer):
     def description(self) -> str:
         """Object description."""
         return self._description.format(self.LENGTH, self.WIDTH)
-
-    @property
-    def cq_object(self):
-        """Get CadQuery object."""
-        return self._cq_object
 
     def _make(self) -> cq.Workplane:
         """Make standard light duty 90° angle bracket."""
@@ -92,11 +87,6 @@ class StandardStandardDuty90(CqObjectContainer):
     def description(self) -> str:
         """Object description."""
         return self._description.format(self.LENGTH, self.WIDTH)
-
-    @property
-    def cq_object(self):
-        """Get CadQuery object."""
-        return self._cq_object
 
     def _make(self) -> cq.Workplane:
         """Make standard standard-duty 90° angle bracket."""
