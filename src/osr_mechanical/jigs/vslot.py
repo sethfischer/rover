@@ -34,6 +34,8 @@ class EndTapJig(CqAssemblyContainer):
         self.clearance = clearance
         self.simple = simple
 
+        self._name = "2020_end_tap_jig"
+
         self.thickness = 6
 
         self.vslot_width = 20
@@ -101,7 +103,7 @@ class EndTapJig(CqAssemblyContainer):
         )
 
         assembly = cq.Assembly(
-            name="2020_end_tap_jig",
+            name=self.name,
             metadata={Bom.PARTS_KEY: self.part_identifiers()},
         )
 
@@ -109,16 +111,16 @@ class EndTapJig(CqAssemblyContainer):
 
         assembly.add(
             body,
-            name="2020_end_tap_jig__body",
+            name=self.sub_assembly_name("body"),
             color=cq.Color("goldenrod2"),
         )
         assembly.add(
             tslot_nut,
-            name="2020_end_tap_jig__tslot_nut_left",
+            name=self.sub_assembly_name("tslot_nut_left"),
         )
         assembly.add(
             tslot_nut.mirror("ZX"),
-            name="2020_end_tap_jig__tslot_nut_right",
+            name=self.sub_assembly_name("tslot_nut_right"),
         )
 
         return assembly
@@ -197,7 +199,7 @@ class EndTapJig(CqAssemblyContainer):
         )
 
         return {
-            "2020_end_tap_jig__body": body,
-            "2020_end_tap_jig__tslot_nut_left": tslot_nut,
-            "2020_end_tap_jig__tslot_nut_right": tslot_nut,
+            self.sub_assembly_name("body"): body,
+            self.sub_assembly_name("tslot_nut_left"): tslot_nut,
+            self.sub_assembly_name("tslot_nut_right"): tslot_nut,
         }

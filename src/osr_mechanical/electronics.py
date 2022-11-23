@@ -21,7 +21,9 @@ class ControlElectronics(CqAssemblyContainer):
     END_CLEARANCE = 2
 
     def __init__(self) -> None:
-        """Initialise electronics assembly."""
+        """Initialise."""
+        self._name = "electronics_control"
+
         self.din_rail_length = FRAME_DIMENSIONS.WIDTH - (2 * self.END_CLEARANCE)
 
         self.din_rail = TopHat(self.din_rail_length)
@@ -60,17 +62,17 @@ class ControlElectronics(CqAssemblyContainer):
 
         result = (
             cq.Assembly(
-                name="electronics_control__assembly",
+                name=self.name,
                 metadata={Bom.PARTS_KEY: self.part_identifiers()},
             )
             .add(
                 self.din_rail.cq_object,
-                name="electronics_control__din_rail",
+                name=self.sub_assembly_name("din_rail"),
                 color=cq.Color(*COLORS["aluminium_anodised_natural"]),
             )
             .add(
                 self.pitray_clip.cq_object,
-                name="electronics_control__pitray_clip",
+                name=self.sub_assembly_name("pitray_clip"),
                 loc=cq.Location(
                     cq.Vector(rpi_x_offset, -8, pitray_clip_z),
                     cq.Vector(0, 0, 1),
@@ -79,7 +81,7 @@ class ControlElectronics(CqAssemblyContainer):
             )
             .add(
                 self.raspberry_pi.cq_object,
-                name="electronics_control__rpi",
+                name=self.sub_assembly_name("rpi"),
                 loc=cq.Location(
                     cq.Vector(rpi_x, 2, rpi_z),
                     cq.Vector(0, 1, 0),
@@ -112,7 +114,7 @@ class ControlElectronics(CqAssemblyContainer):
         )
 
         return {
-            "electronics_control__din_rail": din_rail,
-            "electronics_control__pitray_clip": pitray_clip,
-            "electronics_control__rpi": rpi,
+            self.sub_assembly_name("din_rail"): din_rail,
+            self.sub_assembly_name("pitray_clip"): pitray_clip,
+            self.sub_assembly_name("rpi"): rpi,
         }

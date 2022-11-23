@@ -20,6 +20,8 @@ class Frame(CqAssemblyContainer):
         """Initialise."""
         self.simple = simple
 
+        self._name = "frame"
+
         self.beam_lateral = Vslot2020().make(DIM.LATERAL_BEAM_LENGTH)
         self.beam_pivot = FramePivotBeam()
         self.fore = FrameFore()
@@ -33,24 +35,24 @@ class Frame(CqAssemblyContainer):
         side_x_offset = (DIM.WIDTH - Vslot2020.WIDTH) / 2
 
         result = (
-            cq.Assembly(name="frame")
+            cq.Assembly(name=self.name)
             .add(
                 self.side_starboard.cq_object,
-                name="frame__side_starboard",
+                name=self.sub_assembly_name("side_starboard"),
                 loc=cq.Location(cq.Vector(-side_x_offset, 0, 0)),
             )
             .add(
                 self.side_port.cq_object,
-                name="frame__side_port",
+                name=self.sub_assembly_name("side_port"),
                 loc=cq.Location(cq.Vector(side_x_offset, 0, 0)),
             )
             .add(
                 self.fore.cq_object,
-                name="frame__fore",
+                name=self.sub_assembly_name("fore"),
             )
             .add(
                 self.beam_pivot.cq_object,
-                name="frame__beam_pivot",
+                name=self.sub_assembly_name("beam_pivot"),
                 loc=cq.Location(
                     cq.Vector(
                         -DIM.LATERAL_BEAM_LENGTH / 2,
@@ -61,7 +63,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 self.beam_lateral,
-                name="frame__beam_lateral_deck",
+                name=self.sub_assembly_name("beam_lateral_deck"),
                 loc=cq.Location(
                     cq.Vector(
                         -DIM.LATERAL_BEAM_LENGTH / 2,
@@ -74,7 +76,7 @@ class Frame(CqAssemblyContainer):
             )
             .add(
                 self.beam_lateral,
-                name="frame__beam_lateral_belly",
+                name=self.sub_assembly_name("beam_lateral_belly"),
                 loc=cq.Location(
                     cq.Vector(
                         -DIM.LATERAL_BEAM_LENGTH / 2,

@@ -17,8 +17,10 @@ class FinalAssembly(CqAssemblyContainer):
     """Final assembly."""
 
     def __init__(self, simple: bool = False):
-        """Initialise final assembly."""
+        """Initialise."""
         self.simple = simple
+
+        self._name = "final"
 
         self.frame = Frame(simple=self.simple)
         self.rocker_axle = RockerAxle()
@@ -37,14 +39,14 @@ class FinalAssembly(CqAssemblyContainer):
         )
 
         result = (
-            cq.Assembly(name="final__assembly")
+            cq.Assembly(name=self.name)
             .add(
                 self.frame.cq_object,
-                name="final__frame",
+                name=self.sub_assembly_name("frame"),
             )
             .add(
                 self.rocker_axle.cq_object,
-                name="final__rocker_axle",
+                name=self.sub_assembly_name("rocker_axle"),
                 loc=cq.Location(
                     cq.Vector(
                         0,
@@ -55,7 +57,7 @@ class FinalAssembly(CqAssemblyContainer):
             )
             .add(
                 self.control_electronics.cq_object,
-                name="final__control_electronics",
+                name=self.sub_assembly_name("control_electronics"),
                 loc=control_electronics_loc,
             )
         )

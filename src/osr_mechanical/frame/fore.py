@@ -22,6 +22,8 @@ class FrameFore(CqAssemblyContainer):
         """Initialise."""
         self.simple = simple
 
+        self._name = "frame_fore"
+
         self.aluminium_cast = cq.Color(*COLORS["aluminium_cast"])
         self.aluminium_anodised_natural = cq.Color(
             *COLORS["aluminium_anodised_natural"]
@@ -59,17 +61,17 @@ class FrameFore(CqAssemblyContainer):
 
         assembly = (
             cq.Assembly(
-                name="frame_fore",
+                name=self.name,
                 metadata={Bom.PARTS_KEY: self.part_identifiers()},
                 color=self.aluminium_anodised_natural,
             )
             .add(
                 pillar_starboard,
-                name="frame_fore__pillar_starboard",
+                name=self.sub_assembly_name("pillar_starboard"),
             )
             .add(
                 pillar_fore,
-                name="frame_fore__pillar_port",
+                name=self.sub_assembly_name("pillar_port"),
                 loc=cq.Location(
                     cq.Vector(
                         DIM.LATERAL_BEAM_LENGTH / 2 + Vslot2020.WIDTH / 2,
@@ -82,7 +84,7 @@ class FrameFore(CqAssemblyContainer):
             )
             .add(
                 beam_lateral,
-                name="frame_fore__beam_belly",
+                name=self.sub_assembly_name("beam_belly"),
                 loc=cq.Location(
                     cq.Vector(
                         -DIM.LATERAL_BEAM_LENGTH / 2,
@@ -95,7 +97,7 @@ class FrameFore(CqAssemblyContainer):
             )
             .add(
                 beam_lateral,
-                name="frame_fore__beam_deck",
+                name=self.sub_assembly_name("beam_deck"),
                 loc=cq.Location(
                     cq.Vector(
                         -DIM.LATERAL_BEAM_LENGTH / 2,
@@ -108,7 +110,7 @@ class FrameFore(CqAssemblyContainer):
             )
             .add(
                 self.bracket_light_duty.cq_object,
-                name="frame_fore__bracket_starboard_belly",
+                name=self.sub_assembly_name("bracket_starboard_belly"),
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -120,7 +122,7 @@ class FrameFore(CqAssemblyContainer):
             )
             .add(
                 self.bracket_light_duty.cq_object.mirror("XY"),
-                name="frame_fore__bracket_starboard_deck",
+                name=self.sub_assembly_name("bracket_starboard_deck"),
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -132,7 +134,7 @@ class FrameFore(CqAssemblyContainer):
             )
             .add(
                 self.bracket_light_duty.cq_object.mirror("ZY"),
-                name="frame_fore__bracket_port_belly",
+                name=self.sub_assembly_name("bracket_port_belly"),
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -144,7 +146,7 @@ class FrameFore(CqAssemblyContainer):
             )
             .add(
                 self.bracket_light_duty.cq_object,
-                name="frame_fore__bracket_port_deck",
+                name=self.sub_assembly_name("bracket_port_deck"),
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -190,12 +192,12 @@ class FrameFore(CqAssemblyContainer):
         )
 
         return {
-            "frame_fore__pillar_starboard": pillar_fore,
-            "frame_fore__pillar_port": pillar_fore,
-            "frame_fore__beam_belly": beam_lateral,
-            "frame_fore__beam_deck": beam_lateral,
-            "frame_fore__bracket_starboard_belly": bracket_light_duty,
-            "frame_fore__bracket_starboard_deck": bracket_light_duty,
-            "frame_fore__bracket_port_belly": bracket_light_duty,
-            "frame_fore__bracket_port_deck": bracket_light_duty,
+            self.sub_assembly_name("pillar_starboard"): pillar_fore,
+            self.sub_assembly_name("pillar_port"): pillar_fore,
+            self.sub_assembly_name("beam_belly"): beam_lateral,
+            self.sub_assembly_name("beam_deck"): beam_lateral,
+            self.sub_assembly_name("bracket_starboard_belly"): bracket_light_duty,
+            self.sub_assembly_name("bracket_starboard_deck"): bracket_light_duty,
+            self.sub_assembly_name("bracket_port_belly"): bracket_light_duty,
+            self.sub_assembly_name("bracket_port_deck"): bracket_light_duty,
         }

@@ -25,6 +25,8 @@ class FrameSide(CqAssemblyContainer):
         self.nautical_side = nautical_side
         self.fasteners = fasteners
 
+        self._name = f"frame_side_{self.nautical_side.name}"
+
         self.between_shf_mounting_holes = (
             SHFSeriesDimensions.shf8.between_mounting_holes
         )
@@ -190,13 +192,13 @@ class FrameSide(CqAssemblyContainer):
 
         assembly = (
             cq.Assembly(
-                name=f"frame_side_{self.nautical_side.name}",
+                name=self.name,
                 metadata={Bom.PARTS_KEY: self.part_identifiers()},
                 color=self.aluminium_anodised_natural,
             )
             .add(
                 pillar_transom,
-                name=f"frame_side_{self.nautical_side.name}__pillar_transom",
+                name=self.sub_assembly_name("pillar_transom"),
                 loc=cq.Location(
                     cq.Vector(
                         0,
@@ -209,7 +211,7 @@ class FrameSide(CqAssemblyContainer):
             )
             .add(
                 pillar_rocker,
-                name=f"frame_side_{self.nautical_side.name}__pillar_rocker",
+                name=self.sub_assembly_name("pillar_rocker"),
                 loc=cq.Location(
                     cq.Vector(
                         0,
@@ -222,7 +224,7 @@ class FrameSide(CqAssemblyContainer):
             )
             .add(
                 beam_belly,
-                name=f"frame_side_{self.nautical_side.name}__beam_belly",
+                name=self.sub_assembly_name("beam_belly"),
                 loc=cq.Location(
                     cq.Vector(
                         0,
@@ -235,7 +237,7 @@ class FrameSide(CqAssemblyContainer):
             )
             .add(
                 beam_deck,
-                name=f"frame_side_{self.nautical_side.name}__beam_deck",
+                name=self.sub_assembly_name("beam_deck"),
                 loc=cq.Location(
                     cq.Vector(
                         0,
@@ -296,8 +298,8 @@ class FrameSide(CqAssemblyContainer):
         )
 
         return {
-            f"frame_side_{self.nautical_side.name}__pillar_transom": pillar_transom,
-            f"frame_side_{self.nautical_side.name}__pillar_rocker": pillar_rocker,
-            f"frame_side_{self.nautical_side.name}__beam_belly": beam_belly,
-            f"frame_side_{self.nautical_side.name}__beam_deck": beam_deck,
+            self.sub_assembly_name("pillar_transom"): pillar_transom,
+            self.sub_assembly_name("pillar_rocker"): pillar_rocker,
+            self.sub_assembly_name("beam_belly"): beam_belly,
+            self.sub_assembly_name("beam_deck"): beam_deck,
         }

@@ -22,6 +22,8 @@ class FramePivotBeam(CqAssemblyContainer):
         """Initialise."""
         self.simple = simple
 
+        self._name = "frame_beam_pivot"
+
         self.bracket_standard_duty = BracketStandardStandardDuty90()
 
         self.aluminium_cast = cq.Color(*COLORS["aluminium_cast"])
@@ -40,13 +42,13 @@ class FramePivotBeam(CqAssemblyContainer):
 
         assembly = (
             cq.Assembly(
-                name="frame_beam_pivot",
+                name=self.name,
                 metadata={Bom.PARTS_KEY: self.part_identifiers()},
                 color=self.aluminium_anodised_natural,
             )
             .add(
                 beam_differential_pivot,
-                name="frame_beam_pivot__beam",
+                name=self.sub_assembly_name("beam"),
                 loc=cq.Location(
                     cq.Vector(0, 0, -z_offset),
                     cq.Vector(0, 1, 0),
@@ -55,7 +57,7 @@ class FramePivotBeam(CqAssemblyContainer):
             )
             .add(
                 self.bracket_standard_duty.cq_object,
-                name="frame_beam_pivot__bracket_starboard",
+                name=self.sub_assembly_name("bracket_starboard"),
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(0, bracket_y_offset, -z_offset),
@@ -65,7 +67,7 @@ class FramePivotBeam(CqAssemblyContainer):
             )
             .add(
                 self.bracket_standard_duty.cq_object.mirror("YZ"),
-                name="frame_beam_pivot__bracket_port",
+                name=self.sub_assembly_name("bracket_port"),
                 color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(
@@ -101,7 +103,7 @@ class FramePivotBeam(CqAssemblyContainer):
         )
 
         return {
-            "frame_beam_pivot__beam": beam_differential_pivot,
-            "frame_beam_pivot__bracket_starboard": bracket_standard_duty,
-            "frame_beam_pivot__bracket_port": bracket_standard_duty,
+            self.sub_assembly_name("beam"): beam_differential_pivot,
+            self.sub_assembly_name("bracket_starboard"): bracket_standard_duty,
+            self.sub_assembly_name("bracket_port"): bracket_standard_duty,
         }

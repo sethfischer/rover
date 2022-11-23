@@ -19,7 +19,9 @@ class RockerAxle(CqAssemblyContainer):
     AXLE_PROTRUSION = 40
 
     def __init__(self) -> None:
-        """Initialise rocker axle assembly."""
+        """Initialise."""
+        self._name = "rocker_axle"
+
         self.axle_length = FRAME_DIMENSIONS.WIDTH + (2 * self.AXLE_PROTRUSION)
 
         self.axle_support = SHF(self.AXLE_DIAMETER)
@@ -38,12 +40,12 @@ class RockerAxle(CqAssemblyContainer):
 
         result = (
             cq.Assembly(
-                name="rocker_axle",
+                name=self.name,
                 metadata={Bom.PARTS_KEY: self.part_identifiers()},
             )
             .add(
                 axle_support,
-                name="rocker_axle__support_port",
+                name=self.sub_assembly_name("support_port"),
                 loc=cq.Location(
                     cq.Vector(flange_face_to_origin, 0, 0),
                     cq.Vector(0, 1, 0),
@@ -52,7 +54,7 @@ class RockerAxle(CqAssemblyContainer):
             )
             .add(
                 axle_support,
-                name="rocker_axle__support_starboard",
+                name=self.sub_assembly_name("support_starboard"),
                 loc=cq.Location(
                     cq.Vector(-flange_face_to_origin, 0, 0),
                     cq.Vector(0, 1, 0),
@@ -61,7 +63,7 @@ class RockerAxle(CqAssemblyContainer):
             )
             .add(
                 axle,
-                name="rocker_axle__axle",
+                name=self.sub_assembly_name("axle"),
                 color=self.aluminium_cast,
             )
         )
@@ -87,7 +89,7 @@ class RockerAxle(CqAssemblyContainer):
         )
 
         return {
-            "rocker_axle__support_port": support,
-            "rocker_axle__support_starboard": support,
-            "rocker_axle__axle": axle,
+            self.sub_assembly_name("support_port"): support,
+            self.sub_assembly_name("support_starboard"): support,
+            self.sub_assembly_name("axle"): axle,
         }
