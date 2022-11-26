@@ -48,6 +48,7 @@ Jinja2 = "^3.1.2"
 Sphinx = "^4.4.0"
 sphinx-argparse-cli = "^1.9.0"
 sphinx-rtd-theme = "^1.0.0"
+wurlitzer = "^3.0.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.1.0"
@@ -100,6 +101,11 @@ ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "PIL.*"
+ignore_errors = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "wurlitzer.*"
 ignore_errors = true
 ignore_missing_imports = true
 

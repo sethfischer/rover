@@ -21,6 +21,7 @@ from osr_mechanical.config import (
     REPO_URL,
     SHORT_DESCRIPTION,
 )
+from osr_mechanical.console.cq_wrappers import Export as ExportWrapper
 from osr_mechanical.console.exporters import ExportPNG
 from osr_mechanical.final import FinalAssembly
 from osr_mechanical.jigs.vslot import EndTapJig
@@ -95,11 +96,15 @@ class ReleaseBuilder:
     @staticmethod
     def final_assembly_step(out_file: Path) -> None:
         """Export final assembly as STEP."""
-        exporters.export(
-            FinalAssembly().cq_object.toCompound(),
-            str(out_file),
+        cq_object = FinalAssembly().cq_object.toCompound()
+
+        export_wrapper = ExportWrapper()
+
+        export_wrapper.export(
+            cq_object,
+            out_file,
             tolerance=0.01,
-            angularTolerance=0.1,
+            angular_tolerance=0.1,
         )
 
     @staticmethod

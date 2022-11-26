@@ -10,7 +10,6 @@ from subprocess import run
 from tempfile import TemporaryDirectory
 from typing import Any
 
-from cadquery import exporters
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ExifTags import TAGS
 from PIL.Image import Exif
@@ -22,6 +21,7 @@ from osr_mechanical.config import (
     PROJECT_HOST,
     PROJECT_URL,
 )
+from osr_mechanical.console.cq_wrappers import Export as ExportWrapper
 from osr_mechanical.final import FinalAssembly
 
 
@@ -84,16 +84,18 @@ class ExportPNG:
 
         return self.out_file
 
-    @staticmethod
-    def export_step(out_directory: Path) -> Path:
+    def export_step(self, out_directory: Path) -> Path:
         """Export STEP from CadQuery model."""
         pathname = out_directory / "result.step"
+        cq_object = FinalAssembly().cq_object.toCompound()
 
-        exporters.export(
-            FinalAssembly().cq_object.toCompound(),
-            str(pathname),
+        export_wrapper = ExportWrapper()
+
+        export_wrapper.export(
+            cq_object,
+            pathname,
             tolerance=0.01,
-            angularTolerance=0.1,
+            angular_tolerance=0.1,
         )
 
         return pathname

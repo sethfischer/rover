@@ -2398,7 +2398,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 name = "wurlitzer"
 version = "3.0.2"
 description = "Capture C-level output in context managers"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -2425,7 +2425,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "f920c6fc5431763ef2ed9d2939d93b4ae748c4c8868df61a2b37b87dc47672a1"
+content-hash = "eb25255ed877e12e8fc5fafefc54639d6cf72ceeaafa8e39657a9a3a3b9bb8b5"
 
 [metadata.files]
 alabaster = [
