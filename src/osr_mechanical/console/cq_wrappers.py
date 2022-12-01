@@ -9,7 +9,7 @@ from typing import Any, Optional
 import cadquery.occ_impl.exporters
 from cadquery import Shape, Workplane
 from cadquery.occ_impl.exporters import ExportLiterals
-from wurlitzer import STDOUT, pipes
+from wurlitzer import pipes
 
 
 class Export:
@@ -25,15 +25,22 @@ class Export:
     """
 
     _stdout: str
+    _stderr: str
 
     def __init__(self) -> None:
         """Initialise."""
         self._stdout = ""
+        self._stderr = ""
 
     @property
     def stdout(self) -> str:
         """Output sent to stdout."""
         return self._stdout
+
+    @property
+    def stderr(self) -> str:
+        """Output sent to stderr."""
+        return self._stderr
 
     def export(
         self,
@@ -56,8 +63,9 @@ class Export:
         :param opt: additional options passed to the specific exporter. Default None.
         """
         export_stdout = StringIO()
+        export_stderr = StringIO()
 
-        with pipes(stdout=export_stdout, stderr=STDOUT):
+        with pipes(stdout=export_stdout, stderr=export_stderr):
             result = cadquery.occ_impl.exporters.export(
                 w,
                 str(fname),
@@ -68,5 +76,9 @@ class Export:
             )
 
         self._stdout = export_stdout.getvalue()
+        self._stderr = export_stderr.getvalue()
+
+        if self._stderr:
+            raise Exception(f"CadQuery export error: {self._stderr}")
 
         return result
