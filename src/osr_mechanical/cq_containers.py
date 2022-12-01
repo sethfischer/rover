@@ -28,7 +28,11 @@ class CqAssemblyContainer(ABC):
     def cq_part(self, name: str) -> cq.Shape | cq.Workplane:
         """Get part from CadQuery assembly."""
         result = self._cq_object.objects[name].obj
+
         if result is None:
+            raise Exception(f"Invalid name: '{name}'.")
+
+        if not (isinstance(result, cq.Shape) or isinstance(result, cq.Workplane)):
             raise Exception("Part is not a valid Shape or Workplane.")
 
         return result

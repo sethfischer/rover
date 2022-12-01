@@ -2,13 +2,14 @@
 
 import cadquery as cq
 
-from osr_mechanical.bom.bom import Bom, BomEntry, Commodity, PartIdentifier, PartType
+from osr_mechanical.bom.bom import Bom, BomEntry
+from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartType
 
 
 class TestBom:
     """Test bill of materials."""
 
-    def setup(self):
+    def setup(self) -> None:
         """Initialise."""
         self.commodity = Commodity.PURCHASED
         self.part_type = PartType("TT", "Test name", "Test description.")
@@ -44,27 +45,27 @@ class TestBom:
             .add(self.cq_object, name="part_2")
         )
 
-    def test_length(self):
+    def test_length(self) -> None:
         """Test length of BOM."""
         bom = Bom(self.assembly)
 
         assert 2 == len(bom)
 
-    def test_quantity_of_part_1(self):
+    def test_quantity_of_part_1(self) -> None:
         """Test quantity of part 1."""
         bom = Bom(self.assembly)
         bom_entry: BomEntry = bom[str(self.part_1)]
 
         assert 1 == bom_entry.quantity
 
-    def test_quantity_of_part_2(self):
+    def test_quantity_of_part_2(self) -> None:
         """Test quantity of part 1."""
         bom = Bom(self.assembly)
         bom_entry: BomEntry = bom[str(self.part_2)]
 
         assert 1 == bom_entry.quantity
 
-    def test_part_multiples(self):
+    def test_part_multiples(self) -> None:
         """Test part multiples."""
         bom_parts = self.bom_parts
         bom_parts["part_3"] = self.part_3

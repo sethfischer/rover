@@ -12,7 +12,7 @@ def dxf_import_export(filepath: Path) -> str:
 
     This can result in a reduced file size. But in no way is it a lossless conversion.
     """
-    result = importers.importDXF(filepath)
+    result = importers.importDXF(filepath)  # type: ignore[no-untyped-call]
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp_file = Path(tmp_dir) / filepath.name

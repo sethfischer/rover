@@ -84,7 +84,8 @@ class ExportPNG:
 
         return self.out_file
 
-    def export_step(self, out_directory: Path) -> Path:
+    @staticmethod
+    def export_step(out_directory: Path) -> Path:
         """Export STEP from CadQuery model."""
         pathname = out_directory / "result.step"
         cq_object = FinalAssembly().cq_object.toCompound()

@@ -7,7 +7,7 @@ M5_COUNTERBORE_DIAMETER = 9.75
 class MetricBoltSpecification:
     """Metric bolt specification."""
 
-    def __init__(self, shaft: float, pitch: float, length: float):
+    def __init__(self, shaft: float, pitch: float, length: float) -> None:
         """Initialise metric bolt specification."""
         self.shaft = shaft
         self.pitch = pitch
@@ -27,7 +27,7 @@ class MetricBoltSpecification:
         return f"M{self.shaft}"
 
     @staticmethod
-    def split_shaft_pitch(shaft_pitch: str) -> list:
+    def split_shaft_pitch(shaft_pitch: str) -> list[str]:
         """Split shaft diameter and pitch components."""
         return shaft_pitch.split("-")
 

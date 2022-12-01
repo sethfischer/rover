@@ -53,7 +53,7 @@ class Vslot20BoreSlot(CqObjectContainer):
 
         self._cq_object = self._make()
 
-    def _make(self, assemble=True):
+    def _make(self, assemble: bool = True):
         """Create bore slot sketch."""
         sketch = (
             cq.Sketch()
@@ -124,7 +124,7 @@ class Vslot2020Profile(CqObjectContainer):
 
         self._cq_object = self._make()
 
-    def _make(self, fillet: bool = True):
+    def _make(self, fillet: bool = True) -> cq.Sketch:
         """Create profile."""
         result = self._make_main_sketch()
 
@@ -167,7 +167,7 @@ class Vslot2020Profile(CqObjectContainer):
 
         return result
 
-    def _make_center_lines(self, profile):
+    def _make_center_lines(self, profile: cq.Sketch) -> cq.Sketch:
         """Create center lines."""
         points = [
             (self.half_core_width, 0),
@@ -178,7 +178,7 @@ class Vslot2020Profile(CqObjectContainer):
 
         return result
 
-    def _tag_vertices(self, profile):
+    def _tag_vertices(self, profile: cq.Sketch) -> cq.Sketch:
         """Tag all vertices."""
         profile = self._tag_vertices_centerbore_groove(profile)
         profile = self._tag_vertices_bounding_box(profile)
@@ -194,12 +194,12 @@ class Vslot2020Profile(CqObjectContainer):
         return profile
 
     @staticmethod
-    def _tag_vertices_centerbore_groove(profile):
+    def _tag_vertices_centerbore_groove(profile: cq.Sketch) -> cq.Sketch:
         """Tag centerbore grove."""
         return profile.reset().vertices(">>X[9]").tag("centerbore_groove_vertices")
 
     @staticmethod
-    def _tag_vertices_bounding_box(profile):
+    def _tag_vertices_bounding_box(profile: cq.Sketch) -> cq.Sketch:
         """Tag bounding box vertices."""
         result = (
             profile.reset()
@@ -210,7 +210,7 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_slot_retainer(profile):
+    def _tag_vertices_slot_retainer(profile: cq.Sketch) -> cq.Sketch:
         """Tag slot retainer."""
         selector = {
             "q1": "(>>Y[1] and >>X[3]) or (>>X[1] and >>Y[3])",
@@ -227,7 +227,7 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_v_lower(profile):
+    def _tag_vertices_v_lower(profile: cq.Sketch) -> cq.Sketch:
         """Tag V-slot lower vertices."""
         selector = {
             "q1": "(<<X[1] and <<Y[7]) or (<<X[7] and <<Y[1])",
@@ -244,7 +244,7 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_v_upper(profile):
+    def _tag_vertices_v_upper(profile: cq.Sketch) -> cq.Sketch:
         """Tag V-slot upper vertices."""
         selector = {
             "q1": "(<<X[0] and <<Y[4]) or (<<X[4] and <<Y[0])",
@@ -261,7 +261,7 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_rib_slot(profile):
+    def _tag_vertices_rib_slot(profile: cq.Sketch) -> cq.Sketch:
         """Tag rib slot vertices."""
         result = (
             profile.reset()
@@ -272,7 +272,7 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_core_rib(profile):
+    def _tag_vertices_core_rib(profile: cq.Sketch) -> cq.Sketch:
         """Tag core rib vertices."""
         selector = {
             "q1": "(<<X[5] and <<Y[6]) or (<<X[6] and <<Y[5])",
@@ -289,7 +289,7 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_core_channel(profile):
+    def _tag_vertices_core_channel(profile: cq.Sketch) -> cq.Sketch:
         """Tag core channel vertices."""
         result = (
             profile.reset()
@@ -300,12 +300,12 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_channel_groove(profile):
+    def _tag_vertices_channel_groove(profile: cq.Sketch) -> cq.Sketch:
         """Tag channel groove vertices."""
         return profile.reset().vertices(">>X[8]").tag("channel_groove_vertices")
 
     @staticmethod
-    def _tag_vertices_cline(profile):
+    def _tag_vertices_cline(profile: cq.Sketch) -> cq.Sketch:
         """Tag center line vertices."""
         selector = {
             "positive_x": "(<<X[5] and <<Y[12]) or (<<X[5] and >>Y[12])",
@@ -321,7 +321,7 @@ class Vslot2020Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _fillet(profile):
+    def _fillet(profile: cq.Sketch) -> cq.Sketch:
         """Fillet vertices."""
         profile.vertices(tag="centerbore_groove_vertices").fillet(0.3)
         profile.vertices(tag="bounding_box_vertices").fillet(0.5)
@@ -403,7 +403,7 @@ class Vslot2040Profile(CqObjectContainer):
 
         self._cq_object = self._make()
 
-    def _make(self):
+    def _make(self) -> cq.Sketch:
         """Make profile."""
         profile = self._make_main_sketch()
 
@@ -429,7 +429,7 @@ class Vslot2040Profile(CqObjectContainer):
 
         return profile
 
-    def _make_main_sketch(self):
+    def _make_main_sketch(self) -> cq.Sketch:
         result = (
             cq.Sketch()
             # quadrant 1
@@ -507,7 +507,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _make_center_cavity_sketch():
+    def _make_center_cavity_sketch() -> cq.Sketch:
         """Create center cavity sketch."""
         major_radius = 6
         minor_radius = 2
@@ -525,7 +525,7 @@ class Vslot2040Profile(CqObjectContainer):
 
         return result
 
-    def _make_center_bore(self, profile):
+    def _make_center_bore(self, profile: cq.Sketch) -> cq.Sketch:
         """Create center bore."""
         result = (
             profile.reset()
@@ -540,7 +540,7 @@ class Vslot2040Profile(CqObjectContainer):
 
         return result
 
-    def _make_center_lines(self, profile):
+    def _make_center_lines(self, profile: cq.Sketch) -> cq.Sketch:
         """Create center lines."""
         points = [
             (self.aec_2020.half_width, self.aec_2020.half_core_width),
@@ -551,7 +551,7 @@ class Vslot2040Profile(CqObjectContainer):
 
         return profile.reset().push(points).circle(0.25, mode="s")
 
-    def _tag_vertices(self, profile):
+    def _tag_vertices(self, profile: cq.Sketch) -> cq.Sketch:
         """Tag all vertices."""
         profile = self._tag_vertices_centerbore_groove(profile)
         profile = self._tag_vertices_bounding_box(profile)
@@ -567,7 +567,7 @@ class Vslot2040Profile(CqObjectContainer):
         return profile
 
     @staticmethod
-    def _tag_vertices_centerbore_groove(profile):
+    def _tag_vertices_centerbore_groove(profile: cq.Sketch) -> cq.Sketch:
         """Tag centerbore grove."""
         return (
             profile.reset()
@@ -576,7 +576,7 @@ class Vslot2040Profile(CqObjectContainer):
         )
 
     @staticmethod
-    def _tag_vertices_bounding_box(profile):
+    def _tag_vertices_bounding_box(profile: cq.Sketch) -> cq.Sketch:
         """Tag bounding box vertices."""
         return (
             profile.reset()
@@ -585,7 +585,7 @@ class Vslot2040Profile(CqObjectContainer):
         )
 
     @staticmethod
-    def _tag_vertices_slot_retainer(profile):
+    def _tag_vertices_slot_retainer(profile: cq.Sketch) -> cq.Sketch:
         """Tag slot retainer."""
         selector = {
             "q1": "(<<X[1] and <<Y[4]) or (<<X[3] and <<Y[1]) or (<<X[15] and <<Y[1])",
@@ -602,7 +602,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_v_lower(profile):
+    def _tag_vertices_v_lower(profile: cq.Sketch) -> cq.Sketch:
         """Tag V-slot lower vertices."""
         selector = {
             "q1": "(<<X[7] and <<Y[1]) or (<<X[12] and <<Y[1]) or (<<X[1] and <<Y[9])",
@@ -619,7 +619,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_v_upper(profile):
+    def _tag_vertices_v_upper(profile: cq.Sketch) -> cq.Sketch:
         """Tag V-slot upper vertices."""
         selector = {
             "q1": "(<<X[4] and <<Y[0]) or (<<X[0] and <<Y[6]) or (<<X[14] and <<Y[0])",
@@ -636,7 +636,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_rib_slot(profile):
+    def _tag_vertices_rib_slot(profile: cq.Sketch) -> cq.Sketch:
         """Tag rib slot vertices."""
         result = (
             profile.reset()
@@ -647,7 +647,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_core_rib(profile):
+    def _tag_vertices_core_rib(profile: cq.Sketch) -> cq.Sketch:
         """Tag core rib vertices."""
         selector = {
             "q1": "(<<X[5] and <<Y[8]) or (<<X[6] and <<Y[7]) or (<<X[13] and <<Y[7])",
@@ -664,7 +664,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_core_channel(profile):
+    def _tag_vertices_core_channel(profile: cq.Sketch) -> cq.Sketch:
         """Tag core channel vertices."""
         selector = {
             "q1": "(<<X[5] and <<Y[10])",
@@ -681,7 +681,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_channel_groove(profile):
+    def _tag_vertices_channel_groove(profile: cq.Sketch) -> cq.Sketch:
         """Tag channel groove vertices."""
         result = (
             profile.reset().vertices("<<X[8] or >>X[8]").tag("channel_groove_vertices")
@@ -690,7 +690,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _tag_vertices_cline(profile):
+    def _tag_vertices_cline(profile: cq.Sketch) -> cq.Sketch:
         """Tag center line vertices."""
         selector = {
             "q1": "(<<X[10] and <<Y[7]) or (<<X[11] and <<Y[7])",
@@ -707,7 +707,7 @@ class Vslot2040Profile(CqObjectContainer):
         return result
 
     @staticmethod
-    def _fillet(profile):
+    def _fillet(profile: cq.Sketch) -> cq.Sketch:
         """Fillet vertices."""
         profile.vertices(tag="centerbore_groove_vertices").fillet(0.3)
         profile.vertices(tag="bounding_box_vertices").fillet(0.5)
