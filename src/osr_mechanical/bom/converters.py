@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from cq_warehouse.fastener import Nut, Screw, Washer
 
-from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
+from osr_mechanical.bom.parts import PartIdentifier, PartTypes
 from osr_warehouse.fasteners import MetricBoltSpecification as MetricBoltSpec
 
 
@@ -44,7 +44,6 @@ class FastenerToPart:
         return PartIdentifier(
             self.part_type,
             f"S{self.ABBREVIATION[screw.fastener_type]}{shaft}X{screw.length}",
-            Commodity.PURCHASED,
             description,
         )
 
@@ -60,6 +59,5 @@ class FastenerToPart:
         return PartIdentifier(
             self.part_type,
             f"W{self.ABBREVIATION[washer.fastener_type]}{washer.size}",
-            Commodity.PURCHASED,
             description,
         )

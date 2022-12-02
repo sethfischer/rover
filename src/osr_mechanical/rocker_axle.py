@@ -75,17 +75,16 @@ class RockerAxle(CqAssemblyContainer):
         pillar = PartIdentifier(
             PartTypes.linear_motion,
             "SHF8-PILLAR",
-            Commodity.PURCHASED,
             self.axle_pillar.description,
         )
         axle = PartIdentifier(
             PartTypes.linear_motion,
             "SHF-AXLE",
-            Commodity.FABRICATED,
             (
                 f"Chromed linear shaft: "
                 f"⌀{self.AXLE_DIAMETER}mm, length={self.axle_length}mm."
             ),
+            Commodity.FABRICATED,
         )
 
         return {

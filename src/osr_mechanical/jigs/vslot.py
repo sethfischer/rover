@@ -188,14 +188,11 @@ class EndTapJig(CqAssemblyContainer):
         body = PartIdentifier(
             PartTypes.additive,
             "JIG-ENDTAP",
-            Commodity.FABRICATED,
             "3D printed body for end-tap jig. To fit 20 series T-slot extrusion.",
+            Commodity.FABRICATED,
         )
         tslot_nut = PartIdentifier(
-            PartTypes.tslot,
-            "NUT-M5",
-            Commodity.PURCHASED,
-            self.tslot_nut.description,
+            PartTypes.tslot, "NUT-M5", self.tslot_nut.description
         )
 
         return {

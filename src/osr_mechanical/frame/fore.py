@@ -167,27 +167,26 @@ class FrameFore(CqAssemblyContainer):
         pillar_fore = PartIdentifier(
             PartTypes.tslot,
             "PILLAR-FORE",
-            Commodity.FABRICATED,
             (
                 f"Frame fore pillar: "
                 f"T-slot "
                 f"{Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, length={DIM.PILLAR_HEIGHT}mm."
             ),
+            Commodity.FABRICATED,
         )
         beam_lateral = PartIdentifier(
             PartTypes.tslot,
             "BEAM-LAT",
-            Commodity.FABRICATED,
             (
                 f"Frame deck beam lateral: "
                 f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
                 f"length={DIM.LATERAL_BEAM_LENGTH}mm."
             ),
+            Commodity.FABRICATED,
         )
         bracket_light_duty = PartIdentifier(
             PartTypes.tslot,
             "BRACKET-LD",
-            Commodity.PURCHASED,
             self.bracket_light_duty.description,
         )
 

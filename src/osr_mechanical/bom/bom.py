@@ -43,10 +43,10 @@ class Bom(UserDict[str, BomEntry]):
 
     def insert_part(self, part: PartIdentifier) -> None:
         """Insert part into bill of materials."""
-        if str(part) in self:
-            self[str(part)].quantity += 1
+        if part.identifier in self:
+            self[part.identifier].quantity += 1
         else:
-            self.__setitem__(str(part), BomEntry(part))
+            self.__setitem__(part.identifier, BomEntry(part))
 
     def insert_assembly(self, assembly: cq.Assembly, deep: bool = True) -> None:
         """Insert assembly into bill of materials."""

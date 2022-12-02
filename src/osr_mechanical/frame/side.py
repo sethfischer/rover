@@ -257,44 +257,44 @@ class FrameSide(CqAssemblyContainer):
         pillar_transom = PartIdentifier(
             PartTypes.tslot,
             "PILLAR-TRANS",
-            Commodity.FABRICATED,
             (
                 f"Frame transom pillar: "
                 f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
                 f"length={self.pillar_transom_height}mm."
             ),
+            Commodity.FABRICATED,
         )
         pillar_rocker = PartIdentifier(
             PartTypes.tslot,
             "PILLAR-ROCK",
-            Commodity.FABRICATED,
             (
                 f"Frame rocker axle pillar: "
                 f"T-slot {Vslot2040.WIDTH}×{Vslot2040.HEIGHT}mm, "
                 f"length={DIM.PILLAR_HEIGHT}mm."
             ),
+            Commodity.FABRICATED,
         )
         beam_belly = PartIdentifier(
             PartTypes.tslot,
             "BEAM-BELLY",
-            Commodity.FABRICATED,
             (
                 f"Frame belly beam {self.nautical_side.name}: "
                 f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
                 f"length={DIM.BEAM_SIDE_LENGTH}mm."
             ),
-            self.nautical_side.identifier,
+            Commodity.FABRICATED,
+            suffix=self.nautical_side.identifier,
         )
         beam_deck = PartIdentifier(
             PartTypes.tslot,
             "BEAM-DECK",
-            Commodity.FABRICATED,
             (
                 f"Frame deck beam {self.nautical_side.name}: "
                 f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
                 f"length={DIM.BEAM_SIDE_LENGTH}mm."
             ),
-            self.nautical_side.identifier,
+            Commodity.FABRICATED,
+            suffix=self.nautical_side.identifier,
         )
 
         return {

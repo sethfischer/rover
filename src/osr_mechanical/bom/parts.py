@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Literal, Optional
+from typing import Literal
 
 
 @dataclass
@@ -65,27 +65,60 @@ class Commodity(Enum):
     TOOL = "tool, jig, or fixture"
 
 
-@dataclass
 class PartIdentifier:
     """Internal part identifier.
 
     Parts are identified using a significant part numbering system.
     """
 
-    type: PartType
-    number: str
-    commodity_type: Commodity
-    description: str
-    suffix: Optional[str] = None
+    def __init__(
+        self,
+        prefix: PartType,
+        root: str,
+        description: str,
+        commodity_type: Commodity = Commodity.PURCHASED,
+        suffix: str = "",
+    ) -> None:
+        """Initialise."""
+        self.prefix = prefix
+        self.root = root
+        self.description = description
+        self.commodity_type = commodity_type
+        self.suffix = suffix
+
+    @property
+    def root(self) -> str:
+        """Part root."""
+        return self._root
+
+    @root.setter
+    def root(self, value: str) -> None:
+        """Part root setter."""
+        self._root = value.upper()
+
+    @property
+    def suffix(self) -> str:
+        """Part suffix."""
+        return self._suffix
+
+    @suffix.setter
+    def suffix(self, value: str) -> None:
+        """Part suffix setter."""
+        self._suffix = value.upper()
+
+    @property
+    def identifier(self) -> str:
+        """Part identifier as a string."""
+        identifier = f"{self.prefix.abbreviation}-{self.root}"
+
+        if self.suffix:
+            return f"{identifier}-{self.suffix}"
+
+        return identifier
 
     def __str__(self) -> str:
-        """Part number as a string."""
-        part_number = f"{self.type.abbreviation}-{self.number}"
-
-        if self.suffix is None:
-            return part_number
-
-        return f"{part_number}-{self.suffix}"
+        """Part identifier as a string."""
+        return self.identifier
 
 
 @dataclass

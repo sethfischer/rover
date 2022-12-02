@@ -9,7 +9,7 @@ from cq_electronics.rpi.rpi3b import RPi3b
 from cq_electronics.sourcekit.pitray_clip import PiTrayClip
 
 from osr_mechanical.bom.bom import Bom
-from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
+from osr_mechanical.bom.parts import PartIdentifier, PartTypes
 from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
 from osr_warehouse.materials import COLORS
@@ -97,19 +97,16 @@ class ControlElectronics(CqAssemblyContainer):
         din_rail = PartIdentifier(
             PartTypes.din,
             "RAIL-75",
-            Commodity.PURCHASED,
             f"DIN rail: 35×7.5mm, length={self.din_rail.length}mm.",
         )
         pitray_clip = PartIdentifier(
             PartTypes.din,
             "CLIP-RPI",
-            Commodity.PURCHASED,
             "DIN rail clip: to suit Raspberry Pi 3B.",
         )
         rpi = PartIdentifier(
             PartTypes.electronic,
             "RPI3B",
-            Commodity.PURCHASED,
             "Raspberry Pi 3B single board computer.",
         )
 

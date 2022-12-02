@@ -88,17 +88,16 @@ class FramePivotBeam(CqAssemblyContainer):
         beam_differential_pivot = PartIdentifier(
             PartTypes.tslot,
             "BEAM-DIFF",
-            Commodity.FABRICATED,
             (
                 f"Frame beam differential pivot: "
                 f"T-slot {Vslot2020.WIDTH}×{Vslot2020.HEIGHT}mm, "
                 f"length={DIM.LATERAL_BEAM_LENGTH}mm."
             ),
+            Commodity.FABRICATED,
         )
         bracket_standard_duty = PartIdentifier(
             PartTypes.tslot,
             "BRACKET-SD",
-            Commodity.PURCHASED,
             self.bracket_standard_duty.description,
         )
 
