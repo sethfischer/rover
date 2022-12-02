@@ -21,7 +21,19 @@ class BomEntry:
     def __init__(self, part: PartIdentifier) -> None:
         """Initialise."""
         self.part = part
-        self.quantity = 1
+
+        self.assemblies: dict[str, int] = {}
+
+    @property
+    def quantity(self) -> int:
+        """Total count of parts."""
+        return sum(self.assemblies.values())
+
+    def increment(self, assembly_name: str) -> int:
+        """Increment part count."""
+        self.assemblies[assembly_name] = self.assemblies.get(assembly_name, 0) + 1
+
+        return self.assemblies[assembly_name]
 
 
 class Bom(UserDict[str, BomEntry]):
@@ -41,12 +53,14 @@ class Bom(UserDict[str, BomEntry]):
         if assembly is not None:
             self.insert_assembly(assembly, deep=deep)
 
-    def insert_part(self, part: PartIdentifier) -> None:
+    def insert_part(self, part: PartIdentifier, assembly_name: str) -> None:
         """Insert part into bill of materials."""
         if part.identifier in self:
-            self[part.identifier].quantity += 1
+            self[part.identifier].increment(assembly_name)
         else:
-            self.__setitem__(part.identifier, BomEntry(part))
+            bom_entry = BomEntry(part)
+            bom_entry.increment(assembly_name)
+            self.__setitem__(part.identifier, bom_entry)
 
     def insert_assembly(self, assembly: cq.Assembly, deep: bool = True) -> None:
         """Insert assembly into bill of materials."""
@@ -56,10 +70,12 @@ class Bom(UserDict[str, BomEntry]):
         for assembly in assemblies:
             for key, value in assembly.metadata.items():
                 if isinstance(value, (Screw, Nut, Washer)):
-                    self.insert_part(cq_warehouse_converter.convert(value))
+                    self.insert_part(
+                        cq_warehouse_converter.convert(value), assembly.name
+                    )
                 if self.PARTS_KEY == key:
                     for name, part in value.items():
-                        self.insert_part(part)
+                        self.insert_part(part, assembly.name)
 
     @staticmethod
     def list_assemblies(assembly: cq.Assembly, deep: bool = True) -> list[cq.Assembly]:
