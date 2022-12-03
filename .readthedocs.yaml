@@ -7,7 +7,7 @@ build:
   jobs:
     post_checkout:
       - >
-        git_lfs_ver="3.2.0"; 
+        git_lfs_ver="3.3.0"; 
         wget -qO- https://github.com/git-lfs/git-lfs/releases/download/v${git_lfs_ver}/git-lfs-linux-amd64-v${git_lfs_ver}.tar.gz 
         | tar -xOz git-lfs-${git_lfs_ver}/git-lfs > git-lfs
       - chmod u+x git-lfs
