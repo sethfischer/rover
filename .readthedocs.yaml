@@ -7,9 +7,9 @@ build:
   jobs:
     post_checkout:
       - >
-        gitlfs_ver="3.2.0"; 
-        wget -qO- https://github.com/git-lfs/git-lfs/releases/download/v${gitlfs_ver}/git-lfs-linux-amd64-v${gitlfs_ver}.tar.gz 
-        | tar -xOz git-lfs-${gitlfs_ver}/git-lfs > git-lfs
+        git_lfs_ver="3.2.0"; 
+        wget -qO- https://github.com/git-lfs/git-lfs/releases/download/v${git_lfs_ver}/git-lfs-linux-amd64-v${git_lfs_ver}.tar.gz 
+        | tar -xOz git-lfs-${git_lfs_ver}/git-lfs > git-lfs
       - chmod u+x git-lfs
       - git config filter.lfs.process "`pwd`/git-lfs filter-process"
       - git config filter.lfs.smudge  "`pwd`/git-lfs smudge -- %f"
