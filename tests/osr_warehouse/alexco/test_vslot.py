@@ -10,7 +10,7 @@ from ...constants import TOLERANCE
 class TestVslot2020:
     """AEC 2020 V-slot extrusion tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         factory = Vslot2020()
         self.length = 50
@@ -26,7 +26,7 @@ class TestVslot2020:
 class TestVslot2040:
     """AEC 2040 V-slot extrusion tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         factory = Vslot2040()
         self.length = 50

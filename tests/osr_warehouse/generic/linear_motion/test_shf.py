@@ -6,7 +6,7 @@ from osr_warehouse.generic.linear_motion.shf import SHF
 class TestSHF8:
     """SHF shaft support tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise fixtures."""
         self.shf8 = SHF(8).cq_object
 

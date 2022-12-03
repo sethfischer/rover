@@ -6,7 +6,7 @@ from osr_mechanical.rocker_axle import RockerAxle
 class TestRockerAxleAssembly:
     """Rocker axle tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         self.rocker_axle_compound = RockerAxle().cq_object.toCompound()
 

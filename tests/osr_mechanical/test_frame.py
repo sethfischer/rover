@@ -10,7 +10,7 @@ from ..constants import TOLERANCE
 class TestFrameAssembly:
     """Frame assembly tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         self.frame_compound = Frame().cq_object.toCompound()
 

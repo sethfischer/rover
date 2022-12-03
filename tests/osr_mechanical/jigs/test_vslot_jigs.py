@@ -8,7 +8,7 @@ from osr_mechanical.jigs.vslot import EndTapJig
 class TestEndTagJig2020:
     """2020 end tap jig tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         self.body_name = "2020_end_tap_jig__body"
 

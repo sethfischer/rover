@@ -9,7 +9,7 @@ from osr_mechanical.bom.parts import PartIdentifier, PartType
 class TestBom:
     """Test bill of materials."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         self.part_type = PartType("TT", "Test name", "Test description.")
 

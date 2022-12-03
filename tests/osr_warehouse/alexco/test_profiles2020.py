@@ -10,7 +10,7 @@ from ...constants import TOLERANCE
 class TestVslot20BoreSlot:
     """AEC 20 series bore slot tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         bore_slot = Vslot20BoreSlot()
         self.sketch = bore_slot.cq_object
@@ -40,7 +40,7 @@ class TestVslot20BoreSlot:
 class TestVslot2020ProfileWithoutFillets:
     """AEC 2020 V-slot profile tests."""
 
-    def setup(self) -> None:
+    def setup_method(self) -> None:
         """Initialise."""
         profile = Vslot2020Profile()
         self.sketch_without_fillets = profile._make(fillet=False)
