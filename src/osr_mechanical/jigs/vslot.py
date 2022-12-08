@@ -29,7 +29,7 @@ class EndTapJig(CqAssemblyContainer):
     def __init__(
         self, height: float = 70, clearance: float = 0.15, simple: bool = True
     ):
-        """Initialise V-slot end tap jig."""
+        """Initialise EndTapJig."""
         self.height = height
         self.clearance = clearance
         self.simple = simple

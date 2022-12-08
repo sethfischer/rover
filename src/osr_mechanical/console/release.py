@@ -31,7 +31,7 @@ class ReleaseBuilder:
     """Build Computer Aided Manufacturing file archive."""
 
     def __init__(self, build_directory: Path):
-        """Initialise."""
+        """Initialise ReleaseBuilder."""
         self.build_directory = build_directory
         self.release_name = f"{PROJECT_NAME}-cam-{project_version}"
         self.release_directory = self.build_directory / self.release_name

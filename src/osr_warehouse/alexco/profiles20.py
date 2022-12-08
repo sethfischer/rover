@@ -20,7 +20,7 @@ class Vslot20BoreSlot(CqObjectContainer):
     """
 
     def __init__(self, mirror: bool = False, x_offset: float | int = 0) -> None:
-        """Initialise dimensions."""
+        """Initialise Vslot20BoreSlot."""
         self.mirror = mirror
         self.x_offset = x_offset
 
@@ -95,7 +95,7 @@ class Vslot2020Profile(CqObjectContainer):
     HALF_BORE_CHANNEL_WIDTH = BORE_CHANNEL_WIDTH / 2
 
     def __init__(self) -> None:
-        """Initialise dimensions."""
+        """Initialise Vslot2020Profile."""
         self.half_width = self.WIDTH / 2
         self.half_core_width = self.CORE_WIDTH / 2
         self.half_rib_thickness = self.RIB_THICKNESS / 2
@@ -346,7 +346,7 @@ class Vslot2040Profile(CqObjectContainer):
     """
 
     def __init__(self) -> None:
-        """Initialise dimensions."""
+        """Initialise Vslot2040Profile."""
         self.aec_2020 = Vslot2020Profile()
 
         # Quadrant 1 is a partial copy of Vslot2020Profile.

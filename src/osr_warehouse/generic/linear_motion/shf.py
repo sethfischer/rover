@@ -70,7 +70,7 @@ class SHF(CqObjectContainer):
 
     def __init__(self, shaft_diameter: int) -> None:
         """
-        Initialise SHF shaft support.
+        Initialise SHF.
 
         :param shaft_diameter: Nominal shaft diameter (D)
         :type shaft_diameter: int

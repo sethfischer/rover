@@ -17,7 +17,7 @@ class Frame(CqAssemblyContainer):
     """Frame assembly."""
 
     def __init__(self, simple: bool = False) -> None:
-        """Initialise."""
+        """Initialise Frame."""
         self.simple = simple
 
         self._name = "frame"

@@ -28,7 +28,7 @@ class Vslot2020:
     COUNTERBORE_DEPTH = 6
 
     def __new__(cls) -> "Vslot2020":
-        """Initialise profile."""
+        """Initialise Vslot2020."""
         if cls._instance is None:
             cls._instance = super(Vslot2020, cls).__new__(cls)
 
@@ -65,7 +65,7 @@ class Vslot2040:
     COUNTERBORE_DEPTH = 6
 
     def __new__(cls) -> "Vslot2040":
-        """Initialise profile."""
+        """Initialise Vslot2040."""
         if cls._instance is None:
             cls._instance = super(Vslot2040, cls).__new__(cls)
 

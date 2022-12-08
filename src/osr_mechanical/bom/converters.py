@@ -21,7 +21,7 @@ class FastenerToPart:
     }
 
     def __init__(self) -> None:
-        """Initialise."""
+        """Initialise FastenerToPart."""
         self.part_type = PartTypes.fastner
 
     def convert(self, fastener: Screw | Nut | Washer) -> PartIdentifier:

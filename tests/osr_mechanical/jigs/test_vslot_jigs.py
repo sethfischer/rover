@@ -9,7 +9,7 @@ class TestEndTagJig2020:
     """2020 end tap jig tests."""
 
     def setup_method(self) -> None:
-        """Initialise."""
+        """Set up TestEndTagJig2020."""
         self.body_name = "2020_end_tap_jig__body"
 
     def test_default_body_is_valid(self) -> None:

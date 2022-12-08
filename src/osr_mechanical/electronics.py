@@ -21,7 +21,7 @@ class ControlElectronics(CqAssemblyContainer):
     END_CLEARANCE = 2
 
     def __init__(self) -> None:
-        """Initialise."""
+        """Initialise ControlElectronics."""
         self._name = "electronics_control"
 
         self.din_rail_length = FRAME_DIMENSIONS.WIDTH - (2 * self.END_CLEARANCE)

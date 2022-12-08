@@ -19,7 +19,7 @@ class BomEntry:
     """Bill of materials entry."""
 
     def __init__(self, part: PartIdentifier) -> None:
-        """Initialise."""
+        """Initialise BomEntry."""
         self.part = part
 
         self.assemblies: dict[str, int] = {}
@@ -47,7 +47,7 @@ class Bom(UserDict[str, BomEntry]):
     def __init__(
         self, assembly: Optional[cq.Assembly] = None, deep: bool = True
     ) -> None:
-        """Initialise."""
+        """Initialise Bom."""
         super().__init__()
 
         if assembly is not None:

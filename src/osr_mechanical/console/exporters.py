@@ -42,7 +42,7 @@ class ExportPNG:
         mayo_config: dict[str, Any] | None = None,
         label: bool = True,
     ) -> None:
-        """Initialise exporter."""
+        """Initialise ExportPNG."""
         self.out_file = out_file
         self.width = width
         self.height = height

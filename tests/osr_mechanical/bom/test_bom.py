@@ -10,7 +10,7 @@ class TestBom:
     """Test bill of materials."""
 
     def setup_method(self) -> None:
-        """Initialise."""
+        """Set up TestBom."""
         self.part_type = PartType("TT", "Test name", "Test description.")
 
         self.part_1 = PartIdentifier(self.part_type, "1", "Part 1 description.")

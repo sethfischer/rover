@@ -7,7 +7,7 @@ class TestSHF8:
     """SHF shaft support tests."""
 
     def setup_method(self) -> None:
-        """Initialise fixtures."""
+        """Set up TestSHF8."""
         self.shf8 = SHF(8).cq_object
 
     def test_is_valid(self) -> None:

@@ -20,7 +20,7 @@ class StandardLightDuty90(CqObjectContainer):
     _description = "T-slot standard light-duty 90° angle bracket: {}×{}mm."
 
     def __init__(self) -> None:
-        """Initialise."""
+        """Initialise StandardLightDuty90."""
         self._cq_object = self._make()
 
     @property
@@ -77,7 +77,7 @@ class StandardStandardDuty90(CqObjectContainer):
     _description = "T-slot standard standard-duty 90° angle bracket: {}×{}mm."
 
     def __init__(self) -> None:
-        """Initialise."""
+        """Initialise StandardStandardDuty90."""
         self.brace_step_length = 0.1 * self.LENGTH
         self.brace_step_height = 0.1 * self.LENGTH
 

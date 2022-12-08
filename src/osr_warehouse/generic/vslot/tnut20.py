@@ -22,7 +22,7 @@ class SlidingTNut20(CqObjectContainer):
     _description = "{} sliding T-nut for 20 series T-slot extrusion."
 
     def __init__(self, size: str = "M5-0.8", length: float = 9.5, simple: bool = True):
-        """20 mm series V-slot sliding T-nut."""
+        """Initialise SlidingTNut20."""
         self.size = size
         self.length = length
         self.simple = simple

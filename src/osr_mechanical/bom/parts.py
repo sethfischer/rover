@@ -79,7 +79,7 @@ class PartIdentifier:
         commodity_type: Commodity = Commodity.PURCHASED,
         suffix: str = "",
     ) -> None:
-        """Initialise."""
+        """Initialise PartIdentifier."""
         self.prefix = prefix
         self.root = root
         self.description = description

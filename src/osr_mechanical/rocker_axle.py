@@ -19,7 +19,7 @@ class RockerAxle(CqAssemblyContainer):
     AXLE_PROTRUSION = 40
 
     def __init__(self) -> None:
-        """Initialise."""
+        """Initialise RockerAxle."""
         self._name = "rocker_axle"
 
         self.axle_length = FRAME_DIMENSIONS.WIDTH + (2 * self.AXLE_PROTRUSION)

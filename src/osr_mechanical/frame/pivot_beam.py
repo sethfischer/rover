@@ -19,7 +19,7 @@ class FramePivotBeam(CqAssemblyContainer):
     """Differential pivot beam assembly."""
 
     def __init__(self, simple: bool = False) -> None:
-        """Initialise."""
+        """Initialise FramePivotBeam."""
         self.simple = simple
 
         self._name = "frame_beam_pivot"

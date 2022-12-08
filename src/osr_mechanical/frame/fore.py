@@ -19,7 +19,7 @@ class FrameFore(CqAssemblyContainer):
     """Frame fore assembly."""
 
     def __init__(self, simple: bool = False) -> None:
-        """Initialise."""
+        """Initialise FrameFore."""
         self.simple = simple
 
         self._name = "frame_fore"

@@ -28,7 +28,7 @@ class Export:
     _stderr: str
 
     def __init__(self) -> None:
-        """Initialise."""
+        """Initialise Export."""
         self._stdout = ""
         self._stderr = ""
 

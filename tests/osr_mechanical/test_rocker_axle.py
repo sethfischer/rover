@@ -7,7 +7,7 @@ class TestRockerAxleAssembly:
     """Rocker axle tests."""
 
     def setup_method(self) -> None:
-        """Initialise."""
+        """Set up TestRockerAxleAssembly."""
         self.rocker_axle_compound = RockerAxle().cq_object.toCompound()
 
     def test_is_valid(self) -> None:

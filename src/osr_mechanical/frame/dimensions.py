@@ -30,7 +30,7 @@ class FrameDimensions:
     PILLAR_HEIGHT: float = field(init=False)
 
     def __post_init__(self) -> None:
-        """Set calculated values."""
+        """Set calculated values for frame."""
         object.__setattr__(
             self,
             "BEAM_SIDE_LENGTH",

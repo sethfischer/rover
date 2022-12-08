@@ -8,7 +8,7 @@ class MetricBoltSpecification:
     """Metric bolt specification."""
 
     def __init__(self, shaft: float, pitch: float, length: float) -> None:
-        """Initialise metric bolt specification."""
+        """Initialise MetricBoltSpecification."""
         self.shaft = shaft
         self.pitch = pitch
         self.length = length

@@ -17,7 +17,7 @@ class FinalAssembly(CqAssemblyContainer):
     """Final assembly."""
 
     def __init__(self, simple: bool = False):
-        """Initialise."""
+        """Initialise FinalAssembly."""
         self.simple = simple
 
         self._name = "final"

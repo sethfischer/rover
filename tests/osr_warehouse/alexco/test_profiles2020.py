@@ -11,7 +11,7 @@ class TestVslot20BoreSlot:
     """AEC 20 series bore slot tests."""
 
     def setup_method(self) -> None:
-        """Initialise."""
+        """Set up TestVslot20BoreSlot."""
         bore_slot = Vslot20BoreSlot()
         self.sketch = bore_slot.cq_object
         self.wires = bore_slot._make(assemble=False)
@@ -41,7 +41,7 @@ class TestVslot2020ProfileWithoutFillets:
     """AEC 2020 V-slot profile tests."""
 
     def setup_method(self) -> None:
-        """Initialise."""
+        """Set up TestVslot2020ProfileWithoutFillets."""
         profile = Vslot2020Profile()
         self.sketch_without_fillets = profile._make(fillet=False)
 
