@@ -10,6 +10,7 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
     :caption: Contents:
 
     jigs/index
+    bom
     build-release
     console
     related-projects

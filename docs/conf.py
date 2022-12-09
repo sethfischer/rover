@@ -12,6 +12,7 @@ project_copyright = f"{date.today().year}, {author}"
 
 exclude_patterns = ["_build"]
 extensions = [
+    "osr_sphinx",
     "sphinx_argparse_cli",
     "sphinx_rtd_theme",
 ]

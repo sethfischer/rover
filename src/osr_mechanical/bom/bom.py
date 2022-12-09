@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import importlib
 import io
 from collections import UserDict
 from json import JSONEncoder, dumps
@@ -90,6 +91,11 @@ class Bom(UserDict[str, BomEntry]):
 
         return assemblies
 
+    @property
+    def part_count(self):
+        """Count of unique parts."""
+        return len(self.data)
+
     def encode(self, encoder: Optional[str] = None) -> str:
         """Get bill of materials, optionally encode to CSV or JSON."""
         if self.ENCODE_JSON == encoder or encoder is None:
@@ -117,6 +123,22 @@ class Bom(UserDict[str, BomEntry]):
         raise ValueError(
             f'Formatter must be one of: "{self.ENCODE_CSV}", "{self.ENCODE_JSON}".'
         )
+
+
+class BomBuilder:
+    """BOM builder."""
+
+    @staticmethod
+    def from_string(assembly_name: str = "final.FinalAssembly") -> Bom:
+        """Create BOM."""
+        module_name, class_name = f"osr_mechanical.{assembly_name}".rsplit(".", 1)
+
+        module = importlib.import_module(module_name)
+        assembly_container = getattr(module, class_name)
+
+        assembly = assembly_container().cq_object
+
+        return Bom(assembly)
 
 
 class BomEncoder(JSONEncoder):

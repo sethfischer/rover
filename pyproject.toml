@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Alternative body for the NASA JPL Open Source Rover."
 packages = [
     { include = "osr_mechanical", from = "src" },
+    { include = "osr_sphinx", from = "src" },
     { include = "osr_warehouse", from = "src" },
 ]
 authors = [

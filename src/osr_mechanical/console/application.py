@@ -1,12 +1,10 @@
 """OSR console command."""
 
-import csv
-import importlib
+
 import logging
 from argparse import ArgumentParser, Namespace
 from base64 import b64encode
 from datetime import datetime
-from json import JSONDecodeError
 from os import EX_OK, getcwd
 from pathlib import Path
 from sys import stdout
@@ -14,7 +12,7 @@ from sys import stdout
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from osr_mechanical import __version__
-from osr_mechanical.bom.bom import Bom
+from osr_mechanical.bom.bom import Bom, BomBuilder
 from osr_mechanical.config import (
     COPYRIGHT_OWNER,
     PROJECT_HOST,
@@ -101,27 +99,11 @@ def dxf_reduce(args: Namespace) -> None:
 
 def export_bom(args: Namespace) -> None:
     """Generate bill of materials."""
-    module_name, class_name = f"osr_mechanical.{args.assembly}".rsplit(".", 1)
+    builder = BomBuilder()
+    bom = builder.from_string(args.assembly)
 
-    try:
-        module = importlib.import_module(module_name)
-        assembly_container = getattr(module, class_name)
-
-        assembly = assembly_container().cq_object
-        bom = Bom(assembly)
-
-        stdout.write(bom.encode(encoder=args.encode) + "\n")
-        exit(EX_OK)
-    except AttributeError:
-        logger.error(f"Class {class_name} does not exist.")
-    except ImportError:
-        logger.error(f"Module {module_name} does not exist.")
-    except csv.Error as error:
-        logger.error(f"CSV encoding error: {error}.")
-    except JSONDecodeError as error:
-        logger.error(f"JSON encoding error: {error}.")
-
-    exit(1)
+    stdout.write(bom.encode(encoder=args.encode) + "\n")
+    exit(EX_OK)
 
 
 def build_parser() -> ArgumentParser:
