@@ -1,6 +1,5 @@
 """Generic V-slot T-nuts for 20 mm series extrusion."""
 
-
 import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import SocketHeadCapScrew

@@ -1,6 +1,5 @@
 """OSR console command."""
 
-
 import logging
 from argparse import ArgumentParser, Namespace
 from base64 import b64encode

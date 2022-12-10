@@ -1,6 +1,5 @@
 """DXF utilities."""
 
-
 import tempfile
 from pathlib import Path
 
