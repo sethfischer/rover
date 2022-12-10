@@ -24,7 +24,7 @@ class RockerAxle(CqAssemblyContainer):
 
         self.axle_length = FRAME_DIMENSIONS.WIDTH + (2 * self.AXLE_PROTRUSION)
 
-        self.axle_pillar = SHF(self.AXLE_DIAMETER)
+        self.shaft_support = SHF(self.AXLE_DIAMETER)
 
         self.chrome_plate = cq.Color(*COLORS["chrome_plate"])
         self.aluminium_cast = cq.Color(*COLORS["aluminium_cast"])
@@ -34,7 +34,7 @@ class RockerAxle(CqAssemblyContainer):
     def _make(self) -> cq.Assembly:
         """Make assembly."""
         axle = cq.Workplane("YZ").cylinder(self.axle_length, self.AXLE_DIAMETER / 2)
-        axle_pillar = self.axle_pillar.cq_object
+        shaft_support = self.shaft_support.cq_object
 
         flange_face_to_origin = FRAME_DIMENSIONS.WIDTH / 2 - 20
 
@@ -44,8 +44,9 @@ class RockerAxle(CqAssemblyContainer):
                 metadata={Bom.PARTS_KEY: self.part_identifiers()},
             )
             .add(
-                axle_pillar,
-                name=self.sub_assembly_name("pillar_port"),
+                shaft_support,
+                name=self.sub_assembly_name("shf_port"),
+                color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(flange_face_to_origin, 0, 0),
                     cq.Vector(0, 1, 0),
@@ -53,8 +54,9 @@ class RockerAxle(CqAssemblyContainer):
                 ),
             )
             .add(
-                axle_pillar,
-                name=self.sub_assembly_name("pillar_starboard"),
+                shaft_support,
+                name=self.sub_assembly_name("shf_starboard"),
+                color=self.aluminium_cast,
                 loc=cq.Location(
                     cq.Vector(-flange_face_to_origin, 0, 0),
                     cq.Vector(0, 1, 0),
@@ -64,7 +66,7 @@ class RockerAxle(CqAssemblyContainer):
             .add(
                 axle,
                 name=self.sub_assembly_name("axle"),
-                color=self.aluminium_cast,
+                color=self.chrome_plate,
             )
         )
 
@@ -72,10 +74,10 @@ class RockerAxle(CqAssemblyContainer):
 
     def part_identifiers(self) -> dict[str, PartIdentifier]:
         """Part identifiers for use in bill of materials."""
-        pillar = PartIdentifier(
+        shaft_support = PartIdentifier(
             PartTypes.linear_motion,
-            "SHF8-PILLAR",
-            self.axle_pillar.description,
+            "SHF8FLANGE",
+            self.shaft_support.description,
         )
         axle = PartIdentifier(
             PartTypes.linear_motion,
@@ -88,7 +90,7 @@ class RockerAxle(CqAssemblyContainer):
         )
 
         return {
-            self.sub_assembly_name("pillar_port"): pillar,
-            self.sub_assembly_name("pillar_starboard"): pillar,
+            self.sub_assembly_name("shf_port"): shaft_support,
+            self.sub_assembly_name("shf_starboard"): shaft_support,
             self.sub_assembly_name("axle"): axle,
         }
