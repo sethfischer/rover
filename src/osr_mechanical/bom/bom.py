@@ -92,7 +92,7 @@ class Bom(UserDict[str, BomEntry]):
         return assemblies
 
     @property
-    def part_count(self):
+    def part_count(self) -> int:
         """Count of unique parts."""
         return len(self.data)
 
