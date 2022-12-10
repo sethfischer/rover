@@ -173,7 +173,10 @@ class ExportPNG:
 
         label_bg_color = (255, 255, 255)
         label_fg_color = (0, 0, 0)
+
         left, top, right, bottom = font.getbbox(text)
+        del left, right
+
         text_height = bottom - top
         label_height = ceil(text_height * 1.2)
 
