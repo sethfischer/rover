@@ -27,7 +27,7 @@ keywords = [
 classifiers = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
-    "Private :: Do not Upload",  # Prevent uploading to PyPi
+    "Private :: Do not Upload",  # Prevent uploading to PyPI
     "Topic :: Education",
     "Topic :: Scientific/Engineering :: Astronomy",
     "Topic :: Scientific/Engineering",
