@@ -3,9 +3,9 @@ name = "sethfischer-osr"
 version = "0.1.0"
 description = "Alternative body for the NASA JPL Open Source Rover."
 packages = [
-    { include = "osr_mechanical", from = "src" },
-    { include = "osr_sphinx", from = "src" },
-    { include = "osr_warehouse", from = "src" },
+    {include = "osr_mechanical", from = "src"},
+    {include = "osr_sphinx", from = "src"},
+    {include = "osr_warehouse", from = "src"},
 ]
 authors = [
     "Seth Fischer <seth@fischer.nz>",
@@ -44,8 +44,8 @@ python = ">=3.9,<3.11"
 cadquery = { version = "^2.2.0b2", allow-prereleases = true }
 cadquery-ocp = { version = "^7.6.3a0", allow-prereleases = true }
 casadi = { version = "^3.5.6pre2", allow-prereleases = true }
-cq-electronics = { git = "https://github.com/sethfischer/cq-electronics.git", rev = "2a8aa8a21e8a330e7a41faee4106899ccfca03d7" }
-cq_warehouse = { git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565" }
+cq-electronics = {git = "https://github.com/sethfischer/cq-electronics.git", rev = "2a8aa8a21e8a330e7a41faee4106899ccfca03d7"}
+cq_warehouse = {git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"}
 Jinja2 = "^3.1.2"
 Sphinx = "^5.3.0"
 sphinx-argparse-cli = "^1.10.0"
@@ -70,7 +70,7 @@ CairoSVG = "^2.5.2"
 optional = true
 
 [tool.poetry.group.cq-editor.dependencies]
-cq-editor = { git = "https://github.com/CadQuery/CQ-editor.git", rev = "4b461fe195d0a4e99b9a6c43b7e1fe0cb4c5e77d" }
+cq-editor = {git = "https://github.com/CadQuery/CQ-editor.git", rev = "4b461fe195d0a4e99b9a6c43b7e1fe0cb4c5e77d"}
 Logbook = "^1.5.3"
 PyQt5 = "^5.15.7"
 pyqtgraph = "^0.12.4"
