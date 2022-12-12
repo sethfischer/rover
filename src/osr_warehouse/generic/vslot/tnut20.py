@@ -5,6 +5,7 @@ import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import SocketHeadCapScrew
 
 from osr_warehouse.cq_containers import CqObjectContainer
+from osr_warehouse.exceptions import CadQueryTypeError
 
 
 class SlidingTNut20(CqObjectContainer):
@@ -73,8 +74,15 @@ class SlidingTNut20(CqObjectContainer):
             .extrude(self.length)
             .faces(">Z")
             .workplane(centerOption="CenterOfMass")
-            # type: ignore[attr-defined]
-            .threadedHole(screw, thickness, counterSunk=False, simple=self.simple)
+            .threadedHole(  # type: ignore[attr-defined]
+                screw,
+                thickness,
+                counterSunk=False,
+                simple=self.simple,
+            )
         )
+
+        if not isinstance(result, cq.Workplane):
+            raise CadQueryTypeError(cq.Workplane, result)
 
         return result

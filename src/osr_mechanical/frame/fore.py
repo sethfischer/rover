@@ -34,12 +34,12 @@ class FrameFore(CqAssemblyContainer):
         self._cq_object = self._make()
 
     @staticmethod
-    def _make_beam_lateral(length: float):
+    def _make_beam_lateral(length: float) -> cq.Workplane:
         """Create lateral beam."""
         return Vslot2020().make(length)
 
     @staticmethod
-    def _make_pillar(height: float):
+    def _make_pillar(height: float) -> cq.Workplane:
         """Create pillar."""
         return Vslot2020().make(height)
 

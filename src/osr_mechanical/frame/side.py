@@ -45,7 +45,7 @@ class FrameSide(CqAssemblyContainer):
         length: float,
         deck: bool = True,
         differential_pivot_beam_offset: float | None = None,
-    ):
+    ) -> cq.Workplane:
         """Create side beam."""
         beam_fore_y = (-(DIM.TRANSOM_LENGTH - Vslot2020.WIDTH) - DIM.LENGTH) / 2
         hole_fore_y = beam_fore_y + (Vslot2020.WIDTH / 2)
@@ -125,7 +125,7 @@ class FrameSide(CqAssemblyContainer):
 
         return result
 
-    def _make_pillar_rocker(self, height: float):
+    def _make_pillar_rocker(self, height: float) -> cq.Workplane:
         """Create rocker axle pillar."""
         half_between_shf_mounting_holes = self.between_shf_mounting_holes / 2
         shf_mounting_hole_points = [
@@ -146,7 +146,7 @@ class FrameSide(CqAssemblyContainer):
         )
 
     @staticmethod
-    def _make_pillar_transom(height: float):
+    def _make_pillar_transom(height: float) -> cq.Workplane:
         """Create transom pillar."""
         return (
             Vslot2020()

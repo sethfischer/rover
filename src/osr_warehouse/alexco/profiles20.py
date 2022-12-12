@@ -10,6 +10,7 @@ from math import radians, sqrt, tan
 import cadquery as cq
 
 from osr_warehouse.cq_containers import CqObjectContainer
+from osr_warehouse.exceptions import CadQueryTypeError
 from osr_warehouse.point2d import Point2D
 
 
@@ -139,7 +140,7 @@ class Vslot2020Profile(CqObjectContainer):
 
         return result
 
-    def _make_main_sketch(self):
+    def _make_main_sketch(self) -> cq.Sketch:
         """Create main profile."""
         result = (
             cq.Sketch()
@@ -164,6 +165,9 @@ class Vslot2020Profile(CqObjectContainer):
         )
 
         result = result.reset().circle(self.center_bore_radius, mode="s")
+
+        if not isinstance(result, cq.Sketch):
+            raise CadQueryTypeError(cq.Sketch, result)
 
         return result
 
@@ -503,6 +507,9 @@ class Vslot2040Profile(CqObjectContainer):
             .assemble()
             .clean()
         )
+
+        if not isinstance(result, cq.Sketch):
+            raise CadQueryTypeError(cq.Sketch, result)
 
         return result
 

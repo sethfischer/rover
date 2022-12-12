@@ -9,6 +9,7 @@ from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
 from osr_mechanical.cq_containers import CqAssemblyContainer
+from osr_warehouse.exceptions import CadQueryTypeError
 from osr_warehouse.fasteners import MetricBoltSpecification as BoltSpec
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
 from osr_warehouse.utilities import TINY_LENGTH
@@ -125,7 +126,7 @@ class EndTapJig(CqAssemblyContainer):
 
         return assembly
 
-    def _make_body(self, assembly: cq.Assembly):
+    def _make_body(self, assembly: cq.Assembly) -> cq.Workplane:
         """Make jig body."""
         sketch_nut_retainer = self.slot_sketch(self.key_depth)
 
@@ -161,7 +162,7 @@ class EndTapJig(CqAssemblyContainer):
             .faces(">Y")
             .workplane(centerOption="CenterOfBoundBox")
             .center(0, self.fixing_hole_elevation)
-            .clearanceHole(  # type: ignore[attr-defined]
+            .clearanceHole(
                 self.screw,
                 washers=[self.washer],
                 counterSunk=False,
@@ -180,6 +181,9 @@ class EndTapJig(CqAssemblyContainer):
             # See https://github.com/CadQuery/cadquery/issues/786
             .chamfer(2.5)
         )
+
+        if not isinstance(result, cq.Workplane):
+            raise CadQueryTypeError(cq.Workplane, result)
 
         return result
 

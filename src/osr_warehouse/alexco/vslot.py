@@ -37,7 +37,7 @@ class Vslot2020:
 
         return cls._instance
 
-    def make(self, length: float):
+    def make(self, length: float) -> cq.Workplane:
         """Return extrusion of specified length."""
         return cq.Workplane().placeSketch(self.PROFILE).extrude(length)
 
@@ -74,6 +74,6 @@ class Vslot2040:
 
         return cls._instance
 
-    def make(self, length: float):
+    def make(self, length: float) -> cq.Workplane:
         """Return extrusion of specified length."""
         return cq.Workplane().placeSketch(self.PROFILE).extrude(length)

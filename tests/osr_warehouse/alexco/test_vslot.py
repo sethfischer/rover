@@ -1,5 +1,6 @@
 """Aluminium Extrusion Company V-slot extrusion tests."""
 
+import cadquery as cq
 import pytest
 
 from osr_warehouse.alexco.vslot import Vslot2020, Vslot2040
@@ -18,9 +19,12 @@ class TestVslot2020:
 
     def test_bounding_box(self) -> None:
         """Test extrusion bounding box dimensions."""
-        assert pytest.approx(20, TOLERANCE) == self.extrusion.val().BoundingBox().xlen
-        assert pytest.approx(20, TOLERANCE) == self.extrusion.val().BoundingBox().ylen
-        assert pytest.approx(50, TOLERANCE) == self.extrusion.val().BoundingBox().zlen
+        val = self.extrusion.val()
+        assert isinstance(val, cq.Shape)
+
+        assert pytest.approx(20, TOLERANCE) == val.BoundingBox().xlen
+        assert pytest.approx(20, TOLERANCE) == val.BoundingBox().ylen
+        assert pytest.approx(50, TOLERANCE) == val.BoundingBox().zlen
 
 
 class TestVslot2040:
@@ -34,6 +38,9 @@ class TestVslot2040:
 
     def test_bounding_box(self) -> None:
         """Test extrusion bounding box dimensions."""
-        assert pytest.approx(40, TOLERANCE) == self.extrusion.val().BoundingBox().xlen
-        assert pytest.approx(20, TOLERANCE) == self.extrusion.val().BoundingBox().ylen
-        assert pytest.approx(50, TOLERANCE) == self.extrusion.val().BoundingBox().zlen
+        val = self.extrusion.val()
+        assert isinstance(val, cq.Shape)
+
+        assert pytest.approx(40, TOLERANCE) == val.BoundingBox().xlen
+        assert pytest.approx(20, TOLERANCE) == val.BoundingBox().ylen
+        assert pytest.approx(50, TOLERANCE) == val.BoundingBox().zlen
