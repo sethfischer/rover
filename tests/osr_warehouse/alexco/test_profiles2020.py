@@ -14,7 +14,6 @@ class TestVslot20BoreSlot:
         """Set up TestVslot20BoreSlot."""
         bore_slot = Vslot20BoreSlot()
         self.sketch = bore_slot.cq_object
-        self.wires = bore_slot._make(assemble=False)
 
     def test_faces_count(self) -> None:
         """Test number of faces."""
@@ -26,15 +25,15 @@ class TestVslot20BoreSlot:
 
     def test_vertices_count(self) -> None:
         """Test number of vertices."""
-        assert 12 == len(self.wires.vertices()._selection)
+        assert 18 == len(self.sketch.vertices()._selection)
 
     def test_bore_slot_width(self) -> None:
         """Test bore slot width."""
-        assert 1.5 == self.wires.edges()._selection[0].Length()
+        assert 1.5 == self.sketch.edges()._selection[0].Length()
 
     def test_edges_count(self) -> None:
         """Test number of edges."""
-        assert 6 == len(self.wires.edges()._selection)
+        assert 12 == len(self.sketch.edges()._selection)
 
 
 class TestVslot2020ProfileWithoutFillets:
