@@ -16,6 +16,6 @@ class TestSHF8:
         """Test object is valid."""
         assert isinstance(self.shf8, cq.Workplane)
         shape = self.shf8.val()
-        assert isinstance(shape, cq.Shape)
+        assert isinstance(shape, cq.Solid)
 
         assert shape.isValid()

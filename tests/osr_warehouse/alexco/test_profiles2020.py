@@ -26,7 +26,7 @@ class TestVslot20BoreSlot:
         """Test area."""
         assert isinstance(self.sketch, cq.Sketch)
         face = self.sketch.faces().val()
-        assert isinstance(face, cq.Shape)
+        assert isinstance(face, cq.Face)
 
         assert pytest.approx(6.224999, TOLERANCE) == face.Area()
 
