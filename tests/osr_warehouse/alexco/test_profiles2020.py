@@ -25,8 +25,10 @@ class TestVslot20BoreSlot:
     def test_area(self) -> None:
         """Test area."""
         assert isinstance(self.sketch, cq.Sketch)
+        face = self.sketch.faces().val()
+        assert isinstance(face, cq.Shape)
 
-        assert pytest.approx(6.224999, TOLERANCE) == self.sketch._faces.Area()
+        assert pytest.approx(6.224999, TOLERANCE) == face.Area()
 
     def test_vertices_count(self) -> None:
         """Test number of vertices."""
