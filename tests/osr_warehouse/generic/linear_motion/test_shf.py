@@ -1,5 +1,7 @@
 """SHF shaft support tests."""
 
+import cadquery as cq
+
 from osr_warehouse.generic.linear_motion.shf import SHF
 
 
@@ -12,4 +14,8 @@ class TestSHF8:
 
     def test_is_valid(self) -> None:
         """Test object is valid."""
-        assert self.shf8.val().isValid()
+        assert isinstance(self.shf8, cq.Workplane)
+        shape = self.shf8.val()
+        assert isinstance(shape, cq.Shape)
+
+        assert shape.isValid()

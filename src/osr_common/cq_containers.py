@@ -20,7 +20,7 @@ class CqObjectContainer(ABC):
         return self._cq_object
 
     @abstractmethod
-    def _make(self):
+    def _make(self) -> cq.Shape | cq.Sketch | cq.Workplane:
         """Create CadQuery object."""
         ...
 
