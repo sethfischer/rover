@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import cadquery as cq
 
+from osr_common.cq_containers import CqAssemblyContainer
 from osr_mechanical.bom.parts import PartIdentifier, port, starboard
-from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS as DIM
 from osr_mechanical.frame.fore import FrameFore
 from osr_mechanical.frame.pivot_beam import FramePivotBeam

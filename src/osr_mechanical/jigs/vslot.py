@@ -6,10 +6,10 @@ import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew
 
+from osr_common.cq_containers import CqAssemblyContainer
+from osr_common.exceptions import CadQueryTypeError
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
-from osr_mechanical.cq_containers import CqAssemblyContainer
-from osr_warehouse.exceptions import CadQueryTypeError
 from osr_warehouse.fasteners import MetricBoltSpecification as BoltSpec
 from osr_warehouse.generic.vslot.tnut20 import SlidingTNut20
 from osr_warehouse.utilities import TINY_LENGTH

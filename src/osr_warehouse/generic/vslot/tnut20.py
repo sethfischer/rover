@@ -4,8 +4,8 @@ import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import SocketHeadCapScrew
 
-from osr_warehouse.cq_containers import CqObjectContainer
-from osr_warehouse.exceptions import CadQueryTypeError
+from osr_common.cq_containers import CqObjectContainer
+from osr_common.exceptions import CadQueryTypeError
 
 
 class SlidingTNut20(CqObjectContainer):

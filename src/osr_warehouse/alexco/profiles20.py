@@ -9,8 +9,8 @@ from math import radians, sqrt, tan
 
 import cadquery as cq
 
-from osr_warehouse.cq_containers import CqObjectContainer
-from osr_warehouse.exceptions import CadQueryTypeError
+from osr_common.cq_containers import CqObjectContainer
+from osr_common.exceptions import CadQueryTypeError
 from osr_warehouse.point2d import Point2D
 
 

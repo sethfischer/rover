@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import cadquery as cq
 
+from osr_common.cq_containers import CqAssemblyContainer
 from osr_mechanical.bom.parts import PartIdentifier
-from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.electronics import ControlElectronics
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
 from osr_mechanical.frame.final import Frame

@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import cadquery as cq
 
+from osr_common.cq_containers import CqAssemblyContainer
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
-from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS as DIM
 from osr_warehouse.alexco import Vslot2020
 from osr_warehouse.generic.vslot.brackets2020 import (

@@ -9,6 +9,22 @@ import cadquery as cq
 from osr_mechanical.bom.parts import PartIdentifier
 
 
+class CqObjectContainer(ABC):
+    """Abstract base class for CadQuery object containers."""
+
+    _cq_object: cq.Shape | cq.Sketch | cq.Workplane
+
+    @property
+    def cq_object(self):
+        """Get CadQuery object."""
+        return self._cq_object
+
+    @abstractmethod
+    def _make(self):
+        """Create CadQuery object."""
+        ...
+
+
 class CqAssemblyContainer(ABC):
     """Abstract base class for CadQuery assembly containers."""
 

@@ -6,7 +6,7 @@ from typing import Any
 
 import cadquery as cq
 
-from osr_warehouse.cq_containers import CqObjectContainer
+from osr_common.cq_containers import CqObjectContainer
 from osr_warehouse.point2d import Point2D
 from osr_warehouse.utilities import TINY_LENGTH
 

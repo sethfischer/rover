@@ -2,7 +2,7 @@
 
 import cadquery as cq
 
-from osr_warehouse.cq_containers import CqObjectContainer
+from osr_common.cq_containers import CqObjectContainer
 
 
 class StandardLightDuty90(CqObjectContainer):

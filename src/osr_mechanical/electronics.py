@@ -8,9 +8,9 @@ from cq_electronics.mechanical.din_rail import TopHat
 from cq_electronics.rpi.rpi3b import RPi3b
 from cq_electronics.sourcekit.pitray_clip import PiTrayClip
 
+from osr_common.cq_containers import CqAssemblyContainer
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import PartIdentifier, PartTypes
-from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
 from osr_warehouse.materials import COLORS
 

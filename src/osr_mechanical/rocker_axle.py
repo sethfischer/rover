@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import cadquery as cq
 
+from osr_common.cq_containers import CqAssemblyContainer
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.bom.parts import Commodity, PartIdentifier, PartTypes
-from osr_mechanical.cq_containers import CqAssemblyContainer
 from osr_mechanical.frame.dimensions import FRAME_DIMENSIONS
 from osr_warehouse.generic.linear_motion.shf import SHF
 from osr_warehouse.materials import COLORS
