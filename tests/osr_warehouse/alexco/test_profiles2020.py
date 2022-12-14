@@ -17,7 +17,7 @@ class TestVslot20BoreSlot:
 
     def test_faces_count(self) -> None:
         """Test number of faces."""
-        assert 1 == len(self.sketch._faces.Faces())
+        assert 1 == len(self.sketch.faces().vals())
 
     def test_area(self) -> None:
         """Test area."""
@@ -25,15 +25,15 @@ class TestVslot20BoreSlot:
 
     def test_vertices_count(self) -> None:
         """Test number of vertices."""
-        assert 18 == len(self.sketch.vertices()._selection)
+        assert 18 == len(self.sketch.vertices().vals())
 
     def test_bore_slot_width(self) -> None:
         """Test bore slot width."""
-        assert 1.5 == self.sketch.edges()._selection[0].Length()
+        assert 1.5 == self.sketch.edges().vals()[0].Length()
 
     def test_edges_count(self) -> None:
         """Test number of edges."""
-        assert 12 == len(self.sketch.edges()._selection)
+        assert 6 == len(self.sketch.faces().edges().vals())
 
 
 class TestVslot2020ProfileWithoutFillets:
@@ -46,16 +46,17 @@ class TestVslot2020ProfileWithoutFillets:
 
     def test_vertices_count(self) -> None:
         """Test number of vertices."""
-        assert 85 == len(self.sketch_without_fillets.reset().vertices()._selection)
+        self.sketch_without_fillets.reset()
+        assert 85 == len(self.sketch_without_fillets.vertices().vals())
 
     def test_tag_bounding_box_vertices(self) -> None:
         """Test tagged bounding box vertices."""
+        self.sketch_without_fillets.reset()
         assert 6 == len(
-            self.sketch_without_fillets.reset()
-            .vertices(tag="bounding_box_vertices")
-            ._selection
+            self.sketch_without_fillets.vertices(tag="bounding_box_vertices").vals()
         )
 
     def test_edge_count(self) -> None:
         """Test number of edges."""
-        assert 71 == len(self.sketch_without_fillets.reset().edges()._selection)
+        self.sketch_without_fillets.reset()
+        assert 71 == len(self.sketch_without_fillets.edges().vals())
