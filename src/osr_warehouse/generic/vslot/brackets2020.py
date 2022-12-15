@@ -2,10 +2,10 @@
 
 import cadquery as cq
 
-from osr_common.cq_containers import CqObjectContainer
+from osr_common.cq_containers import CqWorkplaneContainer
 
 
-class StandardLightDuty90(CqObjectContainer):
+class StandardLightDuty90(CqWorkplaneContainer):
     """Standard light duty 90° angle bracket.
 
     Two-rib light-duty 90° angle bracket for V-slot aluminium extrusion.
@@ -61,7 +61,7 @@ class StandardLightDuty90(CqObjectContainer):
         return bracket
 
 
-class StandardStandardDuty90(CqObjectContainer):
+class StandardStandardDuty90(CqWorkplaneContainer):
     """Standard standard-duty 90° angle bracket.
 
     Two-rib standard-duty 90° angle bracket for V-slot aluminium extrusion.

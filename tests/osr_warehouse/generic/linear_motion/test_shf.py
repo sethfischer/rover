@@ -14,7 +14,6 @@ class TestSHF8:
 
     def test_is_valid(self) -> None:
         """Test object is valid."""
-        assert isinstance(self.shf8, cq.Workplane)
         shape = self.shf8.val()
         assert isinstance(shape, cq.Compound)
 

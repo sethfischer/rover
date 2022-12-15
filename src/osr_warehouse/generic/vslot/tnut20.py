@@ -4,11 +4,11 @@ import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import SocketHeadCapScrew
 
-from osr_common.cq_containers import CqObjectContainer
+from osr_common.cq_containers import CqWorkplaneContainer
 from osr_common.exceptions import CadQueryTypeError
 
 
-class SlidingTNut20(CqObjectContainer):
+class SlidingTNut20(CqWorkplaneContainer):
     """20 mm series V-slot sliding T-nut.
 
     :param size: Size of threaded hole.

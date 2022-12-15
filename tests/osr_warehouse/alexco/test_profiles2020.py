@@ -18,13 +18,10 @@ class TestVslot20BoreSlot:
 
     def test_faces_count(self) -> None:
         """Test number of faces."""
-        assert isinstance(self.sketch, cq.Sketch)
-
         assert 1 == len(self.sketch.faces().vals())
 
     def test_area(self) -> None:
         """Test area."""
-        assert isinstance(self.sketch, cq.Sketch)
         face = self.sketch.faces().val()
         assert isinstance(face, cq.Face)
 
@@ -32,14 +29,10 @@ class TestVslot20BoreSlot:
 
     def test_vertices_count(self) -> None:
         """Test number of vertices."""
-        assert isinstance(self.sketch, cq.Sketch)
-
         assert 18 == len(self.sketch.vertices().vals())
 
     def test_bore_slot_width(self) -> None:
         """Test bore slot width."""
-        assert isinstance(self.sketch, cq.Sketch)
-
         edge = self.sketch.edges().vals()[0]
         assert isinstance(edge, cq.Edge)
 
@@ -47,8 +40,6 @@ class TestVslot20BoreSlot:
 
     def test_edges_count(self) -> None:
         """Test number of edges."""
-        assert isinstance(self.sketch, cq.Sketch)
-
         assert 6 == len(self.sketch.faces().edges().vals())
 
 

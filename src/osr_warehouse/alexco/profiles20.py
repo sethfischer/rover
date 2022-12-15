@@ -9,12 +9,12 @@ from math import radians, sqrt, tan
 
 import cadquery as cq
 
-from osr_common.cq_containers import CqObjectContainer
+from osr_common.cq_containers import CqSketchContainer
 from osr_common.exceptions import CadQueryTypeError
 from osr_warehouse.point2d import Point2D
 
 
-class Vslot20BoreSlot(CqObjectContainer):
+class Vslot20BoreSlot(CqSketchContainer):
     """Bore slot for AEC 20-series V-slot Aluminium Extrusion.
 
     Consists of a channel and a groove.
@@ -73,7 +73,7 @@ class Vslot20BoreSlot(CqObjectContainer):
         return sketch
 
 
-class Vslot2020Profile(CqObjectContainer):
+class Vslot2020Profile(CqSketchContainer):
     """2020 V-slot Aluminium Extrusion profile.
 
     :Manufacturer: Aluminium Extrusion Company
@@ -342,7 +342,7 @@ class Vslot2020Profile(CqObjectContainer):
         return profile
 
 
-class Vslot2040Profile(CqObjectContainer):
+class Vslot2040Profile(CqSketchContainer):
     """2040 V-slot Aluminium Extrusion profile.
 
     :Manufacturer: Aluminium Extrusion Company

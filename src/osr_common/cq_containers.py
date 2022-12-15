@@ -9,24 +9,40 @@ import cadquery as cq
 from osr_mechanical.bom.parts import PartIdentifier
 
 
-class CqObjectContainer(ABC):
-    """Abstract base class for CadQuery object containers."""
+class CqSketchContainer(ABC):
+    """Abstract base class for CadQuery Sketch containers."""
 
-    _cq_object: cq.Shape | cq.Sketch | cq.Workplane
+    _cq_object: cq.Sketch
 
     @property
-    def cq_object(self):
+    def cq_object(self) -> cq.Sketch:
         """Get CadQuery object."""
         return self._cq_object
 
     @abstractmethod
-    def _make(self) -> cq.Shape | cq.Sketch | cq.Workplane:
+    def _make(self) -> cq.Sketch:
+        """Create CadQuery object."""
+        ...
+
+
+class CqWorkplaneContainer(ABC):
+    """Abstract base class for CadQuery Workplane containers."""
+
+    _cq_object: cq.Workplane
+
+    @property
+    def cq_object(self) -> cq.Workplane:
+        """Get CadQuery object."""
+        return self._cq_object
+
+    @abstractmethod
+    def _make(self) -> cq.Workplane:
         """Create CadQuery object."""
         ...
 
 
 class CqAssemblyContainer(ABC):
-    """Abstract base class for CadQuery assembly containers."""
+    """Abstract base class for CadQuery Assembly containers."""
 
     _cq_object: cq.Assembly
     _name: str
@@ -47,9 +63,6 @@ class CqAssemblyContainer(ABC):
 
         if result is None:
             raise Exception(f"Invalid name: '{name}'.")
-
-        if not (isinstance(result, cq.Shape) or isinstance(result, cq.Workplane)):
-            raise Exception("Part is not a valid Shape or Workplane.")
 
         return result
 
