@@ -1,7 +1,5 @@
 """Aluminium Extrusion Company V-slot extrusions."""
 
-from typing import Any
-
 import cadquery as cq
 
 from osr_warehouse.alexco.profiles20 import Vslot2020Profile, Vslot2040Profile
@@ -22,7 +20,7 @@ class Vslot2020:
 
     _instance = None
 
-    PROFILE = None  # type: Any
+    PROFILE: cq.Sketch
 
     WIDTH = HEIGHT = 20
     COUNTERBORE_DEPTH = 6
@@ -57,7 +55,7 @@ class Vslot2040:
 
     _instance = None
 
-    PROFILE = None  # type: Any
+    PROFILE: cq.Sketch
 
     WIDTH = 20
     HEIGHT = 40
