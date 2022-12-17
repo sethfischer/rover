@@ -71,9 +71,7 @@ class Bom(UserDict[str, BomEntry]):
         for assembly in assemblies:
             for key, value in assembly.metadata.items():
                 if isinstance(value, (Screw, Nut, Washer)):
-                    self.insert_part(
-                        cq_warehouse_converter.convert(value), assembly.name
-                    )
+                    self.insert_part(cq_warehouse_converter(value), assembly.name)
                 if self.PARTS_KEY == key:
                     for name, part in value.items():
                         self.insert_part(part, assembly.name)

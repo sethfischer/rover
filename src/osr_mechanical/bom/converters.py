@@ -24,7 +24,7 @@ class FastenerToPart:
         """Initialise FastenerToPart."""
         self.part_type = PartTypes.fastner
 
-    def convert(self, fastener: Screw | Nut | Washer) -> PartIdentifier:
+    def __call__(self, fastener: Screw | Nut | Washer) -> PartIdentifier:
         """Generate internal part from cq_warehouse fastener."""
         if isinstance(fastener, Screw):
             return self.screw(fastener)
