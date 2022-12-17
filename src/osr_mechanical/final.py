@@ -16,7 +16,7 @@ from osr_warehouse.alexco.vslot import Vslot2020
 class FinalAssembly(CqAssemblyContainer):
     """Final assembly."""
 
-    def __init__(self, simple: bool = False):
+    def __init__(self, *, simple: bool = False):
         """Initialise FinalAssembly."""
         self.simple = simple
 

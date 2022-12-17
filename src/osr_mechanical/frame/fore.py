@@ -18,7 +18,7 @@ from osr_warehouse.materials import COLORS
 class FrameFore(CqAssemblyContainer):
     """Frame fore assembly."""
 
-    def __init__(self, simple: bool = False) -> None:
+    def __init__(self, *, simple: bool = False) -> None:
         """Initialise FrameFore."""
         self.simple = simple
 

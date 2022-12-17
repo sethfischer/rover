@@ -18,7 +18,11 @@ class FrameSide(CqAssemblyContainer):
     """Frame side assembly."""
 
     def __init__(
-        self, nautical_side: NauticalSide, simple: bool = False, fasteners: bool = True
+        self,
+        nautical_side: NauticalSide,
+        *,
+        simple: bool = False,
+        fasteners: bool = True,
     ) -> None:
         """Initialise FrameSide."""
         self.simple = simple

@@ -16,7 +16,7 @@ from osr_warehouse.alexco.vslot import Vslot2020
 class Frame(CqAssemblyContainer):
     """Frame assembly."""
 
-    def __init__(self, simple: bool = False) -> None:
+    def __init__(self, *, simple: bool = False) -> None:
         """Initialise Frame."""
         self.simple = simple
 

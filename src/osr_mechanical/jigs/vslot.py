@@ -28,7 +28,7 @@ class EndTapJig(CqAssemblyContainer):
     """
 
     def __init__(
-        self, height: float = 70, clearance: float = 0.15, simple: bool = True
+        self, height: float = 70, *, clearance: float = 0.15, simple: bool = True
     ):
         """Initialise EndTapJig."""
         self.height = height

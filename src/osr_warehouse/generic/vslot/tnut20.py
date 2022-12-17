@@ -21,7 +21,9 @@ class SlidingTNut20(CqWorkplaneContainer):
 
     _description = "{} sliding T-nut for 20 series T-slot extrusion."
 
-    def __init__(self, size: str = "M5-0.8", length: float = 9.5, simple: bool = True):
+    def __init__(
+        self, size: str = "M5-0.8", length: float = 9.5, *, simple: bool = True
+    ):
         """Initialise SlidingTNut20."""
         self.size = size
         self.length = length
