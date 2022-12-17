@@ -42,7 +42,7 @@ class Export:
         """Output sent to stderr."""
         return self._stderr
 
-    def export(
+    def __call__(
         self,
         w: Shape | Workplane,
         fname: Path,

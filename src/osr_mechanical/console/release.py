@@ -98,9 +98,9 @@ class ReleaseBuilder:
         """Export final assembly as STEP."""
         cq_object = FinalAssembly().cq_object.toCompound()
 
-        export_wrapper = ExportWrapper()
+        export = ExportWrapper()
 
-        export_wrapper.export(
+        export(
             cq_object,
             out_file,
             tolerance=0.01,

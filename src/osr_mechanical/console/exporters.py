@@ -90,9 +90,9 @@ class ExportPNG:
         pathname = out_directory / "result.step"
         cq_object = FinalAssembly().cq_object.toCompound()
 
-        export_wrapper = ExportWrapper()
+        export = ExportWrapper()
 
-        export_wrapper.export(
+        export(
             cq_object,
             pathname,
             tolerance=0.01,
