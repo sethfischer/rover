@@ -4,6 +4,12 @@ End tap jig 2020
 
 End tap jig for 2020 aluminium V-slot extrusion.
 
+.. cadquery-vtk::
+
+    from osr_mechanical.jigs.vslot import EndTapJig
+
+    result = EndTapJig().cq_object
+
 3D print settings
 -----------------
 

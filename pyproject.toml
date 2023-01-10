@@ -42,15 +42,18 @@ console = "osr_mechanical.console.application:main"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
+
 cadquery = { version = "^2.2.0b2", allow-prereleases = true }
 cadquery-ocp = { version = "^7.6.3a0", allow-prereleases = true }
 casadi = { version = "^3.5.6pre2", allow-prereleases = true }
-cq-electronics = {git = "https://github.com/sethfischer/cq-electronics.git", rev = "2a8aa8a21e8a330e7a41faee4106899ccfca03d7"}
-cq_warehouse = {git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"}
+
 Jinja2 = "^3.1.2"
 Sphinx = "^5.3.0"
+cq-electronics = {git = "https://github.com/sethfischer/cq-electronics.git", rev = "2a8aa8a21e8a330e7a41faee4106899ccfca03d7"}
+cq_warehouse = {git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"}
 sphinx-argparse-cli = "^1.10.0"
 sphinx-rtd-theme = "^1.0.0"
+sphinxcontrib-cadquery = "^0.2.1"
 wurlitzer = "^3.0.2"
 
 [tool.poetry.group.dev.dependencies]

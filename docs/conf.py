@@ -15,8 +15,12 @@ extensions = [
     "osr_sphinx",
     "sphinx_argparse_cli",
     "sphinx_rtd_theme",
+    "sphinxcontrib.cadquery",
 ]
 templates_path = ["_templates"]
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
+
+
+cadquery_include_source = False
