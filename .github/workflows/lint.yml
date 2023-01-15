@@ -34,6 +34,3 @@ jobs:
         run: |
           sudo apt-get -y install shellcheck
           make lint-shell
-
-      - name: Lint Read the Docs requirements
-        run: make lint-rtd-requirements
