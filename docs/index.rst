@@ -15,30 +15,27 @@ Table of contents
 -----------------
 
 .. toctree::
-    :maxdepth: 1
     :caption: Construction
-    :glob:
+    :maxdepth: 1
 
     frame
 
 .. toctree::
-    :maxdepth: 1
     :caption: Jigs
     :glob:
+    :maxdepth: 1
 
     jigs/*
 
 .. toctree::
     :caption: Bill of materials
     :maxdepth: 1
-    :titlesonly:
 
     bom/parts
 
 .. toctree::
     :caption: End matter
     :maxdepth: 1
-    :titlesonly:
 
     build-release
     console
