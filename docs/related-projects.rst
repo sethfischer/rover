@@ -2,6 +2,9 @@
 Related projects
 ================
 
+
+.. index:: NASA-JPL Open Source Rover
+
 JPL Open Source Rover
 ---------------------
 
@@ -19,6 +22,8 @@ Website
     `JPL Open Source Rover Project <https://github.com/nasa-jpl/open-source-rover/commit/b9a78833caa09b227cbc608189bf05ceba8462e6>`_.
 
 
+.. index:: Sawppy the Rover
+
 Sawppy the Rover
 ----------------
 
@@ -34,6 +39,8 @@ Project page
     Sawppy the Rover v1.0.
     `Sawppy the Rover on hackaday.io <https://hackaday.io/project/158208-sawppy-the-rover>`_
 
+
+.. index:: ESA ExoMy
 
 ESA ExoMy
 ---------
