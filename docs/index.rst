@@ -11,15 +11,37 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
     result = FinalAssembly().cq_object
 
 
+Table of contents
+-----------------
+
 .. toctree::
     :maxdepth: 1
-    :caption: Contents:
+    :caption: Jigs
+    :glob:
 
-    jigs/index
-    bom
+    jigs/*
+
+.. toctree::
+    :caption: Bill of materials
+    :maxdepth: 1
+    :titlesonly:
+
+    bom/parts
+
+.. toctree::
+    :caption: End matter
+    :maxdepth: 1
+    :titlesonly:
+
     build-release
     console
     related-projects
+
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
 
 
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
