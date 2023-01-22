@@ -11,9 +11,17 @@ from osr_mechanical.bom.bom import Bom, BomBuilder
 class BomTable(Directive):
     """Bill of materials table directive."""
 
+    has_content = False
+    required_arguments = 0
+    optional_arguments = 1
+
     def run(self) -> list[nodes.paragraph | nodes.table]:
         """Create bill of materials table with summary."""
-        bom = self.build_bom()
+        if self.arguments:
+            assembly_name = self.arguments[0]
+            bom = self.build_bom(assembly_name)
+        else:
+            bom = self.build_bom()
 
         summary = self.summary(bom)
         table = self.table(bom)
@@ -21,9 +29,12 @@ class BomTable(Directive):
         return [summary, table]
 
     @staticmethod
-    def build_bom() -> Bom:
+    def build_bom(assembly_name: str | None = None) -> Bom:
         """Build bill of materials."""
         builder = BomBuilder()
+
+        if assembly_name:
+            return builder.from_string(assembly_name)
 
         return builder.from_string()
 
