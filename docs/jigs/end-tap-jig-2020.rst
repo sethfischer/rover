@@ -15,10 +15,10 @@ End tap jig for 2020 aluminium V-slot extrusion.
 3D print settings
 -----------------
 
-:File: :doc:`release <../build-release>`: ``jigs/vslot-end-tap-jig-2020.stl``
-:Infill: 100%
-:Filament material: PLA
-:Nozzle diameter: 0.4 mm
-:Layer height: 0.2 mm
-:Rafts: Yes
-:Supports: No
+.. osr-print-settings:: jigs/vslot-end-tap-jig-2020.stl
+    :infill: 100
+    :filament-material: PLA
+    :nozzle-diameter: 0.4
+    :layer-height: 0.2
+    :rafts: yes
+    :supports: no
