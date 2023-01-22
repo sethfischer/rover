@@ -12,8 +12,18 @@ End tap jig for 2020 aluminium V-slot extrusion.
 
     result = EndTapJig().cq_object
 
-3D print settings
+
+Bill of materials
 -----------------
+
+.. osr-bom:: jigs.vslot.EndTapJig
+
+
+3D printed parts
+----------------
+
+Jig body
+~~~~~~~~
 
 .. osr-print-settings:: jigs/vslot-end-tap-jig-2020.stl
     :infill: 100
