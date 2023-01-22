@@ -1,3 +1,5 @@
+.. index:: build release, release
+
 ==================
 Building a release
 ==================

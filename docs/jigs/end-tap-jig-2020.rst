@@ -1,3 +1,5 @@
+.. index:: end tap jig, jig
+
 ================
 End tap jig 2020
 ================

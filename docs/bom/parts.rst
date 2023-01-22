@@ -1,3 +1,5 @@
+.. index:: bom, parts
+
 Parts
 =====
 
