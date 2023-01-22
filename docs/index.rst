@@ -16,6 +16,13 @@ Table of contents
 
 .. toctree::
     :maxdepth: 1
+    :caption: Construction
+    :glob:
+
+    frame
+
+.. toctree::
+    :maxdepth: 1
     :caption: Jigs
     :glob:
 
