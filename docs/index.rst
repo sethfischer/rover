@@ -16,9 +16,9 @@ Table of contents
 
 .. toctree::
     :caption: Construction
-    :maxdepth: 1
+    :maxdepth: 2
 
-    frame
+    frame/index
 
 .. toctree::
     :caption: Jigs
