@@ -25,6 +25,8 @@ Bill of materials
 Jig body
 ~~~~~~~~
 
+.. index:: print settings (3D)
+
 .. osr-print-settings:: jigs/vslot-end-tap-jig-2020.stl
     :infill: 100
     :filament-material: PLA
@@ -32,3 +34,11 @@ Jig body
     :layer-height: 0.2
     :rafts: yes
     :supports: no
+
+
+.. cadquery-vtk::
+
+    from osr_mechanical.jigs.vslot import EndTapJig
+
+    jig = EndTapJig()
+    result = jig.cq_part("2020_end_tap_jig__body")
