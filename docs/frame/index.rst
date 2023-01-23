@@ -9,3 +9,8 @@ Frame
     from osr_mechanical.frame.final import Frame
 
     result = Frame().cq_object
+
+
+.. toctree::
+
+    sides
