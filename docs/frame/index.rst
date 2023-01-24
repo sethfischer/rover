@@ -13,4 +13,5 @@ Frame
 
 .. toctree::
 
-    sides
+    side-port
+    side-starboard
