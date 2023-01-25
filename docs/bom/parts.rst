@@ -3,4 +3,4 @@
 Parts
 =====
 
-.. osr-bom::
+.. osr:bom::

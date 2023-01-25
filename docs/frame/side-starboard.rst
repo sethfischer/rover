@@ -14,4 +14,4 @@ Frame side (starboard)
 Bill of materials
 -----------------
 
-.. osr-bom:: utilities.frame.FrameSideStarboard
+.. osr:bom:: utilities.frame.FrameSideStarboard

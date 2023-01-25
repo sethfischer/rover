@@ -15,7 +15,7 @@ def choice_yes_no(argument: str) -> str:
     return result
 
 
-class PrinterSettings(Directive):
+class PrintSettings(Directive):
     """3D printer settings directive."""
 
     has_content = False
