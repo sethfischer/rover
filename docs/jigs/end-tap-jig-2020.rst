@@ -16,7 +16,7 @@ End tap jig for 2020 aluminium V-slot extrusion.
 Bill of materials
 -----------------
 
-.. osr-bom:: jigs.vslot.EndTapJig
+.. osr:bom:: jigs.vslot.EndTapJig
 
 
 3D printed parts
@@ -27,7 +27,7 @@ Jig body
 
 .. index:: print settings (3D)
 
-.. osr-print-settings:: jigs/vslot-end-tap-jig-2020.stl
+.. osr:print-settings:: jigs/vslot-end-tap-jig-2020.stl
     :infill: 100
     :filament-material: PLA
     :nozzle-diameter: 0.4

@@ -14,4 +14,4 @@ Frame side (port)
 Bill of materials
 -----------------
 
-.. osr-bom:: utilities.frame.FrameSidePort
+.. osr:bom:: utilities.frame.FrameSidePort
