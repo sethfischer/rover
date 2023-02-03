@@ -24,8 +24,8 @@ class PrintSettings(Directive):
     option_spec = {
         "infill": directives.percentage,
         "filament-material": directives.unchanged,
-        "nozzle-diameter": directives.unchanged,
-        "layer-height": directives.length_or_percentage_or_unitless,
+        "nozzle-diameter": float,
+        "layer-height": float,
         "rafts": choice_yes_no,
         "supports": choice_yes_no,
     }
