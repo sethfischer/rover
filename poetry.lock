@@ -681,15 +681,14 @@ files = []
 develop = false
 
 [package.dependencies]
-cadquery = "^2.2.0b2"
-cadquery-ocp = "^7.6.3a0"
-casadi = "^3.5.6pre2"
+cadquery = "^2.2.0"
+casadi = "^3.5.6rc2"
 
 [package.source]
 type = "git"
 url = "https://github.com/sethfischer/cq-electronics.git"
-reference = "2a8aa8a21e8a330e7a41faee4106899ccfca03d7"
-resolved_reference = "2a8aa8a21e8a330e7a41faee4106899ccfca03d7"
+reference = "24b33f4cca10d685591ebcae6464cfa4c9e44e0d"
+resolved_reference = "24b33f4cca10d685591ebcae6464cfa4c9e44e0d"
 
 [[package]]
 name = "cq-warehouse"
@@ -4235,4 +4234,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "db3b41ced4f27749d267c7f38881fd2b17ecee81f828046a7c0c4627febc7852"
+content-hash = "55eaef3bcd39608c7d02879f9a4843102115080b21c25c0ed8935af1d39259d6"
