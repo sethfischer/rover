@@ -12,8 +12,8 @@ from OCP.GeomConvert import GeomConvert
 from OCP.gp import gp_Dir
 
 
-class Dxf:
-    """Create DXF from CadQuery objects.
+class DxfExporter:
+    """Export CadQuery objects to DXF.
 
     Based on ``cadquery.occ_impl.exporters.dxf`` with the addition of multilayer
     support.
