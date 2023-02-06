@@ -21,7 +21,9 @@ class DxfExporter:
 
     CURVE_TOLERANCE = 1e-9
 
-    def __init__(self, dxf_units: int = units.MM) -> None:
+    def __init__(
+        self, dxf_units: int = units.MM, *, metadata: dict[str, str] = {}
+    ) -> None:
         """Initialise DXF document."""
         self._DISPATCH_MAP = {
             "LINE": self._dxf_line,
@@ -33,6 +35,10 @@ class DxfExporter:
         self.document = ezdxf.new(setup=True)  # type: ignore[attr-defined]
         self.msp = self.document.modelspace()
         self.document.units = dxf_units
+
+        doc_metadata = self.document.ezdxf_metadata()
+        for key, value in metadata.items():
+            doc_metadata[key] = value
 
     def add_layer(
         self, name: str, *, color: int = 1, linetype: str = "Continuous"
