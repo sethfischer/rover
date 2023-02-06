@@ -10,6 +10,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 from cadquery import exporters
 from jinja2 import Environment, PackageLoader, select_autoescape
 
+from osr_common.cq_wrappers import Export as ExportWrapper
 from osr_mechanical import __version__
 from osr_mechanical import __version__ as project_version
 from osr_mechanical.bom.bom import Bom
@@ -21,7 +22,6 @@ from osr_mechanical.config import (
     REPO_URL,
     SHORT_DESCRIPTION,
 )
-from osr_mechanical.console.cq_wrappers import Export as ExportWrapper
 from osr_mechanical.console.exporters import ExportPNG
 from osr_mechanical.final import FinalAssembly
 from osr_mechanical.jigs.vslot import EndTapJig
