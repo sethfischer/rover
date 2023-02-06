@@ -14,6 +14,7 @@ from PIL import Image, ImageDraw, ImageFont
 from PIL.ExifTags import TAGS
 from PIL.Image import Exif
 
+from osr_common.cq_wrappers import Export as ExportWrapper
 from osr_mechanical.config import (
     COPYRIGHT_NOTICE,
     COPYRIGHT_OWNER,
@@ -21,7 +22,6 @@ from osr_mechanical.config import (
     PROJECT_HOST,
     PROJECT_URL,
 )
-from osr_mechanical.console.cq_wrappers import Export as ExportWrapper
 from osr_mechanical.final import FinalAssembly
 
 
