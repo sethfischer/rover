@@ -1,5 +1,7 @@
 """Multilayer DXF."""
 
+from __future__ import annotations
+
 import cadquery as cq
 import ezdxf
 from cadquery import Plane
@@ -22,9 +24,12 @@ class DxfExporter:
     CURVE_TOLERANCE = 1e-9
 
     def __init__(
-        self, dxf_units: int = units.MM, *, metadata: dict[str, str] = {}
+        self, dxf_units: int = units.MM, *, metadata: None | dict[str, str] = None
     ) -> None:
         """Initialise DXF document."""
+        if metadata is None:
+            metadata = {}
+
         self._DISPATCH_MAP = {
             "LINE": self._dxf_line,
             "CIRCLE": self._dxf_circle,
