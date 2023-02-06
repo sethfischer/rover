@@ -1898,6 +1898,22 @@ sphinx = ">=4.2"
 testing = ["matplotlib", "pytest", "pytest-cov"]
 
 [[package]]
+name = "OCP-stubs"
+version = "7.5.1"
+description = "PEP 561 type stubs for OCP"
+category = "dev"
+optional = false
+python-versions = "*"
+files = []
+develop = false
+
+[package.source]
+type = "git"
+url = "https://github.com/CadQuery/OCP-stubs.git"
+reference = "7.6.3"
+resolved_reference = "24323f86ff87ac82902ef6ad34123b051bf207b1"
+
+[[package]]
 name = "packaging"
 version = "23.0"
 description = "Core utilities for Python packages"
@@ -4234,4 +4250,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "55eaef3bcd39608c7d02879f9a4843102115080b21c25c0ed8935af1d39259d6"
+content-hash = "d4c1395c1687d9ca3e8f688afea4c91bf8df6a90280aa48429a785c449e8f14d"
