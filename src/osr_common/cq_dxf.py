@@ -1,6 +1,8 @@
-"""Multilayer DXF."""
+"""DXF utilities."""
 
 from __future__ import annotations
+
+from typing import Any
 
 import cadquery as cq
 import ezdxf
@@ -8,8 +10,8 @@ from cadquery import Plane
 from cadquery.occ_impl.exporters.utils import toCompound
 from cadquery.occ_impl.shapes import Edge
 from cadquery.units import RAD2DEG
-from ezdxf import units
-from ezdxf.layouts import Modelspace  # type: ignore[attr-defined]
+from ezdxf import units, zoom
+from ezdxf.layouts.layout import Modelspace
 from OCP.GeomConvert import GeomConvert
 from OCP.gp import gp_Dir
 
@@ -17,16 +19,57 @@ from OCP.gp import gp_Dir
 class DxfExporter:
     """Export CadQuery objects to DXF.
 
+    DXF exporter utilising `ezdxf <https://ezdxf.readthedocs.io/>`_.
+
     Based on ``cadquery.occ_impl.exporters.dxf`` with the addition of multilayer
     support.
+
+    Example usage
+
+    Single layer DXF document:
+
+    .. code-block:: python
+
+        box = cq.Workplane().box(10, 20, 40)
+        face_z = box.faces(">Z")
+
+        exporter = DxfExporter()
+        exporter.add_shape(face_z)
+        exporter.document.saveas("box-face-z.dxf")
+
+    Multilayer DXF document:
+
+    .. code-block:: python
+
+        box = cq.Workplane().box(10, 20, 40)
+        face_z = box.faces(">Z")
+        cylinder = cq.Workplane().cylinder(10, 4)
+        cylinder_face_z = cylinder.faces(">Z")
+
+        exporter = DxfExporter()
+        exporter.add_layer("layer_1", color=2)
+        exporter.add_layer("layer_2", color=3)
+        exporter.add_shape(face_z, "layer_1")
+        exporter.add_shape(cylinder_face_z, "layer_2")
+        exporter.document.saveas("box-faces-z-x.dxf")
     """
 
     CURVE_TOLERANCE = 1e-9
 
     def __init__(
-        self, dxf_units: int = units.MM, *, metadata: None | dict[str, str] = None
+        self,
+        doc_units: int = units.MM,
+        *,
+        setup: bool = False,
+        metadata: None | dict[str, str] = None,
     ) -> None:
-        """Initialise DXF document."""
+        """Initialise DXF document.
+
+        :param doc_units: ezdxf document/modelspace units ``ezdxf.enums.InsertUnits``
+        :param setup: ezdxf setup parameter creates standard resources,
+            such as linetypes and text styles
+        :param metadata: document metadata a dictionary of name value pairs
+        """
         if metadata is None:
             metadata = {}
 
@@ -37,9 +80,9 @@ class DxfExporter:
             "BSPLINE": self._dxf_spline,
         }
 
-        self.document = ezdxf.new(setup=True)  # type: ignore[attr-defined]
+        self.document = ezdxf.new(setup=setup)  # type: ignore[attr-defined]
         self.msp = self.document.modelspace()
-        self.document.units = dxf_units
+        self.document.units = doc_units
 
         doc_metadata = self.document.ezdxf_metadata()
         for key, value in metadata.items():
@@ -47,46 +90,71 @@ class DxfExporter:
 
     def add_layer(
         self, name: str, *, color: int = 1, linetype: str = "Continuous"
-    ) -> None:
-        """Add layer to DXF document."""
-        self.document.layers.add(name, color=color, linetype=linetype)
+    ) -> Any:
+        """Add layer to DXF document.
 
-    def add_shape(self, workplane: cq.Workplane, layer_name: str) -> None:
-        """Add CadQuery shape to layer."""
+        :param name: ezdxf document layer name
+        :param color: ezdxf color
+        :param linetype: ezdxf line type
+        """
+        return self.document.layers.add(name, color=color, linetype=linetype)
+
+    def add_shape(self, workplane: cq.Workplane, layer: str = "") -> None:
+        """Add CadQuery shape to a DXF layer.
+
+        :param workplane: CadQuery Workplane
+        :param layer: ezdxf document layer name
+        """
         plane = workplane.plane
         shape = toCompound(workplane).transformShape(plane.fG)
 
         for edge in shape.Edges():
             converter = self._DISPATCH_MAP.get(edge.geomType(), self._dxf_spline)
-            converter(edge, self.msp, plane, layer=layer_name)
+            converter(edge, self.msp, plane, layer=layer)
+
+        zoom.extents(self.msp)
 
     @staticmethod
-    def _dxf_line(edge: Edge, msp: Modelspace, _: Plane, layer: str = "") -> None:
-        """Convert a line to a DXF line.
+    def _dxf_line(edge: Edge, msp: Modelspace, _: Plane, layer: str = "") -> Any:
+        """Add a CadQuery line to a DXF Modelspace.
 
         Based on ``cadquery.occ_impl.exporters.dxf._dxf_line``.
+
+        :param edge: CadQuery Edge to be converted to a DXF line
+        :param msp: ezdxf Modelspace to which the line will be added
+        :param _: Not used
+        :param layer: ezdxf document layer name
+
+        :return: DXF entity
         """
         attributes = {}
         if layer:
             attributes["layer"] = layer
 
-        msp.add_line(
+        return msp.add_line(
             edge.startPoint().toTuple(),
             edge.endPoint().toTuple(),
             dxfattribs=attributes,
         )
 
     @staticmethod
-    def _dxf_circle(e: Edge, msp: Modelspace, _: Plane, layer: str = "") -> None:
-        """Convert a circle to a DXF circle.
+    def _dxf_circle(edge: Edge, msp: Modelspace, _: Plane, layer: str = "") -> Any:
+        """Add a CadQuery circle to a DXF Modelspace.
 
         Based on ``cadquery.occ_impl.exporters.dxf._dxf_circle``.
+
+        :param edge: CadQuery Edge to be converted to a DXF circle
+        :param msp: ezdxf Modelspace to which the circle will be added
+        :param _: Not used
+        :param layer: ezdxf document layer name
+
+        :return: DXF entity
         """
         attributes = {}
         if layer:
             attributes["layer"] = layer
 
-        geom = e._geomAdaptor()
+        geom = edge._geomAdaptor()
         circ = geom.Circle()
 
         radius = circ.Radius()
@@ -106,14 +174,14 @@ class DxfExporter:
             a1 = -RAD2DEG * (geom.LastParameter() - phi) + 180
             a2 = -RAD2DEG * (geom.FirstParameter() - phi) + 180
 
-        if e.IsClosed():
-            msp.add_circle(
+        if edge.IsClosed():
+            return msp.add_circle(
                 (location.X(), location.Y(), location.Z()),
                 radius,
                 dxfattribs=attributes,
             )
         else:
-            msp.add_arc(
+            return msp.add_arc(
                 (location.X(), location.Y(), location.Z()),
                 radius,
                 a1,
@@ -122,16 +190,23 @@ class DxfExporter:
             )
 
     @staticmethod
-    def _dxf_ellipse(e: Edge, msp: Modelspace, _: Plane, layer: str = "") -> None:
-        """Convert an ellipse to a DXF ellipse.
+    def _dxf_ellipse(edge: Edge, msp: Modelspace, _: Plane, layer: str = "") -> Any:
+        """Add a CadQuery ellipse to a DXF Modelspace.
 
         Based on ``cadquery.occ_impl.exporters.dxf._dxf_ellipse``.
+
+        :param edge: CadQuery Edge to be converted to a DXF ellipse
+        :param msp: ezdxf Modelspace to which the ellipse wil be added
+        :param _: Not used
+        :param layer: ezdxf document layer name
+
+        :return: DXF entity
         """
         attributes = {}
         if layer:
             attributes["layer"] = layer
 
-        geom = e._geomAdaptor()
+        geom = edge._geomAdaptor()
         ellipse = geom.Ellipse()
 
         r1 = ellipse.MinorRadius()
@@ -141,7 +216,7 @@ class DxfExporter:
         xdir = ellipse.XAxis().Direction()
         xax = r2 * xdir.XYZ()
 
-        msp.add_ellipse(
+        return msp.add_ellipse(
             (c.X(), c.Y(), c.Z()),
             (xax.X(), xax.Y(), xax.Z()),
             r1 / r2,
@@ -152,17 +227,24 @@ class DxfExporter:
 
     @classmethod
     def _dxf_spline(
-        cls, e: Edge, msp: Modelspace, plane: Plane, layer: str = ""
-    ) -> None:
-        """Convert a spline to a DXF spline.
+        cls, edge: Edge, msp: Modelspace, plane: Plane, layer: str = ""
+    ) -> Any:
+        """Add a CadQuery spline to a DXF Modelspace.
 
         Based on ``cadquery.occ_impl.exporters.dxf._dxf_spline``.
+
+        :param edge: CadQuery Edge to be converted to a DXF spline
+        :param msp: ezdxf Modelspace to which the spline will be added
+        :param plane: CadQuery Plane
+        :param layer: ezdxf document layer name
+
+        :return: DXF entity
         """
         attributes = {}
         if layer:
             attributes["layer"] = layer
 
-        adaptor = e._geomAdaptor()
+        adaptor = edge._geomAdaptor()
         curve = GeomConvert.CurveToBSplineCurve_s(adaptor.Curve().Curve())
 
         spline = GeomConvert.SplitBSplineCurve_s(
@@ -190,4 +272,4 @@ class DxfExporter:
 
         dxf_spline = ezdxf.math.BSpline(poles, order, knots, weights)
 
-        msp.add_spline(dxfattribs=attributes).apply_construction_tool(dxf_spline)
+        return msp.add_spline(dxfattribs=attributes).apply_construction_tool(dxf_spline)
