@@ -15,6 +15,12 @@ Table of contents
 -----------------
 
 .. toctree::
+    :caption: Preface
+    :maxdepth: 1
+
+    inspiration
+
+.. toctree::
     :caption: Construction
     :maxdepth: 2
 

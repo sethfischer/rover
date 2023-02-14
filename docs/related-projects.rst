@@ -5,8 +5,10 @@ Related projects
 
 .. index:: NASA-JPL Open Source Rover
 
-JPL Open Source Rover
----------------------
+.. _`NASA-JPL Open Source Rover`:
+
+NASA-JPL Open Source Rover
+--------------------------
 
 Documentation
     * https://github.com/nasa-jpl/open-source-rover
