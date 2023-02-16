@@ -11,6 +11,13 @@ Alternative body construction for the `NASA JPL Open Source Rover`_.
     result = FinalAssembly().cq_object
 
 
+Specifications
+--------------
+
+:Dimensions:
+    :osr:dimension:`height` high × :osr:dimension:`width` wide × :osr:dimension:`length` long
+
+
 Table of contents
 -----------------
 
