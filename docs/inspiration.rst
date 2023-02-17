@@ -11,7 +11,7 @@ and the `NASA Mars 2020 Mission Perseverance Rover <https://mars.nasa.gov/mars20
     <figure>
         <iframe src="https://mars.nasa.gov/layout/embed/model/?s=6"
             title="3D rendering of NASA's Mars 2020 Mission Perseverance Rover."
-            width="690"
+            width="100%"
             height="500"
             scrolling="no"
             frameborder="0"
