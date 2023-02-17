@@ -18,18 +18,17 @@ Specifications
     :osr:dimension:`height` high × :osr:dimension:`width` wide × :osr:dimension:`length` long
 
 
-Table of contents
------------------
-
 .. toctree::
     :caption: Preface
     :maxdepth: 1
+    :hidden:
 
     inspiration
 
 .. toctree::
     :caption: Construction
     :maxdepth: 2
+    :hidden:
 
     frame/index
 
@@ -37,28 +36,26 @@ Table of contents
     :caption: Jigs
     :glob:
     :maxdepth: 1
+    :hidden:
 
     jigs/*
 
 .. toctree::
     :caption: Bill of materials
     :maxdepth: 1
+    :hidden:
 
     bom/parts
 
 .. toctree::
     :caption: End matter
     :maxdepth: 1
+    :hidden:
 
     build-release
     console
     related-projects
-
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
+    indices
 
 
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
