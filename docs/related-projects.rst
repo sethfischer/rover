@@ -118,3 +118,9 @@ Commercial products
 * 4tronix `M.A.R.S. Rover Robot for Microbit or Pi Zero <https://shop.4tronix.co.uk/products/marsrover>`_
 * Servocity `Bogie Runt Rover <https://www.servocity.com/bogie-runt-rover/>`_
 * Sphero `littleBits Space Rover Inventor Kit <https://sphero.com/products/littlebits-space-rover-inventor-kit>`_
+
+
+Competitions
+------------
+
+* `University Rover Challenge <https://urc.marssociety.org/home>`__
