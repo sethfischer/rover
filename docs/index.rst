@@ -15,7 +15,7 @@ Specifications
 --------------
 
 :Dimensions:
-    :osr:dimension:`height` high × :osr:dimension:`width` wide × :osr:dimension:`length` long
+    :osr:dimension:`length` long × :osr:dimension:`width` wide × :osr:dimension:`height` high
 
 
 .. toctree::
