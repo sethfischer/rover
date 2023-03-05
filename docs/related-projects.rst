@@ -123,4 +123,6 @@ Commercial products
 Competitions
 ------------
 
+* `Australian Rover Challenge <https://set.adelaide.edu.au/atcsr/australian-rover-challenge/>`__
+* `International Planetary Robotics Competition <https://roverchallenge.eu/en>`__
 * `University Rover Challenge <https://urc.marssociety.org/home>`__
