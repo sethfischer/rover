@@ -14,6 +14,7 @@ exclude_patterns = ["_build"]
 extensions = [
     "osr_sphinx",
     "sphinx_argparse_cli",
+    "sphinx_design",
     "sphinx_rtd_theme",
     "sphinxcontrib.cadquery",
 ]

@@ -42,3 +42,17 @@ Jig body
 
     jig = EndTapJig()
     result = jig.cq_part("2020_end_tap_jig__body")
+
+
+.. dropdown:: Print orientation
+
+    Print standing on end with T-slot aperture facing up.
+
+    .. cadquery-svg::
+
+        from osr_mechanical.jigs.vslot import EndTapJig
+
+        jig = EndTapJig()
+        result = jig.cq_part("2020_end_tap_jig__body")
+
+        show_object(result)
