@@ -51,6 +51,7 @@ Sphinx = "^5.3.0"
 cq-electronics = {git = "https://github.com/sethfischer/cq-electronics.git", rev = "24b33f4cca10d685591ebcae6464cfa4c9e44e0d"}
 cq_warehouse = {git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"}
 sphinx-argparse-cli = "^1.10.0"
+sphinx-design = "^0.3.0"
 sphinx-rtd-theme = "^1.0.0"
 sphinxcontrib-cadquery = "^0.5.0"
 wurlitzer = "^3.0.2"
