@@ -3383,6 +3383,20 @@ files = [
 ]
 
 [[package]]
+name = "scour"
+version = "0.38.2"
+description = "Scour SVG Optimizer"
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "scour-0.38.2.tar.gz", hash = "sha256:6881ec26660c130c5ecd996ac6f6b03939dd574198f50773f2508b81a68e0daf"},
+]
+
+[package.dependencies]
+six = ">=1.9.0"
+
+[[package]]
 name = "secretstorage"
 version = "3.3.3"
 description = "Python bindings to FreeDesktop.org Secret Service API"
@@ -4291,4 +4305,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "a516130ef5e353f41d61b06ebb7af518bc0ce13ffc9d521f3bfba5cc333301b2"
+content-hash = "35996afd90361bc92c9596ebec5e39ca35e24fbbd3966a94e824d7c2f5c24d41"

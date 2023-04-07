@@ -2,7 +2,22 @@
 sethfischer-osr
 ===============
 
-Alternative body construction for the `NASA JPL Open Source Rover`_.
+.. grid:: 2
+
+    .. grid-item::
+        :columns: auto
+
+        Alternative body construction for the `NASA JPL Open Source Rover`_.
+
+    .. grid-item::
+        :columns: auto
+
+        .. button-link:: https://github.com/sethfischer/osr
+            :color: primary
+            :outline:
+
+            :octicon:`mark-github` Star on GitHub
+
 
 .. cadquery-vtk::
 
@@ -16,6 +31,29 @@ Specifications
 
 :Dimensions:
     :osr:dimension:`length` long × :osr:dimension:`width` wide × :osr:dimension:`height` high
+
+
+----
+
+.. grid:: 1 2 2 2
+
+    .. grid-item-card:: Open Source Hardware
+        :text-align: center
+
+        .. image:: _static/images/logos/oshw.svg
+            :alt: Open Source Hardware
+            :class: no-scaled-link
+            :width: 100%
+
+    .. grid-item-card:: Modeled with CadQuery
+        :text-align: center
+        :link: https://cadquery.readthedocs.io/
+
+        .. image:: _static/images/logos/cadquery.svg
+            :alt: Modeled with CadQuery
+            :width: 100%
+
+----
 
 
 .. toctree::
