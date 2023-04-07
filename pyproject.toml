@@ -57,6 +57,9 @@ sphinxcontrib-cadquery = "^0.5.0"
 wurlitzer = "^3.0.2"
 
 [tool.poetry.group.dev.dependencies]
+CairoSVG = "^2.5.2"
+OCP-stubs = {git = "https://github.com/CadQuery/OCP-stubs.git", rev = "7.6.3"}
+Pillow = "^9.3.0"
 black = "^22.10.0"
 cffconvert = "^2.0.0"
 commitizen = "^2.37.1"
@@ -65,11 +68,9 @@ flake8 = "^4.0.1"
 flake8-docstrings = "^1.6.0"
 isort = "^5.10.1"
 mypy = "^0.991"
-Pillow = "^9.3.0"
 pytest = "^7.2.0"
 rstcheck = "^6.1.1"
-CairoSVG = "^2.5.2"
-OCP-stubs = {git = "https://github.com/CadQuery/OCP-stubs.git", rev = "7.6.3"}
+scour = "^0.38.2"
 
 [tool.poetry.group.cq-editor]
 optional = true
