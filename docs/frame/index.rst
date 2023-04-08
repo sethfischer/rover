@@ -12,6 +12,8 @@ Frame
 
 
 .. toctree::
+    :caption: Sub-assemblies
+    :maxdepth: 1
 
     side-port
     side-starboard
