@@ -18,9 +18,14 @@ extensions = [
     "sphinx_rtd_theme",
     "sphinxcontrib.cadquery",
 ]
+templates_path = [
+    "_templates",
+]
 
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
-
+html_context = {
+    "display_star_on_github": True,
+}
 
 cadquery_include_source = False
