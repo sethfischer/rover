@@ -35,6 +35,8 @@ Specifications
 
 ----
 
+.. _tech:
+
 .. grid:: 1 2 2 2
 
     .. grid-item-card:: Open Source Hardware
