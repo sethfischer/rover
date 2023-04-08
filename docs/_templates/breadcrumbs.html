@@ -1,0 +1,11 @@
+{% extends '!breadcrumbs.html' %}
+
+{%- block breadcrumbs_aside %}
+    {%- if display_star_on_github and display_vcs_links %}
+        <li class="wy-breadcrumbs-aside">
+            <a href="https://{{ github_host|default("github.com") }}/{{ github_user }}/{{ github_repo }}" class="fa fa-github"> {{ _('Star on GitHub') }}</a>
+        </li>
+    {%- else %}
+        {{ super() }}
+    {%- endif %}
+{%- endblock %}
