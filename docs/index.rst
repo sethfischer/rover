@@ -71,6 +71,7 @@ Specifications
     :hidden:
 
     frame/index
+    din-rail-assemblies/index
 
 .. toctree::
     :caption: Jigs
