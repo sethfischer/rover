@@ -71,6 +71,7 @@ Specifications
     :hidden:
 
     frame/index
+    rocker-axle
     din-rail-assemblies/index
 
 .. toctree::
