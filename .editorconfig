@@ -12,6 +12,9 @@ trim_trailing_whitespace = true
 [*.{cff,svg,yaml,yml}]
 indent_size = 2
 
+[*.md]
+trim_trailing_whitespace = false
+
 [*.py]
 max_line_length = 88
 

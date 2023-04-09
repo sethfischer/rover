@@ -16,7 +16,6 @@ from osr_mechanical import __version__ as project_version
 from osr_mechanical.bom.bom import Bom
 from osr_mechanical.config import (
     COPYRIGHT_OWNER,
-    DOCUMENTATION_URL,
     PROJECT_NAME,
     PROJECT_URL,
     REPO_URL,
@@ -72,7 +71,6 @@ class ReleaseBuilder:
         result = template.render(
             build_time=datetime.utcnow(),
             copyright_owner=COPYRIGHT_OWNER,
-            documentation_url=DOCUMENTATION_URL,
             project_repo_url=REPO_URL,
             project_url=PROJECT_URL,
             short_description=SHORT_DESCRIPTION,
