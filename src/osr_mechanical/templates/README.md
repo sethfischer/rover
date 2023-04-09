@@ -4,7 +4,7 @@
 
 Homepage: {{ project_url }}  
 Repository: {{ project_repo_url }}  
-Documentation: {{ documentation_url }}  
+Documentation: {{ project_url }}  
 NASA JPL Open Source Rover: https://github.com/nasa-jpl/open-source-rover
 
 

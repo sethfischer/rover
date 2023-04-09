@@ -6,7 +6,6 @@ now = datetime.utcnow()
 
 
 COPYRIGHT_OWNER = "Seth Fischer"
-DOCUMENTATION_URL = "https://osr.fischer.nz/"
 LICENCE = "MIT License"
 PROJECT_HOST = "osr.fischer.nz"
 PROJECT_NAME = "sethfischer-osr"
