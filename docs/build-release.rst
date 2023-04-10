@@ -30,7 +30,8 @@ Prerequisites
 * `Poetry`_ for Python dependency management.
 * `Mayo 3D CAD viewer and converter`_ for exporting PNG images.
 * Optional:
-   - `ImageMagick`_ for manipulating EXIF headers.
+   - `ImageMagick`_ for manipulating images.
+   - `exiftool`_ for manipulating EXIF headers.
    - `git-lfs`_ for building documentation.
    - `optipng`_ for optimising PNG images.
 
@@ -43,7 +44,7 @@ Install prerequisites
 
 .. code:: none
 
-    sudo apt-get install git python3.9 python3.9-venv imagemagick optipng
+    sudo apt-get install git python3.9 python3.9-venv imagemagick optipng exiftool
 
 Poetry, Mayo, and git-lfs should be installed according to their respective documentation,
 and be available in your path.
@@ -105,6 +106,7 @@ Run linters and tests:
 .. _`Poetry`: https://python-poetry.org/
 .. _`Mayo 3D CAD viewer and converter`: https://github.com/fougue/mayo
 .. _`ImageMagick`: https://imagemagick.org/
+.. _`exiftool`: https://exiftool.org/
 .. _`git-lfs`: https://git-lfs.github.com/
 .. _`optipng`: https://optipng.sourceforge.net/
 .. _`CQ-Editor`: https://github.com/CadQuery/CQ-editor
