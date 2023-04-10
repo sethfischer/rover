@@ -4,7 +4,7 @@ from datetime import date
 
 import sphinx_rtd_theme  # type: ignore[import] # noqa: F401
 
-project = "sethfischer-osr"
+project = "sethfischer-rover"
 release = "0.1.0"
 author = "Seth Fischer"
 project_copyright = f"{date.today().year}, {author}"

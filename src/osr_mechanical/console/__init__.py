@@ -1,1 +1,1 @@
-"""OSR console command."""
+"""Rover console command."""

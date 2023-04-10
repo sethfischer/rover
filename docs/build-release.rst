@@ -54,8 +54,8 @@ Clone the project and create a virtual environment
 
 .. code:: none
 
-    git clone https://github.com/sethfischer/osr.git
-    cd osr
+    git clone https://github.com/sethfischer/rover.git
+    cd rover
     python3.9 -m venv .venv
     . .venv/bin/activate
     pip install -U pip
@@ -99,7 +99,7 @@ Run linters and tests:
     make lint test
 
 
-.. _`releases page on GitHub`: https://github.com/sethfischer/osr/releases
+.. _`releases page on GitHub`: https://github.com/sethfischer/rover/releases
 .. _`Python`: https://www.python.org/
 .. _`Git`: https://git-scm.com/
 .. _`Poetry`: https://python-poetry.org/

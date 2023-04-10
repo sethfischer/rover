@@ -1,4 +1,4 @@
-"""OSR console command."""
+"""Rover console command."""
 
 import logging
 from argparse import ArgumentParser, Namespace
@@ -107,7 +107,7 @@ def export_bom(args: Namespace) -> None:
 
 def build_parser() -> ArgumentParser:
     """Parse arguments."""
-    parser = ArgumentParser(prog="console", description="OSR console command.")
+    parser = ArgumentParser(prog="console", description="Rover console command.")
     parser.add_argument(
         "--version",
         action="version",
@@ -211,7 +211,7 @@ def build_parser() -> ArgumentParser:
 
 
 def main() -> int:
-    """OSR console command."""
+    """Rover console command."""
     parser = build_parser()
     args = parser.parse_args()
 

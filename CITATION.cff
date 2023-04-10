@@ -4,9 +4,9 @@ authors:
   - given-names: Seth
     family-names: Fischer
     email: "seth@fischer.nz"
-title: "sethfischer-osr"
+title: "sethfischer-rover"
 type: software
-repository-code: "https://github.com/sethfischer/osr"
+repository-code: "https://github.com/sethfischer/rover"
 license:
   - MIT
   - CERN-OHL-W-2.0

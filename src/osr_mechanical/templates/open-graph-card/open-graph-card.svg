@@ -5,7 +5,7 @@
   xmlns:dc="http://purl.org/dc/elements/1.1/"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:xlink="http://www.w3.org/1999/xlink"
-  id="nz.fischer.osr.open-graph-card"
+  id="nz.fischer.rover.open-graph-card"
   width="1280"
   height="640"
   viewBox="0 0 1280 640"
@@ -78,7 +78,7 @@
         xml:space="preserve"
         x="435"
         y="120"
-        style="font-weight:bold">osr</tspan>
+        style="font-weight:bold">rover</tspan>
     </text>
     <text
       id="text_project_host"

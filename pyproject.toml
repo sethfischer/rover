@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "sethfischer-osr"
+name = "sethfischer-rover"
 version = "0.1.0"
 description = "Alternative body for the NASA JPL Open Source Rover."
 packages = [
@@ -13,9 +13,9 @@ authors = [
 ]
 readme = "README.rst"
 license = "MIT"
-homepage = "https://osr.fischer.nz/"
-repository = "https://github.com/sethfischer/osr"
-documentation = "https://osr.fischer.nz/"
+homepage = "https://rover.fischer.nz/"
+repository = "https://github.com/sethfischer/rover"
+documentation = "https://rover.fischer.nz/"
 keywords = [
     "jpl",
     "mars",
@@ -35,7 +35,7 @@ classifiers = [
 ]
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/sethfischer/osr/issues"
+"Bug Tracker" = "https://github.com/sethfischer/rover/issues"
 
 [tool.poetry.scripts]
 console = "osr_mechanical.console.application:main"
