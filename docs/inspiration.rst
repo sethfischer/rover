@@ -24,4 +24,4 @@ and the `NASA Mars 2020 Mission Perseverance Rover <https://mars.nasa.gov/mars20
   </figure>
 
 
-Further inspiration was provided by :doc:`many projects similar to sethfischer-osr <related-projects>`.
+Further inspiration was provided by :doc:`many projects similar to sethfischer-rover <related-projects>`.

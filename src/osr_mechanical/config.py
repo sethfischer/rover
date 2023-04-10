@@ -7,10 +7,10 @@ now = datetime.utcnow()
 
 COPYRIGHT_OWNER = "Seth Fischer"
 LICENCE = "MIT License"
-PROJECT_HOST = "osr.fischer.nz"
-PROJECT_NAME = "sethfischer-osr"
+PROJECT_HOST = "rover.fischer.nz"
+PROJECT_NAME = "sethfischer-rover"
 PROJECT_URL = f"https://{PROJECT_HOST}"
-REPO_URL = "https://github.com/sethfischer/osr"
+REPO_URL = "https://github.com/sethfischer/rover"
 SHORT_DESCRIPTION = "Alternative body for the NASA JPL Open Source Rover."
 LONG_DESCRIPTION = (
     f"Final assembly of {PROJECT_NAME}, a quarter-scale Mars rover. "

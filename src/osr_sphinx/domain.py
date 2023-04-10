@@ -1,4 +1,4 @@
-"""Sphinx osr domain."""
+"""Sphinx osr (rover.fischer.nz) domain."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-# sethfischer-osr v{{ version }}
+# sethfischer-rover v{{ version }}
 
 {{ short_description }}
 

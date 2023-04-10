@@ -22,19 +22,19 @@ License
 :Documentation: SPDX-License-Identifier: CC-BY-NC-SA-4.0
 
 
-.. _`how to build a release`: https://osr.fischer.nz/en/latest/build-release.html
-.. _`additional steps for developers`: https://osr.fischer.nz/en/latest/build-release.html#additional-steps-for-developers
+.. _`how to build a release`: https://rover.fischer.nz/en/latest/build-release.html
+.. _`additional steps for developers`: https://rover.fischer.nz/en/latest/build-release.html#additional-steps-for-developers
 .. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
 
 
-.. |build-status| image:: https://github.com/sethfischer/osr/actions/workflows/build.yml/badge.svg
-    :target: https://github.com/sethfischer/osr/actions/workflows/build.yml
+.. |build-status| image:: https://github.com/sethfischer/rover/actions/workflows/build.yml/badge.svg
+    :target: https://github.com/sethfischer/rover/actions/workflows/build.yml
     :alt: Build status
-.. |lint-status| image:: https://github.com/sethfischer/osr/actions/workflows/lint.yml/badge.svg
-    :target: https://github.com/sethfischer/osr/actions/workflows/lint.yml
+.. |lint-status| image:: https://github.com/sethfischer/rover/actions/workflows/lint.yml/badge.svg
+    :target: https://github.com/sethfischer/rover/actions/workflows/lint.yml
     :alt: Lint status
-.. |test-status| image:: https://github.com/sethfischer/osr/actions/workflows/test.yml/badge.svg
-    :target: https://github.com/sethfischer/osr/actions/workflows/test.yml
+.. |test-status| image:: https://github.com/sethfischer/rover/actions/workflows/test.yml/badge.svg
+    :target: https://github.com/sethfischer/rover/actions/workflows/test.yml
     :alt: Test status
 .. |docs-status| image:: https://readthedocs.org/projects/sethfischer-osr/badge/?version=latest
     :target: https://sethfischer-osr.readthedocs.io/en/latest/?badge=latest

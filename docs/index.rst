@@ -1,6 +1,6 @@
-===============
-sethfischer-osr
-===============
+=================
+sethfischer-rover
+=================
 
 .. grid:: 2
 
@@ -12,7 +12,7 @@ sethfischer-osr
     .. grid-item::
         :columns: auto
 
-        .. button-link:: https://github.com/sethfischer/osr
+        .. button-link:: https://github.com/sethfischer/rover
             :color: primary
             :outline:
 
