@@ -22,10 +22,13 @@ templates_path = [
     "_templates",
 ]
 
-html_theme = "sphinx_rtd_theme"
-html_static_path = ["_static"]
+
 html_context = {
     "display_star_on_github": True,
 }
+html_favicon = "_static/images/icon.svg"
+html_static_path = ["_static"]
+html_theme = "sphinx_rtd_theme"
+
 
 cadquery_include_source = False

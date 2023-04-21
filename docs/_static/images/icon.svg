@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  version="1.1"
+  id="nz.fischer.rover.icon">
+  <title>Icon for rover.fischer.nz</title>
+  <defs>
+    <mask id="head-camera">
+      <rect width="100%" height="100%" fill="#ffffff"/>
+      <circle r="18" cx="180" cy="76" fill="#000000"/>
+    </mask>
+  </defs>
+  <g
+    id="rover-icon"
+    fill="#2980b9">
+    <rect
+      id="head"
+      width="112"
+      height="56"
+      x="104"
+      y="48"
+      mask="url(#head-camera)"/>
+    <rect
+      id="wheel-port"
+      width="64"
+      height="144"
+      x="48"
+      y="320"
+      rx="24"
+      ry="10"/>
+    <rect
+      id="wheel-starboard"
+      width="64"
+      height="144"
+      x="400"
+      y="320"
+      rx="24"
+      ry="10"/>
+    <rect
+      id="body"
+      width="256"
+      height="96"
+      x="128"
+      y="208"/>
+    <rect
+      id="mast"
+      width="32"
+      height="104"
+      x="144"
+      y="104"/>
+    <rect
+      id="strut-port"
+      width="16"
+      height="176"
+      x="112"
+      y="240"/>
+    <rect
+      id="strut-starboard"
+      width="16"
+      height="176"
+      x="384"
+      y="240"/>
+  </g>
+</svg>
