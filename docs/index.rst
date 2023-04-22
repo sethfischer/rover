@@ -41,6 +41,8 @@ Specifications
 
     .. grid-item-card:: Open Source Hardware
         :text-align: center
+        :link: copyright
+        :link-type: doc
 
         .. image:: _static/images/logos/oshw.svg
             :alt: Open Source Hardware
@@ -97,6 +99,8 @@ Specifications
     build-release
     console
     related-projects
+    about
+    copyright
     indices
 
 
