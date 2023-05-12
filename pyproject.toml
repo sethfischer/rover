@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "sethfischer-rover"
 version = "0.1.0"
-description = "Alternative body for the NASA JPL Open Source Rover."
+description = "Quarter-scale Mars rover based on the NASA Mars 2020 Mission Perseverance Rover"
 packages = [
     {include = "osr_common", from = "src"},
     {include = "osr_mechanical", from = "src"},

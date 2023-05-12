@@ -7,7 +7,8 @@ sethfischer-rover
     .. grid-item::
         :columns: auto
 
-        Alternative body construction for the `NASA JPL Open Source Rover`_.
+        Quarter-scale Mars rover based on the
+        `NASA Mars 2020 Mission Perseverance Rover <https://mars.nasa.gov/mars2020/>`__.
 
     .. grid-item::
         :columns: auto
@@ -102,6 +103,3 @@ Specifications
     about
     copyright
     indices
-
-
-.. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover

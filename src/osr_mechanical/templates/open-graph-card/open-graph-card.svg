@@ -95,12 +95,12 @@
         id="tspan_short_desc_line1"
         xml:space="preserve"
         x="80"
-        y="230">Alternative body for the</tspan>
+        y="230">Quarter-scale Mars rover</tspan>
       <tspan
         id="tspan_short_desc_line2"
         xml:space="preserve"
         x="80"
-        y="270">NASA JPL Open Source Rover</tspan>
+        y="270">based on NASA-JPL's Perseverance</tspan>
     </text>
   </g>
   <g
