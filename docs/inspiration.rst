@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        Inspiration for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Inspiration for sethfischer-rover, a quarter-scale Mars rover.
+
+
 ===========
 Inspiration
 ===========

@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        Frame sub-assemblies for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Frame sub-assemblies for sethfischer-rover, a quarter-scale Mars rover.
+
+
 .. index:: frame
 
 =====

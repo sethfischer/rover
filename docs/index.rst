@@ -1,3 +1,12 @@
+.. meta::
+    :description lang=en:
+        Quarter-scale Mars rover based on the NASA Mars 2020 Mission
+        Perseverance Rover.
+
+:og:description:
+    Quarter-scale Mars rover based on the NASA Mars 2020 Mission Perseverance Rover.
+
+
 =================
 sethfischer-rover
 =================

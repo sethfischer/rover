@@ -1,7 +1,14 @@
+.. meta::
+    :description lang=en:
+        Open source licences for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Open source licences for sethfischer-rover, a quarter-scale Mars rover.
+
+
 =======
 Licence
 =======
-
 
 Software and firmware:
     MIT License
