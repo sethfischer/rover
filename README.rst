@@ -1,11 +1,11 @@
-===============
-sethfischer/osr
-===============
+=================
+sethfischer/rover
+=================
 
 |build-status| |lint-status| |test-status| |docs-status|
 
 
-Alternative body for the `NASA JPL Open Source Rover`_.
+Quarter-scale Mars rover based on the NASA Mars 2020 Mission Perseverance Rover.
 
 
 Get started
@@ -24,7 +24,6 @@ License
 
 .. _`how to build a release`: https://rover.fischer.nz/en/latest/build-release.html
 .. _`additional steps for developers`: https://rover.fischer.nz/en/latest/build-release.html#additional-steps-for-developers
-.. _`NASA JPL Open Source Rover`: https://github.com/nasa-jpl/open-source-rover
 
 
 .. |build-status| image:: https://github.com/sethfischer/rover/actions/workflows/build.yml/badge.svg
