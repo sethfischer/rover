@@ -29,6 +29,8 @@ jobs:
 
       - name: Build HTML
         working-directory: ./docs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: poetry run make html
 
       - name: Build Python package
