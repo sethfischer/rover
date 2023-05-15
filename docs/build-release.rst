@@ -91,7 +91,7 @@ Build documentation:
 .. code:: none
 
     git lfs pull
-    make -C docs/ clean html
+    set -a && source .env.local && set +a && make -C docs/ clean html
 
 Run linters and tests:
 
