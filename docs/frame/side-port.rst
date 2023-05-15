@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        Port-side frame assembly for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Port-side frame assembly for sethfischer-rover, a quarter-scale Mars rover.
+
+
 =================
 Frame side (port)
 =================

@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        Building manufacturing files for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Building manufacturing files for sethfischer-rover, a quarter-scale Mars rover.
+
+
 .. index:: build release, release
 
 ==================

@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        Software used to build documentation for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Software used to build documentation for sethfischer-rover, a quarter-scale Mars rover.
+
+
 =====
 About
 =====

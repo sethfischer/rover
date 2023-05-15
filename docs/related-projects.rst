@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        Similar project to sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Similar project to sethfischer-rover, a quarter-scale Mars rover.
+
+
 ================
 Related projects
 ================

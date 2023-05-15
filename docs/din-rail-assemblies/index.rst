@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        DIN rail assemblies for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    DIN rail assemblies for sethfischer-rover, a quarter-scale Mars rover.
+
+
 .. index:: DIN rail assembly
 
 ===================

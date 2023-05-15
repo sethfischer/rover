@@ -1,3 +1,11 @@
+.. meta::
+    :description lang=en:
+        Rocker axle assembly for sethfischer-rover, a quarter-scale Mars rover.
+
+:og:description:
+    Rocker axle assembly for sethfischer-rover, a quarter-scale Mars rover.
+
+
 .. index:: rocker axle
 
 ===========
