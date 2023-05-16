@@ -40,6 +40,7 @@ html_context = {
 html_favicon = "_static/images/icon.svg"
 html_static_path = ["_static"]
 html_theme = "sphinx_rtd_theme"
+html_title = f"{project} v{release}"
 
 
 cadquery_include_source = False
