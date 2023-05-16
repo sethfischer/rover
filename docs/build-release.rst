@@ -58,17 +58,16 @@ Poetry, Mayo, and git-lfs should be installed according to their respective docu
 and be available in your path.
 
 
-Clone the project and create a virtual environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Clone project and install dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: none
 
     git clone https://github.com/sethfischer/rover.git
     cd rover
-    python3.9 -m venv .venv
-    . .venv/bin/activate
-    pip install -U pip
+    poetry env use python3.9
     poetry install
+    poetry shell
 
 
 Build release archive
@@ -99,7 +98,9 @@ Build documentation:
 .. code:: none
 
     git lfs pull
-    set -a && source .env.local && set +a && make -C docs/ clean html
+    cp .env.dist .env.local  # then edit
+    set -a && source .env.local && set +a
+    make -C docs/ clean html
 
 Run linters and tests:
 
