@@ -58,7 +58,7 @@ sphinxext-opengraph = "^0.8.2"
 wurlitzer = "^3.0.2"
 
 [tool.poetry.group.dev.dependencies]
-CairoSVG = "2.6.0"  # CairoSVG 2.7.0 results in Open Graph card PNG rendering incorrectly.
+CairoSVG = "^2.7.0"
 OCP-stubs = {git = "https://github.com/CadQuery/OCP-stubs.git", rev = "7.6.3"}
 Pillow = "^9.3.0"
 black = "^23.3.0"
