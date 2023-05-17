@@ -114,7 +114,7 @@ class ExportPNG:
         config = ConfigParser()
 
         # allow mixed case keys
-        config.optionxform = lambda optionstr: optionstr  # type: ignore[assignment]
+        config.optionxform = lambda optionstr: optionstr  # type: ignore[method-assign]
 
         config["application"] = {
             "language": "en",
