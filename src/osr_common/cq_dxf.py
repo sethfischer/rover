@@ -137,7 +137,7 @@ class DxfDocument:
                 self.msp.add_entity(entity)
             else:
                 _, entity_attributes = self._dxf_spline(edge, plane)
-                entity = ezdxf.math.BSpline(
+                entity = ezdxf.math.BSpline(  # type: ignore[assignment]
                     **entity_attributes,
                 )
                 self.msp.add_spline(
