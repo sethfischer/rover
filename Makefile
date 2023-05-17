@@ -29,6 +29,6 @@ _build/open-graph-card/open-graph-card.svg: _build/open-graph-card/final-assembl
 	console open-graph-card > $@
 
 _build/open-graph-card/open-graph-card.png: _build/open-graph-card/open-graph-card.svg
-	cairosvg $< -o $@
+	cairosvg --unsafe $< -o $@
 	optipng $@
 	./exif-tags.sh $@

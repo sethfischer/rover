@@ -381,14 +381,14 @@ xcb = ["xcffib (>=0.3.2)"]
 
 [[package]]
 name = "cairosvg"
-version = "2.6.0"
+version = "2.7.0"
 description = "A Simple SVG Converter based on Cairo"
 category = "dev"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "CairoSVG-2.6.0-py3-none-any.whl", hash = "sha256:05069d5316e9f02f33028942f96929e01782db41e6ff07d8454c8d021b5b52f3"},
-    {file = "CairoSVG-2.6.0.tar.gz", hash = "sha256:d5ec93e90101b3b6e82aa245d0546ee9b016cfda0b6344675159830d853d5d04"},
+    {file = "CairoSVG-2.7.0-py3-none-any.whl", hash = "sha256:17cb96423a896258848322a95c80160e714a58f1af3dd73b8e1750994519b9f9"},
+    {file = "CairoSVG-2.7.0.tar.gz", hash = "sha256:ac4dc7c1d38b3a15717db2633a3a383012e0be664c727c911637e6af6a49293c"},
 ]
 
 [package.dependencies]
@@ -4864,4 +4864,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "fb877341eabba56b0745d1fabb60d48cc7f36c5da8f42d608a2d39f8ef94f4f8"
+content-hash = "6d557b6d3808a6c3488892f0571c0f84f8ed4f3972fa8e4ed0291ae979d4b1e3"
