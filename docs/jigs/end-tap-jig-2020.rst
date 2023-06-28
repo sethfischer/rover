@@ -6,11 +6,15 @@ End tap jig 2020
 
 End tap jig for 2020 aluminium V-slot extrusion.
 
-.. cadquery-vtk::
+.. cadquery:vtk::
 
-    from osr_mechanical.jigs.vslot import EndTapJig
+    End tap jig for 2020 V-slot extrusion.
 
-    result = EndTapJig().cq_object
+    .. code-block:: python
+
+        from osr_mechanical.jigs.vslot import EndTapJig
+
+        result = EndTapJig().cq_object
 
 
 Bill of materials
@@ -36,23 +40,30 @@ Jig body
     :supports: no
 
 
-.. cadquery-vtk::
+.. cadquery:vtk::
+    :color: 0.85, 0.45, 0.01, 1
 
-    from osr_mechanical.jigs.vslot import EndTapJig
+    3D printed body for 2020 V-slot end tap jig.
 
-    jig = EndTapJig()
-    result = jig.cq_part("2020_end_tap_jig__body")
-
-
-.. dropdown:: Print orientation
-
-    Print standing on end with T-slot aperture facing up.
-
-    .. cadquery-svg::
+    .. code-block:: python
 
         from osr_mechanical.jigs.vslot import EndTapJig
 
         jig = EndTapJig()
         result = jig.cq_part("2020_end_tap_jig__body")
 
-        show_object(result)
+
+.. dropdown:: Print orientation
+
+    Print standing on end with T-slot aperture facing up.
+
+    .. cadquery:svg::
+
+        Print orientation for 2020 V-slot end tag jig body.
+
+        .. code-block:: python
+
+            from osr_mechanical.jigs.vslot import EndTapJig
+
+            jig = EndTapJig()
+            result = jig.cq_part("2020_end_tap_jig__body")

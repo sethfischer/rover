@@ -12,11 +12,15 @@
 DIN rail assemblies
 ===================
 
-.. cadquery-vtk::
+.. cadquery:vtk::
 
-    from osr_mechanical.electronics import ControlElectronics
+    DIN rail assemblies.
 
-    result = ControlElectronics().cq_object
+    .. code-block:: python
+
+        from osr_mechanical.electronics import ControlElectronics
+
+        result = ControlElectronics().cq_object
 
 
 .. toctree::
