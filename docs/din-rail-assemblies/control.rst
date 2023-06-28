@@ -12,11 +12,15 @@
 Control electronics
 ===================
 
-.. cadquery-vtk::
+.. cadquery:vtk::
 
-    from osr_mechanical.electronics import ControlElectronics
+    Control electronics DIN rail assembly.
 
-    result = ControlElectronics().cq_object
+    .. code-block:: python
+
+        from osr_mechanical.electronics import ControlElectronics
+
+        result = ControlElectronics().cq_object
 
 
 Bill of materials

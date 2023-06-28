@@ -12,11 +12,15 @@
 Frame
 =====
 
-.. cadquery-vtk::
+.. cadquery:vtk::
 
-    from osr_mechanical.frame.final import Frame
+    Frame assembly constructed from 2020 V-slot extrusion.
 
-    result = Frame().cq_object
+    .. code-block:: python
+
+        from osr_mechanical.frame.final import Frame
+
+        result = Frame().cq_object
 
 
 .. toctree::

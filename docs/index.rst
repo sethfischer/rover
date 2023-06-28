@@ -32,11 +32,15 @@ sethfischer-rover
             :octicon:`mark-github` Star on GitHub
 
 
-.. cadquery-vtk::
+.. cadquery:vtk::
 
-    from osr_mechanical.final import FinalAssembly
+    Final assembly of sethfischer-rover.
 
-    result = FinalAssembly().cq_object
+    .. code-block:: python
+
+        from osr_mechanical.final import FinalAssembly
+
+        result = FinalAssembly().cq_object
 
 
 Specifications

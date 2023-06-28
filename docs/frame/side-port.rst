@@ -11,12 +11,16 @@ Frame side (port)
 =================
 
 
-.. cadquery-vtk::
+.. cadquery:vtk::
 
-    from osr_mechanical.frame.side import FrameSide
-    from osr_mechanical.bom.parts import port
+    Frame port sub-assembly.
 
-    result = FrameSide(port).cq_object
+    .. code-block:: python
+
+        from osr_mechanical.frame.side import FrameSide
+        from osr_mechanical.bom.parts import port
+
+        result = FrameSide(port).cq_object
 
 
 Bill of materials

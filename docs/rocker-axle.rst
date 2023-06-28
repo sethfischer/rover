@@ -12,11 +12,15 @@
 Rocker axle
 ===========
 
-.. cadquery-vtk::
+.. cadquery:vtk::
 
-    from osr_mechanical.rocker_axle import RockerAxle
+    Rocker axle sub-assembly.
 
-    result = RockerAxle().cq_object
+    .. code-block:: python
+
+        from osr_mechanical.rocker_axle import RockerAxle
+
+        result = RockerAxle().cq_object
 
 
 Bill of materials
