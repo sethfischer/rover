@@ -3,7 +3,7 @@
 import os
 from datetime import date
 
-import sphinx_rtd_theme  # type: ignore[import] # noqa: F401
+import sphinx_rtd_theme  # type: ignore[import-untyped] # noqa: F401
 
 
 def canonical_url() -> str:
