@@ -52,7 +52,7 @@ Sphinx = ">=6.0.0,<7.0.0"
 cq-electronics = {git = "https://github.com/sethfischer/cq-electronics.git", rev = "103348036f25b63bad4c6154b7c289449b96deea"}
 cq_warehouse = {git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"}
 sphinx-argparse-cli = "^1.10.0"
-sphinx-design = "^0.4.1"
+sphinx-design = "^0.5.0"
 sphinx-rtd-theme = "^1.0.0"
 sphinxext-opengraph = "^0.8.2"
 wurlitzer = "^3.0.2"
