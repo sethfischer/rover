@@ -123,6 +123,7 @@ Code and parts
 Commercial products
 -------------------
 
+* Geek Club `NASA Perseverance AI-powered Mars Rover kit <https://www.kickstarter.com/projects/geeekclub/nasa-perseverance-mars-rover>`__
 * `LEGOⓇ Technic NASA Mars Rover Perseverance <https://www.lego.com/en-us/product/nasa-mars-rover-perseverance-42158>`__
 * 4tronix `M.A.R.S. Rover Robot for Microbit or Pi Zero <https://shop.4tronix.co.uk/products/marsrover>`_
 * Servocity `Bogie Runt Rover <https://www.servocity.com/bogie-runt-rover/>`_
