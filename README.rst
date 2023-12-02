@@ -2,7 +2,7 @@
 sethfischer/rover
 =================
 
-|build-status| |lint-status| |test-status| |docs-status|
+|build-status| |lint-status| |test-status| |docs-status| |linkcheck-status|
 
 
 Quarter-scale Mars rover based on the NASA Mars 2020 Mission Perseverance Rover.
@@ -38,3 +38,6 @@ License
 .. |docs-status| image:: https://readthedocs.org/projects/sethfischer-osr/badge/?version=latest
     :target: https://sethfischer-osr.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. |linkcheck-status| image:: https://github.com/sethfischer/rover/actions/workflows/linkcheck.yml/badge.svg
+    :target: https://github.com/sethfischer/rover/actions/workflows/linkcheck.yml
+    :alt: Link Check Status
