@@ -116,6 +116,6 @@ Run linters and tests:
 .. _`Mayo 3D CAD viewer and converter`: https://github.com/fougue/mayo
 .. _`ImageMagick`: https://imagemagick.org/
 .. _`exiftool`: https://exiftool.org/
-.. _`git-lfs`: https://git-lfs.github.com/
+.. _`git-lfs`: https://git-lfs.com/
 .. _`optipng`: https://optipng.sourceforge.net/
 .. _`CQ-Editor`: https://github.com/CadQuery/CQ-editor
