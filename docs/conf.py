@@ -43,6 +43,12 @@ html_theme = "sphinx_rtd_theme"
 html_title = f"{project} v{release}"
 
 
+linkcheck_ignore = [
+    "https://roverchallenge.eu/",  # SSLCertVerificationError
+    "https://www.kickstarter.com/",  # returns 403 for robots
+]
+
+
 cadquery_include_source = False
 
 
