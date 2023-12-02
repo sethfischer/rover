@@ -25,4 +25,6 @@ jobs:
         run: poetry install --no-interaction
 
       - name: Check links in documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: poetry run make -C docs linkcheck
