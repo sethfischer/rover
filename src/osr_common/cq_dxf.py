@@ -134,7 +134,7 @@ class DxfDocument:
                 entity = factory.new(
                     entity_type, dxfattribs=entity_attributes | general_attributes
                 )
-                self.msp.add_entity(entity)
+                self.msp.add_entity(entity)  # type: ignore[arg-type]
             else:
                 _, entity_attributes = self._dxf_spline(edge, plane)
                 entity = ezdxf.math.BSpline(  # type: ignore[assignment]
