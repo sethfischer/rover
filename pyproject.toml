@@ -54,7 +54,7 @@ cq_warehouse = {git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b8
 sphinx-argparse-cli = "^1.10.0"
 sphinx-design = "^0.5.0"
 sphinx-rtd-theme = "^1.0.0"
-sphinxext-opengraph = "^0.8.2"
+sphinxext-opengraph = "^0.9.0"
 wurlitzer = "^3.0.2"
 
 [tool.poetry.group.dev.dependencies]
@@ -63,7 +63,7 @@ OCP-stubs = {git = "https://github.com/CadQuery/OCP-stubs.git", rev = "7.6.3"}
 Pillow = "^10.1.0"
 black = "^23.3.0"
 cffconvert = "^2.0.0"
-commitizen = "^3.2.2"
+commitizen = "^3.12.0"
 doc8 = "^0.11.2"
 flake8 = "^6.0.0"
 flake8-docstrings = "^1.6.0"
