@@ -43,6 +43,22 @@ html_theme = "sphinx_rtd_theme"
 html_title = f"{project} v{release}"
 
 
+linkcheck_allowed_redirects = {
+    r"https://cadquery\.readthedocs\.io/.*": (
+        r"https://cadquery\.readthedocs\.io/en/latest/.*"
+    ),
+    r"https://cq-electronics\.readthedocs\.io/.*": (
+        r"https://cq-electronics\.readthedocs\.io/en/latest/.*"
+    ),
+    r"https://open-source-rover\.readthedocs\.io/.*": (
+        r"https://open-source-rover\.readthedocs\.io/en/latest/.*"
+    ),
+    r"https://sphinxcontrib-cadquery\.readthedocs\.io/.*": (
+        r"https://sphinxcontrib-cadquery\.readthedocs\.io/en/latest/.*"
+    ),
+    r"https://www\.sphinx-doc\.org/.*": r"https://www\.sphinx-doc\.org/en/master/.*",
+}
+
 linkcheck_ignore = [
     "https://roverchallenge.eu/",  # SSLCertVerificationError
     "https://www.kickstarter.com/",  # returns 403 for robots
