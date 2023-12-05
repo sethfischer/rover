@@ -23,7 +23,7 @@ Documentation
     * https://github.com/nasa-jpl/osr-rover-code
 
 Website
-    https://open-source-rover.readthedocs.io
+    https://open-source-rover.readthedocs.io/
 
 .. figure:: _static/images/related-projects/jpl-osr-v1.*
     :alt: JPL Open Source Rover
