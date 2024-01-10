@@ -73,7 +73,7 @@ class Bom(UserDict[str, BomEntry]):
                 if isinstance(value, (Screw, Nut, Washer)):
                     self.insert_part(cq_warehouse_converter(value), assembly.name)
                 if self.PARTS_KEY == key:
-                    for name, part in value.items():
+                    for _name, part in value.items():
                         self.insert_part(part, assembly.name)
 
     @staticmethod
