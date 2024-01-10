@@ -8,8 +8,14 @@ sethfischer/rover
 Quarter-scale Mars rover based on the NASA Mars 2020 Mission Perseverance Rover.
 
 
-Get started
------------
+Construction
+------------
+
+Refer to the `documentation <https://rover.fischer.nz/>`__.
+
+
+Contribute
+----------
 
 Refer to `how to build a release`_ and follow the `additional steps for developers`_.
 
