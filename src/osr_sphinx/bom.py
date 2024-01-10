@@ -76,7 +76,7 @@ class BomTable(Directive):
         table_group += table_body
 
         rows = []
-        for identifier, bom_entry in bom.items():
+        for _identifier, bom_entry in bom.items():
             row = nodes.row()
 
             identifier_entry = nodes.entry()
