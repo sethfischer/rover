@@ -43,7 +43,7 @@ class PrintSettings(Directive):
 
         return data
 
-    def run(self) -> list[nodes.paragraph | nodes.table]:
+    def run(self) -> list[nodes.paragraph | nodes.table | nodes.definition_list]:
         """Create 3D printer settings table."""
         stl_file_name = self.arguments[0]
 
