@@ -117,5 +117,6 @@ Specifications
     console
     related-projects
     about
+    changelog
     copyright
     indices
