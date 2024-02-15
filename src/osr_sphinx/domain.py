@@ -11,6 +11,7 @@ from sphinx.domains import Domain
 from sphinx.environment import BuildEnvironment
 
 from osr_sphinx.bom import BomTable
+from osr_sphinx.commitizen import CzChangelog
 from osr_sphinx.dimensions import DimensionRole
 from osr_sphinx.print_settings import PrintSettings
 
@@ -23,6 +24,7 @@ class OsrDomain(Domain):
 
     directives = {
         "bom": BomTable,
+        "cz-changelog": CzChangelog,
         "print-settings": PrintSettings,
     }
     roles = {

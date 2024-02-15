@@ -6,5 +6,5 @@
 /_build
 /dist
 /docs/_build
-CHANGELOG.md
+CHANGELOG.*
 __pycache__
