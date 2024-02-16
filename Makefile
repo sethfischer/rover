@@ -31,4 +31,4 @@ _build/open-graph-card/open-graph-card.svg: _build/open-graph-card/final-assembl
 _build/open-graph-card/open-graph-card.png: _build/open-graph-card/open-graph-card.svg
 	cairosvg --unsafe $< -o $@
 	optipng $@
-	./exif-tags.sh $@
+	./image-meta.sh $@
