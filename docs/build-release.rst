@@ -34,7 +34,7 @@ Prerequisites
 -------------
 
 * `Git`_ version control system.
-* `Python`_ >=3.9, and python-venv.
+* `Python`_ >=3.11, and python-venv.
 * `Poetry`_ for Python dependency management.
 * `Mayo 3D CAD viewer and converter`_ for exporting PNG images.
 * Optional:
@@ -52,7 +52,7 @@ Install prerequisites
 
 .. code:: none
 
-    sudo apt-get install git python3.9 python3.9-venv imagemagick optipng exiftool
+    sudo apt-get install git python3.11 python3.11-venv imagemagick optipng exiftool
 
 Poetry, Mayo, and git-lfs should be installed according to their respective documentation,
 and be available in your path.
@@ -65,7 +65,7 @@ Clone project and install dependencies
 
     git clone https://github.com/sethfischer/rover.git
     cd rover
-    poetry env use python3.9
+    poetry env use python3.11
     poetry install
     poetry shell
 

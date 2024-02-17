@@ -41,7 +41,7 @@ classifiers = [
 console = "osr_mechanical.console.application:main"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
+python = ">=3.11,<3.12"
 
 cadquery = "2.4.0"
 cadquery-ocp = "7.7.0"
@@ -92,7 +92,7 @@ profile = "black"
 multi_line_output = 3
 
 [tool.mypi]
-python_version = "3.9"
+python_version = "3.11"
 strict = true
 
 [[tool.mypy.overrides]]

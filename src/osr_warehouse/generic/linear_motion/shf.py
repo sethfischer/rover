@@ -11,7 +11,7 @@ from osr_warehouse.point2d import Point2D
 from osr_warehouse.utilities import TINY_LENGTH
 
 
-@dataclass
+@dataclass(eq=True, frozen=True)
 class SHFDimensions:
     """SHF shaft support dimension schema."""
 
