@@ -23,7 +23,7 @@ test:
 .PHONY: _build/open-graph-card/final-assembly.png
 _build/open-graph-card/final-assembly.png:
 	@mkdir -p $(@D)
-	console export-png --width=640 --height=490 --no-label _build/open-graph-card/final-assembly.png
+	console export-png --width=640 --height=490 --no-label $@
 
 _build/open-graph-card/open-graph-card.svg: _build/open-graph-card/final-assembly.png
 	console open-graph-card > $@
