@@ -174,7 +174,7 @@ class DxfDocument:
 
         :return: dictionary of DXF entity attributes for creating either a circle or arc
         """
-        geom = edge._geomAdaptor()
+        geom = edge._geomAdaptor()  # noqa[W0212]
         circ = geom.Circle()
 
         radius = circ.Radius()
@@ -223,7 +223,7 @@ class DxfDocument:
 
         :return: dictionary of DXF entity attributes for creating an ellipse
         """
-        geom = edge._geomAdaptor()
+        geom = edge._geomAdaptor()  # noqa[W0212]
         ellipse = geom.Ellipse()
 
         r1 = ellipse.MinorRadius()
@@ -255,7 +255,7 @@ class DxfDocument:
 
         :return: dictionary of ezdxf.math.BSpline parameters
         """
-        adaptor = edge._geomAdaptor()
+        adaptor = edge._geomAdaptor()  # noqa[W0212]
         curve = GeomConvert.CurveToBSplineCurve_s(adaptor.Curve().Curve())
 
         spline = GeomConvert.SplitBSplineCurve_s(
