@@ -39,7 +39,7 @@ def export_png(args: Namespace) -> None:
     exit(EX_OK)
 
 
-def open_graph_card_svg(args: Namespace) -> None:
+def open_graph_card_svg(_args: Namespace) -> None:
     """Create Open Graph Card in SVG format."""
     env = Environment(
         loader=PackageLoader("osr_mechanical"), autoescape=select_autoescape()
