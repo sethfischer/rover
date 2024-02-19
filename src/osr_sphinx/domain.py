@@ -1,7 +1,5 @@
 """Sphinx osr (rover.fischer.nz) domain."""
 
-from __future__ import annotations
-
 from typing import Any
 
 from docutils.nodes import Element

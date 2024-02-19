@@ -1,7 +1,5 @@
 """Frame assembly."""
 
-from __future__ import annotations
-
 import cadquery as cq
 
 from osr_common.cq_containers import CqAssemblyContainer

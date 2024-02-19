@@ -1,7 +1,5 @@
 """Bill of materials converters."""
 
-from __future__ import annotations
-
 from cq_warehouse.fastener import Nut, Screw, Washer
 
 from osr_mechanical.bom.parts import PartIdentifier, PartTypes

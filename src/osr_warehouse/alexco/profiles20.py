@@ -3,8 +3,6 @@
 `Aluminium Extrusion Company <https://www.alexco.co.nz/>`_.
 """
 
-from __future__ import annotations
-
 from math import radians, sqrt, tan
 
 import cadquery as cq
