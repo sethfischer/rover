@@ -1,7 +1,5 @@
 """V-slot jigs and guides."""
 
-from __future__ import annotations
-
 import cadquery as cq
 import cq_warehouse.extensions  # noqa: F401
 from cq_warehouse.fastener import PlainWasher, SocketHeadCapScrew

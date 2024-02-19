@@ -1,7 +1,5 @@
 """3D printer settings."""
 
-from __future__ import annotations
-
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
 

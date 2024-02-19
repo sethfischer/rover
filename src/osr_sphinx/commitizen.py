@@ -1,7 +1,5 @@
 """Commitizen Sphinx directives."""
 
-from __future__ import annotations
-
 import subprocess
 
 from docutils import nodes

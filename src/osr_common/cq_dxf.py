@@ -1,8 +1,6 @@
 """DXF utilities."""
 
-from __future__ import annotations
-
-from typing import Any, Literal
+from typing import Any, Literal, Self
 
 import cadquery as cq
 import ezdxf
@@ -98,7 +96,7 @@ class DxfDocument:
 
     def add_layer(
         self, name: str, *, color: int = 1, linetype: str = "Continuous"
-    ) -> DxfDocument:
+    ) -> Self:
         """Add layer to DXF document.
 
         :param name: ezdxf document layer name
@@ -111,7 +109,7 @@ class DxfDocument:
 
         return self
 
-    def add_shape(self, workplane: cq.Workplane, layer: str = "") -> DxfDocument:
+    def add_shape(self, workplane: cq.Workplane, layer: str = "") -> Self:
         """Add CadQuery shape to a DXF layer.
 
         :param workplane: CadQuery Workplane

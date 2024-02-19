@@ -1,7 +1,5 @@
 """CadQuery wrappers."""
 
-from __future__ import annotations
-
 from io import StringIO
 from pathlib import Path
 from typing import Any, Optional

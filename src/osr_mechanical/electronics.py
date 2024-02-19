@@ -1,7 +1,5 @@
 """Electronics mounted on DIN rail."""
 
-from __future__ import annotations
-
 import cadquery as cq
 from cq_electronics.mechanical.din_clip import DinClip
 from cq_electronics.mechanical.din_rail import TopHat

@@ -1,7 +1,5 @@
 """Abstract base classes for CadQuery object containers."""
 
-from __future__ import annotations
-
 from abc import ABC, abstractmethod
 
 import cadquery as cq

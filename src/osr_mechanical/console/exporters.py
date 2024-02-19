@@ -1,7 +1,5 @@
 """Custom exporters."""
 
-from __future__ import annotations
-
 from configparser import ConfigParser
 from datetime import datetime
 from math import ceil
