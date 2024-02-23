@@ -2836,17 +2836,17 @@ files = [
 
 [[package]]
 name = "pyqtgraph"
-version = "0.13.3"
+version = "0.12.4"
 description = "Scientific Graphics and GUI Library for Python"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.7"
 files = [
-    {file = "pyqtgraph-0.13.3-py3-none-any.whl", hash = "sha256:fdcc04ac4b32a7bedf1bf3cf74cbb93ab3ba5687791712bbfa8d0712377d2f2b"},
-    {file = "pyqtgraph-0.13.3.tar.gz", hash = "sha256:58108d8411c7054e0841d8b791ee85e101fc296b9b359c0e01dde38a98ff2ace"},
+    {file = "pyqtgraph-0.12.4-py3-none-any.whl", hash = "sha256:d98c6e26e9eda6d1d1bba92d6df381ef77fca18b701f9e136759ce31a17c6217"},
+    {file = "pyqtgraph-0.12.4.tar.gz", hash = "sha256:c2c8f2b7e1d7f97a710f370acff6368d686c9d6cdc560f2d83dcf59185dfa19d"},
 ]
 
 [package.dependencies]
-numpy = ">=1.20.0"
+numpy = ">=1.17.0"
 
 [[package]]
 name = "pyqtwebengine"
@@ -4496,4 +4496,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.12"
-content-hash = "ee6f5662852fc25eb3d1aa5441a88d672978ea02f80e1c572f5f8b5e3912708d"
+content-hash = "7e578efdc986c3b7f0377cf9729d79197daa1205ed6897c9c856c9de9b72ed41"

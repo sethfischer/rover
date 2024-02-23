@@ -90,7 +90,7 @@ pyqtwebengine-qt5 = [  # PyQt5 dependency
     {version = "^5.15.2, !=5.15.11, !=5.15.12", platform = "linux"},  # exclude releases without a Linux wheel
 ]
 PyQt5 = "^5.15.10"
-pyqtgraph = "^0.13.3"
+pyqtgraph = "^0.12.4"
 spyder = "^5.3.1"
 
 [tool.isort]
