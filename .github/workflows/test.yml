@@ -24,3 +24,6 @@ jobs:
 
       - name: Run tests
         run: poetry run pytest
+
+      - name: Test CQ-Editor dependency resolution
+        run: poetry install --no-interaction --with=cq-editor

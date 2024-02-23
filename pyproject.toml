@@ -82,9 +82,15 @@ optional = true
 
 [tool.poetry.group.cq-editor.dependencies]
 cq-editor = {git = "https://github.com/CadQuery/CQ-editor.git", rev = "4b461fe195d0a4e99b9a6c43b7e1fe0cb4c5e77d"}
-Logbook = "^1.5.3"
-PyQt5 = "^5.15.7"
-pyqtgraph = "^0.12.4"
+Logbook = "^1.7.0"
+pyqt5-qt5 = [  # PyQt5 dependency
+    {version = "^5.15.2, !=5.15.11, !=5.15.12", platform = "linux"},  # exclude releases without a Linux wheel
+]
+pyqtwebengine-qt5 = [  # PyQt5 dependency
+    {version = "^5.15.2, !=5.15.11, !=5.15.12", platform = "linux"},  # exclude releases without a Linux wheel
+]
+PyQt5 = "^5.15.10"
+pyqtgraph = "^0.13.3"
 spyder = "^5.3.1"
 
 [tool.isort]
