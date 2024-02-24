@@ -1,0 +1,237 @@
+(footprint "CK_JS102011JCQN_SW_SPDT_Slide_SMD"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "JS102011JCQN CK JS Series Sub-Miniature Slide Switch 300mA SPDT 6V")
+	(property "Reference" "REF**"
+		(at 0 -3.02 0)
+		(layer "F.SilkS")
+		(uuid "50568b7d-16a0-41ae-85cc-9d178fadb5df")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SW-SMD_JS102011JCQN"
+		(at 0 3.33 0)
+		(layer "F.Fab")
+		(uuid "31eb752e-ed37-4f07-a7f1-8205714da2a3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "CK_JS102011JCQN_SW_SPDT_Slide_SMD"
+		(at 0 1.23 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0e07d301-cb11-4295-9cca-fde4bcefe4db")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at -1.66 2.68 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c9c1d11b-cee4-4b91-8660-02c7e1b507a0")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at -1.66 2.68 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a8f0c180-ddf0-4b97-9f63-a326a1da3eec")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -4.25 -1.8)
+		(end -0.95 -1.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8bc3a540-dc22-4758-ae8f-c1ad9202f7f7")
+	)
+	(fp_line
+		(start -4.25 1.8)
+		(end -4.25 -1.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2219d154-b619-41b1-af5b-23095af73469")
+	)
+	(fp_line
+		(start -3.4 1.8)
+		(end -4.25 1.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6c9a15b0-371e-4672-aefd-0e840fe765fd")
+	)
+	(fp_line
+		(start -3.4 1.8)
+		(end -3.4 2.2)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "d4d3af1f-a488-4f7c-bebf-e692d7bf6a04")
+	)
+	(fp_line
+		(start 0.95 -1.8)
+		(end 4.25 -1.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3722f586-b63d-4338-8513-8968869bc1ce")
+	)
+	(fp_line
+		(start 1.5 1.8)
+		(end -1.5 1.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3ec4b339-7ed4-42b2-945e-89d61b845f26")
+	)
+	(fp_line
+		(start 4.25 -1.8)
+		(end 4.25 1.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "a884a818-c3e6-4174-aa11-588c00acd7c1")
+	)
+	(fp_line
+		(start 4.25 1.8)
+		(end 3.5 1.8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "73619813-0ed3-4ec0-9124-a8ebfb9e46b6")
+	)
+	(fp_rect
+		(start -1.55 0.03)
+		(end -0.35 1.23)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill solid)
+		(layer "F.SilkS")
+		(uuid "afa8f8c6-b5c2-49b5-b926-df1143368fb7")
+	)
+	(fp_rect
+		(start -0.35 0.03)
+		(end 1.55 1.23)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "50afa871-c6f4-43f6-9605-bd0c91c3217f")
+	)
+	(fp_rect
+		(start -4.4 -2.3)
+		(end 4.4 2.3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "b073c735-b70e-43aa-bc2e-3338a44504ea")
+	)
+	(fp_circle
+		(center -4.25 1.8)
+		(end -4.22 1.8)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "c26f9865-1856-4336-9c17-e690f3d846b4")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -1.25 0)
+		(layer "F.Fab")
+		(uuid "e7d8544d-45da-468f-9748-992b0d658d80")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -2.54 1.2)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "9b5f8329-c701-4e8c-9977-d11f0945790a")
+	)
+	(pad "2" smd rect
+		(at 0 -1.2)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "ed544925-2240-4831-b9d1-029bf2f762df")
+	)
+	(pad "3" smd rect
+		(at 2.54 1.2)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "135aacdb-7868-4fff-bfd5-4cd831ce6cf9")
+	)
+	(group ""
+		(uuid "3eaf6737-2124-443b-b494-96a125c75c64")
+		(members "50afa871-c6f4-43f6-9605-bd0c91c3217f" "afa8f8c6-b5c2-49b5-b926-df1143368fb7")
+	)
+	(model "${KIPRJMOD}/../../footprints/footprints.3dshapes/SW-SMD_JS102011JCQN.step"
+		(offset
+			(xyz 0 -1.8 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
