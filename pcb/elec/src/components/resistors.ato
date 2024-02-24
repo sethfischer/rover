@@ -1,0 +1,12 @@
+"""
+Resistors.
+"""
+
+from "generics/resistors.ato" import Resistor
+
+
+component Resistor1608 from Resistor:
+    """
+    Resistor 1608 metric package.
+    """
+    package = "0603"  # equivalent to 1608

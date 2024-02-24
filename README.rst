@@ -2,7 +2,7 @@
 sethfischer/rover
 =================
 
-|build-status| |lint-status| |test-status| |docs-status| |linkcheck-status|
+|build-status| |lint-status| |test-status| |docs-status| |linkcheck-status| |build-pcb-status|
 
 
 Quarter-scale Mars rover based on the NASA Mars 2020 Mission Perseverance Rover.
@@ -47,3 +47,6 @@ License
 .. |linkcheck-status| image:: https://github.com/sethfischer/rover/actions/workflows/linkcheck.yml/badge.svg
     :target: https://github.com/sethfischer/rover/actions/workflows/linkcheck.yml
     :alt: Link Check Status
+.. |build-pcb-status| image:: https://github.com/sethfischer/rover/actions/workflows/build-pcb.yml/badge.svg
+    :target: https://github.com/sethfischer/rover/actions/workflows/build-pcb.yml
+    :alt: PCB build status

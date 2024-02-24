@@ -19,6 +19,10 @@ lint-python lint-shell:
 test:
 	pytest
 
+.PHONY: pcb-mech
+pcb-mech:
+	console pcb-outline --board="rpi_hat" > pcb/mech/rpi_hat.dxf
+
 
 .PHONY: _build/open-graph-card/final-assembly.png
 _build/open-graph-card/final-assembly.png:

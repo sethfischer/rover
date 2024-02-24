@@ -1,0 +1,7 @@
+ato-version: ^0.2.35
+builds:
+  rpi-hat:
+    entry: elec/src/rpi-hat.ato:RpiHat
+dependencies:
+  - generics
+  - rpi-header
