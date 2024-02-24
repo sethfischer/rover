@@ -1,6 +1,8 @@
 """Rover console command."""
 
+import importlib
 import logging
+import tempfile
 from argparse import ArgumentParser, Namespace
 from base64 import b64encode
 from datetime import datetime
@@ -8,6 +10,7 @@ from os import EX_OK, getcwd
 from pathlib import Path
 from sys import stdout
 
+from cadquery import exporters as cq_exporters
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 from osr_mechanical import __version__
@@ -21,6 +24,7 @@ from osr_mechanical.config import (
 from osr_mechanical.console.dxf import dxf_import_export
 from osr_mechanical.console.exporters import ExportPNG
 from osr_mechanical.console.release import ReleaseBuilder
+from osr_mechanical.console.utilities import snake_to_camel_case
 
 logging.basicConfig(encoding="utf-8", level=logging.INFO)
 logger = logging.getLogger("osr_mechanical.console")
@@ -102,6 +106,27 @@ def export_bom(args: Namespace) -> None:
     bom = builder.from_string(args.assembly)
 
     stdout.write(bom.encode(encoder=args.encode) + "\n")
+    exit(EX_OK)
+
+
+def export_pcb_outline(args: Namespace) -> None:
+    """Export PCB outlines as DXF."""
+    module_name = (
+        f"osr_mechanical.pcb.{args.board}.{snake_to_camel_case(args.board)}Board"
+    )
+
+    module_name, class_name = module_name.rsplit(".", 1)
+    module = importlib.import_module(module_name)
+    container = getattr(module, class_name)
+
+    pcb = container().cq_object
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        tmp_file = Path(tmp_dir) / "tmp.dxf"
+        cq_exporters.export(pcb, str(tmp_file), "DXF")
+
+        stdout.write(tmp_file.read_text())
+
     exit(EX_OK)
 
 
@@ -206,6 +231,17 @@ def build_parser() -> ArgumentParser:
         help="assembly for which to generate bill of materials",
     )
     parser_bom.set_defaults(func=export_bom)
+
+    parser_pcb_outline = subparsers.add_parser(
+        "pcb-outline", help="generate printed circuit board outlines"
+    )
+    parser_pcb_outline.add_argument(
+        "--board",
+        required=True,
+        type=str,
+        help="board for which to generate outline",
+    )
+    parser_pcb_outline.set_defaults(func=export_pcb_outline)
 
     return parser
 
