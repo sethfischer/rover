@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-from collections import namedtuple
-
-Point2DBase = namedtuple("Point2DBase", "x y", defaults=[0, 0])
+from typing import NamedTuple
 
 
-class Point2D(Point2DBase):
+class Point2D(NamedTuple):
     """Describes cartesian coordinates for 2D points."""
 
-    __slots__ = ()
+    x: float = 0
+    y: float = 0
 
     def reflect_x(self) -> Point2D:
         """Reflect point in the x-axis."""
