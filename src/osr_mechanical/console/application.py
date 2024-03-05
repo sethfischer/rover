@@ -119,11 +119,11 @@ def export_pcb_outline(args: Namespace) -> None:
     module = importlib.import_module(module_name)
     container = getattr(module, class_name)
 
-    pcb = container().cq_object
+    pcb_face = container().board_face()
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp_file = Path(tmp_dir) / "tmp.dxf"
-        cq_exporters.export(pcb, str(tmp_file), "DXF")
+        cq_exporters.export(pcb_face, str(tmp_file), "DXF")
 
         stdout.write(tmp_file.read_text())
 

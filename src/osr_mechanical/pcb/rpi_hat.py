@@ -41,9 +41,6 @@ class RpiHatBoard(CqWorkplaneContainer):
             .rect(self.width, self.height)
             .vertices()
             .tag("major_outline")
-            .reset()
-            .push([(-(self.width / 2) + 50, -(self.height / 2) + 11.5)])
-            .slot(self.csi_slot_width, self.csi_slot_height, angle=90, mode="s")
             .push([self.dsi_slot_loc])
             .rect(self.dsi_slot_width, self.dsi_slot_height, mode="s")
             .reset()
@@ -66,6 +63,20 @@ class RpiHatBoard(CqWorkplaneContainer):
 
     def _make(self) -> cq.Workplane:
         """Create RPi HAT+ board."""
-        result = cq.Workplane("XY").placeSketch(self.outline()).extrude(self.thickness)
+        result = (
+            cq.Workplane("XY")
+            .placeSketch(self.outline())
+            .extrude(self.thickness)
+            .pushPoints([(-(self.width / 2) + 50, -(self.height / 2) + 11.5)])
+            .slot2D(self.csi_slot_width, self.csi_slot_height, angle=90)
+            .cutThruAll()
+        )
 
         return result
+
+    def board_face(self) -> cq.Workplane:
+        """Face of board.
+
+        For converting to DXF outline.
+        """
+        return self._cq_object.faces("<Z")
