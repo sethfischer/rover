@@ -11,8 +11,10 @@ class RpiHatBoard(CqWorkplaneContainer):
     See https://datasheets.raspberrypi.com/hat/hat-plus-specification.pdf
     """
 
-    def __init__(self) -> None:
+    def __init__(self, mounting_holes: bool = True) -> None:
         """Initialise RPi HAT+ board."""
+        self.mounting_holes = mounting_holes
+
         self.width = 65
         self.height = 56.5
         self.thickness = 1.5
@@ -46,15 +48,15 @@ class RpiHatBoard(CqWorkplaneContainer):
             .reset()
             .vertices("(<X and <<Y[1]) or (<X and >>Y[2]) or (<<X[-2])")
             .tag("dsi_slot_vertices")
-            .reset()
-            .rarray(
+        )
+
+        if self.mounting_holes:
+            sketch.reset().rarray(
                 self.mounting_hole_between_centers_x,
                 self.mounting_hole_between_centers_y,
                 2,
                 2,
-            )
-            .circle(self.mounting_hole_radius, mode="s")
-        )
+            ).circle(self.mounting_hole_radius, mode="s")
 
         sketch.vertices(tag="major_outline").fillet(self.corner_radius)
         sketch.vertices(tag="dsi_slot_vertices").fillet(1)

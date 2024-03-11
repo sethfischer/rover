@@ -119,7 +119,7 @@ def export_pcb_outline(args: Namespace) -> None:
     module = importlib.import_module(module_name)
     container = getattr(module, class_name)
 
-    pcb_face = container().board_face()
+    pcb_face = container(mounting_holes=False).board_face()
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         tmp_file = Path(tmp_dir) / "tmp.dxf"
