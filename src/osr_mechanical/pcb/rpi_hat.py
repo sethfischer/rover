@@ -46,7 +46,7 @@ class RpiHatBoard(CqWorkplaneContainer):
             .push([self.dsi_slot_loc])
             .rect(self.dsi_slot_width, self.dsi_slot_height, mode="s")
             .reset()
-            .vertices("(<X and <<Y[1]) or (<X and >>Y[2]) or (<<X[-2])")
+            .vertices("(<X and <<Y[2]) or (<X and >>Y[2]) or (<<X[-2])")
             .tag("dsi_slot_vertices")
         )
 
