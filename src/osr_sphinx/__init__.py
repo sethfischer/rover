@@ -11,6 +11,7 @@ from sphinx.config import Config
 
 from osr_mechanical import __version__
 from osr_sphinx.domain import OsrDomain
+from osr_sphinx.pinout import set_pinout_image_uri
 
 
 def open_graph_image_url(user: str, repo: str) -> str:
@@ -69,6 +70,7 @@ def setup(app: sphinx.application.Sphinx) -> dict[str, Any]:
     app.add_domain(OsrDomain)
 
     app.connect("config-inited", download_open_graph_image)
+    app.connect("doctree-read", set_pinout_image_uri)
 
     return {
         "version": __version__,
