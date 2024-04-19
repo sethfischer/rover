@@ -109,6 +109,13 @@ Specifications
     bom/parts
 
 .. toctree::
+    :caption: Reference
+    :maxdepth: 1
+    :hidden:
+
+    reference/vmc-header
+
+.. toctree::
     :caption: End matter
     :maxdepth: 1
     :hidden:

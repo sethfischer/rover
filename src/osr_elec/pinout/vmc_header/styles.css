@@ -1,0 +1,110 @@
+/*
+Styles for VMC GPIO header pinout diagram.
+*/
+
+text {
+    font-family: Verdana, Georgia, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.pinlabel__leader {
+    stroke-width: 2;
+    fill: none;
+}
+
+.pinlabel__text {
+    dominant-baseline: central;
+    fill: #fff;
+    font-weight: bold;
+    stroke-width: 0;
+    text-anchor: middle;
+}
+
+.pin .pinlabel__body {
+    fill: rgb(128, 128, 128);
+}
+
+.pin .pinlabel__leader {
+    stroke: rgb(128, 128, 128);
+}
+
+.pin .swatch__body {
+    fill: rgb(128, 128, 128);
+}
+
+.nc .swatch__body {
+    fill: rgb(220, 220, 220);
+}
+
+.nc .pinlabel__body {
+    fill: rgb(220, 220, 220);
+}
+
+.nc .pinlabel__leader {
+    stroke: rgb(220, 220, 220);
+}
+
+.pwr5v .pinlabel__body {
+    fill: rgb(173, 0, 0);
+}
+
+.pwr5v .pinlabel__leader {
+    stroke: rgb(173, 0, 0);
+}
+
+.pwr5v .swatch__body {
+    fill: rgb(173, 0, 0);
+}
+
+.pwr3v3 .pinlabel__body {
+    fill: rgb(181, 137, 0);
+}
+
+.pwr3v3 .pinlabel__leader {
+    stroke: rgb(181, 137, 0);
+}
+
+.pwr3v3 .swatch__body {
+    fill: rgb(181, 137, 0);
+}
+
+.gnd .pinlabel__body {
+    fill: rgb(0, 0, 0);
+}
+
+.gnd .pinlabel__leader {
+    stroke: rgb(0, 0, 0);
+}
+
+.gnd .swatch__body {
+    fill: rgb(0, 0, 0);
+}
+
+.interface .pinlabel__body {
+    fill: rgb(182, 69, 176);
+}
+
+.interface .pinlabel__leader {
+    stroke: rgb(182, 69, 176);
+}
+
+.interface .swatch__body {
+    fill: rgb(182, 69, 176);
+}
+
+.peri .pinlabel__body {
+    fill: rgb(230, 87, 10);
+}
+
+.peri .pinlabel__leader {
+    stroke: rgb(230, 87, 10);
+}
+
+.peri .swatch__body {
+    fill: rgb(230, 87, 10);
+}
+
+.panel__inner {
+    fill: #fff;
+}

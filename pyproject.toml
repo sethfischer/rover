@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Quarter-scale Mars rover based on the NASA Mars 2020 Mission Perseverance Rover"
 packages = [
     {include = "osr_common", from = "src"},
+    {include = "osr_elec", from = "src"},
     {include = "osr_mechanical", from = "src"},
     {include = "osr_sphinx", from = "src"},
     {include = "osr_warehouse", from = "src"},
@@ -108,7 +109,7 @@ ignore_errors = true
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = "pinout.manager"
+module = "pinout.*"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

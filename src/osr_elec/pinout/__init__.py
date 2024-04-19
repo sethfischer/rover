@@ -1,0 +1,1 @@
+"""OSR pinout diagrams."""

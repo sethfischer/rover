@@ -1,0 +1,1 @@
+"""OSR electrical design."""
