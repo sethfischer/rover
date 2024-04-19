@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1 Basic//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd'>
+<svg id="svg" width="60px" height="600px" baseProfile="basic" version="1.1"
+     viewBox="0 0 60 600" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <g id="header_pin">
+      <polygon id="body" points="0,6 6,0 24,0 30,6 30,24 24,30 6,30 0,24" fill="#404040" stroke="none"/>
+      <rect id="pin" x="11" y="11" width="8" height="8" fill="#8c8663" stroke="none"/>
+    </g>
+  </defs>
+  <!-- odd pins -->
+  <use id="pin_1" xlink:href="#header_pin" transform="translate(0,0)"/>
+  <use id="pin_3" xlink:href="#header_pin" transform="translate(0,30)"/>
+  <use id="pin_5" xlink:href="#header_pin" transform="translate(0,60)"/>
+  <use id="pin_7" xlink:href="#header_pin" transform="translate(0,90)"/>
+  <use id="pin_9" xlink:href="#header_pin" transform="translate(0,120)"/>
+  <use id="pin_11" xlink:href="#header_pin" transform="translate(0,150)"/>
+  <use id="pin_13" xlink:href="#header_pin" transform="translate(0,180)"/>
+  <use id="pin_15" xlink:href="#header_pin" transform="translate(0,210)"/>
+  <use id="pin_17" xlink:href="#header_pin" transform="translate(0,240)"/>
+  <use id="pin_19" xlink:href="#header_pin" transform="translate(0,270)"/>
+  <use id="pin_21" xlink:href="#header_pin" transform="translate(0,300)"/>
+  <use id="pin_23" xlink:href="#header_pin" transform="translate(0,330)"/>
+  <use id="pin_25" xlink:href="#header_pin" transform="translate(0,360)"/>
+  <use id="pin_27" xlink:href="#header_pin" transform="translate(0,390)"/>
+  <use id="pin_29" xlink:href="#header_pin" transform="translate(0,420)"/>
+  <use id="pin_31" xlink:href="#header_pin" transform="translate(0,450)"/>
+  <use id="pin_33" xlink:href="#header_pin" transform="translate(0,480)"/>
+  <use id="pin_35" xlink:href="#header_pin" transform="translate(0,510)"/>
+  <use id="pin_37" xlink:href="#header_pin" transform="translate(0,540)"/>
+  <use id="pin_39" xlink:href="#header_pin" transform="translate(0,570)"/>
+  <!-- even pins -->
+  <use id="pin_2" xlink:href="#header_pin" transform="translate(30,0)"/>
+  <use id="pin_4" xlink:href="#header_pin" transform="translate(30,30)"/>
+  <use id="pin_6" xlink:href="#header_pin" transform="translate(30,60)"/>
+  <use id="pin_8" xlink:href="#header_pin" transform="translate(30,90)"/>
+  <use id="pin_10" xlink:href="#header_pin" transform="translate(30,120)"/>
+  <use id="pin_12" xlink:href="#header_pin" transform="translate(30,150)"/>
+  <use id="pin_14" xlink:href="#header_pin" transform="translate(30,180)"/>
+  <use id="pin_16" xlink:href="#header_pin" transform="translate(30,210)"/>
+  <use id="pin_18" xlink:href="#header_pin" transform="translate(30,240)"/>
+  <use id="pin_20" xlink:href="#header_pin" transform="translate(30,270)"/>
+  <use id="pin_22" xlink:href="#header_pin" transform="translate(30,300)"/>
+  <use id="pin_24" xlink:href="#header_pin" transform="translate(30,330)"/>
+  <use id="pin_26" xlink:href="#header_pin" transform="translate(30,360)"/>
+  <use id="pin_28" xlink:href="#header_pin" transform="translate(30,390)"/>
+  <use id="pin_30" xlink:href="#header_pin" transform="translate(30,420)"/>
+  <use id="pin_32" xlink:href="#header_pin" transform="translate(30,450)"/>
+  <use id="pin_34" xlink:href="#header_pin" transform="translate(30,480)"/>
+  <use id="pin_36" xlink:href="#header_pin" transform="translate(30,510)"/>
+  <use id="pin_38" xlink:href="#header_pin" transform="translate(30,540)"/>
+  <use id="pin_40" xlink:href="#header_pin" transform="translate(30,570)"/>
+</svg>
