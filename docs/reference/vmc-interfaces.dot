@@ -1,0 +1,155 @@
+digraph spi_to_uart {
+    rankdir="LR"
+    splines=ortho
+    node [
+        shape=rect
+        style=filled
+        fillcolor="#FFFFFFFF"
+    ]
+
+    // SPI
+    spi0 [
+        label="SPI0"
+        tooltip="Pins 19, 21, 23, 24, and 26."
+        fillcolor="#B645B0FF"
+        width=0.9
+        height=3
+    ]
+    ce0 [
+        label="CE0"
+        tooltip="Pin 24."
+        fillcolor="#B645B0FF"
+        height=1.2
+    ]
+    ce1 [
+        label="CE1"
+        tooltip="Pin 26."
+        fillcolor="#B645B0FF"
+        height=1.2
+    ]
+    spi_to_uart [
+        label="SPI to UART\nconverter"
+        tooltip="SPI to UART converter."
+        fillcolor="#50C878FF"
+        height=0.8
+    ]
+    spi_to_can [
+        label="SPI to CAN\nconverter"
+        tooltip="SPI to CAN converter."
+        fillcolor="#50C878FF"
+        height=0.8
+    ]
+    can [
+        label="CAN"
+        tooltip="Controller Area Network."
+        fillcolor="#E6570AFF"
+        width=0.9
+    ]
+    uart_a [
+        label="UART A"
+        tooltip="UART A."
+        fillcolor="#E6570AFF"
+        width=0.9
+    ]
+    uart_b [
+        label="UART B"
+        tooltip="UART B (RS-485)."
+    ]
+    rs_485 [
+        label="RS-485"
+        tooltip="RS-485."
+        fillcolor="#E6570AFF"
+        width=0.9
+    ]
+    spi0 -> ce0
+    spi0 -> ce1
+    ce0 -> spi_to_uart [ label="SPI0 CE0" ]
+    ce1 -> spi_to_can [ label="SPI0 CE1" ]
+    spi_to_can -> can [ label="CAN TTL" ]
+    spi_to_uart -> uart_a [ label="UART" ]
+    spi_to_uart -> uart_b [ label="UART" ]
+    uart_b -> rs_485
+
+    // robot signal light
+    gpio17 [
+        label="GPIO17"
+        tooltip="Pin 11."
+        fillcolor="#B645B0FF"
+    ]
+    low_side_switch [
+        label="Low-side switch"
+        tooltip="Low-side switch."
+    ]
+    rsl [
+        label="RSL"
+        tooltip="Robot signal light LED and header."
+        fillcolor="#E6570AFF"
+        width=0.9
+    ]
+    gpio17 -> low_side_switch [ label="Digital out" ]
+    low_side_switch -> rsl
+
+    // I2C header
+    i2c_out [
+        label="I2C"
+        tooltip="Five pin header with Pimoroni Breakout Garden pinout."
+        fillcolor="#E6570AFF"
+        width=0.9
+        height=2
+    ]
+    i2c1_in [
+        label="I2C1"
+        tooltip="Pins 3 and 5."
+        fillcolor="#B645B0FF"
+        width=0.9
+        height=1
+    ]
+    gpio4 [
+        label="GPIO4"
+        tooltip="Pin 7."
+        fillcolor="#B645B0FF"
+        width=0.9
+    ]
+    i2c1_in -> i2c_out [ label="SDA" ]
+    i2c1_in -> i2c_out [ label="SCL" ]
+    gpio4 -> i2c_out [ label="Digital out" ]
+
+    // UART header
+    uart_in [
+        label="UART"
+        tooltip="Pins 8 and 10."
+        fillcolor="#B645B0FF"
+        width=0.9
+        height=1
+    ]
+    uart_out [
+        label="UART"
+        tooltip="UART header."
+        fillcolor="#E6570AFF"
+        width=0.9
+        height=1
+    ]
+    uart_in -> uart_out [ label="TXD" ]
+    uart_in -> uart_out [ label="RXD" ]
+
+    // ID EEPROM
+    i2c_id [
+        label="I2C ID"
+        tooltip="I2C ID."
+        fillcolor="#B645B0FF"
+        width=0.9
+    ]
+    id_eeprom [
+        label="ID EEPROM"
+        tooltip="Pins 27 and 28."
+        width=0.9
+    ]
+    i2c_id -> id_eeprom [ label="SDA" ]
+    i2c_id -> id_eeprom [ label="SCL" ]
+
+
+    {rank = same; spi0 gpio17 i2c1_in gpio4 uart_in}
+    {rank = same; ce0 ce1}
+    {rank = same; spi_to_uart spi_to_can}
+    {rank = same; uart_a rs_485 can rsl i2c_out uart_out}
+}

@@ -105,6 +105,18 @@ text {
     fill: rgb(230, 87, 10);
 }
 
+.proconv .pinlabel__body {
+    fill: rgb(80, 200, 120);
+}
+
+.proconv .pinlabel__leader {
+    stroke: rgb(80, 200, 120);
+}
+
+.proconv .swatch__body {
+    fill: rgb(80, 200, 120);
+}
+
 .panel__inner {
     fill: #fff;
 }

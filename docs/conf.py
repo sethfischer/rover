@@ -23,6 +23,7 @@ project_copyright = f"{date.today().year}, {author}"
 exclude_patterns = ["_build"]
 extensions = [
     "osr_sphinx",
+    "sphinx.ext.graphviz",
     "sphinx_argparse_cli",
     "sphinx_design",
     "sphinx_rtd_theme",
@@ -66,6 +67,9 @@ linkcheck_ignore = [
 
 
 cadquery_include_source = False
+
+
+graphviz_output_format = "svg"
 
 
 ogp_image = "_static/og-image-main.png"

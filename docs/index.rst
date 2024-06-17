@@ -113,7 +113,7 @@ Specifications
     :maxdepth: 1
     :hidden:
 
-    reference/vmc-header
+    reference/vmc-interfaces
 
 .. toctree::
     :caption: End matter
