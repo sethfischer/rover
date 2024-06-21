@@ -2,25 +2,7 @@
 
 from "generics/interfaces.ato" import GPIO, I2C, Power, UART
 
-from "headers/pin-header-2.54mm.ato" import PinHeader1x03P2mm54Vertical
-
-
-component _PinHeader:
-    """Pin header base."""
-    designator_prefix = "J"
-
-
-component PinHeader1x5DipStraightTHT from _PinHeader:
-    """Pin header 1x5 2.5mm pitch vertical."""
-    footprint = "PinHeader_1x05_P2.54mm_Vertical"
-    lcsc_id = "C3328227"
-    mpn = "C3328227"  # M20-9990546
-
-    signal p1 ~ pin 1
-    signal p2 ~ pin 2
-    signal p3 ~ pin 3
-    signal p4 ~ pin 4
-    signal p5 ~ pin 5
+from "headers/pin-header-2.54mm.ato" import PinHeader1x03P2mm54Vertical, PinHeader1x05P2mm54Vertical
 
 
 component PinHeaderUartTHT from PinHeader1x03P2mm54Vertical:
@@ -32,7 +14,7 @@ component PinHeaderUartTHT from PinHeader1x03P2mm54Vertical:
     uart.rx ~ pin 3
 
 
-component PinHeaderI2cTHT from PinHeader1x5DipStraightTHT:
+component PinHeaderI2cTHT from PinHeader1x05P2mm54Vertical:
     """I2C pin header.
 
     Follows Pimoroni Breakout Garden specification.
