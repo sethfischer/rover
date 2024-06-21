@@ -3,8 +3,9 @@
 from "generics/interfaces.ato" import I2C, Power
 from "generics/resistors.ato" import I2CPullup
 
+from "headers/pin-header-2.54mm.ato" import PinHeader1x02P2mm54Vertical
+
 from "lib/capacitors.ato" import PowerDecouplingCap100nf
-from "lib/headers.ato" import PinHeader1x2PinDipStraightTHT
 from "lib/onsemi/eeproms.ato" import CAT24C32WI_GT3
 from "lib/resistors.ato" import Resistor1608
 
@@ -30,7 +31,7 @@ module RpiHatIdEeprom:
     wp_pullup.value = 1kohm +/- 5%
 
     # write enable header (fit jumper to enable write)
-    we_header = new PinHeader1x2PinDipStraightTHT
+    we_header = new PinHeader1x02P2mm54Vertical
     we_header.p1 ~ gnd
     we_header.p2 ~ wp_pullup.p1
 

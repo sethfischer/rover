@@ -19,3 +19,7 @@ dependencies:
     version_spec: '@29f49d7b6b6db24be0282f6c3524f49b71e71b48'
     link_broken: false
     path: .ato/modules/ams1117-33
+  - name: https://github.com/sethfischer/headers
+    version_spec:
+    link_broken: false
+    path: .ato/modules/headers

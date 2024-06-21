@@ -8,16 +8,6 @@ component _PinHeader:
     designator_prefix = "J"
 
 
-component PinHeader1x2PinDipStraightTHT from _PinHeader:
-    """Pin header 1x2 2.5mm pitch vertical."""
-    footprint = "PinHeader_1x02_P2.54mm_Vertical"
-    lcsc_id = "C5360898"
-    mpn = "C5360898"  # PZ2.54-1*2
-
-    signal p1 ~ pin 1
-    signal p2 ~ pin 2
-
-
 component PinHeader1x3DipStraightTHT from _PinHeader:
     """Pin header 1x3 2.5mm pitch vertical."""
     footprint = "PinHeader_1x03_P2.54mm_Vertical"
