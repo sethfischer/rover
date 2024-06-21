@@ -18,6 +18,7 @@ from "lib/serial-transceivers.ato" import Rs485Transceiver
 from "lib/spi-uart-converter.ato" import SpiToUart
 from "lib/test-points.ato" import RcwcteTestPoint
 
+
 module RpiHat:
     """
     Raspberry Pi HAT
