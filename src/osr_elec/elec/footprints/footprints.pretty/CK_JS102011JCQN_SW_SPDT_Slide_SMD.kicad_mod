@@ -223,7 +223,7 @@
 		(uuid "3eaf6737-2124-443b-b494-96a125c75c64")
 		(members "50afa871-c6f4-43f6-9605-bd0c91c3217f" "afa8f8c6-b5c2-49b5-b926-df1143368fb7")
 	)
-	(model "${KIPRJMOD}/../../footprints/footprints.3dshapes/SW-SMD_JS102011JCQN.step"
+	(model "${KIPRJMOD}/../../footprints/footprints.3dshapes/CK_JS102011JCQN_SW_SPDT_Slide_SMD.step"
 		(offset
 			(xyz 0 -1.8 -0)
 		)
