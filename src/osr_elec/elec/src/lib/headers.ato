@@ -2,21 +2,12 @@
 
 from "generics/interfaces.ato" import GPIO, I2C, Power, UART
 
+from "headers/pin-header-2.54mm.ato" import PinHeader1x03P2mm54Vertical
+
 
 component _PinHeader:
     """Pin header base."""
     designator_prefix = "J"
-
-
-component PinHeader1x3DipStraightTHT from _PinHeader:
-    """Pin header 1x3 2.5mm pitch vertical."""
-    footprint = "PinHeader_1x03_P2.54mm_Vertical"
-    lcsc_id = "C2894926"
-    mpn = "C2894926"  # PZ254-1-03-Z-8.5
-
-    signal p1 ~ pin 1
-    signal p2 ~ pin 2
-    signal p3 ~ pin 3
 
 
 component PinHeader1x5DipStraightTHT from _PinHeader:
@@ -32,7 +23,7 @@ component PinHeader1x5DipStraightTHT from _PinHeader:
     signal p5 ~ pin 5
 
 
-component PinHeaderUartTHT from PinHeader1x3DipStraightTHT:
+component PinHeaderUartTHT from PinHeader1x03P2mm54Vertical:
     """UART pin header."""
     uart = new UART
 
