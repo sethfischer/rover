@@ -2,10 +2,11 @@
 
 from "generics/interfaces.ato" import Power, SPI
 
+from "ck-js-series/smd.ato" import CkJs102011jcqn
+
 from "lib/capacitors.ato" import PowerDecouplingCap100nf
 from "lib/connectors.ato" import JstGhHorizontalCan
 from "lib/leds.ato" import  LedIndicatorsCanTtl, LEDIndicatorUser
-from "lib/mechanical-switches.ato" import CkJs102011jcqn
 from "lib/microchip/MCP2517FDT.ato" import MCP2517FDT
 from "lib/microchip/MCP2562FD.ato" import MCP2562FD
 from "lib/oscillators.ato" import ABM8_20MHzOscillator

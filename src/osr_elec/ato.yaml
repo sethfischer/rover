@@ -23,3 +23,7 @@ dependencies:
     version_spec:
     link_broken: false
     path: .ato/modules/headers
+  - name: https://github.com/sethfischer/ck-js-series
+    version_spec:
+    link_broken: false
+    path: .ato/modules/ck-js-series
