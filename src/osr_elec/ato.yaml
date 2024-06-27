@@ -27,3 +27,7 @@ dependencies:
     version_spec:
     link_broken: false
     path: .ato/modules/ck-js-series
+  - name: https://github.com/sethfischer/phoenix-pt-series
+    version_spec:
+    link_broken: false
+    path: .ato/modules/phoenix-pt-series

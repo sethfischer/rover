@@ -2,6 +2,8 @@
 
 from "generics/interfaces.ato" import CAN, Power
 
+from "phoenix-pt-series/pt-3.5mm.ato" import PhoenixPt1x3P3mm5Horizontal
+
 from "lib/interfaces.ato" import RS485
 
 
@@ -51,12 +53,8 @@ component JstGhHorizontalCan from Connector:
     power.gnd ~ pin 4
 
 
-component Rs485Connector from Connector:
+component Rs485Connector from PhoenixPt1x3P3mm5Horizontal:
     """RS-485 connector."""
-    footprint = "TerminalBlock_Phoenix_MKDS-1,5-3_1x03_P5.00mm_Horizontal"
-    lcsc_id = ""
-    mpn = ""  # 1715035
-
     signal gnd ~ pin 3
 
     rs485 = new RS485
