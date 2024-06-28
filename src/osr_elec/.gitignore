@@ -33,7 +33,3 @@ fp-info-cache
 .ato/
 build/
 elec/footprints/footprints.kicad_sym
-
-# Mechanical files built from source
-mech/**
-!mech/README.rst

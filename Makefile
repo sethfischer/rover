@@ -19,11 +19,6 @@ lint-python lint-shell:
 test:
 	pytest
 
-.PHONY: pcb-mech
-pcb-mech:
-	console pcb-outline --board="rpi_hat" > src/osr_elec/mech/rpi_hat.dxf
-
-
 .PHONY: _build/open-graph-card/final-assembly.png
 _build/open-graph-card/final-assembly.png:
 	@mkdir -p $(@D)
