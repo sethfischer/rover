@@ -28,9 +28,6 @@ jobs:
       - name: Install dependencies
         run: poetry install --no-interaction
 
-      - name: Create mechanical files
-        run: poetry run make pcb-mech
-
       - name: Build PCBs
         uses: sethfischer/atopile-action@main
         with:
