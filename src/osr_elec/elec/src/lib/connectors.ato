@@ -2,8 +2,6 @@
 
 from "generics/interfaces.ato" import CAN, Power
 
-from "phoenix-pt-series/pt-3.5mm.ato" import PhoenixPt1x3P3mm5Horizontal
-
 from "lib/interfaces.ato" import RS485
 
 
@@ -30,6 +28,21 @@ component JstB2bPhKS from Connector:
     signal p2 ~ pin 2
 
 
+component PhoenixPt1x3P3mm5Horizontal from Connector:
+    """Phoenix Contact terminal block 3-way side entry 3.5mm PCB
+
+    Phoenix Contact PT 1,5 Series 3.5mm 3-way terminal block.
+    """
+    footprint = "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-3-3.5-H_1x03_P3.50mm_Horizontal"
+    lcsc_id = ""
+    mpn = ""  # 1984620
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+
+
 component JstGhHorizontalCan from Connector:
     """
     UAVCAN/CAN Micro connector.
@@ -54,7 +67,7 @@ component JstGhHorizontalCan from Connector:
 
 
 component Rs485Connector from PhoenixPt1x3P3mm5Horizontal:
-    """RS-485 connector."""
+    """RS-485 board to wire connector."""
     signal gnd ~ pin 3
 
     rs485 = new RS485
