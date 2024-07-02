@@ -1,0 +1,29 @@
+ato-version: ^0.2.53
+builds:
+  rpi-hat:
+    entry: elec/src/rpi-hat.ato:RpiHat
+dependencies:
+  - name: generics
+    version_spec: '@4e056dec822566592798abb059fd7aad1f970885'
+    link_broken: false
+    path: .ato/modules/generics
+  - name: rpi-header
+    version_spec: '@d41fc0044336bcf77a9387521e90547570c0bd52'
+    link_broken: false
+    path: .ato/modules/rpi-header
+  - name: xt-connectors
+    version_spec: '@3719ec970da96df05b6763671993ca2276df968b'
+    link_broken: false
+    path: .ato/modules/xt-connectors
+  - name: ams1117-33
+    version_spec: '@29f49d7b6b6db24be0282f6c3524f49b71e71b48'
+    link_broken: false
+    path: .ato/modules/ams1117-33
+  - name: https://github.com/sethfischer/headers
+    version_spec:
+    link_broken: false
+    path: .ato/modules/headers
+  - name: https://github.com/sethfischer/ck-js-series
+    version_spec:
+    link_broken: false
+    path: .ato/modules/ck-js-series

@@ -1,0 +1,125 @@
+"""NXP SPI to UART protocol converters."""
+
+from "generics/interfaces.ato" import GPIO, I2C, Power, SPI, UART
+
+
+component SC16IS752:
+    """
+    SC16IS752 Dual UART.
+
+    Dual UART with I2C-bus/SPI interface, 64 bytes of transmit and receive
+    FIFOs, IrDA SIR built-in support.
+
+    # Reference
+
+    * [SC16IS752/SC16IS762 Product Information](https://www.nxp.com/products/analog-and-mixed-signal/bridges/dual-uart-with-ic-bus-spi-interface-64-bs-of-transmit-and-receive-fifos-irda-sir-built-in-support:SC16IS752_SC16IS762)
+    * [NXP low-power bridges brochure](https://www.nxp.com/docs/en/brochure/75015676.pdf)
+    * [SC16IS752/SC16IS762 Datasheet](https://www.nxp.com/docs/en/data-sheet/SC16IS752_SC16IS762.pdf)
+    """
+    footprint = "HVQFN-32-1EP_5x5mm_P0.5mm_EP3.1x3.1mm_ThermalVias"
+    lcsc_id = "C2678025"
+    mpn = "C2678025"  # SC16IS752
+
+    # power
+    power = new Power
+    signal gnd ~ power.gnd
+
+    gnd ~ pin 12  # VSS
+    gnd ~ pin 21  # VSS
+    gnd ~ pin 29  # VSS
+
+    power.vcc ~ pin 5 # VDD
+    power.vcc ~ pin 13 # VDD
+    power.vcc ~ pin 28 # VDD
+    signal center_pad ~ pin 33
+    center_pad ~ gnd
+
+    # SPI
+    spi = new SPI
+    spi.mosi ~ pin 8  # SI/A1; SPI data input pin
+    spi.miso ~ pin 9  # SO; SPI data output pin
+    spi.sck ~ pin 10  # SCL/SCLK; SPI input clock.
+    spi.cs ~ pin 7  # CS/A0; SPI chip select
+    spi.gnd ~ gnd
+
+    # I2C
+    i2c = new I2C
+    signal sda ~ pin 11
+    signal scl ~ pin 10
+    signal gnd ~ gnd
+    signal a0 ~ pin 7  # A0; I2C-bus device address select
+    signal a1 ~ pin 8  # A1; I2C-bus device address select
+
+    # UART A
+    uart_a = new UART
+    uart_a.tx ~ pin 32
+    uart_a.rx ~ pin 1
+    uart_a.gnd ~ gnd
+    signal cts_a ~ pin 31  # CTS (active LOW); UART clear to send
+
+    # UART B
+    uart_b = new UART
+    uart_b.tx ~ pin 22
+    uart_b.rx ~ pin 23
+    uart_b.gnd ~ gnd
+    signal cts_b ~ pin 15  # CTS (active LOW); UART clear to send
+
+    # modem A
+    signal dsr_a ~ pin 24
+    signal dtr_a ~ pin 25
+    signal cd_a ~ pin 26
+    signal ri_a ~ pin 27
+    signal rts_a ~ pin 30  # RTS (active LOW); UART request to send
+
+    # modem B
+    signal dsr_b ~ pin 17
+    signal dtr_b ~ pin 18
+    signal cd_b ~ pin 19
+    signal ri_b ~ pin 20
+    signal rts_b ~ pin 16  # RTS (active LOW); UART request to send
+
+    signal reset ~ pin 2  # RESET (active LOW); device hardware reset
+    signal xin ~ pin 3  # XTAL1; crystal input
+    signal xout ~ pin 4  # XTAL2; crystal output
+    signal interface_select ~ pin 6  # I2C/SPI (SPI LOW); I2C-bus or SPI interface select
+    signal irq ~ pin 14
+
+    # GPIO0
+    gpio0 = new GPIO
+    gpio0.io ~ pin 17
+    gpio0.gnd ~ gnd
+
+    # GPIO1
+    gpio1 = new GPIO
+    gpio1.io ~ pin 18
+    gpio1.gnd ~ gnd
+
+    # GPIO2
+    gpio2 = new GPIO
+    gpio2.io ~ pin 19
+    gpio2.gnd ~ gnd
+
+    # GPIO3
+    gpio3 = new GPIO
+    gpio3.io ~ pin 20
+    gpio3.gnd ~ gnd
+
+    # GPIO4
+    gpio4 = new GPIO
+    gpio4.io ~ pin 24
+    gpio4.gnd ~ gnd
+
+    # GPIO5
+    gpio5 = new GPIO
+    gpio5.io ~ pin 25
+    gpio5.gnd ~ gnd
+
+    # GPIO6
+    gpio6 = new GPIO
+    gpio6.io ~ pin 26
+    gpio6.gnd ~ gnd
+
+    # GPIO7
+    gpio7 = new GPIO
+    gpio7.io ~ pin 27
+    gpio7.gnd ~ gnd

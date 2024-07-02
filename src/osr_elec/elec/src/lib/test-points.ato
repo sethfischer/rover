@@ -1,0 +1,21 @@
+"""Test points."""
+
+
+component TestPoint:
+    """Generic test point."""
+    designator_prefix = "TP"
+
+    signal input ~ pin 1
+
+
+component RcwcteTestPoint from TestPoint:
+    """
+    Koa RCWCTE test point.
+
+    Surface-mountable chip type test terminal.
+
+    * [Koa Speer RC test point chip datasheet](https://www.koaspeer.com/pdfs/RC.pdf)
+    """
+    footprint = "Koa_Speer_RCWCTE_test_point"
+    lcsc_id = "C159868"
+    mpn = "C159868"  # RCWCTE

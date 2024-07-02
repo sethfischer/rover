@@ -1,0 +1,41 @@
+name: build-pcb
+
+on: [pull_request, push]
+
+jobs:
+  build-pcb:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Checkout LFS objects
+        run: git lfs checkout
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          poetry --version
+
+      - name: Install dependencies
+        run: poetry install --no-interaction
+
+      - name: Build PCBs
+        uses: sethfischer/atopile-action@main
+        with:
+          path: src/osr_elec/
+
+      - name: Upload PCB artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pcb-build
+          path: src/osr_elec/build/
+          if-no-files-found: error
