@@ -165,7 +165,12 @@ class ExportPNG:
         )
         result.check_returncode()
 
-    def label_image(self, image: Image, text: str, font_size: int = 20) -> Image:
+    def label_image(
+        self,
+        image: Image,  # type: ignore[valid-type]
+        text: str,
+        font_size: int = 20,
+    ) -> Image:  # type: ignore[valid-type]
         """Label image."""
         font = ImageFont.truetype(str(self.font_path), font_size)
 
@@ -178,7 +183,11 @@ class ExportPNG:
         text_height = bottom - top
         label_height = ceil(text_height * 1.2)
 
-        label = Image.new(image.mode, (image.width, label_height), label_bg_color)
+        label = Image.new(
+            image.mode,  # type: ignore[attr-defined]
+            (image.width, label_height),  # type: ignore[attr-defined]
+            label_bg_color,
+        )
         label_draw = ImageDraw.Draw(label)
         label_draw.text(
             (label.width / 2, label.height / 2),
@@ -188,9 +197,15 @@ class ExportPNG:
             anchor="mm",
         )
 
-        result = Image.new(image.mode, (image.width, image.height + label.height))
+        result = Image.new(
+            image.mode,  # type: ignore[attr-defined]
+            (
+                image.width,  # type: ignore[attr-defined]
+                image.height + label.height,  # type: ignore[attr-defined]
+            ),
+        )
         result.paste(image, (0, 0))
-        result.paste(label, (0, image.height))
+        result.paste(label, (0, image.height))  # type: ignore[attr-defined]
 
         return result
 
@@ -198,7 +213,7 @@ class ExportPNG:
         """Create EXIF tags."""
         # build reverse dict
         _TAGS_r = dict(((v, k) for k, v in TAGS.items()))
-        tags = Exif()
+        tags = Exif()  # type: ignore[no-untyped-call]
 
         tags[_TAGS_r["Artist"]] = COPYRIGHT_OWNER
         tags[_TAGS_r["Copyright"]] = COPYRIGHT_NOTICE
