@@ -63,7 +63,7 @@ wurlitzer = "^3.0.2"
 CairoSVG = "^2.7.0"
 OCP-stubs = {git = "https://github.com/CadQuery/OCP-stubs.git", rev = "7.6.3"}
 Pillow = "^10.1.0"
-black = "^24.2.0"
+black = "^24.4.2"
 cffconvert = "^2.0.0"
 commitizen = "^3.12.0"
 doc8 = "^0.11.2"
