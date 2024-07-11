@@ -1,6 +1,6 @@
-======================================
-Vehicle management computer interfaces
-======================================
+=========================================
+Vehicle management computer HAT datasheet
+=========================================
 
 GPIO configuration
 ------------------
@@ -14,4 +14,4 @@ Interfaces and peripherals
 --------------------------
 
 .. graphviz:: vmc-interfaces.dot
-    :caption: Raspberry Pi HAT interfaces and peripherals
+    :caption: Vehicle management computer HAT interfaces and peripherals.
