@@ -11,6 +11,6 @@ Inspiration
 ===========
 
 This project was inspired by the :ref:`NASA-JPL Open Source Rover`
-and the `NASA Mars 2020 Mission Perseverance Rover <https://mars.nasa.gov/mars2020/>`__.
+and the `NASA Mars 2020 Perseverance Rover <https://science.nasa.gov/mission/mars-2020-perseverance/>`__.
 
 Further inspiration was provided by :doc:`many projects similar to sethfischer-rover <related-projects>`.

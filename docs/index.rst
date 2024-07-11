@@ -20,7 +20,7 @@ sethfischer-rover
         :columns: auto
 
         Quarter-scale Mars rover based on the
-        `NASA Mars 2020 Mission Perseverance Rover <https://mars.nasa.gov/mars2020/>`__.
+        `NASA Mars 2020 Perseverance Rover <https://science.nasa.gov/mission/mars-2020-perseverance/>`__.
 
     .. grid-item::
         :columns: auto
