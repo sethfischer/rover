@@ -17,14 +17,14 @@ class DimensionRole(SphinxRole):
         _valid_labels = {"height", "width", "length"}
 
         if self.text not in _valid_labels:
-            msg = self.inliner.reporter.error(  # type: ignore[attr-defined]
+            msg = self.inliner.reporter.error(
                 (
                     f"Invalid dimension label: {self.text}. "
                     f"Expected one of {', '.join(str(s) for s in _valid_labels)}."
                 ),
                 line=self.lineno,
             )
-            prb = self.inliner.problematic(  # type: ignore[attr-defined]
+            prb = self.inliner.problematic(
                 self.rawtext,
                 self.rawtext,
                 msg,
