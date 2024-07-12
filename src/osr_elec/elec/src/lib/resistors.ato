@@ -1,0 +1,26 @@
+"""Resistors."""
+
+from "generics/resistors.ato" import Resistor
+
+from "lib/interfaces.ato" import RS485
+
+
+component Resistor1608 from Resistor:
+    """Resistor 1608 metric package."""
+    package = "0603"  # equivalent to 1608
+
+
+module Rs485SeriesResistors:
+    """RS-485 series resistors."""
+    rs415_in = new RS485
+    rs415_out = new RS485
+
+    r_a = new Resistor1608
+    r_a.value = 10ohm +/- 5%
+    rs415_in.a ~ r_a.p1
+    rs415_out.a ~ r_a.p2
+
+    r_b = new Resistor1608
+    r_b.value = 10ohm +/- 5%
+    rs415_in.b ~ r_b.p1
+    rs415_out.b ~ r_b.p2

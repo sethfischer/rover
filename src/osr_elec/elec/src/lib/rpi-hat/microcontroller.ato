@@ -1,0 +1,79 @@
+"""RPi HAT microcontroller."""
+
+from "generics/capacitors.ato" import Capacitor
+from "generics/interfaces.ato" import JTAG, SWD, Power, I2C
+
+from "programming-headers/elec/src/programming-headers.ato" import JTAG_10PIN
+
+from "lib/headers.ato" import PinHeader1x05P2mm54Vertical
+from "lib/stm/STM32F042x.ato" import Stm32f042xLqfp32
+
+
+module Microcontroller:
+    """RPi HAT microcontroller."""
+    power = new Power
+    jtag_header = new JTAG_10PIN
+    mcu = new Stm32f042xLqfp32
+
+    signal gnd ~ power.gnd
+
+    # power
+    power.vcc ~ mcu.vdd
+    power.vcc ~ mcu.vdda
+    power.vcc ~ mcu.vddio2
+    power.gnd ~ mcu.vss
+
+    # boot
+    mcu.pb8__boot0 ~ power.gnd
+
+    # I2C
+    i2c = new I2C
+    i2c.sda ~ mcu.pb7  # AF1; I2C1_SDA
+    i2c.scl ~ mcu.pb6  # AF1; I2C1_SCL
+    i2c.gnd ~ gnd
+
+    # GPIO
+    gpio_header = new PinHeader1x05P2mm54Vertical
+    gpio_header.p1 ~ mcu.pa8
+    gpio_header.p2 ~ mcu.pa9
+    gpio_header.p3 ~ mcu.pa10
+    gpio_header.p4 ~ mcu.pa11
+    gpio_header.p5 ~ mcu.pa12
+
+    # NRST pin protection
+    nrst_cap = new Capacitor
+    nrst_cap.value = 100nF +/- 20%
+    nrst_cap.package = "0603"  # equivalent to 1608
+    mcu.nrst ~ nrst_cap.p1
+    nrst_cap.p2 ~ gnd
+
+    # JTAG interface
+    jtag_header.swd.gnd ~ gnd
+    jtag_header.connector.1 ~ power.vcc
+    jtag_header.connector.10 ~ mcu.nrst
+    jtag_header.swd.swdio ~ mcu.pa13
+    jtag_header.swd.swclk ~ mcu.pa14
+
+    # vdd pin 1 capacitors
+    cap_pin_1_hf_filter = new Capacitor
+    cap_pin_1_hf_filter.value = 100nF +/- 20%
+    cap_pin_1_hf_filter.power ~ power
+    cap_pin_1_power = new Capacitor
+    cap_pin_1_power.value = 4.7uF +/- 20%
+    cap_pin_1_power.power ~ power
+
+    # vdd pin 17 capacitors
+    cap_pin_17_hf_filter = new Capacitor
+    cap_pin_17_hf_filter.value = 100nF +/- 20%
+    cap_pin_17_hf_filter.power ~ power
+    cap_pin_17_power = new Capacitor
+    cap_pin_17_power.value = 4.7uF +/- 20%
+    cap_pin_17_power.power ~ power
+
+    # vdda pin 5 capacitors
+    cap_pin_5_hf_filter = new Capacitor
+    cap_pin_5_hf_filter.value = 0.01uF +/- 20%
+    cap_pin_5_hf_filter.power ~ power
+    cap_pin_5_power = new Capacitor
+    cap_pin_5_power.value = 1uF +/- 20%
+    cap_pin_5_power.power ~ power

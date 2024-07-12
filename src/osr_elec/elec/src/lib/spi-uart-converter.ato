@@ -1,0 +1,44 @@
+"""NXP SPI to UART protocol converters."""
+
+
+from "generics/interfaces.ato" import Power, SPI, UART
+
+from "lib/capacitors.ato" import PowerDecouplingCap100nf
+from "lib/leds.ato" import LEDIndicatorUser
+from "lib/nxp/SC16IS752.ato" import SC16IS752
+from "lib/oscillators.ato" import ABM8_14MHz7456Oscillator
+
+
+module SpiToUart:
+    """SPI to UART converter."""
+    power = new Power
+    spi = new SPI
+    uart_a = new UART
+    uart_b = new UART
+
+    converter = new SC16IS752
+    converter.spi ~ spi
+    converter.power ~ power
+    converter.interface_select ~ power.gnd
+
+    # power decoupling capacitor
+    power_cap = new PowerDecouplingCap100nf
+    power_cap.power ~ power
+
+    # configure interface as SPI
+    converter.interface_select ~ power.gnd
+
+    # oscillator
+    converter_osc = new ABM8_14MHz7456Oscillator
+    converter.xin ~ converter_osc.xin.io
+    converter.xout ~ converter_osc.xout.io
+
+    # UARTs
+    uart_a ~ converter.uart_a
+    uart_b ~ converter.uart_b
+
+    # user LED indicator
+    user_led_indicator = new LEDIndicatorUser
+    user_led_indicator.v_in = power.voltage
+    user_led_indicator.input ~ converter.gpio0.io
+    user_led_indicator.gnd ~ power.gnd
