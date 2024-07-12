@@ -1,0 +1,18 @@
+"""Bourns TVS diodes."""
+
+
+component Cdsot23Sm712:
+    """
+    CDSOT23-SM712 - Surface Mount TVS Diode.
+
+    # Reference
+
+    * [CDSOT23-SM712 Surface Mount TVS Diode](https://www.bourns.com/pdfs/CDSOT23-SM712.pdf)
+    """
+    footprint = "Package_TO_SOT_SMD:SOT-23-3"
+    lcsc_id = "C404012"
+    mpn = "C404012"  # CDSOT23-SM712
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal common ~ pin 3

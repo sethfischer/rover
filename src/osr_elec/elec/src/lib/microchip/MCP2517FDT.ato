@@ -1,0 +1,61 @@
+"""MCP2517FD CAN Controller."""
+
+from "generics/interfaces.ato" import CAN_TTL, GPIO, Power, SPI
+
+
+component MCP2517FDT:
+    """
+    MCP2517FD CAN Controller.
+
+    External CAN FD Controller with SPI Interface.
+
+    # Reference
+
+    * [MCP2517FD](https://www.microchip.com/en-us/product/mcp2517fd)
+    * [MCP2517FD External CAN FD Controller with SPI Interface](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/MCP2517FD-External-CAN-FD-Controller-with-SPI-Interface-20005688B.pdf)
+    """
+    footprint = "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
+    lcsc_id = "C512185"
+    mpn = "C512185"  # MCP2517FD
+
+    # power
+    power = new Power
+    signal gnd ~ power.gnd
+    gnd ~ pin 7  # VSS
+    power.vcc ~ pin 14 # VDD
+
+    # CAN TTL
+    can_ttl = new CAN_TTL
+    can_ttl.tx ~ pin 1
+    can_ttl.rx ~ pin 2
+
+    # SPI
+    spi = new SPI
+    spi.mosi ~ pin 11  # SDI
+    spi.miso ~ pin 12  # SDO
+    spi.sck ~ pin 10  # SCK
+    spi.cs ~ pin 13  # nCS
+    spi.gnd ~ gnd
+
+    # interrupt
+    int = new GPIO
+    int.io ~ pin 4
+    int.gnd ~ gnd
+
+    # GPIO0
+    gpio0 = new GPIO
+    gpio0.io ~ pin 9
+    gpio0.gnd ~ gnd
+
+    # GPIO1
+    gpio1 = new GPIO
+    gpio1.io ~ pin 8
+    gpio1.gnd ~ gnd
+
+    signal clk0 ~ pin 3
+    signal sof ~ pin 3
+    signal xout ~ pin 5  # osc2; external oscillator output
+    signal xin ~ pin 6  # osc1; external oscillator input
+    signal int1 ~ pin 8
+    signal int0 ~ pin 9
+    signal xstby ~ pin 9
