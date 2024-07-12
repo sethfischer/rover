@@ -1,0 +1,85 @@
+"""Ideal diode."""
+
+from "generics/interfaces.ato" import Power
+from "generics/mosfets.ato" import PFET
+
+from "lib/resistors.ato" import Resistor1608
+
+
+component Dmmt5401PnpMatchedPair:
+    """
+    DMMT5401 PNP Matched Pair.
+
+    # Reference
+
+    * [Diodes Incorporated DMMT5401](https://www.diodes.com/assets/Datasheets/DMMT5401.pdf)
+    """
+    designator_prefix = "U"
+    footprint = "Package_TO_SOT_SMD:SOT-23-6"
+    lcsc_id = "C154733"
+    mpn = "C154733"  # DMMT5401
+
+    signal q1_base ~ pin 2
+    signal q1_collector ~ pin 1
+    signal q1_emitter ~ pin 6
+    signal q2_base ~ pin 3
+    signal q2_collector ~ pin 4
+    signal q2_emitter ~ pin 5
+
+
+component Dmg2305uxPfet from PFET:
+    """
+    DMG2305UX P-channel Enhancement Mode MOSFET.
+
+    # Reference
+
+    * [Diodes Incorporated DMG2305UX](https://www.diodes.com/assets/Datasheets/DMG2305UX.pdf)
+    """
+    footprint = "Package_TO_SOT_SMD:SOT-23-3"
+    lcsc_id = "C150470"
+    mpn = "C150470"  # DMG2305UX
+
+    signal gate ~ pin 1
+    signal drain ~ pin 3
+    signal source ~ pin 2
+
+
+module IdealDiode:
+    """
+    Ideal Diode.
+
+    Ideal (or zero voltage) diode.
+
+    # Reference
+
+    * [ZVD circuit - raspberrypi/hats](https://github.com/raspberrypi/hats/blob/348dbf88d870bf50d6b4f23dbe2b64d60363f23c/zvd-circuit.png)
+    """
+    input = new Power
+    load = new Power
+
+    signal gnd ~ input.gnd
+    gnd ~ load.gnd
+
+    pnp_pair = new Dmmt5401PnpMatchedPair
+    fet = new Dmg2305uxPfet
+
+    r_input = new Resistor1608
+    r_input.value = 10kohm +/- 5%
+    r_input.p2 ~ gnd
+
+    r_load = new Resistor1608
+    r_load.value = 47kohm +/- 5%
+    r_load.p2 ~ gnd
+
+    input.vcc ~ fet.drain
+    input.vcc ~ pnp_pair.q1_emitter
+
+    load.vcc ~ fet.source
+    load.vcc ~ pnp_pair.q2_emitter
+
+    fet.gate ~ pnp_pair.q2_collector
+    fet.gate ~ r_load.p1
+
+    pnp_pair.q1_collector ~ pnp_pair.q1_base
+    pnp_pair.q1_collector ~ pnp_pair.q2_base
+    pnp_pair.q1_collector ~ r_input.p1

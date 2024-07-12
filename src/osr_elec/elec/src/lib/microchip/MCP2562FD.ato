@@ -1,0 +1,37 @@
+"""MCP2562FD CAN Transceiver."""
+
+from "generics/interfaces.ato" import CAN, CAN_TTL, Power
+
+
+component MCP2562FD:
+    """
+    MCP2562FD CAN Transceiver.
+
+    High-Speed CAN Flexible Data Rate Transceiver.
+
+    # Reference
+
+    * [MCP2561/2FD High-Speed CAN Flexible Data Rate Transceiver](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20005284A.pdf)
+    """
+    footprint = "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+    lcsc_id = "C124016"
+    mpn = "C124016"  # MCP2562FD
+
+    # power
+    power = new Power
+    signal gnd ~ power.gnd
+    gnd ~ pin 2  # VSS
+    power.vcc ~ pin 3  # VDD
+
+    # CAN TTL interface
+    can_ttl = new CAN_TTL
+    can_ttl.tx ~ pin 1
+    can_ttl.rx ~ pin 4
+
+    # CAN interface
+    can = new CAN
+    can.CANH ~ pin 7
+    can.CANL ~ pin 6
+
+    signal vio ~ pin 5
+    signal stby ~ pin 8
