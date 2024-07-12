@@ -19,7 +19,6 @@ lint-python lint-shell:
 test:
 	pytest
 
-
 .PHONY: _build/open-graph-card/final-assembly.png
 _build/open-graph-card/final-assembly.png:
 	@mkdir -p $(@D)
