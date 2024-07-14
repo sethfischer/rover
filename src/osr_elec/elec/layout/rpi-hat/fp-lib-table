@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "lib")(type "KiCad")(uri "${KIPRJMOD}/../../../build/footprints/footprints.pretty")(options "")(descr "Library created in atopile build directory"))
+  (lib (name "project-lib")(type "KiCad")(uri "${KIPRJMOD}/../../../elec/footprints/footprints.pretty")(options "")(descr "Local project library merged into lib by atopile (for convenience of editing)"))
+)

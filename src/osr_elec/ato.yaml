@@ -1,0 +1,4 @@
+ato-version: ^0.2.62
+builds:
+  rpi-hat:
+    entry: elec/src/rpi-hat.ato:RpiHat

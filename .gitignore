@@ -3,6 +3,7 @@
 .mypy_cache
 .pytest_cache
 .venv
+.vscode/
 /_build
 /dist
 /docs/_build

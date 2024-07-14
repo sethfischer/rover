@@ -1,0 +1,17 @@
+"""Raspberry Pi HAT PCB for sethfischer/rover."""
+
+
+module RpiHat:
+    """
+    Vehicle Management Computer Raspberry Pi HAT.
+
+    [Vehicle management computer HAT datasheet](https://rover.fischer.nz/en/latest/reference/vmc-hat-datasheet.html).
+    Conforming with the HAT+ specification dated 2023-12-20.
+
+    # Reference
+
+    * [Raspberry Pi HAT+ Specification](https://datasheets.raspberrypi.com/hat/hat-plus-specification.pdf)
+    * [Raspberry Pi 40-pin header pin-out](https://github.com/raspberrypi/documentation/blob/c2ef9202f16e49e664ae604dff3bb4c3ec1f1fab/documentation/asciidoc/computers/os/using-gpio.adoc)
+    * [Raspberry Pi 3B mechanical drawing](https://datasheets.raspberrypi.com/rpi3/raspberry-pi-3-b-mechanical-drawing.pdf)
+    """
+    signal gnd
