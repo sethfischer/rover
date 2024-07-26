@@ -42,6 +42,13 @@ html_favicon = "_static/images/icon.svg"
 html_static_path = ["_static"]
 html_theme = "sphinx_rtd_theme"
 html_title = f"{project} v{release}"
+# define canonical URL for Read the Docs custom domain
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
+if os.environ.get("READTHEDOCS", "") == "True":
+    if "html_context" not in globals():
+        html_context = {}
+    # tell Jinja2 the build is running on Read the Docs
+    html_context["READTHEDOCS"] = True
 
 
 linkcheck_allowed_redirects = {
