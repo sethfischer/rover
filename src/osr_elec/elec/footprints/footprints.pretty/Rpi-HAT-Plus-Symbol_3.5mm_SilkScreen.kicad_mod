@@ -1,0 +1,192 @@
+(footprint "Rpi-HAT-Plus-Symbol_3.5mm_SilkScreen"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "Raspberry Pi HAT+ wordmark")
+	(property "Reference" "GL**"
+		(at 0 -0.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "313c03c0-8534-473f-84e1-00b1d9b8ca51")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "Rpi-HAT-Plus-Symbol_3.5mm_SilkScreen"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "5dd79e01-d703-47c1-a9bb-f59fd9fa9733")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "08ce9390-f270-4bb9-93c3-4383aa43bc1a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5d3207d1-8bb0-4045-8324-6fdffa67a117")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a5d07586-3e34-4cc1-b2a5-1e29ea3ffeb2")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr board_only exclude_from_pos_files exclude_from_bom)
+	(fp_line
+		(start -4 -2.5)
+		(end -4 -5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "63a346d5-0621-4de3-b08c-416c0eab4f54")
+	)
+	(fp_line
+		(start -3.5 -5.5)
+		(end 3.5 -5.5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "ca164403-17e3-489e-98ce-5b943d5605ba")
+	)
+	(fp_line
+		(start 3.5 -2)
+		(end -3.5 -2)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "f6660fb2-4daf-4961-bd89-4ede07ed3f31")
+	)
+	(fp_line
+		(start 4 -5)
+		(end 4 -2.5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "b7a15d33-47b2-4a62-9c61-c27975971d5e")
+	)
+	(fp_arc
+		(start -4 -5)
+		(mid -3.853553 -5.353553)
+		(end -3.5 -5.5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "09d80f2d-9995-4849-9c8a-11c9a6d86c42")
+	)
+	(fp_arc
+		(start -3.5 -2)
+		(mid -3.853553 -2.146447)
+		(end -4 -2.5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "75dcd9ea-f301-4d74-ab40-8066c790e07d")
+	)
+	(fp_arc
+		(start 3.5 -5.5)
+		(mid 3.853553 -5.353553)
+		(end 4 -5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "0168f94d-f337-4233-87e6-4df1052d00ab")
+	)
+	(fp_arc
+		(start 4 -2.5)
+		(mid 3.853553 -2.146447)
+		(end 3.5 -2)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "6325c97c-be5d-4b8f-8b28-0f5e5e4b0adc")
+	)
+	(fp_text user "HAT+"
+		(at 0 -2.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "d11b11f4-269d-49df-a075-f0999ac1e617")
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.2)
+			)
+			(justify bottom)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "bac57feb-9bd8-4058-816b-3cb6a0f48993")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(group ""
+		(uuid "359ddb6e-a8c2-438c-b59c-92ed93c974b8")
+		(members "0168f94d-f337-4233-87e6-4df1052d00ab" "09d80f2d-9995-4849-9c8a-11c9a6d86c42"
+			"6325c97c-be5d-4b8f-8b28-0f5e5e4b0adc" "63a346d5-0621-4de3-b08c-416c0eab4f54"
+			"75dcd9ea-f301-4d74-ab40-8066c790e07d" "b7a15d33-47b2-4a62-9c61-c27975971d5e"
+			"ca164403-17e3-489e-98ce-5b943d5605ba" "f6660fb2-4daf-4961-bd89-4ede07ed3f31"
+		)
+	)
+	(group ""
+		(uuid "d4aa9bc5-f3cf-4205-bbd0-95f0e297a1fb")
+		(members "359ddb6e-a8c2-438c-b59c-92ed93c974b8" "d11b11f4-269d-49df-a075-f0999ac1e617")
+	)
+)

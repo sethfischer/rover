@@ -1,0 +1,110 @@
+"""Oscillators."""
+
+from "generics/capacitors.ato" import Capacitor
+from "generics/oscillators.ato" import Oscillator
+
+
+component _ABM8_20MHz:
+    """
+    Crystal ABM8 20MHz 12pF.
+
+    Crystal ABM8 20MHz 12pF -40°C~85°C ±10ppm ±20ppm.
+
+    Manufacturer
+    : Abracon LLC
+
+    # Reference
+
+    * [ABM8 Ceramic SMD Crystal](https://abracon.com/Resonators/abm8.pdf)
+    """
+    designator_prefix = "X"
+    footprint = "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm"
+    lcsc_id = "C6491131"
+    mpn = "C6491131"  # ABM8-20.000MHZ-12-D1X-T
+
+    signal xin ~ pin 1
+    signal xout ~ pin 3
+    signal gnd ~ pin 4
+    gnd ~ pin 2
+
+
+component _ABM8_20MHzLoadCap from Capacitor:
+    """
+    Load capacitor for ABM8-20.000MHZ-12 crystal.
+
+    C = 2 * (CL - Cstray)
+    where:
+        CL = 12pF
+        Cstray = 3pF
+    """
+    # TODO begin work-around: manually select 0603 package
+    # TODO https://github.com/atopile/atopile/pull/391
+    footprint = "C0603"
+    lcsc_id = "C6719420"
+    mpn = "C6719420"  # 0603RF220J500NT
+    # TODO end work-around
+
+    package = "0603"  # equivalent to 1608
+    c_load = 12pF +/- 20%
+    c_stray = 3pF
+    value = 2 * (c_load - c_stray)
+
+
+module ABM8_20MHzOscillator from Oscillator:
+    """40MHz oscillator."""
+    crystal -> _ABM8_20MHz
+    load_cap_1 -> _ABM8_20MHzLoadCap
+    load_cap_2 -> _ABM8_20MHzLoadCap
+
+
+component ABM8_14MHz7456:
+    """
+    Crystal ABM8 14.7456MHz 12pF.
+
+    Crystal ABM8 14.7456MHz 12pF -40°C~85°C ±10ppm ±20ppm.
+
+    Manufacturer
+    : Abracon LLC
+
+    # Resources
+
+    * [ABM8 Ceramic SMD Crystal](https://abracon.com/Resonators/abm8.pdf)
+    """
+    designator_prefix = "X"
+    footprint = "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm"
+    lcsc_id = "C7065054"
+    mpn = "C7065054"  # ABM8-14.7456MHZ-12-D1X-T
+
+    signal xin ~ pin 1
+    signal xout ~ pin 3
+    signal gnd ~ pin 4
+    gnd ~ pin 2
+
+
+component _ABM8_14MHz7456LoadCap from Capacitor:
+    """
+    Load capacitor for ABM8-14.7456MHZ-12 crystal.
+
+    C = 2 * (CL - Cstray)
+    where:
+        CL = 12pF
+        Cstray = 3pF
+    """
+    # TODO begin work-around: manually select 0603 package
+    # TODO https://github.com/atopile/atopile/pull/391
+    footprint = "C0603"
+    lcsc_id = "C6719420"
+    mpn = "C6719420"  # 0603RF220J500NT
+    # TODO end work-around
+
+    package = "0603"  # equivalent to 1608
+    c_load = 12pF +/- 20%
+    c_stray = 3pF
+    value = 2 * (c_load - c_stray)
+
+
+module ABM8_14MHz7456Oscillator from Oscillator:
+    """Oscillator for SC16IS750 UART."""
+    crystal -> ABM8_14MHz7456
+    load_cap_1 -> _ABM8_14MHz7456LoadCap
+    load_cap_2 -> _ABM8_14MHz7456LoadCap

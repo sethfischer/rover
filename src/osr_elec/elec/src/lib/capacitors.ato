@@ -1,0 +1,9 @@
+"""Capacitors."""
+
+from "generics/capacitors.ato" import Capacitor
+
+
+component PowerDecouplingCap100nf from Capacitor:
+    """100nF power decoupling capacitor."""
+    value = 100nF +/- 20%
+    package = "0603"  # equivalent to 1608

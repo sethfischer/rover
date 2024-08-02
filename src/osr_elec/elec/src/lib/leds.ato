@@ -1,0 +1,98 @@
+"""LEDs."""
+
+from "generics/interfaces.ato" import CAN_TTL, Power, UART
+from "generics/leds.ato" import LED, LEDIndicator, LEDIndicatorBlue, LEDIndicatorGreen, LEDIndicatorRed
+
+
+component SML_D12D1WT86 from LED:
+    """
+    Amber LED.
+
+    # Reference
+
+    * [Rohm SML-D12x1W series LEDs](https://datasheet.octopart.com/SML-D12U1WT86-Rohm-datasheet-62059860.pdf)
+    * [SML-D12D1WT86](https://fscdn.rohm.com/en/products/databook/datasheet/opto/led/chip_mono/sml-d12d1wt86-e.pdf)
+    """
+    designator_prefix = "D"
+    footprint = "LED_SMD:LED_0603_1608Metric"
+    lcsc_id = "C2690338"
+    mpn = "C2690338"  # SML-D12D1WT86
+
+    v_f = 2.2V
+    i_max = 20mA
+
+    signal anode ~ pin 2
+    signal cathode ~ pin 1
+
+
+module LEDIndicatorAmber from LEDIndicator:
+    """Amber LED indicator."""
+    led -> SML_D12D1WT86
+    resistor.package = "0603"
+
+
+module LEDIndicatorPowerRail from LEDIndicatorGreen:
+    """Power rail LED indicator."""
+    current = 1mA to 5mA
+    led.designator_prefix = "D"
+    led.footprint = "LED_SMD:LED_0603_1608Metric"
+    resistor.package = "0603"
+
+
+module LEDIndicatorUser from LEDIndicatorBlue:
+    """User LED indicator."""
+    current = 1mA to 5mA
+    led.designator_prefix = "D"
+    led.footprint = "LED_SMD:LED_0603_1608Metric"
+    resistor.package = "0603"
+
+
+module LEDIndicatorRx from LEDIndicatorGreen:
+    """Receive LED indicator."""
+    current = 1mA to 4mA
+    led.designator_prefix = "D"
+    led.footprint = "LED_SMD:LED_0603_1608Metric"
+    resistor.package = "0603"
+
+
+module LEDIndicatorTx from LEDIndicatorRed:
+    """Transmit LED indicator."""
+    current = 1mA to 4mA
+    led.designator_prefix = "D"
+    led.footprint = "LED_SMD:LED_0603_1608Metric"
+    resistor.package = "0603"
+
+
+module LedIndicatorsUart:
+    """UART LED indicators."""
+    voltage: voltage
+
+    uart = new UART
+
+    led_tx = new LEDIndicatorTx
+    led_tx.v_in = voltage
+    led_tx.input ~ uart.tx
+    led_tx.gnd ~ uart.gnd
+
+    led_rx = new LEDIndicatorRx
+    led_rx.v_in = voltage
+    led_rx.input ~ uart.rx
+    led_rx.gnd ~ uart.gnd
+
+
+module LedIndicatorsCanTtl:
+    """CAN TTL LED indicators."""
+    voltage: voltage
+
+    can_ttl = new CAN_TTL
+    power = new Power
+
+    led_tx = new LEDIndicatorTx
+    led_tx.v_in = voltage
+    led_tx.input ~ power.vcc
+    led_tx.gnd ~ can_ttl.rx
+
+    led_rx = new LEDIndicatorRx
+    led_rx.v_in = voltage
+    led_rx.input ~ power.vcc
+    led_rx.gnd ~ can_ttl.tx
