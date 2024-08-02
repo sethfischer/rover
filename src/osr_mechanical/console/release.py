@@ -46,6 +46,7 @@ class ReleaseBuilder:
         self.release_directory.mkdir()
 
         self.readme(self.release_directory / "README.md")
+        self.docs_redirect_file(self.release_directory / "docs-redirect.html")
         self.changelog(self.release_directory / "CHANGELOG.md")
         self.final_assembly_step(self.release_directory / f"{PROJECT_NAME}.step")
         self.final_assembly_png(self.release_directory / f"{PROJECT_NAME}.png")
@@ -75,6 +76,21 @@ class ReleaseBuilder:
             project_url=PROJECT_URL,
             short_description=SHORT_DESCRIPTION,
             version=__version__,
+        )
+
+        return out_file.write_text(result)
+
+    @staticmethod
+    def docs_redirect_file(out_file: Path) -> int:
+        """Create docs redirect file."""
+        env = Environment(
+            loader=PackageLoader("osr_mechanical"),
+            autoescape=select_autoescape(),
+        )
+
+        template = env.get_template("docs-redirect.html")
+        result = template.render(
+            project_url=PROJECT_URL,
         )
 
         return out_file.write_text(result)
