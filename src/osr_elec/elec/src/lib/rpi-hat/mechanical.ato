@@ -1,0 +1,12 @@
+"""Raspberry Pi HAT mechanical features."""
+
+from "lib/fiducials.ato" import Fiducial0mm75Mask1mm5
+
+
+module RpiHatMechanical:
+    """Raspberry Pi HAT mechanical features."""
+    # fiducial markers
+    fd1 = new Fiducial0mm75Mask1mm5
+    fd2 = new Fiducial0mm75Mask1mm5
+    fd3 = new Fiducial0mm75Mask1mm5
+    fd4 = new Fiducial0mm75Mask1mm5

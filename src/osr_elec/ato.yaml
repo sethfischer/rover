@@ -1,0 +1,39 @@
+ato-version: ^0.2.62
+builds:
+  rpi-hat:
+    entry: elec/src/rpi-hat.ato:RpiHat
+dependencies:
+  - name: generics
+    version_spec: '@4e056dec822566592798abb059fd7aad1f970885'
+    link_broken: false
+    path: .ato/modules/generics
+
+  - name: ams1117-33
+    version_spec: '@29f49d7b6b6db24be0282f6c3524f49b71e71b48'
+    link_broken: false
+    path: .ato/modules/ams1117-33
+
+  - name: programming-headers
+    version_spec: '@e3a6ca6b5b93e3c2db899aa7cc5a8fde17920abc'
+    link_broken: false
+    path: .ato/modules/programming-headers
+
+  - name: https://github.com/sethfischer/headers
+    version_spec: '@d8d92512ba4974045f54b0cc95f1385c165d06ac'
+    link_broken: false
+    path: .ato/modules/headers
+
+  - name: https://github.com/sethfischer/ck-js-series
+    version_spec: '@7966abbac3d54090fe57a52b69af8855d0d54f31'
+    link_broken: false
+    path: .ato/modules/ck-js-series
+
+  - name: https://github.com/sethfischer/koa-speer-rc-series
+    version_spec: '@3e76c2d7896923adff9df4924fa15924dd08a057'
+    link_broken: false
+    path: .ato/modules/koa-speer-rc-series
+
+  - name: https://github.com/sethfischer/combo-power-connectors
+    version_spec: '@36ce69930fbd2186f9581fc63e33e4254fc89fd4'
+    link_broken: false
+    path: .ato/modules/combo-power-connectors

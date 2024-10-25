@@ -1,0 +1,32 @@
+"""MaxLinear RS-485 Transceiver."""
+
+from "generics/interfaces.ato" import Power
+
+
+component Sp3485:
+    """
+    SP3485 RS-485 Transceiver.
+
+    3.3V Low Power Half-Duplex RS-485 Transceivers with 10 Mbit/s Data Rate.
+
+    # Reference
+
+    * [SP3485 datasheet](https://maxlinear-assets.azureedge.net/web/documents/sp3485.pdf)
+    * [SP3485 product information](https://www.maxlinear.com/product/interface/serial-transceivers/rs485-422/sp3485)
+    """
+    footprint = "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+    lcsc_id = "C916153"
+    mpn = "C916153"  # SP3485CN-L
+
+    # power
+    power = new Power
+    signal gnd ~ power.gnd
+    power.vcc ~ pin 8  # Vcc
+    gnd ~ pin 5  # GND
+
+    signal ro ~ pin 1  # RO; receiver output
+    signal re ~ pin 2  # RE (active LOW); receiver output enable
+    signal de ~ pin 3  # DE (active HIGH); driver output enable
+    signal di ~ pin 4  # DI; driver input
+    signal a ~ pin 6  # A; non-inverting driver output / receiver input
+    signal b ~ pin 7  # B: inverting driver output / receiver input

@@ -1,0 +1,145 @@
+"""Raspberry Pi HAT PCB for sethfischer/rover."""
+
+from "generics/interfaces.ato" import I2C, Power
+
+from "ams1117-33/elec/src/ams1117-33.ato" import AMS111733
+from "combo-power-connectors/connectors.ato" import Xt30pwmHorizontalTerminalBlock5mmHorizontal
+from "koa-speer-rc-series/rc.ato" import RcwcteTestPoint
+
+from "lib/can-controller-trx.ato" import CanControllerTrx
+from "lib/connectors.ato" import Rs485Connector
+from "lib/headers.ato" import PinHeaderI2cTHT, PinHeaderUartTHT
+from "lib/leds.ato" import LEDIndicatorPowerRail, LedIndicatorsUart
+from "lib/rpi-hat/id-eeprom.ato" import RpiHatIdEeprom
+from "lib/rpi-hat/ideal-diode.ato" import IdealDiode
+from "lib/rpi-hat/mechanical.ato" import RpiHatMechanical
+from "lib/rpi-hat/microcontroller.ato" import Microcontroller
+from "lib/rpi-hat/robot-signal-light.ato" import RobotSignalLight
+from "lib/rpi-hat/rpi-header.ato" import RaspberryPiHeaderSocket
+from "lib/serial-transceivers.ato" import Rs485Transceiver
+from "lib/spi-uart-converter.ato" import SpiToUart
+
+
+module RpiHat:
+    """
+    Vehicle Management Computer Raspberry Pi HAT.
+
+    [Vehicle management computer HAT datasheet](https://rover.fischer.nz/en/latest/reference/vmc-hat-datasheet.html).
+    Conforming with the HAT+ specification dated 2023-12-20.
+
+    # Reference
+
+    * [Raspberry Pi HAT+ Specification](https://datasheets.raspberrypi.com/hat/hat-plus-specification.pdf)
+    * [Raspberry Pi 40-pin header pin-out](https://github.com/raspberrypi/documentation/blob/c2ef9202f16e49e664ae604dff3bb4c3ec1f1fab/documentation/asciidoc/computers/os/using-gpio.adoc)
+    * [Raspberry Pi 3B mechanical drawing](https://datasheets.raspberrypi.com/rpi3/raspberry-pi-3-b-mechanical-drawing.pdf)
+    """
+    mechanical = new RpiHatMechanical
+
+    signal gnd
+
+    # 5V input power rail
+    power_5v = new Power
+    power_5v.voltage = 4.9V to 5.1V
+    power_5v.vcc.override_net_name = "vcc-5v"
+
+    # 3V3 peripheral power rail
+    power_3v3 = new Power
+    power_3v3.voltage = 3.1V to 3.3V
+    power_3v3.vcc.override_net_name = "vcc-3v3"
+
+    # common ground for both power rails
+    power_3v3.gnd ~ gnd
+    power_5v.gnd ~ gnd
+
+    # 5V power input connector
+    power_connector = new Xt30pwmHorizontalTerminalBlock5mmHorizontal
+    power_connector.do_not_populate = True
+    power_connector.power ~ power_5v
+
+    # back-power protection
+    ideal_diode = new IdealDiode
+    ideal_diode.input ~ power_connector.power
+
+    # 3V3 regulator
+    ldo_3v3 = new AMS111733
+    ldo_3v3.power_in ~ power_5v
+    ldo_3v3.power_out ~ power_3v3
+
+    # power test points
+    # gnd test point
+    test_point_gnd_a = new RcwcteTestPoint
+    test_point_gnd_a.input ~ gnd
+    test_point_gnd_b = new RcwcteTestPoint
+    test_point_gnd_b.input ~ gnd
+    # 3V3 power rail test point
+    test_point_power_3v3 = new RcwcteTestPoint
+    test_point_power_3v3.input ~ power_3v3.vcc
+    # 5V power rail test point
+    test_point_power_5v = new RcwcteTestPoint
+    test_point_power_5v.input ~ power_5v.vcc
+
+    # Raspberry Pi GPIO socket header
+    rpi_header = new RaspberryPiHeaderSocket
+    rpi_header.gnd ~ gnd
+    rpi_header.power_5v ~ ideal_diode.load
+
+    # UART header
+    uart_header = new PinHeaderUartTHT
+    uart_header.uart ~ rpi_header.uart
+
+    # ID EEPROM module
+    id_eeprom = new RpiHatIdEeprom
+    id_eeprom.power_3v3 ~ power_3v3
+    id_eeprom.i2c ~ rpi_header.i2c_id
+
+    # 3.3V power rail LED indicator
+    power_indicator_3v3 = new LEDIndicatorPowerRail
+    power_indicator_3v3.v_in = power_3v3.voltage
+    power_indicator_3v3.power ~ power_3v3
+
+    # 5V power rail LED indicator
+    power_indicator_5v = new LEDIndicatorPowerRail
+    power_indicator_5v.v_in = power_5v.voltage
+    power_indicator_5v.power ~ power_5v
+
+    # robot signal light
+    robot_signal_light = new RobotSignalLight
+    robot_signal_light.power_5v ~ power_5v
+    robot_signal_light.input ~ rpi_header.rsl
+
+    # UART converter on SPI1-CE0
+    uart_converter = new SpiToUart
+    uart_converter.spi ~ rpi_header.spi1_ce0
+    uart_converter.power ~ power_3v3
+
+    # UART converter UART A
+    uart_leds = new LedIndicatorsUart
+    uart_leds.voltage = power_3v3.voltage
+    uart_leds.uart ~ uart_converter.uart_a
+    uart_a_header = new PinHeaderUartTHT
+    uart_a_header.uart ~ uart_converter.uart_a
+
+    # RS-485 on UART converter UART B
+    rs485_trx = new Rs485Transceiver
+    rs485_trx.power ~ power_3v3
+    rs485_trx.uart ~ uart_converter.uart_b
+    rs485_connector = new Rs485Connector
+    rs485_connector.gnd ~ gnd
+    rs485_trx.rs485 ~ rs485_connector.rs485
+
+    # CAN controller and transceiver on SPI1-CE1
+    can_con_trx = new CanControllerTrx
+    can_con_trx.power ~ power_3v3
+    can_con_trx.spi ~ rpi_header.spi1_ce1
+    can_con_trx.controller.int ~ rpi_header.can_int
+
+    # I2C pin header
+    i2c_header = new PinHeaderI2cTHT
+    i2c_header.power ~ power_3v3
+    i2c_header.i2c ~ rpi_header.i2c
+    i2c_header.int ~ rpi_header.i2c_int
+
+    # microcontroller
+    mcu = new Microcontroller
+    mcu.power ~ power_3v3
+    mcu.i2c ~ rpi_header.i2c

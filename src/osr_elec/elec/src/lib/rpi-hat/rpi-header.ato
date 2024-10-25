@@ -1,0 +1,129 @@
+"""Rasspberry Pi GPIO header."""
+
+from "generics/interfaces.ato" import GPIO, I2C, Power, SPI, UART
+
+
+module RaspberryPiHeaderSocket:
+    """Raspberry Pi GPIO header socket."""
+    connector = new RaspberryPiHeaderConnector
+    # as header is on bottom layer, use a pin socket footprint
+    connector.footprint = "PinSocket_Samtec_ESQ-120-23-T-D_Oval_Pads"
+
+    # power
+    signal gnd
+    gnd ~ connector.gnd
+    power_3v3 = new Power
+    power_5v = new Power
+    power_3v3 ~ connector.power_3v3
+    power_5v ~ connector.power_5v
+
+    # common ground for both power rails
+    power_3v3.gnd ~ gnd
+    power_5v.gnd ~ gnd
+
+    # ID EEPROM
+    i2c_id = new I2C
+    i2c_id.gnd ~ gnd
+    i2c_id.scl ~ connector.gpio_1
+    i2c_id.sda ~ connector.gpio_0
+
+    # I2C
+    i2c = new I2C
+    i2c.gnd ~ gnd
+    i2c.scl ~ connector.gpio_2
+    i2c.sda ~ connector.gpio_3
+
+    # UART
+    uart = new UART
+    uart.gnd ~ gnd
+    uart.tx ~ connector.gpio_14
+    uart.rx ~ connector.gpio_15
+
+    # SPI1-CE0
+    spi1_ce0 = new SPI
+    spi1_ce0.gnd ~ gnd
+    spi1_ce0.mosi ~ connector.gpio_20
+    spi1_ce0.miso ~ connector.gpio_19
+    spi1_ce0.sck ~ connector.gpio_21
+    spi1_ce0.cs ~ connector.gpio_18
+
+    # SPI1-CE1
+    spi1_ce1 = new SPI
+    spi1_ce1.gnd ~ gnd
+    spi1_ce1.mosi ~ connector.gpio_20
+    spi1_ce1.miso ~ connector.gpio_19
+    spi1_ce1.sck ~ connector.gpio_21
+    spi1_ce1.cs ~ connector.gpio_16
+
+    # robot signal light digital output
+    rsl = new GPIO
+    rsl.gnd ~ gnd
+    rsl.io ~ connector.gpio_17
+
+    # I2C interrupt
+    i2c_int = new GPIO
+    i2c_int.gnd ~ gnd
+    i2c_int.io ~ connector.gpio_4
+
+    # CAN controller interrupt
+    can_int = new GPIO
+    can_int.gnd ~ gnd
+    can_int.io ~ connector.gpio_7
+
+
+component RaspberryPiHeaderConnector:
+    """Raspberry Pi GPIO header generic pin assignments."""
+    footprint = "Connector_PinHeader_2x20_2.54mm:PinHeader_2x20_P2.54mm_Vertical"
+    lcsc_id = "C2977589"
+    mpn = "C2977589"
+    designator_prefix = "J"
+
+    # power
+    signal gnd
+    power_3v3 = new Power
+    power_5v = new Power
+
+    # common ground for both power rails
+    power_3v3.gnd ~ gnd
+    power_5v.gnd ~ gnd
+
+    power_3v3.vcc ~ pin 1
+    power_5v.vcc ~ pin 2
+    signal gpio_2 ~ pin 3
+    power_5v.vcc ~ pin 4
+    signal gpio_3 ~ pin 5
+    gnd ~ pin 6
+    signal gpio_4 ~ pin 7
+    signal gpio_14 ~ pin 8
+    gnd ~ pin 9
+    signal gpio_15 ~ pin 10
+    signal gpio_17 ~ pin 11
+    signal gpio_18 ~ pin 12
+    signal gpio_27 ~ pin 13
+    gnd ~ pin 14
+    signal gpio_22 ~ pin 15
+    signal gpio_23 ~ pin 16
+    power_3v3.vcc ~ pin 17
+    signal gpio_24 ~ pin 18
+    signal gpio_10 ~ pin 19
+    gnd ~ pin 20
+    signal gpio_9 ~ pin 21
+    signal gpio_25 ~ pin 22
+    signal gpio_11 ~ pin 23
+    signal gpio_8 ~ pin 24
+    gnd ~ pin 25
+    signal gpio_7 ~ pin 26
+    signal gpio_0 ~ pin 27
+    signal gpio_1 ~ pin 28
+    signal gpio_5 ~ pin 29
+    gnd ~ pin 30
+    signal gpio_6 ~ pin 31
+    signal gpio_12 ~ pin 32
+    signal gpio_13 ~ pin 33
+    gnd ~ pin 34
+    signal gpio_19 ~ pin 35
+    signal gpio_16 ~ pin 36
+    signal gpio_26 ~ pin 37
+    signal gpio_20 ~ pin 38
+    gnd ~ pin 39
+    signal gpio_21 ~ pin 40

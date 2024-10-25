@@ -1,0 +1,78 @@
+"""CAN controller and transceiver."""
+
+from "generics/interfaces.ato" import Power, SPI
+
+from "ck-js-series/smd.ato" import CkJs102011jcqn
+
+from "lib/capacitors.ato" import PowerDecouplingCap100nf
+from "lib/connectors.ato" import JstGhHorizontalCan
+from "lib/leds.ato" import  LedIndicatorsCanTtl, LEDIndicatorUser
+from "lib/microchip/MCP2517FDT.ato" import MCP2517FDT
+from "lib/microchip/MCP2562FD.ato" import MCP2562FD
+from "lib/oscillators.ato" import ABM8_20MHzOscillator
+from "lib/resistors.ato" import Resistor1608
+
+
+module CanControllerTrx:
+    """CAN controller and transceiver."""
+    # power
+    signal gnd
+    power = new Power
+    power.gnd ~ gnd
+
+    spi = new SPI
+
+    controller = new MCP2517FDT
+    controller.power ~ power
+    controller.spi ~ spi
+
+    # controller power decoupling capacitor
+    controller_power_cap = new PowerDecouplingCap100nf
+    controller_power_cap.power ~ power
+
+    # controller oscillator
+    oscillator = new ABM8_20MHzOscillator
+    oscillator.gnd ~ gnd
+    oscillator.xin.io ~ controller.xin
+    oscillator.xout.io ~ controller.xout
+
+    # user LED on controller GPIO 0
+    user_led_indicator = new LEDIndicatorUser
+    user_led_indicator.v_in = power.voltage
+    user_led_indicator.input ~ controller.gpio0.io
+    user_led_indicator.gnd ~ gnd
+
+    # transceiver
+    transceiver = new MCP2562FD
+    transceiver.power ~ power
+    controller.can_ttl ~ transceiver.can_ttl
+
+    # indicator LEDs
+    can_leds = new LedIndicatorsCanTtl
+    can_leds.voltage = power.voltage
+    can_leds.power ~ power
+    can_leds.can_ttl ~ controller.can_ttl
+
+    # transceiver power decoupling capacitor
+    transceiver_power_cap = new PowerDecouplingCap100nf
+    transceiver_power_cap.power ~ power
+
+    # CAN termination switch
+    switch = new CkJs102011jcqn
+    switch.common ~ transceiver.can.CANH
+
+    # CAN termination resistor
+    termination_resistor = new Resistor1608
+    termination_resistor.value = 120 ohm +/- 5%
+    termination_resistor.p1 ~ switch.p1
+    termination_resistor.p2 ~ transceiver.can.CANL
+
+    # CAN in connector
+    can_in = new JstGhHorizontalCan
+    can_in.can ~ transceiver.can
+    can_in.power ~ power
+
+    # CAN out connector
+    can_out = new JstGhHorizontalCan
+    can_out.can ~ transceiver.can
+    can_out.power ~ power

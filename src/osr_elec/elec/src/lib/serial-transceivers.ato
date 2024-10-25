@@ -1,0 +1,69 @@
+"""MaxLinear Serial Transceivers."""
+
+from "generics/interfaces.ato" import Power, UART
+
+from "lib/bourns/tvs-diodes.ato" import Cdsot23Sm712
+from "lib/capacitors.ato" import PowerDecouplingCap100nf
+from "lib/interfaces.ato" import RS485
+from "lib/maxlinear/SP3485.ato" import Sp3485
+from "lib/resistors.ato" import Resistor1608, Rs485SeriesResistors
+
+
+module Rs485Transceiver:
+    """RS485 transceiver."""
+    trx = new Sp3485
+
+    # power
+    signal gnd
+    power = new Power
+    power ~ trx.power
+    power.gnd ~ gnd
+
+    # power decoupling capacitor
+    decoupling_cap = new PowerDecouplingCap100nf
+    decoupling_cap.power ~ power
+
+    signal output_enable ~ trx.de
+
+    ro_resistor = new Resistor1608
+    ro_resistor.value = 20ohm +/- 5%
+    ro_resistor.p1 ~ trx.ro
+
+    di_resistor = new Resistor1608
+    di_resistor.value = 20ohm +/- 5%
+    di_resistor.p1 ~ trx.di
+
+    # output enable pull down
+    de_pull_down = new Resistor1608
+    de_pull_down.value = 10kohm +/- 5%
+    de_pull_down.p1 ~ trx.de
+    de_pull_down.p2 ~ gnd
+
+    # serial
+    uart = new UART
+    uart.tx ~ di_resistor.p2
+    uart.rx ~ ro_resistor.p2
+    uart.gnd ~ gnd
+
+    # series resistors
+    series_resistors = new Rs485SeriesResistors
+    series_resistors.rs415_in.a ~ trx.a
+    series_resistors.rs415_in.b ~ trx.b
+
+    # ESD and surge protection
+    tvs_diode = new Cdsot23Sm712
+    tvs_diode.common ~ gnd
+    tvs_diode.p1 ~ series_resistors.rs415_out.a
+    tvs_diode.p2 ~ series_resistors.rs415_out.b
+
+    # termination resistor
+    termination_resistor = new Resistor1608
+    termination_resistor.value = 120 ohm +/- 5%
+    termination_resistor.p1 ~ series_resistors.rs415_out.a
+    termination_resistor.p2 ~ series_resistors.rs415_out.b
+
+    # RS-485
+    rs485 = new RS485
+    rs485 ~ series_resistors.rs415_out
+
+    trx.de ~ trx.re

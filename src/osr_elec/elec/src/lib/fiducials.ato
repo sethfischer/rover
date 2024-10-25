@@ -1,0 +1,8 @@
+"""Fiducial markers."""
+
+
+component Fiducial0mm75Mask1mm5:
+    """Circular Fiducial, 0.75mm bare copper, 1.5mm solder mask opening (Level B)."""
+    designator_prefix = "FD"
+    footprint = "Fiducial:Fiducial_0.75mm_Mask1.5mm"
+    exclude_from_bom = True
