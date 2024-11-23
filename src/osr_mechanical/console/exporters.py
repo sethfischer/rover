@@ -213,7 +213,7 @@ class ExportPNG:
         """Create EXIF tags."""
         # build reverse dict
         _TAGS_r = dict(((v, k) for k, v in TAGS.items()))
-        tags = Exif()  # type: ignore[no-untyped-call]
+        tags = Exif()
 
         tags[_TAGS_r["Artist"]] = COPYRIGHT_OWNER
         tags[_TAGS_r["Copyright"]] = COPYRIGHT_NOTICE

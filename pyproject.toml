@@ -63,7 +63,7 @@ wurlitzer = "^3.1.1"
 [tool.poetry.group.dev.dependencies]
 CairoSVG = "^2.7.1"
 OCP-stubs = {git = "https://github.com/CadQuery/OCP-stubs.git", rev = "7.6.3"}
-Pillow = "^10.4.0"
+Pillow = "11.*"
 black = "^24.4.2"
 cffconvert = "^2.0.0"
 commitizen = "^3.27.0"
