@@ -51,6 +51,7 @@ numpy = "^1.26.4"  # https://github.com/CadQuery/cadquery/issues/1616
 
 Jinja2 = "^3.1.2"
 Sphinx = "7.*"
+atopile = {git = "https://github.com/atopile/atopile.git", rev = "v0.2.x"}
 cq-electronics = {git = "https://github.com/sethfischer/cq-electronics.git", rev = "64b49e939122f170989782e0fbdc4259754fd331"}
 cq_warehouse = {git = "https://github.com/gumyr/cq_warehouse.git", rev = "c767b83cf8339f72defbcf6abcbfeb0ac9e2a565"}
 pinout = "^0.0.20"
