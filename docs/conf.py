@@ -58,6 +58,7 @@ linkcheck_allowed_redirects = {
     r"https://cq-electronics\.readthedocs\.io/.*": (
         r"https://cq-electronics\.readthedocs\.io/en/latest/.*"
     ),
+    r"https://imagemagick\.org/": r"https://imagemagick\.org/.*",
     r"https://open-source-rover\.readthedocs\.io/.*": (
         r"https://open-source-rover\.readthedocs\.io/en/latest/.*"
     ),
