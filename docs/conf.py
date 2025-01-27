@@ -70,6 +70,7 @@ linkcheck_allowed_redirects = {
 
 linkcheck_ignore = [
     "https://roverchallenge.eu/",  # SSLCertVerificationError
+    "https://shop.4tronix.co.uk/",  # returns 403 for robots
     "https://www.kickstarter.com/",  # returns 403 for robots
     # persistent read time out
     "https://www.lego.com/en-us/product/nasa-mars-rover-perseverance-42158",
