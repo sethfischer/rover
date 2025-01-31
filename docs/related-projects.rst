@@ -93,11 +93,11 @@ Website
     https://mars2020.fred-j.org/
 
 
-BricoLabs/Curiosity
--------------------
+BricoLabs/Curiosity BTL
+-----------------------
 
 Documentation
-    https://bricolabs.cc/wiki/en/proyectos/curiosity_btl
+    https://www.bricolabs.es/wiki/en/proyectos/curiosity_btl
 
 Code and parts
     https://github.com/felixstdp/curiosity_btl
