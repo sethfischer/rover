@@ -97,7 +97,7 @@ BricoLabs/Curiosity BTL
 -----------------------
 
 Documentation
-    https://www.bricolabs.es/wiki/en/proyectos/curiosity_btl
+    https://www.bricolabs.cc/wiki/en/proyectos/curiosity_btl
 
 Code and parts
     https://github.com/felixstdp/curiosity_btl
