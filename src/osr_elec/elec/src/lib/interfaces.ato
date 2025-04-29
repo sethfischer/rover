@@ -1,0 +1,6 @@
+"""Interfaces."""
+
+
+interface RS485:
+    signal a
+    signal b

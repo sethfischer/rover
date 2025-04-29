@@ -37,6 +37,9 @@ Prerequisites
 * `Python`_ >=3.11, and python-venv.
 * `Poetry`_ for Python dependency management.
 * `Mayo 3D CAD viewer and converter`_ for exporting PNG images.
+* `KiCad EDA`_ v8 (a dependency of `atopile`_) for building PCB manufacturing files.
+    - ``KICAD8_3D_MODEL_DIR``  should point to version 8.0.3 of `KiCad Packages3D`_.
+    - ``KICAD8_FOOTPRINT_DIR`` should point to version 8.0.3 of `KiCad Footprints`_.
 * Optional:
    - `ImageMagick`_ for manipulating images.
    - `exiftool`_ for manipulating EXIF headers.
@@ -54,7 +57,7 @@ Install prerequisites
 
     sudo apt-get install git python3.11 python3.11-venv imagemagick optipng exiftool
 
-Poetry, Mayo, and git-lfs should be installed according to their respective documentation,
+Poetry, Mayo, git-lfs, and KiCad should be installed according to their respective documentation,
 and be available in your path.
 
 
@@ -114,6 +117,10 @@ Run linters and tests:
 .. _`Git`: https://git-scm.com/
 .. _`Poetry`: https://python-poetry.org/
 .. _`Mayo 3D CAD viewer and converter`: https://github.com/fougue/mayo
+.. _`KiCad EDA`: https://www.kicad.org/
+.. _`atopile`: https://atopile.io/
+.. _`KiCad Packages3D`: https://gitlab.com/kicad/libraries/kicad-packages3D
+.. _`KiCad Footprints`: https://gitlab.com/kicad/libraries/kicad-footprints
 .. _`ImageMagick`: https://imagemagick.org/
 .. _`exiftool`: https://exiftool.org/
 .. _`git-lfs`: https://git-lfs.com/

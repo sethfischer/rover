@@ -1,0 +1,26 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "0dfc2b66-621e-402f-8547-1f17856a1a8f")
+	(paper "A4")
+	(lib_symbols)
+	(text "Designed with atopile https://atopile.io/"
+		(exclude_from_sim no)
+		(at 146.558 97.536 0)
+		(effects
+			(font
+				(size 7.62 7.62)
+				(thickness 1.524)
+				(bold yes)
+			)
+			(href "https://atopile.io/")
+		)
+		(uuid "c56e191e-1eac-4202-aca3-6debd04f634c")
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

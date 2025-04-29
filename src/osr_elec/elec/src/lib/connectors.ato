@@ -1,0 +1,78 @@
+"""Connectors."""
+
+from "generics/interfaces.ato" import CAN, Power
+
+from "lib/interfaces.ato" import RS485
+
+
+component _Connector:
+    """Connector base."""
+    designator_prefix = "J"
+
+
+component JstB2bPhKS from _Connector:
+    """
+    JST B2B-PH-K-S top entry 2-pin PH header.
+
+    2.0 mm pitch disconnectable crimp style connector.
+
+    # Reference
+
+    * [PH connectors](https://www.jst.com/wp-content/uploads/2021/09/ePH.pdf)
+    """
+    footprint = "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
+    lcsc_id = "C5251182"
+    mpn = "C5251182"  # B2B-PH-K-S
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+
+component PhoenixPt1x3P3mm5Horizontal from _Connector:
+    """Phoenix Contact terminal block 3-way side entry 3.5mm PCB
+
+    Phoenix Contact PT 1,5 Series 3.5mm 3-way terminal block.
+    """
+    footprint = "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-3-3.5-H_1x03_P3.50mm_Horizontal"
+    lcsc_id = ""
+    mpn = ""  # 1984620
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+
+component JstGhHorizontalCan from _Connector:
+    """
+    UAVCAN/CAN Micro connector.
+
+    JST GH connector Header Surface Mount, Right Angle 4 position 1.25mm.
+
+    # Reference
+
+    * [GH connectors](https://www.jst-mfg.com/product/pdf/eng/eGH.pdf)
+    """
+    footprint = "Connector_JST:JST_GH_SM04B-GHS-TB_1x04-1MP_P1.25mm_Horizontal"
+    lcsc_id = "C189895"
+    mpn = "C189895"  # SM04B-GHS-TB(LF)(SN)
+
+    signal gnd
+
+    can = new CAN
+    power = new Power
+    power.gnd ~ gnd
+
+    power.vcc ~ pin 1
+    can.CANH ~ pin 2
+    can.CANL ~ pin 3
+    gnd ~ pin 4
+    gnd ~ pin MP
+
+
+component Rs485Connector from PhoenixPt1x3P3mm5Horizontal:
+    """RS-485 board to wire connector."""
+    signal gnd ~ pin 3
+
+    rs485 = new RS485
+    rs485.a ~ pin 1
+    rs485.b ~ pin 2

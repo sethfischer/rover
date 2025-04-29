@@ -1,0 +1,51 @@
+"""MOSFETs."""
+
+from "generics/interfaces.ato" import Load, Pair, Power
+from "generics/mosfets.ato" import NFET
+from "generics/resistors.ato" import Resistor
+
+
+component NFET_2N7002 from NFET:
+    """
+    NFET 2N7002 60V 115mA.
+
+    N-Channel Enhancement Mode Field Effect Transistor.
+
+    # Reference
+
+    * [Onsemi 2N7002T](https://www.onsemi.com/download/data-sheet/pdf/2n7002t-d.pdf)
+    """
+    footprint = "Package_TO_SOT_SMD:SOT-23-3"
+    lcsc_id = "C8545"
+    mpn = "C8545"  # 2N7002
+
+    signal drain ~ pin 3
+    signal gate ~ pin 1
+    signal source ~ pin 2
+
+
+module LowSideSwitch:
+    """Low side switch."""
+    fet = new Mosfet_nchannel
+    gate_resistor = new Resistor
+    pulldown_resistor = new Resistor
+
+    power = new Power
+    load = new Load
+    input = new Pair
+
+    input.io ~ gate_resistor.p1
+    gate_resistor.p2 ~ fet.gate
+    input.gnd ~ power.gnd
+    pulldown_resistor.p1 ~ fet.gate
+    pulldown_resistor.p2 ~ power.gnd
+
+    power.vcc ~ load.p
+    load.n ~ fet.drain
+
+    fet.source ~ power.gnd
+
+
+module LowSideSwitch60V115mA from LowSideSwitch:
+    """Low side switch 60V 115mA."""
+    fet -> NFET_2N7002

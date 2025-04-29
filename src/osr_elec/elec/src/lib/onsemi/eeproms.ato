@@ -1,0 +1,41 @@
+"""EEPROMs."""
+
+from "generics/interfaces.ato" import I2C, Power
+
+
+component CAT24C32WI_GT3:
+    """
+    CAT24C32WI-GT3 EEPROM.
+
+    CAT24C32 EEPROM Serial 32-Kb I2C.
+
+    # Reference
+
+    * [CAT24C32 EEPROM Serial 32-Kb I2C datasheet](https://www.onsemi.com/pdf/datasheet/cat24c32-d.pdf)
+    """
+    footprint = "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+    lcsc_id = "C81193"
+    mpn = "C81193"  # CAT24C32WI-GT3
+
+    # power
+    power = new Power
+    signal gnd ~ power.gnd
+    gnd ~ pin 4
+    power.vcc ~ pin 8
+
+    # I2C
+    i2c = new I2C
+    signal i2c_sda ~ pin 5
+    signal i2c_scl ~ pin 6
+    i2c.sda ~ i2c_sda
+    i2c.scl ~ i2c_scl
+    i2c.gnd ~ gnd
+
+    signal a0 ~ pin 1
+    signal a1 ~ pin 2
+    signal a2 ~ pin 3
+    signal vss ~ pin 4
+    signal sda ~ pin 5
+    signal scl ~ pin 6
+    signal wp ~ pin 7
+    signal vcc ~ pin 8

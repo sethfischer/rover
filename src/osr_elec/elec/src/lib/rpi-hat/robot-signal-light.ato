@@ -1,0 +1,44 @@
+"""Robot signal light."""
+
+from "generics/interfaces.ato" import Pair, Power
+
+from "lib/connectors.ato" import JstB2bPhKS
+from "lib/leds.ato" import LEDIndicatorAmber
+from "lib/mosfets.ato" import LowSideSwitch60V115mA
+
+
+module RobotSignalLight:
+    """
+    Robot signal light.
+
+    Consists of an on-board LED, and a connector for a remote off-board signal
+    light.
+    """
+    # power
+    signal gnd
+    power_5v = new Power
+    power_5v.gnd ~ gnd
+
+    input = new Pair
+    input.gnd ~ power_5v.gnd
+
+    # low side switch
+    switch = new LowSideSwitch60V115mA
+    switch.gate_resistor.value = 100ohm +/- 20%
+    switch.pulldown_resistor.package = "0603"  # TODO this is not working
+    switch.pulldown_resistor.value = 1.2Mohm +/- 20%
+    switch.input.io ~ input.io
+    switch.input.gnd ~ gnd
+    switch.power ~ power_5v
+
+    # on-board signal LED
+    status_indicator = new LEDIndicatorAmber
+    status_indicator.current = 5mA to 10mA
+    status_indicator.v_in = power_5v.voltage
+    status_indicator.input ~ switch.load.p
+    status_indicator.gnd ~ switch.load.n
+
+    # off-board signal connector
+    connector = new JstB2bPhKS
+    connector.p1 ~ switch.load.p
+    connector.p2 ~ switch.load.n

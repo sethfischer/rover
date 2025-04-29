@@ -1,0 +1,74 @@
+"""Headers."""
+
+from "generics/interfaces.ato" import GPIO, I2C, Power, UART
+
+
+component _Header:
+    """Header base."""
+    designator_prefix = "J"
+
+
+component PinHeader1x02P2mm54Vertical from _Header:
+    """1x2 2.5mm pitch vertical pin header."""
+    footprint="Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+    lcsc_id = "C5360898"
+    mpn = "C5360898"  # PZ2.54-1*2
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+
+
+component PinHeader1x03P2mm54Vertical from _Header:
+    """1x3 2.5mm pitch vertical pin header."""
+    footprint="Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
+    lcsc_id = "C2894926"
+    mpn = "C2894926"  # PZ254-1-03-Z-8.5
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+
+
+component PinHeader1x05P2mm54Vertical from _Header:
+    """1x5 2.5mm pitch vertical pin header."""
+    footprint="Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical"
+    lcsc_id = "C3328227"
+    mpn = "C3328227"  # M20-9990546
+
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+
+
+
+component PinHeaderUartTHT from PinHeader1x03P2mm54Vertical:
+    """UART pin header."""
+    uart = new UART
+
+    uart.gnd ~ pin 1
+    uart.tx ~ pin 2
+    uart.rx ~ pin 3
+
+
+component PinHeaderI2cTHT from PinHeader1x05P2mm54Vertical:
+    """I2C pin header.
+
+    Follows Pimoroni Breakout Garden specification.
+    """
+    i2c = new I2C
+    power = new Power
+    int = new GPIO
+
+    signal gnd ~ pin 1
+
+    int.io ~ pin 2
+    int.gnd ~ gnd
+
+    power.vcc ~ pin 5
+    power.gnd ~ gnd
+
+    i2c.sda ~ pin 4
+    i2c.scl ~ pin 3
+    i2c.gnd ~ gnd

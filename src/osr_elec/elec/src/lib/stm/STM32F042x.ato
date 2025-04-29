@@ -1,0 +1,48 @@
+"""STM32F042x microcontroller."""
+
+
+component Stm32f042xLqfp32:
+    """
+    STM32F042x microcontroller generic pin assignments.
+
+    # Reference
+
+    * [STM32F042K6 product page](https://www.st.com/en/microcontrollers-microprocessors/stm32f042k6.html)
+    * [STM32F042x4 STM32F042x6 datasheet](https://www.st.com/resource/en/datasheet/stm32f042k6.pdf)
+    """
+    footprint = "Package_QFP:LQFP-32_7x7mm_P0.8mm"
+    lcsc_id = "C1337340"
+    mpn = "C1337340"  # STM32F042K6T7
+
+    signal vdd ~ pin 1
+    signal pf0__osc_in ~ pin 2
+    signal pf1__osc_out ~ pin 3
+    signal nrst ~ pin 4
+    signal vdda ~ pin 5
+    signal pa0 ~ pin 6
+    signal pa1 ~ pin 7
+    signal pa2 ~ pin 8
+    signal pa3 ~ pin 9
+    signal pa4 ~ pin 10
+    signal pa5 ~ pin 11
+    signal pa6 ~ pin 12
+    signal pa7 ~ pin 13
+    signal pb0 ~ pin 14
+    signal pb1 ~ pin 15
+    signal vss ~ pin 16
+    signal vddio2 ~ pin 17
+    signal pa8 ~ pin 18
+    signal pa9 ~ pin 19
+    signal pa10 ~ pin 20
+    signal pa11 ~ pin 21
+    signal pa12 ~ pin 22
+    signal pa13 ~ pin 23
+    signal pa14 ~ pin 24
+    signal pa15 ~ pin 25
+    signal pb3 ~ pin 26
+    signal pb4 ~ pin 27
+    signal pb5 ~ pin 28
+    signal pb6 ~ pin 29
+    signal pb7 ~ pin 30
+    signal pb8__boot0 ~ pin 31
+    vss ~ pin 32
