@@ -4,7 +4,7 @@ on: [pull_request, push]
 
 jobs:
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,9 +15,9 @@ jobs:
         run: git lfs checkout
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Install Poetry
         run: |
