@@ -69,7 +69,10 @@ linkcheck_allowed_redirects = {
 }
 
 linkcheck_ignore = [
+    "https://optipng.sourceforge.net/",  # returns 403 for robots
     "https://roverchallenge.eu/",  # SSLCertVerificationError
+    # [SSL: UNSAFE_LEGACY_RENEGOTIATION_DISABLED] unsafe legacy renegotiation disabled
+    "https://set.adelaide.edu.au/atcsr/australian-rover-challenge/",
     "https://shop.4tronix.co.uk/",  # returns 403 for robots
     "https://www.esa.int/",  # returns 403 for robots
     "https://www.kickstarter.com/",  # returns 403 for robots
