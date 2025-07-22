@@ -45,7 +45,7 @@ class CzChangelog(SphinxDirective):
             defaults=self.env.settings,
             components=(RSTParser,),
             read_config_files=True,
-        ).get_default_values()
+        ).get_default_values()  # type: ignore[no-untyped-call]
 
         document = new_document("<rst-doc>", settings=settings)
         parser.parse(text, document)

@@ -1,8 +1,8 @@
 """Sphinx osr (rover.fischer.nz) domain."""
 
-from typing import Any
+from typing import AbstractSet, Any
 
-from docutils.nodes import Element
+from docutils.nodes import Element, reference
 from sphinx.addnodes import pending_xref
 from sphinx.builders import Builder
 from sphinx.domains import Domain
@@ -31,7 +31,9 @@ class OsrDomain(Domain):
         "dimension": DimensionRole(),
     }
 
-    def merge_domaindata(self, docnames: list[str], otherdata: dict[str, Any]) -> None:
+    def merge_domaindata(
+        self, docnames: AbstractSet[str], otherdata: dict[str, Any]
+    ) -> None:
         """Merge in data regarding docnames from a different domaindata inventory."""
         pass
 
@@ -43,6 +45,6 @@ class OsrDomain(Domain):
         target: str,
         node: pending_xref,
         contnode: Element,
-    ) -> list[tuple[str, Element]]:
+    ) -> list[tuple[str, reference]]:
         """Resolve the pending_xref node with the given target."""
         return []
