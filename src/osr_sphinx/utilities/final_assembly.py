@@ -1,7 +1,7 @@
 """Singleton for creating a CadQuery model of the final assembly."""
 
 from sphinx.util import logging
-from sphinx.util.console import bold
+from sphinx.util.console import bold  # type: ignore[attr-defined]
 
 from osr_mechanical.final import FinalAssembly
 
