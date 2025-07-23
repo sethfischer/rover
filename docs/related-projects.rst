@@ -10,13 +10,16 @@
 Related projects
 ================
 
+Self-build projects
+-------------------
+
 
 .. index:: NASA-JPL Open Source Rover
 
 .. _`NASA-JPL Open Source Rover`:
 
 NASA-JPL Open Source Rover
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Documentation
     * https://github.com/nasa-jpl/open-source-rover
@@ -35,7 +38,7 @@ Website
 .. index:: Sawppy the Rover
 
 Sawppy the Rover
-----------------
+~~~~~~~~~~~~~~~~
 
 Documentation
     https://github.com/Roger-random/Sawppy_Rover
@@ -53,7 +56,7 @@ Project page
 .. index:: ESA ExoMy
 
 ESA ExoMy
----------
+~~~~~~~~~
 
 Documentation
     https://github.com/esa-prl/ExoMy/wiki
@@ -70,21 +73,21 @@ Website
 
 
 How To Mechatronics/Mars Rover
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Documentation
     https://howtomechatronics.com/projects/diy-mars-perseverance-rover-replica-with-arduino/
 
 
 Jakob Krantz/Mars Rover
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Documentation
     https://github.com/jakkra/Mars-Rover
 
 
 Frédéric Jelmoni/Mars Rover
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Documentation
     Fred Robotic `Mars 2020 - Perseverance Rover Project <https://www.youtube.com/playlist?list=PLPA2ZF9G4l--smeL5xHTISZBblAAfhV12>`_ on YouTube.
@@ -94,7 +97,7 @@ Website
 
 
 BricoLabs/Curiosity BTL
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Documentation
     https://www.bricolabs.cc/wiki/en/proyectos/curiosity_btl
@@ -104,14 +107,14 @@ Code and parts
 
 
 Ryan Kinnett/Micro Rover
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Documentation
     https://hackaday.io/project/174405-micro-rover
 
 
 planktonrobo/RB-0
------------------
+~~~~~~~~~~~~~~~~~
 
 Documentation
     https://www.hackster.io/planktonrobo/rb-0-jetson-nano-powered-rover-ca242a
