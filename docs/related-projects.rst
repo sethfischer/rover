@@ -127,6 +127,7 @@ Commercial products
 * `LEGOⓇ Technic NASA Mars Rover Perseverance <https://www.lego.com/en-us/product/nasa-mars-rover-perseverance-42158>`__
 * 4tronix `M.A.R.S. Rover Robot for Microbit or Pi Zero <https://shop.4tronix.co.uk/products/marsrover>`_
 * Servocity `Bogie Runt Rover <https://www.servocity.com/bogie-runt-rover/>`_
+* SunFounder `GalaxyRVR Mars Rover <https://www.sunfounder.com/products/sunfounder-galaxyrvr-mars-rover-kit>`__
 
 
 Competitions
